@@ -8,13 +8,13 @@ const theme = createMuiTheme({
   palette: {
     type: "light",
     primary: { main: "#2e7d32" },
-    error: {
+    /*error: {
       main: red[500],
-    },
+    },*/
   },
-  background: {
+  /*background: {
     default: orange[50],
-  },
+  },*/
   typography: {
     useNextVariants: true,
   },

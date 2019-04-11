@@ -8,8 +8,8 @@ import jwtDecode from 'jwt-decode'
 
 import graphQlUri from './modules/graphQlUri'
 
-export default async ({ idb, store }) => {
-  const authLink = setContext(async (_, { headers }) => {
+export default  ({ idb, store }) => {
+  const authLink = setContext( (_, { headers }) => {
     const { token } = store.user
     if (token) {
       const tokenDecoded = jwtDecode(token)

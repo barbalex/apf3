@@ -4,7 +4,7 @@ import isMobilePhone from '../modules/isMobilePhone'
 import setUrlQueryValue from '../modules/setUrlQueryValue'
 import setOpenNodesFromActiveNodeArray from '../modules/setOpenNodesFromActiveNodeArray'
 
-export default async ({ activeNodeArray: activeNodeArrayPassed, store }) => {
+export default  ({ activeNodeArray: activeNodeArrayPassed, store }) => {
   const { setUrlQuery, cloneTree2From1 } = store
   const activeNodeArrayFromPathname =
     activeNodeArrayPassed || getActiveNodeArrayFromPathname()
