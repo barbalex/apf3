@@ -389,7 +389,7 @@ const TreeContainer = ({ treeName }) => {
     },
     [treeName, activeApfloraLayers, activeOverlays, toDeleteId]
   )
-  const showMapIfNotYetVisible = useCallback((projekteTabs: Array<String>) => {
+  const showMapIfNotYetVisible = useCallback(projekteTabs => {
     const isVisible = projekteTabs.includes("karte")
     if (!isVisible) {
       setUrlQueryValue({

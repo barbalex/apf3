@@ -31,7 +31,6 @@ import buildClient from "./client"
 import initiateDataFromUrl from "./modules/initiateDataFromUrl"
 
 import Print from "./components/Print"
-import historyListen from "./modules/historyListen"
 
 import createGlobalStyle from "./utils/createGlobalStyle"
 
@@ -54,27 +53,30 @@ const App = ({ element }) => {
       }
     })
 
-  const [store, setStore] = useState({})
-  const [client, setClient] = useState({})
+  const [store, setStore] = useState()
+  const [client, setClient] = useState()
 
   const idb = initializeIdb()
 
   createInitialStore({ idb }).then(initialStore => {
     setStore(MobxStore.create(initialStore))
     setClient(buildClient({ idb, store }))
-    initiateDataFromUrl({
-      store,
-    })
-    //onPatch(store, patch => console.log(patch))
-    if (typeof window !== "undefined" && window.Cypress) {
-      // enable directly using these in tests
-      window.__client__ = client
-      window.__store__ = store
-      window.__idb__ = idb
-    }
   })
 
   const idbContext = { idb }
+
+  if (!store || !client) return null
+
+  initiateDataFromUrl({
+    store,
+  })
+  //onPatch(store, patch => console.log(patch))
+  if (typeof window !== "undefined" && window.Cypress) {
+    // enable directly using these in tests
+    window.__client__ = client
+    window.__store__ = store
+    window.__idb__ = idb
+  }
 
   return (
     <IdbProvider value={idbContext}>

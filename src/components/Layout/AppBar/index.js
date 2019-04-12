@@ -83,7 +83,7 @@ const MyAppBar = () => {
   const [userOpen, setUserOpen] = useState(false)
 
   const onClickButton = useCallback(
-    (name: string) => {
+    name => {
       if (isMobilePhone()) {
         // show one tab only
         setUrlQueryValue({

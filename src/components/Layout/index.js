@@ -41,18 +41,8 @@ const query = graphql`
 `
 
 const Layout = ({ children }) => {
-  const { setIsPrint, view, showDeletions } = useContext(storeContext)
+  const { view, showDeletions } = useContext(storeContext)
   const data = useStaticQuery(query)
-
-  useEffect(() => {
-    typeof window !== "undefined" &&
-      window.matchMedia("print").addListener(mql => {
-        setIsPrint(mql.matches)
-      })
-    return () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("print").removeListener()
-  }, [])
 
   return (
     <ErrorBoundary>

@@ -1,10 +1,10 @@
-import getActiveNodeArrayFromPathname from './getActiveNodeArrayFromPathname'
-import getUrlQuery from '../modules/getUrlQuery'
-import isMobilePhone from '../modules/isMobilePhone'
-import setUrlQueryValue from '../modules/setUrlQueryValue'
-import setOpenNodesFromActiveNodeArray from '../modules/setOpenNodesFromActiveNodeArray'
+import getActiveNodeArrayFromPathname from "./getActiveNodeArrayFromPathname"
+import getUrlQuery from "../modules/getUrlQuery"
+import isMobilePhone from "../modules/isMobilePhone"
+import setUrlQueryValue from "../modules/setUrlQueryValue"
+import setOpenNodesFromActiveNodeArray from "../modules/setOpenNodesFromActiveNodeArray"
 
-export default  ({ activeNodeArray: activeNodeArrayPassed, store }) => {
+export default ({ activeNodeArray: activeNodeArrayPassed, store }) => {
   const { setUrlQuery, cloneTree2From1 } = store
   const activeNodeArrayFromPathname =
     activeNodeArrayPassed || getActiveNodeArrayFromPathname()
@@ -14,13 +14,13 @@ export default  ({ activeNodeArray: activeNodeArrayPassed, store }) => {
   const { projekteTabs, feldkontrTab } = urlQuery
 
   // forward apflora.ch to Projekte
-  if (activeNodeArrayFromPathname.length === 0) {
+  /*if (activeNodeArrayFromPathname.length === 0) {
     initialActiveNodeArray.push('Projekte')
-  }
+  }*/
   store.setTreeKey({
     value: initialActiveNodeArray,
-    tree: 'tree',
-    key: 'activeNodeArray',
+    tree: "tree",
+    key: "activeNodeArray",
   })
   // need to set openNodes
   setOpenNodesFromActiveNodeArray({
@@ -33,21 +33,20 @@ export default  ({ activeNodeArray: activeNodeArrayPassed, store }) => {
 
   // set projekte tabs of not yet existing
   if (
-    (activeNodeArrayFromPathname.length === 0 ||
-      activeNodeArrayFromPathname[0] === 'Projekte') &&
+    activeNodeArrayFromPathname[0] === "Projekte" &&
     (!projekteTabs || !projekteTabs.length || projekteTabs.length === 0)
   ) {
     if (isMobilePhone()) {
       setUrlQueryValue({
-        key: 'projekteTabs',
-        value: ['tree'],
+        key: "projekteTabs",
+        value: ["tree"],
         urlQuery,
         setUrlQuery,
       })
     } else {
       setUrlQueryValue({
-        key: 'projekteTabs',
-        value: ['tree', 'daten'],
+        key: "projekteTabs",
+        value: ["tree", "daten"],
         urlQuery,
         setUrlQuery,
       })

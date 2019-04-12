@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useCallback } from "react"
+import React, { Suspense, useContext, useCallback } from "react"
 import styled from "styled-components"
 import Button from "@material-ui/core/Button"
 import ArrowBack from "@material-ui/icons/ArrowBack"
@@ -7,6 +7,8 @@ import { observer } from "mobx-react-lite"
 import ErrorBoundary from "../shared/ErrorBoundary"
 import Fallback from "../shared/Fallback"
 import storeContext from "../../storeContext"
+import ApberForApFromAp from "./ApberForApFromAp"
+import ApberForYear from "./ApberForYear"
 
 const Container = styled.div`
   background-color: #eee;
@@ -38,9 +40,6 @@ const StyledArrowBack = styled(ArrowBack)`
   margin-left: -7px;
   padding-right: 4px;
 `
-
-const ApberForApFromAp = lazy(() => import("./ApberForApFromAp"))
-const ApberForYear = lazy(() => import("./ApberForYear"))
 
 const Print = () => {
   const store = useContext(storeContext)

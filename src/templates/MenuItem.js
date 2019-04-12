@@ -7,7 +7,7 @@ import { Location } from '@reach/router'
 import styled from 'styled-components'
 import get from 'lodash/get'
 
-import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorBoundary from '../components/shared/ErrorBoundary'
 
 const ListItem = styled(MListItem)`
   background-color: ${props =>
