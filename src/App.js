@@ -28,8 +28,6 @@ import "typeface-roboto"
 import initializeIdb from "./modules/initializeIdb"
 import buildClient from "./client"
 
-import initiateDataFromUrl from "./modules/initiateDataFromUrl"
-
 import Print from "./components/Print"
 
 import createGlobalStyle from "./utils/createGlobalStyle"
@@ -67,9 +65,6 @@ const App = ({ element }) => {
 
   if (!store || !client) return null
 
-  initiateDataFromUrl({
-    store,
-  })
   //onPatch(store, patch => console.log(patch))
   if (typeof window !== "undefined" && window.Cypress) {
     // enable directly using these in tests

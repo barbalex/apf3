@@ -128,7 +128,7 @@ const MyAppBar = () => {
 
   return (
     <ErrorBoundary>
-      <StyledAppBar position="static">
+      <StyledAppBar position="fixed">
         <StyledToolbar>
           <Typography variant="h6" color="inherit">
             {isMobile

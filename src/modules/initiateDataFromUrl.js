@@ -13,10 +13,6 @@ export default ({ activeNodeArray: activeNodeArrayPassed, store }) => {
   const urlQuery = getUrlQuery()
   const { projekteTabs, feldkontrTab } = urlQuery
 
-  // forward apflora.ch to Projekte
-  /*if (activeNodeArrayFromPathname.length === 0) {
-    initialActiveNodeArray.push('Projekte')
-  }*/
   store.setTreeKey({
     value: initialActiveNodeArray,
     tree: "tree",

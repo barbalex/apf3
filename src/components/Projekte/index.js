@@ -73,7 +73,9 @@ const Projekte = () => {
     }
     return () => {
       if (typeof window !== "undefined") {
-        window.matchMedia("print").removeListener()
+        window.matchMedia("print").removeListener(mql => {
+          setIsPrint(mql.matches)
+        })
       }
     }
   }, [])

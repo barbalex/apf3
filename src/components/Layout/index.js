@@ -3,22 +3,14 @@
  * because neither StaticQuery nor AppQuery
  * work there :-(
  */
-import React, { Suspense, useContext, useEffect } from "react"
+import React, { Suspense } from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import AppBar from "./AppBar"
-import Projekte from "../Projekte"
-import User from "../User"
-import Errors from "../Errors"
-import UpdateAvailable from "../UpdateAvailable"
-import Messages from "../Messages"
-import Ekf from "../Ekf"
-import Deletions from "../Deletions"
 import ErrorBoundary from "../shared/ErrorBoundary"
 import Fallback from "../shared/Fallback"
-import storeContext from "../../storeContext"
 
 const Container = styled.div`
   height: 100%;
@@ -41,7 +33,6 @@ const query = graphql`
 `
 
 const Layout = ({ children }) => {
-  const { view, showDeletions } = useContext(storeContext)
   const data = useStaticQuery(query)
 
   return (
@@ -65,13 +56,6 @@ const Layout = ({ children }) => {
         <Suspense fallback={<Fallback />}>
           <AppBar />
           {children}
-          {view === "ekf" && <Ekf />}
-          {view === "normal" && <Projekte />}
-          <User />
-          <Errors />
-          <UpdateAvailable />
-          <Messages />
-          {showDeletions && <Deletions />}
         </Suspense>
       </Container>
     </ErrorBoundary>
