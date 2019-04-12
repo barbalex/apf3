@@ -12,15 +12,7 @@ import AppBar from "./AppBar"
 import ErrorBoundary from "../shared/ErrorBoundary"
 import Fallback from "../shared/Fallback"
 
-const Container = styled.div`
-  /*height: 100%;
-  display: flex;
-  flex-direction: column;
-  @media print {
-    height: auto !important;
-    display: block;
-  }*/
-`
+const Container = styled.div``
 
 const query = graphql`
   query SiteTitleQuery {

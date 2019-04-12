@@ -21,6 +21,9 @@ import initiateDataFromUrl from "../modules/initiateDataFromUrl"
 const Container = styled.div`
   height: calc(100vh - 64px);
   margin-top: 64px;
+  @media print {
+    margin-top: 0;
+  }
 `
 
 const DatenPage = ({ location }) => {
