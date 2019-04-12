@@ -128,11 +128,15 @@ const MyAppBar = () => {
   const setViewEkf = useCallback(() => setView("ekf"))
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
+  //console.log("AppBar")
+
   return (
     <Location>
       {({ location }) => {
         const { pathname } = location
         const isProjekte = pathname.startsWith("/Projekte")
+
+        //console.log("AppBar", { pathname })
 
         return (
           <ErrorBoundary>

@@ -35,7 +35,6 @@ import createGlobalStyle from "./utils/createGlobalStyle"
 import { Provider as MobxProvider } from "./storeContext"
 import { Provider as IdbProvider } from "./idbContext"
 
-import createInitialStore from "./store/initial"
 import "react-leaflet-markercluster/dist/styles.min.css"
 
 const GlobalStyle = createGlobalStyle()
@@ -51,19 +50,10 @@ const App = ({ element }) => {
       }
     })
 
-  const [store, setStore] = useState()
-  const [client, setClient] = useState()
-
   const idb = initializeIdb()
-
-  createInitialStore({ idb }).then(initialStore => {
-    setStore(MobxStore.create(initialStore))
-    setClient(buildClient({ idb, store }))
-  })
-
+  const store = MobxStore.create()
+  const client = buildClient({ idb, store })
   const idbContext = { idb }
-
-  if (!store || !client) return null
 
   //onPatch(store, patch => console.log(patch))
   if (typeof window !== "undefined" && window.Cypress) {
@@ -72,6 +62,9 @@ const App = ({ element }) => {
     window.__store__ = store
     window.__idb__ = idb
   }
+
+  console.log("App, store 2:", store)
+  console.log("App, client:", client)
 
   return (
     <IdbProvider value={idbContext}>
