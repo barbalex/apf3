@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react"
+import styled from "styled-components"
 
 import ErrorBoundary from "../components/shared/ErrorBoundary"
 import Layout from "../components/Layout"
@@ -16,18 +17,21 @@ import Ekf from "../components/Ekf"
 import Deletions from "../components/Deletions"
 import initiateDataFromUrl from "../modules/initiateDataFromUrl"
 
+const ScrollContainer = styled.div`
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  margin-top: 64px;
+`
+
 export default ({ location }) => {
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
   const { view, showDeletions } = store
   const { pathname } = location
-  const {
-    setActiveNodeArray,
-    activeNodeArray: activeNodeArrayFromTree,
-    setOpenNodes,
-  } = store.tree
+  const { setActiveNodeArray, setOpenNodes } = store.tree
   useEffect(() => {
-    console.log("Projekte, useEffect: initiating data from url")
+    // TODO:
+    // is initiateDataFromUrl and setActiveNodeArray/setOpenNodes double?
     initiateDataFromUrl({
       store,
     })
@@ -35,13 +39,11 @@ export default ({ location }) => {
   }, [])
   const activeNodeArray = getActiveNodeArrayFromPathname(pathname)
   // on first render set openNodes
-  /*useEffect(() => {
-    console.log('Projekte, useEffect: setting openNodes')
+  useEffect(() => {
     setOpenNodes(getOpenNodesFromActiveNodeArray(activeNodeArray))
-  }, [])*/
+  }, [])
   // when pathname changes, update activeNodeArray
   useEffect(() => {
-    console.log("Projekte, useEffect: setting activeNodeArray")
     setActiveNodeArray(activeNodeArray)
   }, [pathname])
   //console.log('Projekte',{activeNodeArrayFromTree:activeNodeArrayFromTree.slice()})
@@ -49,14 +51,16 @@ export default ({ location }) => {
   return (
     <ErrorBoundary>
       <Layout>
-        <Projekte />
-        {view === "ekf" && <Ekf />}
-        {view === "normal" && <Projekte />}
-        <User />
-        <Errors />
-        <UpdateAvailable />
-        <Messages />
-        {showDeletions && <Deletions />}
+        <ScrollContainer>
+          <Projekte />
+          {view === "ekf" && <Ekf />}
+          {view === "normal" && <Projekte />}
+          <User />
+          <Errors />
+          <UpdateAvailable />
+          <Messages />
+          {showDeletions && <Deletions />}
+        </ScrollContainer>
       </Layout>
     </ErrorBoundary>
   )

@@ -282,12 +282,8 @@ const myTypes = types
           const query = `${
             Object.keys(urlQuery).length > 0 ? `?${search}` : ""
           }`
-          // pass openNodes as state
           navigate(`/${value.join("/")}${query}`)
-          // pushing state will set activeNodeArray via modules/historyListen
-          /*self.historyPush(`/${value.join("/")}${query}`, {
-            openNodes: self[tree].openNodes,
-          })*/
+          self[tree].activeNodeArray = value
         }
       }
     },

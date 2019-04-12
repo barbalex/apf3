@@ -9,7 +9,7 @@
 
 import "babel-polyfill"
 
-import React, { useState } from "react"
+import React from "react"
 
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import theme from "./utils/materialTheme"
@@ -56,15 +56,13 @@ const App = ({ element }) => {
   const idbContext = { idb }
 
   //onPatch(store, patch => console.log(patch))
+
   if (typeof window !== "undefined" && window.Cypress) {
     // enable directly using these in tests
     window.__client__ = client
     window.__store__ = store
     window.__idb__ = idb
   }
-
-  console.log("App, store 2:", store)
-  console.log("App, client:", client)
 
   return (
     <IdbProvider value={idbContext}>

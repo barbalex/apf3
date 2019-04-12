@@ -4,6 +4,7 @@ export default () => createGlobalStyle`
   html,
   body {
     overflow: hidden !important;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -11,7 +12,6 @@ export default () => createGlobalStyle`
   }
 
   @media print {
-
     html,
     body {
       background-color: white !important;
@@ -30,118 +30,15 @@ export default () => createGlobalStyle`
     }
   }
 
-  body {
-    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow: hidden;
-  }
-
-  :global(#root) {
-    background-color: #fffde7;
-    min-height: 100%;
-    min-width: 100%;
-    height: 100vh;
-  }
-
-  :global(#root)>div {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-
-  :global a {
+  a {
     color: #f57c00;
-  }
-
-  /*
-  * context menu
-  */
-
-  :global .react-contextmenu {
-    display: flex;
-    flex-direction: column;
-    min-width: 100px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    background-color: rgb(66, 66, 66);
-    background-clip: padding-box;
-    border: 1px solid grey;
-    border-radius: 0.25rem;
-    outline: none;
-    opacity: 0;
-    pointer-events: none;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  :global .react-contextmenu.react-contextmenu--visible {
-    color: white;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1000;
-  }
-
-  :global .react-contextmenu-title {
-    opacity: 0;
-  }
-
-  :global .react-contextmenu--visible .react-contextmenu-title {
-    color: #b3b3b3;
-    padding-left: 10px;
-    padding-right: 15px;
-    padding-bottom: 3px;
-    opacity: 1;
-  }
-
-  :global .react-contextmenu-title::after {
-    content: ':';
-  }
-
-  :global .react-contextmenu>.react-contextmenu-item {
-    display: inline-block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.5;
-    color: white;
-    text-align: inherit;
-    white-space: nowrap;
-    background: 0 0;
-    border: 0;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  :global .react-contextmenu-item.active,
-  :global .react-contextmenu-item:hover {
-    color: #f57c00;
-    border-color: #0275d8;
-    text-decoration: none;
-  }
-
-  :global .react-contextmenu-divider {
-    border-top: 1px solid grey;
-    margin-top: 4px;
-    margin-bottom: 7px;
-  }
-
-  :global .react-contextmenu-submenu {
-    padding-right: 27px !important;
-  }
-
-  :global .react-contextmenu-submenu:after {
-    content: '▶';
-    display: inline-block;
-    position: absolute;
-    right: 7px;
-    bottom: 3px;
   }
 
   /*
   * leaflet tooltips
   */
 
-  :global .mapTooltip {
+  .mapTooltip {
     background: transparent;
     border: none;
     box-shadow: none;
@@ -154,21 +51,21 @@ export default () => createGlobalStyle`
     text-shadow: 0 1px 0 white, -0 -1px 0 white, 1px 0 0 white, -1px 0 0 white, 0 2px 1px white, -0 -2px 1px white, 2px 0 1px white, -2px 0 1px white, 0 3px 2px white, -0 -3px 2px white, 3px 0 2px white, -3px 0 2px white;
   }
 
-  :global .leaflet-tooltip {
+  .leaflet-tooltip {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
 
-  :global .leaflet-tooltip-bottom.mapTooltip:before {
+  .leaflet-tooltip-bottom.mapTooltip:before {
     border-bottom-color: transparent;
   }
 
-  :global .leaflet-tooltip-left.mapTooltip::before {
+  .leaflet-tooltip-left.mapTooltip::before {
     border-left-color: transparent;
   }
 
-  :global .leaflet-tooltip-right.mapTooltip::before {
+  .leaflet-tooltip-right.mapTooltip::before {
     border-right-color: transparent;
   }
 

@@ -1,55 +1,55 @@
-import React, { useContext, useEffect } from 'react'
-import Button from '@material-ui/core/Button'
-import { FixedSizeList as List } from 'react-window'
-import styled from 'styled-components'
-import findIndex from 'lodash/findIndex'
-import isEqual from 'lodash/isEqual'
-import { observer } from 'mobx-react-lite'
-import { useQuery } from 'react-apollo-hooks'
-import jwtDecode from 'jwt-decode'
+import React, { useContext, useEffect } from "react"
+import Button from "@material-ui/core/Button"
+import { FixedSizeList as List } from "react-window"
+import styled from "styled-components"
+import findIndex from "lodash/findIndex"
+import isEqual from "lodash/isEqual"
+import { observer } from "mobx-react-lite"
+import { useQuery } from "react-apollo-hooks"
+import jwtDecode from "jwt-decode"
 
-import Row from './Row'
+import Row from "./Row"
 
-import storeContext from '../../../../storeContext'
-import buildVariables from './buildVariables'
-import queryAdresses from './queryAdresses'
-import queryCurrentIssues from './queryCurrentIssues'
-import queryUsers from './queryUsers'
-import queryProjekts from './queryProjekts'
-import queryApberuebersichts from './queryApberuebersichts'
-import queryAps from './queryAps'
-import queryPops from './queryPops'
-import queryPopbers from './queryPopbers'
-import queryPopmassnbers from './queryPopmassnbers'
-import queryTpops from './queryTpops'
-import queryTpopmassns from './queryTpopmassns'
-import queryTpopmassnbers from './queryTpopmassnbers'
-import queryTpopfeldkontrs from './queryTpopfeldkontrs'
-import queryTpopfreiwkontrs from './queryTpopfreiwkontrs'
-import queryTpopkontrzaehls from './queryTpopkontrzaehls'
-import queryTpopbers from './queryTpopbers'
-import queryBeobZugeordnets from './queryBeobZugeordnets'
-import queryZiels from './queryZiels'
-import queryZielbers from './queryZielbers'
-import queryErfkrits from './queryErfkrits'
-import queryApbers from './queryApbers'
-import queryBers from './queryBers'
-import queryAparts from './queryAparts'
-import queryAssozarts from './queryAssozarts'
-import queryEkfzaehleinheits from './queryEkfzaehleinheits'
-import queryBeobNichtBeurteilts from './queryBeobNichtBeurteilts'
-import queryBeobNichtZuzuordnens from './queryBeobNichtZuzuordnens'
-import buildNodes from '../nodes'
-import logout from '../../../../modules/logout'
-import anyQueryReturnsPermissionError from '../../../../modules/anyQueryReturnsPermissionError'
-import anyQueryIsLoading from '../../../../modules/anyQueryIsLoading'
-import anyQueryReturnsError from '../../../../modules/anyQueryReturnsError'
-import idbContext from '../../../../idbContext'
+import storeContext from "../../../../storeContext"
+import buildVariables from "./buildVariables"
+import queryAdresses from "./queryAdresses"
+import queryCurrentIssues from "./queryCurrentIssues"
+import queryUsers from "./queryUsers"
+import queryProjekts from "./queryProjekts"
+import queryApberuebersichts from "./queryApberuebersichts"
+import queryAps from "./queryAps"
+import queryPops from "./queryPops"
+import queryPopbers from "./queryPopbers"
+import queryPopmassnbers from "./queryPopmassnbers"
+import queryTpops from "./queryTpops"
+import queryTpopmassns from "./queryTpopmassns"
+import queryTpopmassnbers from "./queryTpopmassnbers"
+import queryTpopfeldkontrs from "./queryTpopfeldkontrs"
+import queryTpopfreiwkontrs from "./queryTpopfreiwkontrs"
+import queryTpopkontrzaehls from "./queryTpopkontrzaehls"
+import queryTpopbers from "./queryTpopbers"
+import queryBeobZugeordnets from "./queryBeobZugeordnets"
+import queryZiels from "./queryZiels"
+import queryZielbers from "./queryZielbers"
+import queryErfkrits from "./queryErfkrits"
+import queryApbers from "./queryApbers"
+import queryBers from "./queryBers"
+import queryAparts from "./queryAparts"
+import queryAssozarts from "./queryAssozarts"
+import queryEkfzaehleinheits from "./queryEkfzaehleinheits"
+import queryBeobNichtBeurteilts from "./queryBeobNichtBeurteilts"
+import queryBeobNichtZuzuordnens from "./queryBeobNichtZuzuordnens"
+import buildNodes from "../nodes"
+import logout from "../../../../modules/logout"
+import anyQueryReturnsPermissionError from "../../../../modules/anyQueryReturnsPermissionError"
+import anyQueryIsLoading from "../../../../modules/anyQueryIsLoading"
+import anyQueryReturnsError from "../../../../modules/anyQueryReturnsError"
+import idbContext from "../../../../idbContext"
 
 const singleRowHeight = 23
 const Container = styled.div`
   height: 100%;
-  cursor: ${props => (props['data-loading'] ? 'wait' : 'inherit')};
+  cursor: ${props => (props["data-loading"] ? "wait" : "inherit")};
   ul {
     margin: 0;
     list-style: none;
@@ -71,14 +71,16 @@ const Tree = ({ treeName }) => {
   const tree = store[treeName]
   const {
     activeNodeArray,
+    setActiveNodeArray,
     setNodes,
     openNodes,
+    setOpenNodes,
     nodeLabelFilter,
     treeWidth,
     treeHeight,
   } = tree
   const activeNodes = store[`${treeName}ActiveNodes`]
-  const { nodeFilter, user, setRefetchKey, setTreeKey } = store
+  const { nodeFilter, user, setRefetchKey } = store
   const { idb } = useContext(idbContext)
   const {
     projekt,
@@ -109,7 +111,7 @@ const Tree = ({ treeName }) => {
     refetch: refetchProjekts,
   } = useQuery(queryProjekts)
   setRefetchKey({
-    key: 'projekts',
+    key: "projekts",
     value: refetchProjekts,
   })
   const queryUsersFilter = { id: { isNull: false } }
@@ -129,7 +131,7 @@ const Tree = ({ treeName }) => {
     },
   })
   setRefetchKey({
-    key: 'users',
+    key: "users",
     value: refetchUsers,
   })
   const queryApberuebersichtsFilter = { projId: { in: projekt } }
@@ -147,7 +149,7 @@ const Tree = ({ treeName }) => {
     variables: { isProjekt, filter: queryApberuebersichtsFilter },
   })
   setRefetchKey({
-    key: 'apberuebersichts',
+    key: "apberuebersichts",
     value: refetchApberuebersichts,
   })
   const queryApsFilter = { ...apFilter }
@@ -163,7 +165,7 @@ const Tree = ({ treeName }) => {
     variables: { isProjekt, filter: queryApsFilter },
   })
   setRefetchKey({
-    key: 'aps',
+    key: "aps",
     value: refetchAps,
   })
   const queryPopsFilter = { ...popFilter }
@@ -184,7 +186,7 @@ const Tree = ({ treeName }) => {
     },
   })
   setRefetchKey({
-    key: 'pops',
+    key: "pops",
     value: refetchPops,
   })
   const queryPopbersFilter = { popId: { in: pop } }
@@ -202,7 +204,7 @@ const Tree = ({ treeName }) => {
     variables: { isPop, filter: queryPopbersFilter },
   })
   setRefetchKey({
-    key: 'popbers',
+    key: "popbers",
     value: refetchPopbers,
   })
   const queryPopmassnbersFilter = { popId: { in: pop } }
@@ -220,7 +222,7 @@ const Tree = ({ treeName }) => {
     variables: { isPop, filter: queryPopmassnbersFilter },
   })
   setRefetchKey({
-    key: 'popmassnbers',
+    key: "popmassnbers",
     value: refetchPopmassnbers,
   })
   const queryTpopsFilter = { ...tpopFilter }
@@ -238,7 +240,7 @@ const Tree = ({ treeName }) => {
     variables: { isPop, filter: queryTpopsFilter },
   })
   setRefetchKey({
-    key: 'tpops',
+    key: "tpops",
     value: refetchTpops,
   })
   const queryTpopmassnsFilter = { ...tpopmassnFilter }
@@ -256,7 +258,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryTpopmassnsFilter },
   })
   setRefetchKey({
-    key: 'tpopmassns',
+    key: "tpopmassns",
     value: refetchTpopmassns,
   })
   const queryTpopmassnbersFilter = { tpopId: { in: tpop } }
@@ -274,7 +276,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryTpopmassnbersFilter },
   })
   setRefetchKey({
-    key: 'tpopmassnbers',
+    key: "tpopmassnbers",
     value: refetchTpopmassnbers,
   })
   const queryTpopfeldkontrsFilter = { ...tpopfeldkontrFilter }
@@ -292,7 +294,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryTpopfeldkontrsFilter },
   })
   setRefetchKey({
-    key: 'tpopfeldkontrs',
+    key: "tpopfeldkontrs",
     value: refetchTpopfeldkontrs,
   })
   const queryTpopfreiwkontrsFilter = { ...tpopfreiwkontrFilter }
@@ -310,7 +312,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryTpopfreiwkontrsFilter },
   })
   setRefetchKey({
-    key: 'tpopfreiwkontrs',
+    key: "tpopfreiwkontrs",
     value: refetchTpopfreiwkontrs,
   })
   const queryTpopkontrzaehlsFilter = { tpopkontrId: { in: tpopkontr } }
@@ -328,7 +330,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpopkontr, filter: queryTpopkontrzaehlsFilter },
   })
   setRefetchKey({
-    key: 'tpopkontrzaehls',
+    key: "tpopkontrzaehls",
     value: refetchTpopkontrzaehls,
   })
   const queryTpopbersFilter = { tpopId: { in: tpop } }
@@ -346,7 +348,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryTpopbersFilter },
   })
   setRefetchKey({
-    key: 'tpopbers',
+    key: "tpopbers",
     value: refetchTpopbers,
   })
   const queryBeobZugeordnetsFilter = { tpopId: { in: tpop } }
@@ -364,7 +366,7 @@ const Tree = ({ treeName }) => {
     variables: { isTpop, filter: queryBeobZugeordnetsFilter },
   })
   setRefetchKey({
-    key: 'beobZugeordnets',
+    key: "beobZugeordnets",
     value: refetchBeobZugeordnets,
   })
   const queryZielsFilter = { apId: { in: ap } }
@@ -382,7 +384,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryZielsFilter },
   })
   setRefetchKey({
-    key: 'ziels',
+    key: "ziels",
     value: refetchZiels,
   })
   const queryZielbersFilter = { zielId: { in: ziel } }
@@ -400,7 +402,7 @@ const Tree = ({ treeName }) => {
     variables: { isZiel, filter: queryZielbersFilter },
   })
   setRefetchKey({
-    key: 'zielbers',
+    key: "zielbers",
     value: refetchZielbers,
   })
   const queryErfkritsFilter = { apId: { in: ap } }
@@ -418,7 +420,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryErfkritsFilter },
   })
   setRefetchKey({
-    key: 'erfkrits',
+    key: "erfkrits",
     value: refetchErfkrits,
   })
   const queryApbersFilter = { apId: { in: ap } }
@@ -434,7 +436,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryApbersFilter },
   })
   setRefetchKey({
-    key: 'apbers',
+    key: "apbers",
     value: refetchApbers,
   })
   const queryBersFilter = { apId: { in: ap } }
@@ -452,7 +454,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryBersFilter },
   })
   setRefetchKey({
-    key: 'bers',
+    key: "bers",
     value: refetchBers,
   })
   const queryApartsFilter = { apId: { in: ap } }
@@ -468,7 +470,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryApartsFilter },
   })
   setRefetchKey({
-    key: 'aparts',
+    key: "aparts",
     value: refetchAparts,
   })
   const queryAssozartsFilter = { apId: { in: ap } }
@@ -486,7 +488,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryAssozartsFilter },
   })
   setRefetchKey({
-    key: 'assozarts',
+    key: "assozarts",
     value: refetchAssozarts,
   })
   const queryEkfzaehleinheitsFilter = { apId: { in: ap } }
@@ -504,7 +506,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryEkfzaehleinheitsFilter },
   })
   setRefetchKey({
-    key: 'ekfzaehleinheits',
+    key: "ekfzaehleinheits",
     value: refetchEkfzaehleinheits,
   })
   const queryBeobNichtBeurteiltsFilter = {
@@ -529,7 +531,7 @@ const Tree = ({ treeName }) => {
     },
   })
   setRefetchKey({
-    key: 'beobNichtBeurteilts',
+    key: "beobNichtBeurteilts",
     value: refetchBeobNichtBeurteilts,
   })
   const queryBeobNichtZuzuordnensFilter = {
@@ -550,7 +552,7 @@ const Tree = ({ treeName }) => {
     variables: { isAp, filter: queryBeobNichtZuzuordnensFilter },
   })
   setRefetchKey({
-    key: 'beobNichtZuzuordnens',
+    key: "beobNichtZuzuordnens",
     value: refetchBeobNichtZuzuordnens,
   })
   const queryAdressesFilter = nodeLabelFilter.adresse
@@ -565,7 +567,7 @@ const Tree = ({ treeName }) => {
     variables: { isWerteListen, filter: queryAdressesFilter },
   })
   setRefetchKey({
-    key: 'adresses',
+    key: "adresses",
     value: refetchAdresses,
   })
   const {
@@ -735,7 +737,7 @@ const Tree = ({ treeName }) => {
      * open it
      * dont do this in render!
      */
-    const projekteNodes = nodes.filter(n => n.menuType === 'projekt')
+    const projekteNodes = nodes.filter(n => n.menuType === "projekt")
     const existsOnlyOneProjekt = projekteNodes.length === 1
     const projektNode = projekteNodes[0]
     if (
@@ -745,17 +747,9 @@ const Tree = ({ treeName }) => {
       projektNode
     ) {
       const projektUrl = [...projektNode.url]
-      setTreeKey({
-        value: projektUrl,
-        tree: treeName,
-        key: 'activeNodeArray',
-      })
+      setActiveNodeArray(projektUrl)
       // add projekt to open nodes
-      setTreeKey({
-        value: [...openNodes, projektUrl],
-        tree: treeName,
-        key: 'openNodes',
-      })
+      setOpenNodes([...openNodes, projektUrl])
     }
   }, [loading])
 
@@ -795,7 +789,7 @@ const Tree = ({ treeName }) => {
   return (
     <Container data-loading={loading}>
       <StyledList
-        height={treeHeight - 58 - 65}
+        height={treeHeight - 64 - 64}
         itemCount={nodes.length}
         itemSize={singleRowHeight}
         width={treeWidth}

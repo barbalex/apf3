@@ -13,11 +13,7 @@ export default ({ activeNodeArray: activeNodeArrayPassed, store }) => {
   const urlQuery = getUrlQuery()
   const { projekteTabs, feldkontrTab } = urlQuery
 
-  store.setTreeKey({
-    value: initialActiveNodeArray,
-    tree: "tree",
-    key: "activeNodeArray",
-  })
+  store.tree.setActiveNodeArray(initialActiveNodeArray)
   // need to set openNodes
   setOpenNodesFromActiveNodeArray({
     activeNodeArray: initialActiveNodeArray,

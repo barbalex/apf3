@@ -62,15 +62,9 @@ export default types
         const { urlQuery } = store
         const search = queryString.stringify(urlQuery)
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ""}`
-        // pass openNodes as state
-        // pushing state will set activeNodeArray via modules/historyListen
         navigate(`/${val.join("/")}${query}`)
-        /*historyPush(`/${val.join("/")}${query}`, {
-          openNodes: self.openNodes,
-        })*/
-      } else {
-        self.activeNodeArray = val
       }
+      self.activeNodeArray = val
     },
   }))
   .views(self => ({
