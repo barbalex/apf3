@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components"
 export default () => createGlobalStyle`
   html,
   body {
+    overflow: hidden !important;
     height: 100%;
     width: 100%;
     margin: 0;
