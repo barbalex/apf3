@@ -40,7 +40,7 @@ const Container = styled.div`
 
     margin: 0 !important;
     padding: ${props => (props.issubreport ? "0" : "0.5cm !important")};
-    padding-left: 0 !important;
+    /*padding-left: 0 !important;*/
 
     box-shadow: unset;
   }
