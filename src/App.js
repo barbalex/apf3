@@ -28,8 +28,6 @@ import "typeface-roboto"
 import initializeIdb from "./modules/initializeIdb"
 import buildClient from "./client"
 
-import Print from "./components/Print"
-
 import createGlobalStyle from "./utils/createGlobalStyle"
 
 import { Provider as MobxProvider } from "./storeContext"
@@ -70,17 +68,14 @@ const App = ({ element }) => {
         <ApolloProvider client={client}>
           <ApolloHooksProvider client={client}>
             <MuiThemeProvider theme={theme}>
-              <>
-                {/*<Print />*/}
-                <MuiPickersUtilsProvider
-                  utils={MomentUtils}
-                  moment={moment}
-                  locale="de-ch"
-                >
-                  <GlobalStyle />
-                  {element}
-                </MuiPickersUtilsProvider>
-              </>
+              <MuiPickersUtilsProvider
+                utils={MomentUtils}
+                moment={moment}
+                locale="de-ch"
+              >
+                <GlobalStyle />
+                {element}
+              </MuiPickersUtilsProvider>
             </MuiThemeProvider>
           </ApolloHooksProvider>
         </ApolloProvider>

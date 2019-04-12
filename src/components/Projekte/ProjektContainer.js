@@ -128,6 +128,14 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
     setDimensions()
   }, [tabs.length])
 
+  if (isPrint && showApberForAp) {
+    return <ApberForApFromAp />
+  }
+
+  if (isPrint && showApberForYear) {
+    return <ApberForYear />
+  }
+
   if (isPrint) {
     return <Daten treeName={treeName} />
   }
