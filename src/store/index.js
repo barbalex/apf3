@@ -271,22 +271,6 @@ const myTypes = types
     setRefetchKey({ key, value }) {
       self.refetch[key] = value
     },
-    setTreeKey({ tree, key, value }) {
-      const oldValue = self[tree][key]
-      const urlQuery = self.urlQuery
-      // only write if changed
-      if (!isEqual(oldValue, value)) {
-        self[tree][key] = value
-        if (tree === "tree" && key === "activeNodeArray") {
-          const search = queryString.stringify(urlQuery)
-          const query = `${
-            Object.keys(urlQuery).length > 0 ? `?${search}` : ""
-          }`
-          navigate(`/${value.join("/")}${query}`)
-          self[tree].activeNodeArray = value
-        }
-      }
-    },
     cloneTree2From1() {
       self.tree2 = cloneDeep(self.tree)
     },

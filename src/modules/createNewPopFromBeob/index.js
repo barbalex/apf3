@@ -9,7 +9,7 @@ import createTpop from "./createTpop"
 import updateBeobById from "./updateBeobById"
 
 export default async ({ treeName, id, client, store }) => {
-  const { setTreeKey, addError, refetch } = store
+  const { addError, refetch } = store
   const tree = store[treeName]
   const { setActiveNodeArray, setOpenNodes } = tree
   const activeNodes = store[`${treeName}ActiveNodes`]
