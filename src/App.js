@@ -71,7 +71,7 @@ const App = ({ element }) => {
           <ApolloHooksProvider client={client}>
             <MuiThemeProvider theme={theme}>
               <>
-                <Print />
+                {/*<Print />*/}
                 <MuiPickersUtilsProvider
                   utils={MomentUtils}
                   moment={moment}

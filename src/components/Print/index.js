@@ -58,21 +58,21 @@ const Print = () => {
     () => typeof window !== "undefined" && window.history.back()
   )
 
+  console.log("Print", { showApberForAp, showApberForYear })
+
   if (!showApberForAp && !showApberForYear) return null
 
   return (
     <ErrorBoundary>
       <Container>
-        {(showApberForAp || showApberForYear) && (
-          <Suspense fallback={<Fallback />}>
-            <BackButton variant="outlined" onClick={onClickBack}>
-              <StyledArrowBack />
-              zurück
-            </BackButton>
-            {showApberForAp && <ApberForApFromAp />}
-            {showApberForYear && <ApberForYear />}
-          </Suspense>
-        )}
+        <Suspense fallback={<Fallback />}>
+          <BackButton variant="outlined" onClick={onClickBack}>
+            <StyledArrowBack />
+            zurück
+          </BackButton>
+          {showApberForAp && <ApberForApFromAp />}
+          {showApberForYear && <ApberForYear />}
+        </Suspense>
       </Container>
     </ErrorBoundary>
   )

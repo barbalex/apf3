@@ -1,21 +1,24 @@
-import React, { useContext, useRef, useCallback, useEffect } from 'react'
-import styled from 'styled-components'
-import SplitPane from 'react-split-pane'
-import { observer } from 'mobx-react-lite'
+import React, { useContext, useRef, useCallback, useEffect } from "react"
+import styled from "styled-components"
+import SplitPane from "react-split-pane"
+import { observer } from "mobx-react-lite"
 
 // when Karte was loaded async, it did not load,
 // but only in production!
-import Karte from './Karte'
-import TreeContainer from './TreeContainer'
-import Daten from './Daten'
-import Exporte from './Exporte'
-import Filter from './Filter'
-import storeContext from '../../storeContext'
+import Karte from "./Karte"
+import TreeContainer from "./TreeContainer"
+import Daten from "./Daten"
+import Exporte from "./Exporte"
+import Filter from "./Filter"
+import storeContext from "../../storeContext"
+import ApberForApFromAp from "../Print/ApberForApFromAp"
+import ApberForYear from "../Print/ApberForYear"
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  /*height: calc(100% - 64px);*/
   @media print {
     display: block;
     height: auto !important;
@@ -38,7 +41,6 @@ const StyledSplitPane = styled(SplitPane)`
 
   .Resizer.vertical {
     border-left: 3px solid #388e3c;
-    /*border-right: 1.5px solid #388e3c;*/
     cursor: col-resize;
     background-color: #388e3c;
   }
@@ -53,8 +55,9 @@ const StyledSplitPane = styled(SplitPane)`
   .Resizer.disabled:hover {
     border-color: transparent;
   }
-  .Pane {
-    overflow: hidden;
+  .Pane2 {
+    overflow: ${props => (props.overflow === "auto" ? "auto" : "hidden")};
+    height: calc(100% - 64px);
   }
 `
 const InnerContainer = styled.div`
@@ -68,16 +71,29 @@ const standardHeight = 800
 const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
   const store = useContext(storeContext)
   const { isPrint } = store
-  const { setTreeWidth, setTreeHeight, setDatenWidth, setFilterWidth } = store[
-    treeName
-  ]
+  const {
+    setTreeWidth,
+    setTreeHeight,
+    setDatenWidth,
+    setFilterWidth,
+    activeNodeArray,
+  } = store[treeName]
+
+  const showApberForAp =
+    activeNodeArray.length === 7 &&
+    activeNodeArray[4] === "AP-Berichte" &&
+    activeNodeArray[6] === "print"
+  const showApberForYear =
+    activeNodeArray.length === 5 &&
+    activeNodeArray[2] === "AP-Berichte" &&
+    activeNodeArray[4] === "print"
 
   const treeEl = useRef(null)
   const datenEl = useRef(null)
   const filterEl = useRef(null)
 
   // remove 2 to treat all same
-  const tabs = [...tabsPassed].map(t => t.replace('2', ''))
+  const tabs = [...tabsPassed].map(t => t.replace("2", ""))
 
   const setDimensions = useCallback(() => {
     if (treeEl.current && treeEl.current.clientWidth) {
@@ -103,8 +119,8 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
 
   // reset dimensions when window resizes
   useEffect(() => {
-    window.addEventListener('resize', setDimensions)
-    return () => window.removeEventListener('resize', setDimensions)
+    window.addEventListener("resize", setDimensions)
+    return () => window.removeEventListener("resize", setDimensions)
   }, [])
 
   // reset dimensions when tabs are toggled
@@ -144,6 +160,42 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
     ),
   }
 
+  if (showApberForAp) {
+    return (
+      <Container>
+        <StyledSplitPane
+          split="vertical"
+          size={tabs[0] === "tree" ? "33%" : "50%"}
+          minSize={100}
+          onDragFinished={onChange}
+          overflow="auto"
+        >
+          {elObj.tree}
+          <InnerContainer>
+            <ApberForApFromAp />
+          </InnerContainer>
+        </StyledSplitPane>
+      </Container>
+    )
+  }
+
+  if (showApberForYear) {
+    return (
+      <Container>
+        <StyledSplitPane
+          split="vertical"
+          size={tabs[0] === "tree" ? "33%" : "50%"}
+          minSize={100}
+          onDragFinished={onChange}
+          overflow="auto"
+        >
+          {elObj.tree}
+          <ApberForYear />
+        </StyledSplitPane>
+      </Container>
+    )
+  }
+
   if (tabs.length < 2) {
     return <Container>{elObj[tabs[0]]}</Container>
   }
@@ -153,7 +205,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
       <Container>
         <StyledSplitPane
           split="vertical"
-          size={tabs[0] === 'tree' ? '33%' : '50%'}
+          size={tabs[0] === "tree" ? "33%" : "50%"}
           minSize={100}
           onDragFinished={onChange}
         >

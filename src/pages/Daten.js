@@ -15,6 +15,7 @@ import Errors from "../components/Errors"
 import UpdateAvailable from "../components/UpdateAvailable"
 import Messages from "../components/Messages"
 import Ekf from "../components/Ekf"
+import Print from "../components/Print"
 import Deletions from "../components/Deletions"
 import initiateDataFromUrl from "../modules/initiateDataFromUrl"
 
@@ -56,6 +57,7 @@ const DatenPage = ({ location }) => {
         <Container>
           {view === "ekf" && <Ekf />}
           {view === "normal" && <Projekte />}
+          <Print />
           <User />
           <Errors />
           <UpdateAvailable />
