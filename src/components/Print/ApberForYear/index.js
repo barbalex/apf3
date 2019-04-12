@@ -86,6 +86,9 @@ const FirstPageBearbeiter = styled.p`
 `
 const SecondPageTop = styled.div`
   padding-top: 2cm;
+  @media screen {
+    padding-top: 0;
+  }
 `
 const SecondPage = styled.div`
   break-after: page;
