@@ -7,6 +7,7 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary"
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import RemoveIcon from "@material-ui/icons/Remove"
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz"
 //import PrintIcon from '@material-ui/icons/LibraryBooks'
 import PrintIcon from "@material-ui/icons/PictureAsPdf"
@@ -51,7 +52,6 @@ const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
   }
 `
 const StyledChevronRightIcon = styled(ChevronRightIcon)`
-  margin-top: -2px !important;
   padding-left: 2px;
   height: 22px !important;
   width: 26px;
@@ -79,18 +79,14 @@ const StyledMoreHorizIcon = styled(MoreHorizIcon)`
     color: #f57c00 !important;
   }
 `
+const StyledRemoveIcon = styled(RemoveIcon)`
+  padding-left: 6px;
+  padding-right: 2px;
+  height: 22px !important;
+  width: 24px !important;
+`
 const SymbolDiv = styled.div`
   cursor: pointer;
-`
-const SymbolSpan = styled.span`
-  padding-right: 8px !important;
-  padding-left: ${props =>
-    props["data-nodeisinactivenodepath"] ? "7px" : "9px"};
-  font-weight: ${props =>
-    props["data-nodeisinactivenodepath"] ? "900 !important" : "inherit"};
-  margin-top: -9px !important;
-  font-size: 28px !important;
-  width: 9px;
 `
 const TextSpan = styled.span`
   margin-left: 0;
@@ -286,9 +282,9 @@ const Row = ({ index, style, node, treeName }) => {
             </SymbolDiv>
           )}
           {useSymbolSpan && (
-            <SymbolSpan data-nodeisinactivenodepath={nodeIsInActiveNodePath}>
-              {"-"}
-            </SymbolSpan>
+            <SymbolDiv onClick={onClickNode}>
+              <StyledRemoveIcon />
+            </SymbolDiv>
           )}
           {node.menuType === "ap" &&
             node.id === activeNodes.ap &&
