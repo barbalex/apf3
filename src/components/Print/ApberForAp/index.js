@@ -42,7 +42,6 @@ const Container = styled.div`
     /*padding-left: 0 !important;*/
     /* try this */
     page-break-before: always !important;
-    /*page-break-after: always !important;*/
 
     box-shadow: unset;
   }
