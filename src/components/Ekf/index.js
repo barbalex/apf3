@@ -1,18 +1,14 @@
-/**
- * Stopped lazy loading Tpopfreiwkontr
- * because Reflex would often not show layout
- */
-import React, { useContext, useCallback, useRef, useEffect } from "react"
-import styled from "styled-components"
-import SplitPane from "react-split-pane"
-import jwtDecode from "jwt-decode"
-import { observer } from "mobx-react-lite"
+import React, { useContext, useCallback, useRef, useEffect } from 'react'
+import styled from 'styled-components'
+import SplitPane from 'react-split-pane'
+import jwtDecode from 'jwt-decode'
+import { observer } from 'mobx-react-lite'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
-import EkfList from "./ListContainer"
-import Tpopfreiwkontr from "../Projekte/Daten/Tpopfreiwkontr"
-import storeContext from "../../storeContext"
+import EkfList from './ListContainer'
+import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
+import storeContext from '../../storeContext'
 
 const Container = styled.div`
   display: flex;
@@ -77,8 +73,8 @@ const Ekf = () => {
   const tpopkontrId =
     activeNodeArray.length > 9
       ? activeNodeArray[9]
-      : "99999999-9999-9999-9999-999999999999"
-  const treeName = "tree"
+      : '99999999-9999-9999-9999-999999999999'
+  const treeName = 'tree'
 
   const treeEl = useRef(null)
   const datenEl = useRef(null)
@@ -102,12 +98,12 @@ const Ekf = () => {
 
   // reset dimensions when window resizes
   useEffect(() => {
-    typeof window !== "undefined" &&
-      window.addEventListener("resize", setDimensions)
+    typeof window !== 'undefined' &&
+      window.addEventListener('resize', setDimensions)
     setDimensions()
     return () =>
-      typeof window !== "undefined" &&
-      window.removeEventListener("resize", setDimensions)
+      typeof window !== 'undefined' &&
+      window.removeEventListener('resize', setDimensions)
   }, [])
 
   if (isPrint && tpopkontrId) {
