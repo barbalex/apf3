@@ -250,7 +250,7 @@ const myTypes = types
           Object.keys(newUrlQuery).length > 0 ? `?${search}` : ""
         }`
         const { activeNodeArray } = self.tree
-        navigate(`/${activeNodeArray.join("/")}${query}`)
+        navigate(`/Daten/${activeNodeArray.join("/")}${query}`)
       }
     },
     setMoving({ table, id, label }) {

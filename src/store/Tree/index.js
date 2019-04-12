@@ -62,7 +62,7 @@ export default types
         const { urlQuery } = store
         const search = queryString.stringify(urlQuery)
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ""}`
-        navigate(`/${val.join("/")}${query}`)
+        navigate(`/Daten/${val.join("/")}${query}`)
       }
       self.activeNodeArray = val
     },

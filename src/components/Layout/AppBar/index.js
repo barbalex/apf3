@@ -128,13 +128,11 @@ const MyAppBar = () => {
   const setViewEkf = useCallback(() => setView("ekf"))
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
-  //console.log("AppBar")
-
   return (
     <Location>
       {({ location }) => {
         const { pathname } = location
-        const isProjekte = pathname.startsWith("/Projekte")
+        const isProjekte = pathname.startsWith("/Daten")
 
         //console.log("AppBar", { pathname })
 
@@ -287,7 +285,7 @@ const MyAppBar = () => {
                     <StyledButton
                       variant="outlined"
                       component={Link}
-                      to="/Projekte/"
+                      to="/Daten/Projekte/"
                     >
                       Zu den Daten
                     </StyledButton>

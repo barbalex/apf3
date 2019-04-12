@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import styled from "styled-components"
+import { observer } from "mobx-react-lite"
 
 import ErrorBoundary from "../components/shared/ErrorBoundary"
 import Layout from "../components/Layout"
@@ -22,7 +23,7 @@ const Container = styled.div`
   margin-top: 64px;
 `
 
-export default ({ location }) => {
+const DatenPage = ({ location }) => {
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
   const { view, showDeletions } = store
@@ -45,13 +46,11 @@ export default ({ location }) => {
   useEffect(() => {
     setActiveNodeArray(activeNodeArray)
   }, [pathname])
-  //console.log('Projekte',{activeNodeArrayFromTree:activeNodeArrayFromTree.slice()})
 
   return (
     <ErrorBoundary>
       <Layout>
         <Container>
-          <Projekte />
           {view === "ekf" && <Ekf />}
           {view === "normal" && <Projekte />}
           <User />
@@ -64,3 +63,5 @@ export default ({ location }) => {
     </ErrorBoundary>
   )
 }
+
+export default observer(DatenPage)
