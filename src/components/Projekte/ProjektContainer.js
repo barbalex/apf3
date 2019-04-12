@@ -126,7 +126,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
   // reset dimensions when tabs are toggled
   useEffect(() => {
     setDimensions()
-  }, [tabs.length])
+  }, [tabs.length, isPrint])
 
   if (isPrint && showApberForAp) {
     return <ApberForApFromAp />
