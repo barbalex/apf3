@@ -18,23 +18,27 @@ export default ({ location }) => {
   const store = useContext(storeContext)
   const { view, showDeletions } = store
   const { pathname } = location
-  const { setActiveNodeArray, setOpenNodes } = store.tree
-  const activeNodeArray = getActiveNodeArrayFromPathname(pathname)
+  const { setActiveNodeArray, activeNodeArray: activeNodeArrayFromTree, setOpenNodes } = store.tree
   useEffect(
-    () =>
+    () =>{
+      console.log('Projekte, useEffect: initiating data from url')
       initiateDataFromUrl({
         store,
-      }),
+      })},
     []
   )
+  const activeNodeArray = getActiveNodeArrayFromPathname(pathname)
   // on first render set openNodes
   /*useEffect(() => {
+    console.log('Projekte, useEffect: setting openNodes')
     setOpenNodes(getOpenNodesFromActiveNodeArray(activeNodeArray))
   }, [])*/
   // when pathname changes, update activeNodeArray
   useEffect(() => {
+    console.log('Projekte, useEffect: setting activeNodeArray')
     setActiveNodeArray(activeNodeArray)
   }, [pathname])
+  console.log('Projekte',{activeNodeArrayFromTree:activeNodeArrayFromTree.slice()})
 
   return (
     <ErrorBoundary>
