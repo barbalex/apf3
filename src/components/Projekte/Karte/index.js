@@ -479,6 +479,8 @@ const Karte = ({ treeName }) => {
     overlays.findIndex(o => o.value === activeOverlay)
   )
 
+  if (typeof window === "undefined") return null
+
   return (
     <Container data-id={`karten-container${treeName === "tree" ? 1 : 2}`}>
       <ErrorBoundary>

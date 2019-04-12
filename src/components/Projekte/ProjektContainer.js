@@ -5,7 +5,8 @@ import { observer } from "mobx-react-lite"
 
 // when Karte was loaded async, it did not load,
 // but only in production!
-import Karte from "./Karte"
+//import Karte from "./Karte"
+import KarteOrNull from "./KarteOrNull"
 import TreeContainer from "./TreeContainer"
 import Daten from "./Daten"
 import Exporte from "./Exporte"
@@ -158,7 +159,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
     ),
     karte: (
       <InnerContainer>
-        <Karte treeName={treeName} />
+        <KarteOrNull treeName={treeName} />
       </InnerContainer>
     ),
     exporte: (
