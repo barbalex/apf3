@@ -9,8 +9,7 @@
 
 import "babel-polyfill"
 
-import React from "react"
-import ReactDOM from "react-dom"
+import React, { useState } from "react"
 
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import theme from "./utils/materialTheme"
@@ -42,29 +41,29 @@ import "./index.css"
 import createInitialStore from "./store/initial"
 import "react-leaflet-markercluster/dist/styles.min.css"
 
-const run = async () => {
-  try {
-    // prevent changing values in number inputs when scrolling pages!
-    // see: http://stackoverflow.com/a/38589039/712005
-    // and: https://stackoverflow.com/a/42058469/712005
-    typeof window !== "undefined" &&
-      document.addEventListener("wheel", function(event) {
-        if (window.document.activeElement.type === "number") {
-          event.preventDefault()
-        }
-      })
+const App = ({ element }) => {
+  // prevent changing values in number inputs when scrolling pages!
+  // see: http://stackoverflow.com/a/38589039/712005
+  // and: https://stackoverflow.com/a/42058469/712005
+  typeof window !== "undefined" &&
+    document.addEventListener("wheel", function(event) {
+      if (window.document.activeElement.type === "number") {
+        event.preventDefault()
+      }
+    })
 
-    const idb = initializeIdb()
+  const [store, setStore] = useState({})
+  const [client, setClient] = useState({})
 
-    const initialStore = await createInitialStore({ idb })
-    const store = MobxStore.create(initialStore)
+  const idb = initializeIdb()
 
-    const client =  buildClient({ idb, store })
-
+  createInitialStore({ idb }).then(initialStore => {
+    setStore(MobxStore.create(initialStore))
+    setClient(buildClient({ idb, store }))
     initiateDataFromUrl({
       store,
     })
-
+    //onPatch(store, patch => console.log(patch))
     // begin _after_ initiation data from url
     store.history.listen((location, action) =>
       historyListen({
@@ -73,44 +72,36 @@ const run = async () => {
         store,
       })
     )
-
-    //onPatch(store, patch => console.log(patch))
-
-    const idbContext = { idb }
-
     if (typeof window !== "undefined" && window.Cypress) {
       // enable directly using these in tests
       window.__client__ = client
       window.__store__ = store
       window.__idb__ = idb
     }
+  })
 
-    ReactDOM.render(
-      <IdbProvider value={idbContext}>
-        <MobxProvider value={store}>
-          <ApolloProvider client={client}>
-            <ApolloHooksProvider client={client}>
+  const idbContext = { idb }
+
+  return (
+    <IdbProvider value={idbContext}>
+      <MobxProvider value={store}>
+        <ApolloProvider client={client}>
+          <ApolloHooksProvider client={client}>
+            <MuiThemeProvider theme={theme}>
               <>
                 <Print />
-                <MuiThemeProvider theme={theme}>
-                  <MuiPickersUtilsProvider
-                    utils={MomentUtils}
-                    moment={moment}
-                    locale="de-ch"
-                  >
-                    <AppContainer />
-                  </MuiPickersUtilsProvider>
-                </MuiThemeProvider>
+                <MuiPickersUtilsProvider
+                  utils={MomentUtils}
+                  moment={moment}
+                  locale="de-ch"
+                >
+                  <AppContainer />
+                </MuiPickersUtilsProvider>
               </>
-            </ApolloHooksProvider>
-          </ApolloProvider>
-        </MobxProvider>
-      </IdbProvider>,
-      document.getElementById("root")
-    )
-  } catch (error) {
-    console.log("Error in index.js:", error)
-  }
+            </MuiThemeProvider>
+          </ApolloHooksProvider>
+        </ApolloProvider>
+      </MobxProvider>
+    </IdbProvider>
+  )
 }
-
-run()
