@@ -39,7 +39,8 @@ const Container = styled.div`
     width: 21cm;
 
     margin: 0 !important;
-    padding: ${props => (props.issubreport ? "0" : "0.25cm !important")};
+    padding: ${props => (props.issubreport ? "0" : "0.5cm !important")};
+    padding-left: 0 !important;
 
     box-shadow: unset;
   }

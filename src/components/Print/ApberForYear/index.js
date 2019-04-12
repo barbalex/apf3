@@ -41,7 +41,8 @@ const Container = styled.div`
     width: 21cm;
 
     margin: 0 auto !important;
-    padding: 0.25cm !important;
+    padding: 0.5cm !important;
+    padding-left: 0 !important;
 
     box-shadow: unset;
     overflow: visible !important;

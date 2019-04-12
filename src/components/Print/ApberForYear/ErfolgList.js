@@ -12,6 +12,9 @@ const Container = styled.div`
   @media screen {
     margin-top: 3cm;
   }
+  @media print {
+    padding-top: 0.3cm !important;
+  }
 `
 const Table = styled.div`
   display: grid;
