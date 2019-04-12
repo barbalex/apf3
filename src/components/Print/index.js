@@ -1,12 +1,12 @@
-import React, { lazy, Suspense, useContext } from 'react'
-import styled from 'styled-components'
-import Button from '@material-ui/core/Button'
-import ArrowBack from '@material-ui/icons/ArrowBack'
-import { observer } from 'mobx-react-lite'
+import React, { lazy, Suspense, useContext, useCallback } from "react"
+import styled from "styled-components"
+import Button from "@material-ui/core/Button"
+import ArrowBack from "@material-ui/icons/ArrowBack"
+import { observer } from "mobx-react-lite"
 
-import ErrorBoundary from '../shared/ErrorBoundary'
-import Fallback from '../shared/Fallback'
-import storeContext from '../../storeContext'
+import ErrorBoundary from "../shared/ErrorBoundary"
+import Fallback from "../shared/Fallback"
+import storeContext from "../../storeContext"
 
 const Container = styled.div`
   background-color: #eee;
@@ -39,21 +39,25 @@ const StyledArrowBack = styled(ArrowBack)`
   padding-right: 4px;
 `
 
-const ApberForApFromAp = lazy(() => import('./ApberForApFromAp'))
-const ApberForYear = lazy(() => import('./ApberForYear'))
+const ApberForApFromAp = lazy(() => import("./ApberForApFromAp"))
+const ApberForYear = lazy(() => import("./ApberForYear"))
 
 const Print = () => {
   const store = useContext(storeContext)
-  const { historyGoBack, tree } = store
+  const { tree } = store
   const { activeNodeArray } = tree
   const showApberForAp =
     activeNodeArray.length === 7 &&
-    activeNodeArray[4] === 'AP-Berichte' &&
-    activeNodeArray[6] === 'print'
+    activeNodeArray[4] === "AP-Berichte" &&
+    activeNodeArray[6] === "print"
   const showApberForYear =
     activeNodeArray.length === 5 &&
-    activeNodeArray[2] === 'AP-Berichte' &&
-    activeNodeArray[4] === 'print'
+    activeNodeArray[2] === "AP-Berichte" &&
+    activeNodeArray[4] === "print"
+
+  const onClickBack = useCallback(
+    () => typeof window !== "undefined" && window.history.back()
+  )
 
   if (!showApberForAp && !showApberForYear) return null
 
@@ -62,7 +66,7 @@ const Print = () => {
       <Container>
         {(showApberForAp || showApberForYear) && (
           <Suspense fallback={<Fallback />}>
-            <BackButton variant="outlined" onClick={historyGoBack}>
+            <BackButton variant="outlined" onClick={onClickBack}>
               <StyledArrowBack />
               zurück
             </BackButton>

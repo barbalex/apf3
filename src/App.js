@@ -30,7 +30,6 @@ import buildClient from "./client"
 
 import initiateDataFromUrl from "./modules/initiateDataFromUrl"
 
-import AppContainer from "./components/AppContainer"
 import Print from "./components/Print"
 import historyListen from "./modules/historyListen"
 
@@ -67,14 +66,6 @@ const App = ({ element }) => {
       store,
     })
     //onPatch(store, patch => console.log(patch))
-    // begin _after_ initiation data from url
-    store.history.listen((location, action) =>
-      historyListen({
-        location,
-        action,
-        store,
-      })
-    )
     if (typeof window !== "undefined" && window.Cypress) {
       // enable directly using these in tests
       window.__client__ = client
@@ -98,7 +89,6 @@ const App = ({ element }) => {
                   moment={moment}
                   locale="de-ch"
                 >
-                  {/*<AppContainer />*/}
                   <GlobalStyle />
                   {element}
                 </MuiPickersUtilsProvider>

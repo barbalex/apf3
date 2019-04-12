@@ -3,7 +3,7 @@ import cloneDeep from "lodash/cloneDeep"
 import isEqual from "lodash/isEqual"
 import uniqBy from "lodash/uniqBy"
 import queryString from "query-string"
-import { createBrowserHistory } from "history"
+import { navigate } from "gatsby"
 
 import ApfloraLayer from "./ApfloraLayer"
 import MapFilter from "./MapFilter"
@@ -27,7 +27,6 @@ import getActiveNodes from "../modules/getActiveNodes"
 // substract 3 Months to now so user sees previous year in February
 const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
 const ekfYear = new Date(ekfRefDate).getFullYear()
-const history = createBrowserHistory()
 
 const myTypes = types
   .model({
@@ -84,7 +83,6 @@ const myTypes = types
     ktZh: null,
     errors: [],
     toDeleteAfterDeletionHook: null,
-    history,
     deletedDatasets: [],
     refetch: {},
   }))
@@ -99,12 +97,6 @@ const myTypes = types
   .actions(self => ({
     setShowDeletions(val) {
       self.showDeletions = val
-    },
-    historyPush(val) {
-      history.push(val)
-    },
-    historyGoBack() {
-      history.goBack()
     },
     setDeletedDatasets(val) {
       self.deletedDatasets = val
@@ -258,7 +250,7 @@ const myTypes = types
           Object.keys(newUrlQuery).length > 0 ? `?${search}` : ""
         }`
         const { activeNodeArray } = self.tree
-        self.historyPush(`/${activeNodeArray.join("/")}${query}`)
+        navigate(`/${activeNodeArray.join("/")}${query}`)
       }
     },
     setMoving({ table, id, label }) {
@@ -291,9 +283,11 @@ const myTypes = types
             Object.keys(urlQuery).length > 0 ? `?${search}` : ""
           }`
           // pass openNodes as state
-          self.historyPush(`/${value.join("/")}${query}`, {
+          navigate(`/${value.join("/")}${query}`)
+          // pushing state will set activeNodeArray via modules/historyListen
+          /*self.historyPush(`/${value.join("/")}${query}`, {
             openNodes: self[tree].openNodes,
-          })
+          })*/
         }
       }
     },
