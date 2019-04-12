@@ -1,13 +1,13 @@
-import React, { useCallback, useContext } from 'react'
-import styled from 'styled-components'
-import get from 'lodash/get'
-import { observer } from 'mobx-react-lite'
-import { useQuery } from 'react-apollo-hooks'
+import React, { useCallback, useContext } from "react"
+import styled from "styled-components"
+import get from "lodash/get"
+import { observer } from "mobx-react-lite"
+import { useQuery } from "react-apollo-hooks"
 
-import Select from '../../../shared/Select'
-import queryAdresses from './queryAdresses'
-import storeContext from '../../../../storeContext'
-import dealWithError from '../../../../modules/dealWithError'
+import Select from "../../../../shared/Select"
+import queryAdresses from "./queryAdresses"
+import storeContext from "../../../../../storeContext"
+import dealWithError from "../../../../../modules/dealWithError"
 
 const Container = styled.div`
   padding: 0 16px;
@@ -22,21 +22,21 @@ const EkfAdresse = ({ setAnchorEl }) => {
     // prevent this happening before seAnchor happened
     setTimeout(() => {
       setEkfAdresseId(event.target.value)
-      setView('ekf')
+      setView("ekf")
     })
   })
 
-  if (loading) return '...'
+  if (loading) return "..."
   if (error) {
-    return dealWithError({ error, store, component: 'EKFAdresse' })
+    return dealWithError({ error, store, component: "EKFAdresse" })
   }
 
   return (
     <Container>
       <Select
-        value={''}
+        value={""}
         label="EKF sehen als"
-        options={get(data, 'allAdresses.nodes', [])}
+        options={get(data, "allAdresses.nodes", [])}
         loading={loading}
         saveToDb={choose}
         maxHeight={130}

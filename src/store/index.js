@@ -1,28 +1,28 @@
-import { types } from 'mobx-state-tree'
-import cloneDeep from 'lodash/cloneDeep'
-import isEqual from 'lodash/isEqual'
-import uniqBy from 'lodash/uniqBy'
-import queryString from 'query-string'
-import { createBrowserHistory } from 'history'
+import { types } from "mobx-state-tree"
+import cloneDeep from "lodash/cloneDeep"
+import isEqual from "lodash/isEqual"
+import uniqBy from "lodash/uniqBy"
+import queryString from "query-string"
+import { createBrowserHistory } from "history"
 
-import ApfloraLayer from './ApfloraLayer'
-import MapFilter from './MapFilter'
-import Copying, { defaultValue as defaultCopying } from './Copying'
+import ApfloraLayer from "./ApfloraLayer"
+import MapFilter from "./MapFilter"
+import Copying, { defaultValue as defaultCopying } from "./Copying"
 import CopyingBiotop, {
   defaultValue as defaultCopyingBiotop,
-} from './CopyingBiotop'
-import UrlQuery, { defaultValue as defaultUrlQuery } from './UrlQuery'
-import Moving, { defaultValue as defaultMoving } from './Moving'
+} from "./CopyingBiotop"
+import UrlQuery, { defaultValue as defaultUrlQuery } from "./UrlQuery"
+import Moving, { defaultValue as defaultMoving } from "./Moving"
 import MapMouseCoordinates, {
   defaultValue as defaultMapMouseCoordinates,
-} from './MapMouseCoordinates'
-import NodeFilter, { defaultValue as defaultNodeFilter } from './NodeFilter'
-import standardApfloraLayers from '../components/Projekte/Karte/apfloraLayers'
-import standardOverlays from '../components/Projekte/Karte/overlays'
-import initialNodeFilterTreeValues from './NodeFilterTree/initialValues'
-import User, { defaultValue as defaultUser } from './User'
-import Tree, { defaultValue as defaultTree } from './Tree'
-import getActiveNodes from '../modules/getActiveNodes'
+} from "./MapMouseCoordinates"
+import NodeFilter, { defaultValue as defaultNodeFilter } from "./NodeFilter"
+import standardApfloraLayers from "../components/Projekte/Karte/apfloraLayers"
+import standardOverlays from "../components/Projekte/Karte/overlays"
+import initialNodeFilterTreeValues from "./NodeFilterTree/initialValues"
+import User, { defaultValue as defaultUser } from "./User"
+import Tree, { defaultValue as defaultTree } from "./Tree"
+import getActiveNodes from "../modules/getActiveNodes"
 
 // substract 3 Months to now so user sees previous year in February
 const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
@@ -33,12 +33,12 @@ const myTypes = types
   .model({
     apfloraLayers: types.optional(
       types.array(ApfloraLayer),
-      standardApfloraLayers,
+      standardApfloraLayers
     ),
     activeApfloraLayers: types.optional(types.array(types.string), []),
     overlays: types.optional(types.array(ApfloraLayer), standardOverlays),
     activeOverlays: types.optional(types.array(types.string), []),
-    activeBaseLayer: types.optional(types.string, 'OsmColor'),
+    activeBaseLayer: types.optional(types.string, "OsmColor"),
     idOfTpopBeingLocalized: types.optional(types.maybeNull(types.string), null),
     bounds: types.optional(types.array(types.array(types.number)), [
       [47.159, 8.354],
@@ -46,19 +46,19 @@ const myTypes = types
     ]),
     mapFilter: types.optional(MapFilter, {
       features: [],
-      type: 'FeatureCollection',
+      type: "FeatureCollection",
     }),
     toDeleteTable: types.maybeNull(types.string),
     toDeleteId: types.maybeNull(types.string),
     toDeleteLabel: types.maybeNull(types.string),
     toDeleteUrl: types.maybeNull(
-      types.array(types.union(types.string, types.number)),
+      types.array(types.union(types.string, types.number))
     ),
     nodeFilter: types.optional(NodeFilter, defaultNodeFilter),
     user: types.optional(User, defaultUser),
     updateAvailable: types.optional(types.boolean, false),
     isPrint: types.optional(types.boolean, false),
-    view: types.optional(types.string, 'normal'),
+    view: types.optional(types.string, "normal"),
     ekfYear: types.optional(types.number, ekfYear),
     ekfAdresseId: types.optional(types.maybeNull(types.string), null),
     copying: types.optional(Copying, defaultCopying),
@@ -67,13 +67,14 @@ const myTypes = types
     moving: types.optional(Moving, defaultMoving),
     mapMouseCoordinates: types.optional(
       MapMouseCoordinates,
-      defaultMapMouseCoordinates,
+      defaultMapMouseCoordinates
     ),
-    exportFileType: types.optional(types.maybeNull(types.string), 'xlsx'),
+    exportFileType: types.optional(types.maybeNull(types.string), "xlsx"),
     exportApplyMapFilter: types.optional(types.boolean, false),
     assigningBeob: types.optional(types.boolean, false),
     tree: types.optional(Tree, defaultTree),
     tree2: types.optional(Tree, defaultTree),
+    showDeletions: types.optional(types.boolean, false),
   })
   // structure of these variables is not controlled
   // so need to define this as volatile
@@ -96,6 +97,9 @@ const myTypes = types
     },
   }))
   .actions(self => ({
+    setShowDeletions(val) {
+      self.showDeletions = val
+    },
     historyPush(val) {
       history.push(val)
     },
@@ -163,7 +167,7 @@ const myTypes = types
       // cannnot pop, need to set new value
       // or the change will not be observed
       // use uniq in case multiple same messages arrive
-      self.errors = uniqBy([...self.errors, error], 'message')
+      self.errors = uniqBy([...self.errors, error], "message")
       setTimeout(() => {
         // need to use an action inside timeout
         self.popError()
@@ -195,12 +199,12 @@ const myTypes = types
     nodeFilterTableIsFiltered({ treeName, table }) {
       if (
         ![
-          'ap',
-          'pop',
-          'tpop',
-          'tpopfeldkontr',
-          'tpopfreiwkontr',
-          'tpopmassn',
+          "ap",
+          "pop",
+          "tpop",
+          "tpopfeldkontr",
+          "tpopfreiwkontr",
+          "tpopmassn",
         ].includes(table)
       ) {
         // there exist no filter for this table
@@ -211,10 +215,10 @@ const myTypes = types
     },
     nodeFilterTreeIsFiltered(treeName) {
       const tables = Object.keys(self.nodeFilter[treeName]).filter(
-        t => t !== 'activeTable',
+        t => t !== "activeTable"
       )
       return tables.some(table =>
-        self.nodeFilterTableIsFiltered({ treeName, table }),
+        self.nodeFilterTableIsFiltered({ treeName, table })
       )
     },
     setUser(val) {
@@ -251,10 +255,10 @@ const myTypes = types
         self.urlQuery = newUrlQuery
         const search = queryString.stringify(newUrlQuery)
         const query = `${
-          Object.keys(newUrlQuery).length > 0 ? `?${search}` : ''
+          Object.keys(newUrlQuery).length > 0 ? `?${search}` : ""
         }`
         const { activeNodeArray } = self.tree
-        self.historyPush(`/${activeNodeArray.join('/')}${query}`)
+        self.historyPush(`/${activeNodeArray.join("/")}${query}`)
       }
     },
     setMoving({ table, id, label }) {
@@ -281,13 +285,13 @@ const myTypes = types
       // only write if changed
       if (!isEqual(oldValue, value)) {
         self[tree][key] = value
-        if (tree === 'tree' && key === 'activeNodeArray') {
+        if (tree === "tree" && key === "activeNodeArray") {
           const search = queryString.stringify(urlQuery)
           const query = `${
-            Object.keys(urlQuery).length > 0 ? `?${search}` : ''
+            Object.keys(urlQuery).length > 0 ? `?${search}` : ""
           }`
           // pass openNodes as state
-          self.historyPush(`/${value.join('/')}${query}`, {
+          self.historyPush(`/${value.join("/")}${query}`, {
             openNodes: self[tree].openNodes,
           })
         }

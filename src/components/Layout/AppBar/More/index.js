@@ -5,11 +5,11 @@ import Button from "@material-ui/core/Button"
 import styled from "styled-components"
 import { observer } from "mobx-react-lite"
 
-import isMobilePhone from "../../../modules/isMobilePhone"
-import logout from "../../../modules/logout"
+import isMobilePhone from "../../../../modules/isMobilePhone"
+import logout from "../../../../modules/logout"
 import EkfAdresse from "./EkfAdresse"
-import storeContext from "../../../storeContext"
-import idbContext from "../../../idbContext"
+import storeContext from "../../../../storeContext"
+import idbContext from "../../../../idbContext"
 
 const Container = styled.div`
   margin-top: auto;
@@ -24,13 +24,15 @@ const Version = styled.div`
   user-select: none;
 `
 
-const MyAppBar = ({
-  onClickExporte: passedOnClickExporte,
-  setShowDeletions,
-  role,
-}) => {
+const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
   const store = useContext(storeContext)
-  const { deletedDatasets, user, urlQuery, treeActiveNodes } = store
+  const {
+    deletedDatasets,
+    user,
+    urlQuery,
+    treeActiveNodes,
+    setShowDeletions,
+  } = store
   const { idb } = useContext(idbContext)
 
   const [anchorEl, setAnchorEl] = useState(null)
@@ -121,4 +123,4 @@ const MyAppBar = ({
   )
 }
 
-export default observer(MyAppBar)
+export default observer(AppbarMore)

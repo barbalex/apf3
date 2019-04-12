@@ -50,11 +50,15 @@ const StyledCheckbox = styled(Checkbox)`
   height: 30px !important;
 `
 
-const Deletions = ({ showDeletions, setShowDeletions }) => {
+const Deletions = () => {
   const client = useApolloClient()
-  const { addError, removeDeletedDatasetById, deletedDatasets } = useContext(
-    storeContext
-  )
+  const {
+    addError,
+    removeDeletedDatasetById,
+    deletedDatasets,
+    showDeletions,
+    setShowDeletions,
+  } = useContext(storeContext)
 
   const [choosenDeletions, setChoosenDeletions] = useState([])
 

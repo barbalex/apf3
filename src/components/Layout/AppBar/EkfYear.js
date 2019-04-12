@@ -1,10 +1,10 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react'
-import Input from '@material-ui/core/Input'
-import styled from 'styled-components'
-import { observer } from 'mobx-react-lite'
+import React, { useContext, useState, useCallback, useEffect } from "react"
+import Input from "@material-ui/core/Input"
+import styled from "styled-components"
+import { observer } from "mobx-react-lite"
 
-import initiateDataFromUrl from '../../modules/initiateDataFromUrl'
-import storeContext from '../../storeContext'
+import initiateDataFromUrl from "../../../modules/initiateDataFromUrl"
+import storeContext from "../../../storeContext"
 
 const StyledInput = styled(Input)`
   width: 60px;
@@ -34,13 +34,13 @@ const EkfYear = () => {
   const { ekfYear, setEkfYear } = store
 
   const [stateValue, setStateValue] = useState(
-    ekfYear || ekfYear === 0 ? ekfYear : '',
+    ekfYear || ekfYear === 0 ? ekfYear : ""
   )
 
   useEffect(() => setStateValue(ekfYear), [ekfYear])
 
   const onChange = useCallback(event =>
-    setStateValue(event.target.value ? +event.target.value : ''),
+    setStateValue(event.target.value ? +event.target.value : "")
   )
   const onBlur = useCallback(
     event => {
@@ -48,12 +48,12 @@ const EkfYear = () => {
       setEkfYear(newValue)
       if (ekfYear !== stateValue) {
         initiateDataFromUrl({
-          activeNodeArray: ['Projekte'],
+          activeNodeArray: ["Projekte"],
           store,
         })
       }
     },
-    [ekfYear],
+    [ekfYear]
   )
 
   return (

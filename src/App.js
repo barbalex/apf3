@@ -34,12 +34,15 @@ import AppContainer from "./components/AppContainer"
 import Print from "./components/Print"
 import historyListen from "./modules/historyListen"
 
+import createGlobalStyle from "./utils/createGlobalStyle"
+
 import { Provider as MobxProvider } from "./storeContext"
 import { Provider as IdbProvider } from "./idbContext"
 
-import "./index.css"
 import createInitialStore from "./store/initial"
 import "react-leaflet-markercluster/dist/styles.min.css"
+
+const GlobalStyle = createGlobalStyle()
 
 const App = ({ element }) => {
   // prevent changing values in number inputs when scrolling pages!
@@ -95,7 +98,9 @@ const App = ({ element }) => {
                   moment={moment}
                   locale="de-ch"
                 >
-                  <AppContainer />
+                  {/*<AppContainer />*/}
+                  <GlobalStyle />
+                  {element}
                 </MuiPickersUtilsProvider>
               </>
             </MuiThemeProvider>
@@ -105,3 +110,5 @@ const App = ({ element }) => {
     </IdbProvider>
   )
 }
+
+export default App

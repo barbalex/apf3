@@ -26,8 +26,7 @@ const Messages = lazy(() => import("./Messages"))
 const Ekf = lazy(() => import("./Ekf"))
 
 const AppContainer = () => {
-  const { setIsPrint, view } = useContext(storeContext)
-  const [showDeletions, setShowDeletions] = useState(false)
+  const { setIsPrint, view, showDeletions } = useContext(storeContext)
 
   useEffect(() => {
     typeof window !== "undefined" &&
@@ -43,19 +42,14 @@ const AppContainer = () => {
     <ErrorBoundary>
       <Container>
         <Suspense fallback={<Fallback />}>
-          <AppBar setShowDeletions={setShowDeletions} />
+          <AppBar />
           {view === "ekf" && <Ekf />}
           {view === "normal" && <Projekte />}
           <User />
           <Errors />
           <UpdateAvailable />
           <Messages />
-          {showDeletions && (
-            <Deletions
-              showDeletions={showDeletions}
-              setShowDeletions={setShowDeletions}
-            />
-          )}
+          {showDeletions && <Deletions />}
         </Suspense>
       </Container>
     </ErrorBoundary>
