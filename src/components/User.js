@@ -36,8 +36,14 @@ const StyledInput = styled(Input)`
 const User = () => {
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
-  const { user, setUser } = useContext(storeContext)
+  const store = useContext(storeContext)
+  const { user, setUser } = store
   const { token } = user
+
+  // only show overlay if more than three nodes are loaded
+  // reason: prevent short showing that happens while data is fetched
+  // this is a hack but unfortunately tree does not pass loading state
+  const { nodes } = store.tree
 
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
@@ -146,7 +152,10 @@ const User = () => {
 
   return (
     <ErrorBoundary>
-      <StyledDialog aria-labelledby="dialog-title" open={!token}>
+      <StyledDialog
+        aria-labelledby="dialog-title"
+        open={!token && nodes.length > 3}
+      >
         <DialogTitle id="dialog-title">Anmeldung</DialogTitle>
         <StyledDiv>
           <FormControl

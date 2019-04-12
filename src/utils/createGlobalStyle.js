@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components"
 
 export default () => createGlobalStyle`
   html,
-  body {
+  body,#___gatsby {
     overflow: hidden !important;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
@@ -18,13 +18,13 @@ export default () => createGlobalStyle`
       height: auto !important;
     }
 
-    #root {
+    #___gatsby {
       background-color: white !important;
       height: auto !important;
       min-height: auto !important;
     }
 
-    #root>div {
+    #___gatsby>div {
       height: auto !important;
       display: block !important;
     }

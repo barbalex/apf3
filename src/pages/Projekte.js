@@ -17,9 +17,8 @@ import Ekf from "../components/Ekf"
 import Deletions from "../components/Deletions"
 import initiateDataFromUrl from "../modules/initiateDataFromUrl"
 
-const ScrollContainer = styled.div`
+const Container = styled.div`
   height: calc(100vh - 64px);
-  overflow-y: auto;
   margin-top: 64px;
 `
 
@@ -51,7 +50,7 @@ export default ({ location }) => {
   return (
     <ErrorBoundary>
       <Layout>
-        <ScrollContainer>
+        <Container>
           <Projekte />
           {view === "ekf" && <Ekf />}
           {view === "normal" && <Projekte />}
@@ -60,7 +59,7 @@ export default ({ location }) => {
           <UpdateAvailable />
           <Messages />
           {showDeletions && <Deletions />}
-        </ScrollContainer>
+        </Container>
       </Layout>
     </ErrorBoundary>
   )
