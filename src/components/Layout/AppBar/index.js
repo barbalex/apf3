@@ -1,7 +1,6 @@
 import React, { useContext, useState, useCallback } from "react"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import remove from "lodash/remove"
 import styled from "styled-components"
@@ -46,6 +45,20 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
   `
   return <StyledButton {...rest} />
 }
+const SiteTitle = styled(Button)`
+  display: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  border-width: 0 !important;
+  text-transform: unset !important;
+  @media (min-width: 750px) {
+    display: block !important;
+  }
+  :hover {
+    border-width: 1px !important;
+  }
+`
 const NormalViewButton = styled(Button)`
   color: white !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
@@ -140,13 +153,18 @@ const MyAppBar = () => {
           <ErrorBoundary>
             <StyledAppBar position="fixed">
               <StyledToolbar>
-                <Typography variant="h6" color="inherit">
-                  {isMobile
-                    ? ""
-                    : view === "ekf"
-                    ? "AP Flora: Erfolgs-Kontrolle Freiwillige"
-                    : "AP Flora"}
-                </Typography>
+                {isMobile ? null : (
+                  <SiteTitle
+                    variant="outlined"
+                    component={Link}
+                    to="/"
+                    title="Home"
+                  >
+                    {view === "ekf"
+                      ? "AP Flora: Erfolgs-Kontrolle Freiwillige"
+                      : "AP Flora"}
+                  </SiteTitle>
+                )}
                 <MenuDiv>
                   {isProjekte ? (
                     <>
