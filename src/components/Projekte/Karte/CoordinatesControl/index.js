@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import 'leaflet'
-import { withLeaflet } from 'react-leaflet'
-import Control from 'react-leaflet-control'
-import styled from 'styled-components'
-import compose from 'recompose/compose'
+import React, { useState, useEffect } from "react"
+import "leaflet"
+import { withLeaflet } from "react-leaflet"
+import Control from "react-leaflet-control"
+import styled from "styled-components"
+import compose from "recompose/compose"
 
-import ShowCoordinates from './ShowCoordinates'
-import PanToCoordinates from './PanToCoordinates'
+import ShowCoordinates from "./ShowCoordinates"
+import PanToCoordinates from "./PanToCoordinates"
 
 /**
  * onClick coordinates container: render coordinate-field-pair and go-to button
@@ -26,14 +26,14 @@ const StyledControl = styled(Control)`
 const enhance = compose(withLeaflet)
 
 const CoordinatesControl = ({ leaflet }) => {
-  const [controlType, setControlType] = useState('coordinates')
+  const [controlType, setControlType] = useState("coordinates")
   // hack to get control to show on first load
   // see: https://github.com/LiveBy/react-leaflet-control/issues/27#issuecomment-430564722
-  useEffect(() => setControlType('coordinates'), [])
+  useEffect(() => setControlType("coordinates"), [])
 
   return (
     <StyledControl position="bottomright">
-      {controlType === 'coordinates' ? (
+      {controlType === "coordinates" ? (
         <ShowCoordinates setControlType={setControlType} />
       ) : (
         <PanToCoordinates setControlType={setControlType} map={leaflet.map} />

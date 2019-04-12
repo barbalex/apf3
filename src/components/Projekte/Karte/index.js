@@ -58,7 +58,7 @@ import SwitchScaleControl from "./ScaleControl"
 import DrawControl from "./DrawControl"
 // import PrintControl from './PrintControl'
 import PngControl from "./PngControl"
-import CoordinatesControl from "./CoordinatesControl/index.js"
+import CoordinatesControl from "./CoordinatesControl"
 import epsg4326to2056 from "../../../modules/epsg4326to2056"
 import ErrorBoundary from "../../shared/ErrorBoundary"
 import updateTpopById from "./updateTpopById"
@@ -80,8 +80,15 @@ const crs = new window.L.Proj.CRS(
   }
 )*/
 
+const Container = styled.div`
+  height: calc(100vh - 64px);
+  overflow: hidden;
+  .map-control-scalebar-text {
+    width: 83px;
+  }
+`
 const StyledMap = styled(Map)`
-  height: 100%;
+  height: calc(100%);
   cursor: ${props => (props.localizing ? "crosshair" : "grab")} !important;
   @media print {
     height: 100%;
@@ -292,8 +299,8 @@ const StyledMap = styled(Map)`
   }
 
   /*
-* leaflet-switch-scale-control
-*/
+   * leaflet-switch-scale-control
+   */
   .map-control-scalebar-scale-item {
     cursor: pointer;
     padding: 2px 5px;
@@ -311,7 +318,6 @@ const StyledMap = styled(Map)`
     padding: 2px 5px 1px;
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
-    width: 5em;
   }
 
   .map-control-scalebar-custom-scale {
@@ -394,13 +400,6 @@ const StyledMap = styled(Map)`
     .leaflet-control-container {
       display: none !important;
     }
-  }
-`
-const Container = styled.div`
-  height: 100%;
-  overflow: hidden;
-  .map-control-scalebar-text {
-    width: 83px;
   }
 `
 /*const LoadingContainer = styled.div`

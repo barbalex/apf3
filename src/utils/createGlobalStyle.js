@@ -36,6 +36,10 @@ export default () => createGlobalStyle`
     color: #f57c00;
   }
 
+.ReactVirtualized__Grid {
+  outline: none;
+}
+
   /* scrollbars */
 
   ::-webkit-scrollbar {
@@ -59,37 +63,5 @@ export default () => createGlobalStyle`
 
   ::-webkit-scrollbar-corner {
     background: rgba(0, 0, 0, 0);
-  }
-
-  /*
-  * seems that overflow:hidden is necessary
-  * for all relfex-elements
-  * BUT: map is not shown with it...
-  */
-
-  .reflex-element:not(.karte) {
-    border-right: 0 !important;
-    border-left: 0 !important;
-  }
-
-
-  .reflex-element:not(.karte) {
-    overflow-x: hidden;
-  }
-
-  .reflex-splitter {
-    background-color: #388e3c !important;
-    border-right: 1px solid #388e3c !important;
-    border-left: 1px solid #388e3c !important;
-  }
-
-  .reflex-splitter:hover {
-    background-color: #fff06c !important;
-    border-right: 1px solid #fff06c !important;
-    border-left: 1px solid #fff06c !important;
-  }
-
-  .ReactVirtualized__Grid {
-    outline: none;
   }
 `
