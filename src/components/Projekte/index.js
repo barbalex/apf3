@@ -1,18 +1,18 @@
-import React, { useContext, useEffect } from "react"
-import styled from "styled-components"
-import SplitPane from "react-split-pane"
-import intersection from "lodash/intersection"
-import { observer } from "mobx-react-lite"
+import React, { useContext, useEffect } from 'react'
+import styled from 'styled-components'
+import SplitPane from 'react-split-pane'
+import intersection from 'lodash/intersection'
+import { observer } from 'mobx-react-lite'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
-import ProjektContainer from "./ProjektContainer"
-import storeContext from "../../storeContext"
+import ProjektContainer from './ProjektContainer'
+import storeContext from '../../storeContext'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100% - 49.3px);
+  height: calc(100vh - 64px);
   @media print {
     height: auto !important;
     overflow: visible !important;
@@ -55,8 +55,8 @@ const StyledSplitPane = styled(SplitPane)`
     overflow: hidden;
   }
 `
-const treeTabValues = ["tree", "daten", "filter", "karte", "exporte"]
-const tree2TabValues = ["tree2", "daten2", "filter2", "karte2", "exporte2"]
+const treeTabValues = ['tree', 'daten', 'filter', 'karte', 'exporte']
+const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2', 'exporte2']
 
 const Projekte = () => {
   const store = useContext(storeContext)
@@ -67,14 +67,14 @@ const Projekte = () => {
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.matchMedia("print").addListener(mql => {
+    if (typeof window !== 'undefined') {
+      window.matchMedia('print').addListener(mql => {
         setIsPrint(mql.matches)
       })
     }
     return () => {
-      if (typeof window !== "undefined") {
-        window.matchMedia("print").removeListener(mql => {
+      if (typeof window !== 'undefined') {
+        window.matchMedia('print').removeListener(mql => {
           setIsPrint(mql.matches)
         })
       }

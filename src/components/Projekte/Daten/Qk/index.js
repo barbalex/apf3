@@ -20,7 +20,7 @@ import checkTpopOutsideZh from './checkTpopOutsideZh'
 import storeContext from '../../../../storeContext'
 
 const Container = styled.div`
-  height: 100%;
+  height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
 `

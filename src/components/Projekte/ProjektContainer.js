@@ -1,23 +1,21 @@
-import React, { useContext, useRef, useCallback, useEffect } from "react"
-import styled from "styled-components"
-import SplitPane from "react-split-pane"
-import { observer } from "mobx-react-lite"
+import React, { useContext, useRef, useCallback, useEffect } from 'react'
+import styled from 'styled-components'
+import SplitPane from 'react-split-pane'
+import { observer } from 'mobx-react-lite'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
 //import Karte from "./Karte"
-import KarteOrNull from "./KarteOrNull"
-import TreeContainer from "./TreeContainer"
-import Daten from "./Daten"
-import Exporte from "./Exporte"
-import Filter from "./Filter"
-import storeContext from "../../storeContext"
-import ApberForApFromAp from "../Print/ApberForApFromAp"
-import ApberForYear from "../Print/ApberForYear"
+import KarteOrNull from './KarteOrNull'
+import TreeContainer from './TreeContainer'
+import Daten from './Daten'
+import Exporte from './Exporte'
+import Filter from './Filter'
+import storeContext from '../../storeContext'
+import ApberForApFromAp from '../Print/ApberForApFromAp'
+import ApberForYear from '../Print/ApberForYear'
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   height: 100%;
   /*height: calc(100% - 64px);*/
   @media print {
@@ -57,11 +55,12 @@ const StyledSplitPane = styled(SplitPane)`
     border-color: transparent;
   }
   .Pane2 {
-    overflow: ${props => (props.overflow === "auto" ? "auto" : "hidden")};
-    height: calc(100% - 64px);
+    overflow: ${props => (props.overflow === 'auto' ? 'auto' : 'hidden')};
   }
 `
 const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 `
@@ -82,19 +81,19 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
 
   const showApberForAp =
     activeNodeArray.length === 7 &&
-    activeNodeArray[4] === "AP-Berichte" &&
-    activeNodeArray[6] === "print"
+    activeNodeArray[4] === 'AP-Berichte' &&
+    activeNodeArray[6] === 'print'
   const showApberForYear =
     activeNodeArray.length === 5 &&
-    activeNodeArray[2] === "AP-Berichte" &&
-    activeNodeArray[4] === "print"
+    activeNodeArray[2] === 'AP-Berichte' &&
+    activeNodeArray[4] === 'print'
 
   const treeEl = useRef(null)
   const datenEl = useRef(null)
   const filterEl = useRef(null)
 
   // remove 2 to treat all same
-  const tabs = [...tabsPassed].map(t => t.replace("2", ""))
+  const tabs = [...tabsPassed].map(t => t.replace('2', ''))
 
   const setDimensions = useCallback(() => {
     if (treeEl.current && treeEl.current.clientWidth) {
@@ -120,8 +119,8 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
 
   // reset dimensions when window resizes
   useEffect(() => {
-    window.addEventListener("resize", setDimensions)
-    return () => window.removeEventListener("resize", setDimensions)
+    window.addEventListener('resize', setDimensions)
+    return () => window.removeEventListener('resize', setDimensions)
   }, [])
 
   // reset dimensions when tabs are toggled
@@ -174,7 +173,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
       <Container>
         <StyledSplitPane
           split="vertical"
-          size={tabs[0] === "tree" ? "33%" : "50%"}
+          size={tabs[0] === 'tree' ? '33%' : '50%'}
           minSize={100}
           onDragFinished={onChange}
           overflow="auto"
@@ -193,7 +192,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
       <Container>
         <StyledSplitPane
           split="vertical"
-          size={tabs[0] === "tree" ? "33%" : "50%"}
+          size={tabs[0] === 'tree' ? '33%' : '50%'}
           minSize={100}
           onDragFinished={onChange}
           overflow="auto"
@@ -214,7 +213,7 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
       <Container>
         <StyledSplitPane
           split="vertical"
-          size={tabs[0] === "tree" ? "33%" : "50%"}
+          size={tabs[0] === 'tree' ? '33%' : '50%'}
           minSize={100}
           onDragFinished={onChange}
         >
