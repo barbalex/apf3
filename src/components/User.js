@@ -1,25 +1,25 @@
-import React, { useState, useCallback, useContext } from "react"
-import Dialog from "@material-ui/core/Dialog"
-import DialogTitle from "@material-ui/core/DialogTitle"
-import DialogActions from "@material-ui/core/DialogActions"
-import Input from "@material-ui/core/Input"
-import InputLabel from "@material-ui/core/InputLabel"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import FormControl from "@material-ui/core/FormControl"
-import FormHelperText from "@material-ui/core/FormHelperText"
-import IconButton from "@material-ui/core/IconButton"
-import Visibility from "@material-ui/icons/Visibility"
-import VisibilityOff from "@material-ui/icons/VisibilityOff"
-import Button from "@material-ui/core/Button"
-import styled from "styled-components"
-import get from "lodash/get"
-import gql from "graphql-tag"
-import { observer } from "mobx-react-lite"
-import { useApolloClient } from "react-apollo-hooks"
+import React, { useState, useCallback, useContext } from 'react'
+import Dialog from '@material-ui/core/Dialog'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogActions from '@material-ui/core/DialogActions'
+import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import FormControl from '@material-ui/core/FormControl'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import IconButton from '@material-ui/core/IconButton'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import Button from '@material-ui/core/Button'
+import styled from 'styled-components'
+import get from 'lodash/get'
+import gql from 'graphql-tag'
+import { observer } from 'mobx-react-lite'
+import { useApolloClient } from 'react-apollo-hooks'
 
-import ErrorBoundary from "./shared/ErrorBoundary"
-import idbContext from "../idbContext"
-import storeContext from "../storeContext"
+import ErrorBoundary from './shared/ErrorBoundary'
+import idbContext from '../idbContext'
+import storeContext from '../storeContext'
 
 const StyledDialog = styled(Dialog)``
 const StyledDiv = styled.div`
@@ -45,11 +45,11 @@ const User = () => {
   // this is a hack but unfortunately tree does not pass loading state
   const { nodes } = store.tree
 
-  const [name, setName] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
-  const [nameErrorText, setNameErrorText] = useState("")
-  const [passwordErrorText, setPasswordErrorText] = useState("")
+  const [nameErrorText, setNameErrorText] = useState('')
+  const [passwordErrorText, setPasswordErrorText] = useState('')
 
   const fetchLogin = useCallback(
     // callbacks pass name or password
@@ -74,76 +74,76 @@ const User = () => {
           optimisticResponse: {
             login: {
               username: name,
-              jwtToken: "",
-              __typename: "Login",
+              jwtToken: '',
+              __typename: 'Login',
             },
-            __typename: "Mutation",
+            __typename: 'Mutation',
           },
         })
       } catch (error) {
         const messages = error.graphQLErrors.map(x => x.message)
         const isNamePassError =
-          messages.includes("invalid user or password") ||
-          messages.includes("permission denied for relation user")
+          messages.includes('invalid user or password') ||
+          messages.includes('permission denied for relation user')
         if (isNamePassError) {
-          const message = "Name oder Passwort nicht bekannt"
+          const message = 'Name oder Passwort nicht bekannt'
           setNameErrorText(message)
           return setPasswordErrorText(message)
         }
         return console.log(error)
       }
-      const token = get(result, "data.login.jwtToken")
+      const token = get(result, 'data.login.jwtToken')
       // refresh currentUser in idb
       idb.currentUser.clear()
       await idb.currentUser.put({ name, token })
       setUser({ name, token })
       // this is easiest way to make sure everything is correct
       // as client is rebuilt with new settings
-      typeof window !== "undefined" && window.location.reload(true)
+      typeof window !== 'undefined' && window.location.reload(true)
 
       // can fire after component was unmounted...
       setTimeout(() => {
         if (name) {
-          setName("")
-          setPassword("")
+          setName('')
+          setPassword('')
         }
       }, 2000)
     },
-    [name, password]
+    [name, password],
   )
   const onBlurName = useCallback(
     e => {
-      setNameErrorText("")
+      setNameErrorText('')
       const name = e.target.value
       setName(name)
       if (!name) {
-        setNameErrorText("Geben Sie den Ihnen zugeteilten Benutzernamen ein")
+        setNameErrorText('Geben Sie den Ihnen zugeteilten Benutzernamen ein')
       } else if (password) {
         setTimeout(() => fetchLogin({ name }))
       }
     },
-    [password]
+    [password],
   )
   const onBlurPassword = useCallback(
     e => {
-      setPasswordErrorText("")
+      setPasswordErrorText('')
       const password = e.target.value
       setPassword(password)
       if (!password) {
-        setPasswordErrorText("Bitte Passwort eingeben")
+        setPasswordErrorText('Bitte Passwort eingeben')
       } else if (name) {
         setTimeout(() => fetchLogin({ password }))
       }
     },
-    [name]
+    [name],
   )
   const onKeyPressName = useCallback(e => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       onBlurName(e)
     }
   })
   const onKeyPressPassword = useCallback(e => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       onBlurPassword(e)
     }
   })
@@ -154,7 +154,7 @@ const User = () => {
     <ErrorBoundary>
       <StyledDialog
         aria-labelledby="dialog-title"
-        open={!token && nodes.length > 3}
+        open={!token /* && nodes.length > 3*/}
       >
         <DialogTitle id="dialog-title">Anmeldung</DialogTitle>
         <StyledDiv>
@@ -183,7 +183,7 @@ const User = () => {
             <StyledInput
               id="passwort"
               className="user-passwort"
-              type={showPass ? "text" : "password"}
+              type={showPass ? 'text' : 'password'}
               defaultValue={password}
               onBlur={onBlurPassword}
               onKeyPress={onKeyPressPassword}
@@ -195,7 +195,7 @@ const User = () => {
                   <IconButton
                     onClick={onClickShowPass}
                     onMouseDown={onMouseDownShowPass}
-                    title={showPass ? "verstecken" : "anzeigen"}
+                    title={showPass ? 'verstecken' : 'anzeigen'}
                   >
                     {showPass ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
