@@ -105,7 +105,7 @@ const PopMarker = ({ treeName, pop }) => {
             "(kein Status)"
           )}`}</div>
           <a
-            href={`${appBaseUrl}/Projekte/${projekt}/Aktionspläne/${ap}/Populationen/${
+            href={`${appBaseUrl()}/Projekte/${projekt}/Aktionspläne/${ap}/Populationen/${
               pop.id
             }`}
             target="_blank"

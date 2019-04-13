@@ -63,7 +63,7 @@ const BeobNichtZuzuordnenMarker = ({ treeName, beob }) => {
             )} / ${beob.y.toLocaleString("de-ch")}`}
           </div>
           <a
-            href={`${appBaseUrl}/Projekte/${projekt}/Aktionspläne/${ap}/nicht-zuzuordnende-Beobachtungen/${
+            href={`${appBaseUrl()}/Projekte/${projekt}/Aktionspläne/${ap}/nicht-zuzuordnende-Beobachtungen/${
               beob.id
             }`}
             target="_blank"
