@@ -12,6 +12,7 @@ const Container = styled.div`
   margin-top: 64px;
   height: calc(100vh - 64px);
   display: flex;
+  background-color: #fffde7;
 `
 const Menu = styled.div`
   width: 25%;

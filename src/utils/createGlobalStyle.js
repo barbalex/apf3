@@ -9,7 +9,7 @@ export default () => createGlobalStyle`
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: #fffde7;
+    /*background-color: #fffde7;*/
     color: rgba(0,0,0,0.87);
   }
 
