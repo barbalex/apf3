@@ -37,19 +37,15 @@ const User = () => {
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
   const store = useContext(storeContext)
-  const { user, setUser } = store
-  const { token } = user
-
-  // only show overlay if more than three nodes are loaded
-  // reason: prevent short showing that happens while data is fetched
-  // this is a hack but unfortunately tree does not pass loading state
-  const { nodes } = store.tree
+  const { user } = store
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
   const [nameErrorText, setNameErrorText] = useState('')
   const [passwordErrorText, setPasswordErrorText] = useState('')
+  const [token, setToken] = useState(user.token)
+  const [fetchingToken, setFetchingToken] = useState(true)
 
   const fetchLogin = useCallback(
     // callbacks pass name or password
@@ -92,22 +88,15 @@ const User = () => {
         }
         return console.log(error)
       }
-      const token = get(result, 'data.login.jwtToken')
       // refresh currentUser in idb
       idb.currentUser.clear()
-      await idb.currentUser.put({ name, token })
-      setUser({ name, token })
+      await idb.currentUser.put({
+        name,
+        token: get(result, 'data.login.jwtToken'),
+      })
       // this is easiest way to make sure everything is correct
       // as client is rebuilt with new settings
       typeof window !== 'undefined' && window.location.reload(true)
-
-      // can fire after component was unmounted...
-      setTimeout(() => {
-        if (name) {
-          setName('')
-          setPassword('')
-        }
-      }, 2000)
     },
     [name, password],
   )
@@ -150,11 +139,16 @@ const User = () => {
   const onClickShowPass = useCallback(() => setShowPass(!showPass), [showPass])
   const onMouseDownShowPass = useCallback(e => e.preventDefault())
 
+  idb.currentUser.toArray().then(users => {
+    setToken(get(users, '[0].token', null))
+    setFetchingToken(false)
+  })
+
   return (
     <ErrorBoundary>
       <StyledDialog
         aria-labelledby="dialog-title"
-        open={!token /* && nodes.length > 3*/}
+        open={!token && !fetchingToken}
       >
         <DialogTitle id="dialog-title">Anmeldung</DialogTitle>
         <StyledDiv>
