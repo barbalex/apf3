@@ -3,7 +3,7 @@ typ: 'technDoku'
 path: "/Technische-Dokumentation/Daten-Sicherung"
 date: "2019-01-30"
 title: "Daten-Sicherung"
-sort: 1
+sort: 2
 ---
 
 Täglich nach Mitternacht wird von der Datenbank ein SQL-Dumpfile erstellt und in Alex's persönliche Dropbox übermittelt. Diese wird mehrfach auf Festplatten gesichert.

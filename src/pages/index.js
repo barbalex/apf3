@@ -1,12 +1,12 @@
-import React from "react"
-import Typography from "@material-ui/core/Typography"
-import MaterialCard from "@material-ui/core/Card"
-import { graphql } from "gatsby"
-import styled from "styled-components"
-import Img from "gatsby-image"
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import MaterialCard from '@material-ui/core/Card'
+import { graphql } from 'gatsby'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
 
-import ErrorBoundary from "../components/shared/ErrorBoundary"
-import Layout from "../components/Layout"
+import ErrorBoundary from '../components/shared/ErrorBoundary'
+import Layout from '../components/Layout'
 
 const ScrollContainer = styled.div`
   height: calc(100vh - 64px);
@@ -87,11 +87,11 @@ const PageTitle = styled(Typography)`
 const CardTitle = styled.h3``
 
 const bgImageStyle = {
-  position: "absolute",
+  position: 'absolute',
   left: 0,
   top: 0,
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
   zIndex: -1,
 }
 
@@ -114,21 +114,22 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Arten</CardTitle>
                 Ein paar Dutzend der im Kanton Zürich am stärksten vom
-                Aussterben bedrohten Arten.
+                Aussterben bedrohten Pflanzen-Arten.
               </Card>
               <Card>
                 <CardTitle>Populationen</CardTitle>
-                Hier leben die Arten noch - oder wieder.
+                Hier leben die Arten noch - oder wieder. Populationen sind die
+                Basis für Ziele, Massnahmen, Kontrollen und Berichte.
               </Card>
               <Card>
                 <CardTitle>Aktionspläne</CardTitle>
-                Für jede Art ist ein(e) ausgewiesene(r) Expert(in)
+                Für jede Art ist ein ausgewiesener Experte oder eine Expertin
                 verantwortlich.
               </Card>
               <Card>
                 <CardTitle>Massnahmen</CardTitle>
                 Die Arten werden gezielt gefördert, z.B. durch optimale
-                Bewirtschaftung, Lebensraum-Verbesserung oder{" "}
+                Bewirtschaftung, Lebensraum-Verbesserung oder{' '}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -140,16 +141,17 @@ export default ({ data }) => {
               </Card>
               <Card>
                 <CardTitle>Kontrollen</CardTitle>
-                Der Zustand der Populationen wird kontrolliert.
+                Profis und Freiwillige besuchen Populationen, erfassen Zustand
+                und Bestand und prüfen die Wirkung durchgeführter Massnahmen.
               </Card>
               <Card>
                 <CardTitle>Beobachtungen</CardTitle>
-                Gemeldete Beobachtungen werden überprüft.
+                Gemeldete Beobachtungen Dritter werden überprüft.
               </Card>
               <Card>
                 <CardTitle>Ziele</CardTitle>
                 ...beschreiben, wie sich die Populationen künftig entwickeln
-                sollen.
+                sollen, damit die Art langfristig erhalten bleibt.
               </Card>
               <Card>
                 <CardTitle>Berichte</CardTitle>
@@ -160,7 +162,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Freiwillige</CardTitle>
                 Die Profis werden von Freiwilligen unterstützt. Z.B. bei der
-                Kontrolle von Populationen oder der{" "}
+                Kontrolle von Populationen oder der{' '}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -179,7 +181,7 @@ export default ({ data }) => {
                 >
                   Topos
                 </a>
-                &nbsp;im Auftrag der{" "}
+                &nbsp;im Auftrag der{' '}
                 <a
                   href="//aln.zh.ch/internet/baudirektion/aln/de/naturschutz/artenfoerderung/ap_fl.html"
                   target="_blank"
@@ -192,7 +194,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Interessiert?</CardTitle>
                 <p>
-                  Sie möchten den Kanton Zürich bei diesem Projekt unterstützen?
+                  Möchten Sie den Kanton Zürich bei diesem Projekt unterstützen?
                   Fragen Sie&nbsp;
                   <a
                     href="//toposmm.ch/index.php?option=com_content&view=article&id=21:vegapzh1&catid=8&Itemid=115"
