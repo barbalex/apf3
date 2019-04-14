@@ -11,7 +11,7 @@ sort: 3
 ## 1. Datenstruktur
 
 Beobachtungen werden in der Tabelle `beob` gespeichert:<br/>
-![Tabelle beob](./_media/beobTable.png)
+![Tabelle beob](_media/beobTable.png)
 
 Ein Datensatz besteht aus jeweils zwei Teilen:
 

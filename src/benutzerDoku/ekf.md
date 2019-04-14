@@ -2,11 +2,9 @@
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Erfolgs-Kontrollen-Freiwillige"
 date: "2019-01-30"
-title: "Erfolgs-Kontrollen Freiwillige"
-sort: 5
+title: "Erfolgs-Kontrollen Freiwillige (EKF)"
+sort: 6
 ---
-
-# Erfolgs-Kontrollen Freiwillige (EKF)
 
 ## Das Formular
 - Benutzer mit der Rolle "artverantwortich" oder "manager" können neue Freiwilligen-Kontrollen erstellen. Benutzer mit der Rolle "freiwillig" können nur die darin enthaltenen Felder ausfüllen

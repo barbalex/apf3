@@ -1,12 +1,10 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Karte-Teil-Populationen-aller-Aktionspläne-anzeigen"
+path: "/Benutzer-Dokumentation/Karte-Teil-Populationen-aller-Aktionsplaene-anzeigen"
 date: "2019-01-30"
 title: "Karte: Teil-Populationen aller Aktionspläne anzeigen"
-sort: 7
+sort: 8
 ---
-
-# Karte: Teil-Populationen aller Aktionspläne anzeigen
 
 Bedingungen:
 * Strukturbaum ist offen

@@ -1,12 +1,10 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Tipps-für-den-Einstieg"
+path: "/Benutzer-Dokumentation/Tipps-fuer-den-Einstieg"
 date: "2019-01-30"
 title: "Tipps für den Einstieg"
-sort: 2
+sort: 3
 ---
-
-# Tipps für den Einstieg
 
 * Die Anwendung ist hier: [https://apflora.ch](https://apflora.ch)
 

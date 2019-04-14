@@ -3,10 +3,9 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Test"
 date: "2019-01-30"
 title: "Test"
-sort: 11
+sort: 12
 ---
 
-# Test
 Auf diese Weise können wir beliebige pdf-Dateien in der Dokumentation anzeigen.<br/>
 Sie können sogar wahlweise heruntergeladen oder gedruckt werden. <br/>
 Unterstützt ein Browser die Anzeige von PDF-Dateien nicht, wird die Datei zum Download angeboten.

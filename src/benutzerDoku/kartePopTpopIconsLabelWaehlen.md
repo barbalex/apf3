@@ -1,17 +1,15 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Karte-Symbole-und-Label-für-Populationen-und-Teil-Populationen-wählen"
+path: "/Benutzer-Dokumentation/Karte-Symbole-und-Label-fuer-Populationen-und-Teil-Populationen-waehlen"
 date: "2019-01-30"
 title: "Karte: Symbole und Label für Populationen und Teil-Populationen wählen"
-sort: 8
+sort: 9
 ---
 
-# Symbole und Label für Populationen und Teil-Populationen wählen
-
 Neu ist das Blumen-Symbol für Populationen und Teil-Populationen im Layer-Tool der Karte interaktiv:<br/>
-![Symbol im Layertool](./_media/tpopSymbols1.png)<br/>
+![Symbol im Layertool](_media/tpopSymbols1.png)<br/>
 Klickt man darauf, öffnet sich ein Menü:<br/>
-![Menü](./_media/tpopSymbols2.png)<br/>
+![Menü](_media/tpopSymbols2.png)<br/>
 Darin kann man wählen, mit welcher Symbolisierung und Labels Populationen und Teil-Populationen angezeigt werden.
 
 Aktuell stehen zur Verfügung:
@@ -25,7 +23,7 @@ Aktuell stehen zur Verfügung:
   - ohne Status: ?
 
 
-![Neue Symbole](./_media/tpopSymbols3.png)
+![Neue Symbole](_media/tpopSymbols3.png)
 
 #### Label:
 - Nr. (Populationen) bzw. Pop-Nr./Tpop-Nr. (Teil-Populationen)

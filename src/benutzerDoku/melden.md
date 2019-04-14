@@ -1,12 +1,10 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Fehler-Ideen-Vorschläge-melden"
+path: "/Benutzer-Dokumentation/Fehler-Ideen-Vorschlaege-melden"
 date: "2019-01-30"
 title: "Fehler, Ideen, Vorschläge melden"
-sort: 10
+sort: 11
 ---
-
-# Fehler, Ideen, Vorschläge melden
 
 Das geht so:
 

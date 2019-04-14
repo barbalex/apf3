@@ -3,10 +3,8 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Technische-Voraussetzungen"
 date: "2019-01-30"
 title: "Technische Voraussetzungen"
-sort: 1
+sort: 2
 ---
-
-# Technische Voraussetzungen
 
 Ihr braucht einen modernen Browser:
 

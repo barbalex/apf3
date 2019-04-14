@@ -3,10 +3,8 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Beobachtungen-einer-Teil-Population-zuordnen"
 date: "2019-01-30"
 title: "Beobachtungen einer Teil-Population zuordnen"
-sort: 3
+sort: 4
 ---
-
-# Beobachtungen einer Teil-Population zuordnen
 
 Bei den wichtigsten Artförderprogrammen werden gemeldete Beobachtungen beurteilt. Sie werden entweder verworfen ("nicht zuordnen") oder einer Teilpopulation zugeordnet.
 
