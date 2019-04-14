@@ -300,13 +300,37 @@ const MyAppBar = () => {
                       <More onClickExporte={onClickExporte} role={role} />
                     </>
                   ) : (
-                    <StyledButton
-                      variant="outlined"
-                      component={Link}
-                      to="/Daten/Projekte/"
-                    >
-                      Zu den Daten
-                    </StyledButton>
+                    <>
+                      <StyledButton
+                        variant={
+                          pathname.startsWith("/Benutzer-Dokumentation")
+                            ? "outlined"
+                            : "text"
+                        }
+                        component={Link}
+                        to="/Benutzer-Dokumentation/"
+                      >
+                        Benutzer-Dokumentation
+                      </StyledButton>
+                      <StyledButton
+                        variant={
+                          pathname.startsWith("/Technische-Dokumentation")
+                            ? "outlined"
+                            : "text"
+                        }
+                        component={Link}
+                        to="/Technische-Dokumentation/"
+                      >
+                        Technische Dokumentation
+                      </StyledButton>
+                      <StyledButton
+                        variant="text"
+                        component={Link}
+                        to="/Daten/Projekte/"
+                      >
+                        Aktionspläne bearbeiten
+                      </StyledButton>
+                    </>
                   )}
                 </MenuDiv>
               </StyledToolbar>
