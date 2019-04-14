@@ -1,7 +1,7 @@
 import React from "react"
 import Typography from "@material-ui/core/Typography"
 import MaterialCard from "@material-ui/core/Card"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
@@ -85,43 +85,6 @@ const PageTitle = styled(Typography)`
   }
 `
 const CardTitle = styled.h3``
-const MoreContainer = styled.div`
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 25px;
-  @media (min-width: 700px) {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
-  }
-  @media (min-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 25px;
-  }
-  @media (min-width: 1700px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 30px;
-  }
-  p {
-    padding-left: 30px;
-    font-weight: 700;
-    text-shadow: 2px 2px 3px white, -2px -2px 3px white, 2px -2px 3px white,
-      -2px 2px 3px white;
-    margin: 0;
-  }
-  a {
-    padding-left: 30px;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.8);
-    text-shadow: 2px 2px 3px white, -2px -2px 3px white, 2px -2px 3px white,
-      -2px 2px 3px white;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`
 
 const bgImageStyle = {
   position: "absolute",
@@ -150,51 +113,62 @@ export default ({ data }) => {
             <CardContainer>
               <Card>
                 <CardTitle>Arten</CardTitle>
-                Vom Aussterben bedrohte Pflanzen-Arten werden gesammelt,
-                vermehrt und wieder ausgesetzt.
+                Ein paar Dutzend der im Kanton Zürich am stärksten vom
+                Aussterben bedrohten Arten.
               </Card>
               <Card>
-                <CardTitle>Herkünfte</CardTitle>
-                Hier gibt es noch ursprüngliche Bestände der Arten.
+                <CardTitle>Populationen</CardTitle>
+                Hier leben die Arten noch - oder wieder.
               </Card>
               <Card>
-                <CardTitle>Sammlungen</CardTitle>
-                ...beschreiben das Sammeln von Arten an Herkunfts-Orten.
+                <CardTitle>Aktionspläne</CardTitle>
+                Für jede Art ist ein(e) ausgewiesene(r) Expert(in)
+                verantwortlich.
               </Card>
               <Card>
-                <CardTitle>Lieferungen</CardTitle>
-                <p>Sammlungen werden an Kulturen geliefert.</p>
-                <p>
-                  Aus Kulturen werden Pflanzen an andere Kulturen geliefert.
-                  Oder in der Natur ausgesetzt.
-                </p>
+                <CardTitle>Massnahmen</CardTitle>
+                Die Arten werden gezielt gefördert, z.B. durch optimale
+                Bewirtschaftung, Lebensraum-Verbesserung oder{" "}
+                <a
+                  href="//vermehrung.apflora.ch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Vermehrung und Aussetzung
+                </a>
+                .
               </Card>
               <Card>
-                <CardTitle>Gärten</CardTitle>
-                In Gärten und Gärtnereien werden die Arten in Kultur vermehrt
-                und auf das Aussetzen vorbereitet.
+                <CardTitle>Kontrollen</CardTitle>
+                Der Zustand der Populationen wird kontrolliert.
               </Card>
               <Card>
-                <CardTitle>Kulturen</CardTitle>
-                Die Pflanzen einer Art in einem Garten bilden eine Kultur.
+                <CardTitle>Beobachtungen</CardTitle>
+                Gemeldete Beobachtungen werden überprüft.
               </Card>
               <Card>
-                <CardTitle>Events</CardTitle>
-                ...beschreiben Ereignisse im Rahmen der Kultur.
+                <CardTitle>Ziele</CardTitle>
+                ...beschreiben, wie sich die Populationen künftig entwickeln
+                sollen.
               </Card>
               <Card>
-                <CardTitle>Inventare</CardTitle>
-                In grösseren Gärtnereien wird über Kulturen und deren Beete
-                Inventar geführt.
+                <CardTitle>Berichte</CardTitle>
+                Jährlich wird über die Entwicklung der Populationen, den Erfolg
+                der Massnahmen und die Ziel-Erreichung berichtet. Darauf
+                aufbauend werden die Massnahmen für das nächste Jahr geplant.
               </Card>
               <Card>
-                <CardTitle>Zählungen</CardTitle>
-                Regelmässig wird der Bestand der Kulturen erfasst. So können
-                Sammlungen und Aussetzungen geplant werden.
-              </Card>
-              <Card>
-                <CardTitle>Personen</CardTitle>
-                Zum Beispiel Freiwillige, die in ihren Gärten Kulturen pflegen.
+                <CardTitle>Freiwillige</CardTitle>
+                Die Profis werden von Freiwilligen unterstützt. Z.B. bei der
+                Kontrolle von Populationen oder der{" "}
+                <a
+                  href="//vermehrung.apflora.ch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Vermehrung von Pflanzen
+                </a>
+                .
               </Card>
               <Card>
                 <CardTitle>Wer organisiert das Projekt?</CardTitle>
@@ -218,8 +192,8 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Interessiert?</CardTitle>
                 <p>
-                  Sie haben einen Garten und würden gerne bedrohte Pflanzen
-                  vermehren? Fragen Sie&nbsp;
+                  Sie möchten den Kanton Zürich bei diesem Projekt unterstützen?
+                  Fragen Sie&nbsp;
                   <a
                     href="//toposmm.ch/index.php?option=com_content&view=article&id=21:vegapzh1&catid=8&Itemid=115"
                     target="_blank"
@@ -230,8 +204,8 @@ export default ({ data }) => {
                   .
                 </p>
                 <p>
-                  Sie brauchen ein Werkzeug, um Vermehrungen zu verwalten?
-                  Fragen Sie&nbsp;
+                  Sie suchen ein Werkzeug, um ein Art-Förder-Programm zu
+                  verwalten? Fragen Sie&nbsp;
                   <a
                     href="https://gabriel-software.ch/Kontakt/"
                     target="_blank"
@@ -243,21 +217,6 @@ export default ({ data }) => {
                 </p>
               </Card>
             </CardContainer>
-            <MoreContainer>
-              <a
-                href="https://gabriel-software.ch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Über uns
-              </a>
-              <a
-                href="mailto:alex@gabriel-software.ch?subject=vermehrung.apflora.ch"
-                rel="noopener"
-              >
-                Kontakt
-              </a>
-            </MoreContainer>
           </Container>
         </ScrollContainer>
       </Layout>
