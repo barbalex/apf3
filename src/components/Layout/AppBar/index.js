@@ -42,6 +42,7 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
     border-top-right-radius: ${followed ? "0" : "4px"} !important;
     border-bottom-right-radius: ${followed ? "0" : "4px"} !important;
     margin-right: ${followed ? "-1px" : "unset"} !important;
+    text-transform: none !important;
   `
   return <StyledButton {...rest} />
 }
@@ -51,7 +52,7 @@ const SiteTitle = styled(Button)`
   font-size: 20px !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
   border-width: 0 !important;
-  text-transform: unset !important;
+  text-transform: none !important;
   @media (min-width: 750px) {
     display: block !important;
   }
@@ -62,6 +63,7 @@ const SiteTitle = styled(Button)`
 const NormalViewButton = styled(Button)`
   color: white !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
+  text-transform: none !important;
 `
 const MenuDiv = styled.div`
   display: flex;

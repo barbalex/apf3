@@ -4,6 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem"
 import Button from "@material-ui/core/Button"
 import styled from "styled-components"
 import { observer } from "mobx-react-lite"
+import { Link } from "gatsby"
 
 import isMobilePhone from "../../../../modules/isMobilePhone"
 import logout from "../../../../modules/logout"
@@ -17,6 +18,7 @@ const Container = styled.div`
 `
 const MehrButton = styled(Button)`
   color: white !important;
+  text-transform: none !important;
 `
 const Version = styled.div`
   padding: 12px 16px;
@@ -44,10 +46,6 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
   const exporteIsActive = !!treeActiveNodes.projekt
   const isMobile = isMobilePhone()
 
-  const openDocs = useCallback(() => {
-    setAnchorEl(null)
-    typeof window !== "undefined" && window.open("https://docs.apflora.ch")
-  })
   const watchVideos = useCallback(() => {
     setAnchorEl(null)
     typeof window !== "undefined" &&
@@ -112,7 +110,12 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         {["apflora_manager", "apflora_artverantwortlich"].includes(role) && (
           <EkfAdresse setAnchorEl={setAnchorEl} />
         )}
-        <MenuItem onClick={openDocs}>Dokumentation öffnen</MenuItem>
+        <MenuItem component={Link} to="/Benutzer-Dokumentation/">
+          Benutzer-Dokumentation
+        </MenuItem>
+        <MenuItem component={Link} to="/Technische-Dokumentation/">
+          Technische Dokumentation
+        </MenuItem>
         <MenuItem onClick={watchVideos}>Video-Anleitungen</MenuItem>
         <MenuItem onClick={onClickLogout} className="appbar-more-logout">{`${
           user.name

@@ -29,6 +29,7 @@ const StyledButton = styled(Button)`
     props.followed === "true" ? "0" : "4px"} !important;
   margin-right: ${props =>
     props.followed === "true" ? "-1px" : "unset"} !important;
+  text-transform: none !important;
 `
 
 const MyAppBarDaten = ({ treeNr = "" }) => {
