@@ -35,7 +35,7 @@ const DatenPage = ({ location }) => {
   const { setActiveNodeArray } = store.tree
   useEffect(() => {
     // TODO:
-    // is initiateDataFromUrl and setActiveNodeArray/setOpenNodes double?
+    // is initiateDataFromUrl and setActiveNodeArray double?
     initiateDataFromUrl({
       store,
     })
@@ -46,8 +46,6 @@ const DatenPage = ({ location }) => {
   useEffect(() => {
     setActiveNodeArray(activeNodeArray)
   }, [pathname])
-
-  console.log('Daten', { user })
 
   return (
     <ErrorBoundary>
