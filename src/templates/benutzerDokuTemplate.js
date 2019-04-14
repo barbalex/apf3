@@ -12,6 +12,7 @@ const Container = styled.div`
   margin-top: 64px;
   height: calc(100vh - 64px);
   display: flex;
+  background-color: #fffde7;
 `
 const Menu = styled.div`
   width: 25%;
@@ -44,7 +45,7 @@ const Doku = styled.div`
   }
 `
 const MenuTitle = styled.div`
-  padding: 0 24px;
+  padding: 0 16px;
   margin-bottom: 14px;
 `
 const MenuTitleLink = styled(Link)`

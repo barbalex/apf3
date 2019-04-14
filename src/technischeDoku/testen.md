@@ -6,8 +6,6 @@ title: "Funktionalität testen"
 sort: 3
 ---
 
-# Funktionalität testen
-
 Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn grössere Änderungen umgesetzt wurden.
 
 Langfristig sollten diese Tests automatisiert werden.

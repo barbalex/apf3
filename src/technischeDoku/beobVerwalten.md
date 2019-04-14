@@ -6,8 +6,6 @@ title: "Beobachtungen verwalten"
 sort: 3
 ---
 
-# Beobachtungen verwalten
-
 ## 1. Datenstruktur
 
 Beobachtungen werden in der Tabelle `beob` gespeichert:<br/>
