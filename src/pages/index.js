@@ -118,19 +118,19 @@ export default ({ data }) => {
                 Aussterben bedrohten Pflanzen-Arten.
               </Card>
               <Card>
-                <CardTitle>Populationen</CardTitle>
-                Hier leben die Arten noch - oder wieder. Populationen sind die
-                Basis für Ziele, Massnahmen, Kontrollen und Berichte.
-              </Card>
-              <Card>
                 <CardTitle>Aktionspläne</CardTitle>
                 Für jede Art ist ein ausgewiesener Experte oder eine Expertin
                 verantwortlich.
               </Card>
               <Card>
+                <CardTitle>Populationen</CardTitle>
+                Hier leben die Arten noch - oder wieder. Populationen sind die
+                Basis für Ziele, Massnahmen, Kontrollen und Berichte.
+              </Card>
+              <Card>
                 <CardTitle>Massnahmen</CardTitle>
-                Die Arten werden gezielt gefördert, z.B. durch optimale
-                Bewirtschaftung, Lebensraum-Verbesserung oder{" "}
+                Die Arten werden gezielt gefördert, zum Beispiel durch
+                Lebensraum-Verbesserung oder{" "}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -143,7 +143,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Kontrollen</CardTitle>
                 Profis und Freiwillige besuchen Populationen, erfassen Zustand
-                und Bestand und prüfen die Wirkung durchgeführter Massnahmen.
+                und Bestand und prüfen die Wirkung von Massnahmen.
               </Card>
               <Card>
                 <CardTitle>Beobachtungen</CardTitle>
@@ -157,7 +157,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Berichte</CardTitle>
                 Jährlich wird über die Entwicklung der Populationen, den Erfolg
-                der Massnahmen und die Ziel-Erreichung berichtet. Darauf
+                der Massnahmen und die Erreichung der Ziele berichtet. Darauf
                 aufbauend werden die Massnahmen für das nächste Jahr geplant.
               </Card>
               <Card>
