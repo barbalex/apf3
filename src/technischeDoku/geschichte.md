@@ -7,7 +7,7 @@ sort: 7
 ---
 
 ## 1. Excel-Listen
-Es war einmal vor langer, langer Zeit, im Kanton Zürich, ein Projekt zur Förderung von Pflanzen-Arten. Keine Ahnung, wie lange das her ist.<br/><br/>
+Vor langer, langer Zeit entstand im Kanton Zürich ein Projekt zur Förderung der am stärksten gefährdeten Pflanzen-Arten. Ich weiss nicht, wie lange das her ist - vermutlich nach 1995 als das Naturschutz-Gesamtkozept entstand.<br/><br/>
 
 Im Rahmen des Projekts wurden Populationen und Teil-Populationen beschrieben, Massnahmen dokumentiert, Teil-Populationen kontrolliert und vieles mehr. Um Ende Jahr jeweils über das Projekt zu berichten, wurden die Daten systematisch gesammelt. So entstanden diverse Excel-Listen. Über die Jahre wuchsen die Bedürfnisse an das Projekt und damit auch die Listen. Bis die Mitarbeitenden immer mehr Mühe bekamen, die Daten zu verwalten.<br/><br/>
 
@@ -19,7 +19,7 @@ In den nächsten Jahren stiegen die Anforderungen weiter. Und weiter. Bis die Ac
 Tests mit der Synchronisation verteilter Access-Datenbanken verliefen unbefriedigend.<br/><br/>
 
 ## 3. Access-DB mit MySQL Backend
-ca. 2011 wurde die Datenbank auf MySQL auf einem Webserver migriert. Als Anwendung diente weiterhin Access, welches über ODBC mit der Datenbank kommunizierte. Es funktionierte. Aber es war kompliziert, langsam und alles Andere als perfekt.<br/><br/>
+ca. 2011 wurde die Datenbank auf MySQL auf einem Webserver migriert. Als Anwendung diente weiterhin Access, welches über ODBC mit der Datenbank kommunizierte. Es funktionierte. Aber es war kompliziert, langsam und bei weitem nicht perfekt.<br/><br/>
 
 ## 4. Web-App mit MySQL DB
 

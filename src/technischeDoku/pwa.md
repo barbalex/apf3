@@ -8,9 +8,9 @@ sort: 1
 
 Wieso kann apflora.ch "installiert" und auf allen Geräten und Betriebssystemen verwendet werden?<br/><br/>
 
-Weil es eine **Progressive Web App** ist (PWA).<br/><br/>
+Weil es eine [**Progressive Web App**](https://developers.google.com/web/progressive-web-apps) ist (PWA).<br/><br/>
 
-[Progressive Web Apps](https://developers.google.com/web/progressive-web-apps) sind Web-Applikationen und werden für Browser entwickelt.<br/><br/>
+Progressive Web Apps sind Web-Applikationen und werden für Browser entwickelt.<br/><br/>
 
 Weil sie aber einige zusätzliche Anforderungen erfüllen, können sie je länger je weniger von "normalen" Apps unterschieden werden. Google und Microsoft arbeiten zügig daran, dieses Ziel zu erreichen.<br/><br/>
 
