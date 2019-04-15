@@ -6,9 +6,11 @@ title: "Funktionalität testen"
 sort: 6
 ---
 
-Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn grössere Änderungen umgesetzt wurden.<br/>
+Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn grössere Änderungen umgesetzt wurden.<br/><br/>
 
-Langfristig sollten diese Tests automatisiert werden.<br/><br/>
+Die Menge von Funktionalitäten ist eindrücklich. Vor allem, wenn man bedenkt, dass z.B. für einem Punkt allein ("Änderung speichern") 300 automatisierte Test gebaut wurden. Daher wird kaum je manuell alles erschöpfend getestet. Meist nur das, woran gearbeitet wurde.<br/><br/>
+
+Daher ist es wichtig und geplant, langfristig alle diese Tests zu automatisieren.<br/><br/>
 
 Symbole:
 * :white_check_mark:: automatisiert
