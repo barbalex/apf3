@@ -1,7 +1,7 @@
 ---
 typ: 'technDoku'
 path: "/Technische-Dokumentation/Entstehung"
-date: "2019-01-30"
+date: "2019-04-15"
 title: "Entstehungs-Geschichte"
 sort: 7
 ---
