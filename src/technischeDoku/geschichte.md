@@ -25,12 +25,15 @@ ca. 2011 wurde die Datenbank auf MySQL auf einem Webserver migriert. Als Anwendu
 
 ## 5. Web-App mit MySQL DB
 
-Ab 2012 kam eine reine Web-Applikation zum Einsatz. Sie war leistungsfähig und konnte die damaligen Bedürfnisse gut decken :+1:<br/><br/>
+Ab 2012 kam eine reine Web-Applikation zum Einsatz. Sie war leistungsfähig und konnte die damaligen Bedürfnisse gut decken :+1:<br/>
+Leider war sie auch komplex, schwierig zu unterhalten und risikoreich weiter zu entwickeln :eyes:<br/><br/>
 
 ## 6. "Moderne" Web-App
 
-Web-Technologien entwickelten sich rasant weiter. Ebenso, wie die Bedürfnisse an apflora.ch. 2017 wurde apflora daher von Grund auf neu aufgebaut. Hauptziel war es, mit Hilfe einer modernen Architektur (React && MobX) sowie einer flexiblen Datenbank (PostgreSQL, u.a. mit JSONB) die Komplexität der Anwendung stark zu reduzieren. Und die Basis zu legen, dass sie auch künftig den Bedürfnissen gerecht weiterentwickelt werden kann.<br/><br/>
+Web-Technologien entwickelten sich rasant weiter. Ebenso, wie die Bedürfnisse an apflora.ch. 2017 wurde apflora daher von Grund auf neu aufgebaut :rocket:. Hauptziel war es, mit Hilfe einer modernen Architektur (React, GraphQL && MobX) sowie einer flexiblen Datenbank (PostgreSQL, u.a. mit JSONB) die Komplexität der Anwendung stark zu reduzieren. Und die Basis zu legen, dass sie auch künftig den Bedürfnissen gerecht weiterentwickelt werden kann.<br/><br/>
 
-Dieser Prozess endet im Prinzip nie. Seither wird apflora regelmässig modernisiert. Informationen über die aktuell verwendeten Technologien finden sich [hier](/Technische-Dokumentation/Technische-Umsetzung).
+Diese Ziele wurden erreicht :sparkles:. Leider hat die neue App zunächst leistungsmässig nicht überzeugt :snail:. Aber das sollte nun überwunden sein :stuck_out_tongue_winking_eye:.<br/><br/>
+
+Heute wird apflora regelmässig modernisiert. Informationen über die aktuell verwendeten Technologien finden sich [hier](/Technische-Dokumentation/Technische-Umsetzung).
 
 
