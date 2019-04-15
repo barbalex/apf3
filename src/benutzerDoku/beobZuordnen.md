@@ -6,7 +6,7 @@ title: "Beobachtungen einer Teil-Population zuordnen"
 sort: 4
 ---
 
-Bei den wichtigsten Artförderprogrammen werden gemeldete Beobachtungen beurteilt. Sie werden entweder verworfen ("nicht zuordnen") oder einer Teilpopulation zugeordnet.
+Bei den wichtigsten Artförderprogrammen werden gemeldete Beobachtungen beurteilt. Sie werden entweder verworfen ("nicht zuordnen") oder einer Teilpopulation zugeordnet.<br/><br/>
 
 Verworfen werden Beobachtungen in der Regel, wenn:
 - sie nicht (genau genug) lokalisiert werden können oder

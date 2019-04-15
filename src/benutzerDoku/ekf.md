@@ -21,20 +21,24 @@ sort: 6
 
 ### 1. Artverantwortliche oder Managerin bereitet Freiwilligen-Feldarbeit vor
 
-> "artverantwortlich", "manager" und "freiwillig" sind Rollen, welche Benutzer in apflora erhalten können.
+Benutzer können folgende Rollen erhalten:
+- artverantwortlich
+- manager
+- freiwillig
 
 Beispiel: Charlotte bereitet die Arbeit der Freiwilligen "A" vor:
 
-1. Charlotte erfasst A als Benutzerin mit der Rolle "freiwillig", falls es diese Benutzerin nicht schon gibt
-2. Wichtig: Die zugehörige Adresse von A ist im Formular "Benutzer" zu wählen. Nur so kann apflora.ch die richtigen Kontrollen anzeigen, wenn A einloggt 
-3. Wählt man im EKF-Formular eine Beobachterin, die nicht wie oben beschrieben mit einem Benutzer verbunden wurde, wird man darauf hingewiesen
+1. Charlotte erfasst A als Benutzerin mit der Rolle "freiwillig"
+2. Wichtig: Die zugehörige Adresse von A ist im Formular "Benutzer" zu wählen. Nur so kann apflora.ch die richtigen Kontrollen anzeigen, wenn A einloggt.
+  
+   Wählt man im EKF-Formular eine Beobachterin, die nicht wie oben beschrieben mit einem Benutzer verbunden wurde, wird man darauf hingewiesen
 4. Charlotte erstellt bei jeder von A zu kontrollierenden Teil-Population eine neue Freiwilligen-Kontrolle. Darin wählt sie A als Beobachterin
 5. Das so erstellte Formular kann für die Feldarbeit gedruckt werden
 6. Charlotte kann die `EKF-Ansicht` von A wählen: Menu "Mehr" > "EKF sehen als" (und hier A wählen)
 7. Wenn nun A von Charlotte die Formulare bekommt, sind in apflora.ch alle ihre EKF erfasst
 
 ### 2. Freiwillige erfasst Daten im Feld
-...auf den Papier-Formularen
+...auf den Papier-Formularen<br/><br/>
 
 ### 3. Freiwillige digitalisiert ihre Feld-Formulare
 1. Loggt A nach der Feldarbeit in apflora.ch ein, um ihre Feld-Formulare zu übertragen, öffnet sich die `EKF-Ansicht`: A sieht die Liste aller EKF dieses Jahres (inkl. diejenigen, die noch kein Datum haben), bei denen sie als Beobachterin erfasst ist
@@ -42,7 +46,7 @@ Beispiel: Charlotte bereitet die Arbeit der Freiwilligen "A" vor:
 3. A wählt in der Liste die gewünschte Kontrolle. Und überträgt rechts daneben ihr Feld-Formular ins apflora-Formular
 4. In der Titelleiste wird das aktuelle Erfassungs-Jahr angezeigt
 5. Man kann ein anderes Jahr wählen. In diesem Fall werden die Freiwilligen-Kontrollen der angemeldeten Benutzerin aus dem betreffenden Jahr angezeigt. Nicht aber die Kontrollen ohne Datum (die werden nur angezeigt, wenn das gewählte Jahr dem aktuellen Feld-Jahr entspricht)
-6. A kann ihr Passwort ändern, indem sie oben rechts auf die Schaltfläche klickt, die ihren Benutzer-Namen anzeigt
+6. A kann ihr Passwort ändern, indem sie oben rechts auf die Schaltfläche klickt, die ihren Benutzer-Namen anzeigt<br/><br/>
 
 ### 4. Artverantwortliche oder Managerin überprüft die Feld-Arbeit
 1. Die Artverantwortliche kann die `EKF-Ansicht` einer Bestimmten Freiwilligen-Kontrolleurin wählen: Menu "Mehr" > "EKF sehen als" (und hier die Kontrolleurin wählen)

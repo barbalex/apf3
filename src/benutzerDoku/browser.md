@@ -6,7 +6,7 @@ title: "Technische Voraussetzungen"
 sort: 2
 ---
 
-Ihr braucht einen modernen Browser:
+Vorausgesetzt wird ein moderner Browser:
 
 * Empfehlenswert ist Google Chrome - darauf wird apflora.ch entwickelt.<br/>
   Meines Wissens funktioniert der Ausdruck von Jahresberichten nur auf Google Chrome richtig.<br/>

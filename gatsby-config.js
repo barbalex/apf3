@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: 'apflora',
+    title: "apflora",
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: "gatsby-plugin-eslint",
       options: {
         test: /\.js$|\.jsx$/,
         exclude: /(node_modules|cache|public|docs)/,
@@ -15,116 +15,116 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-create-client-paths',
+      resolve: "gatsby-plugin-create-client-paths",
       options: {
         prefixes: [`/Daten/*`],
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'images',
+        name: "images",
         path: `${__dirname}/src/images/`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/technischeDoku`,
-        name: 'technischeDoku-pages',
+        name: "technischeDoku-pages",
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/benutzerDoku`,
-        name: 'benutzerDoku-pages',
+        name: "benutzerDoku-pages",
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ['Roboto'],
+          families: ["Roboto"],
         },
       },
     },
     {
-      resolve: 'gatsby-plugin-typography',
+      resolve: "gatsby-plugin-typography",
       options: {
-        pathToConfigModule: './src/utils/typography.js',
+        pathToConfigModule: "./src/utils/typography.js",
       },
     },
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-styled-components",
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        scope: 'https://apflora.ch/',
-        name: 'apflora.ch',
-        short_name: 'apflora',
-        start_url: '/',
-        background_color: '#2e7d32',
-        theme_color: '#2e7d32',
-        display: 'standalone',
-        icon: 'src/images/apflora.png',
+        scope: "https://apflora.ch/",
+        name: "apflora.ch",
+        short_name: "apflora",
+        start_url: "/",
+        background_color: "#2e7d32",
+        theme_color: "#2e7d32",
+        display: "standalone",
+        icon: "src/images/apflora.png",
         include_favicon: true,
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: "gatsby-transformer-remark",
       options: {
         gfm: true,
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        excerpt_separator: '<!-- end -->',
+        commonmark: false,
+        footnotes: false,
+        pedantic: false,
+        excerpt_separator: "<!-- end -->",
         plugins: [
           {
-            resolve: 'gatsby-remark-images',
+            resolve: "gatsby-remark-images",
             options: {
               maxWidth: 740,
-              wrapperStyle: 'margin-left: 0;',
+              wrapperStyle: "margin-left: 0;",
             },
           },
           {
-            resolve: 'gatsby-remark-autolink-headers',
+            resolve: "gatsby-remark-autolink-headers",
             options: {
-              offsetY: '64',
+              offsetY: "64",
             },
           },
           {
-            resolve: 'gatsby-remark-emojis',
+            resolve: "gatsby-remark-emojis",
             options: {
               // Deactivate the plugin globally (default: true)
               active: true,
               // Add a custom css class
-              class: 'emoji-icon',
+              class: "emoji-icon",
               // Select the size (available size: 16, 24, 32, 64)
               size: 32,
               // Add custom styles
               styles: {
-                display: 'inline',
-                margin: '0',
-                'margin-top': '-3px',
-                position: 'relative',
-                top: '3px',
-                width: '20px',
+                display: "inline",
+                margin: "0",
+                "margin-top": "-3px",
+                position: "relative",
+                top: "3px",
+                width: "20px",
               },
             },
           },
           {
-            resolve: 'gatsby-remark-external-links',
+            resolve: "gatsby-remark-external-links",
             options: {
-              target: '_self',
-              rel: 'nofollow',
+              target: "_self",
+              rel: "nofollow",
             },
           },
         ],
       },
     },
-    'gatsby-plugin-offline',
+    "gatsby-plugin-offline",
   ],
 }
