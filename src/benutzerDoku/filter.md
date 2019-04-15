@@ -7,7 +7,7 @@ sort: 7
 ---
 
 Am 12.09.2018 wurden Formular-Filter eingeführt. Am 15.3.2019 wurden sie verändert, um sie benutzerfreundlicher zu gestalten.<br/>
-![Filter-Formular](_media/filterForm.png)
+<img src="_media/filterForm.png" title="Filter-Formular" width="600" />
 
 ## In diesen Formularen kann man filtern
 - Aktionsplan
