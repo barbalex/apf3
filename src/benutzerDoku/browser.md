@@ -9,7 +9,7 @@ sort: 2
 Vorausgesetzt wird ein moderner Browser:
 
 * Empfehlenswert ist Google Chrome - darauf wird apflora.ch entwickelt.<br/>
-  Meines Wissens funktioniert der Ausdruck von Jahresberichten nur auf Google Chrome richtig.<br/>
+  Meines Wissens funktionieren Ausdrucke nur auf Google Chrome richtig.<br/>
   Alles Andere sollte prinzipiell auch auf allen anderen modernen Browsern funktionieren.
 * Firefox wird regelmässig produktiv benutzt
 * Safari auf Mac OsX scheint zu funktionieren
