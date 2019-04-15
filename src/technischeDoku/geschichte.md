@@ -3,7 +3,7 @@ typ: 'technDoku'
 path: "/Technische-Dokumentation/Entstehung"
 date: "2019-01-30"
 title: "Entstehungs-Geschichte"
-sort: 1
+sort: 7
 ---
 
 ## 1. Excel-Listen

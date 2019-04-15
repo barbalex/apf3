@@ -117,7 +117,7 @@ Die nachfolgend aufgelisteten Funktionen werden nur von Topos verwendet:
 - Berichte direkt in apflora.ch erstellen (statt wie bisher in Access) (umgesetzt)
 - Freiwilligen-Erfolgskontrollen: Internet-Eingabeformular entsprechend dem Feld-Formular schaffen. Ziel: Freiwillige erfassen ihre Kontrollen selber. Sie fliessen in die Auswertung ein, wenn sie von Mitarbeiterinnen von Topos geprüft wurden (umgesetzt)
 - Filter-Funktionen ausbauen (umgesetzt)
-- Von InfoFlora bezogene Beobachtungen können korrigiert und die Änderung per mail an InfoFlora gemeldet werden
+- Von InfoFlora bezogene Beobachtungen können korrigiert und die Änderung per mail an InfoFlora gemeldet werden (umgesetzt)
 - Diverse kleinere Optimierungen, um die Effizienz für die BenutzerInnen zu steigern
 
 ### Langfristige Vision

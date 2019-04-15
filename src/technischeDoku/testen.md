@@ -3,12 +3,12 @@ typ: 'technDoku'
 path: "/Technische-Dokumentation/Testen"
 date: "2019-01-30"
 title: "Funktionalität testen"
-sort: 3
+sort: 6
 ---
 
-Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn grössere Änderungen umgesetzt wurden.
+Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn grössere Änderungen umgesetzt wurden.<br/>
 
-Langfristig sollten diese Tests automatisiert werden.
+Langfristig sollten diese Tests automatisiert werden.<br/><br/>
 
 * alle Struktur-Elemente im Baum:
   * laden

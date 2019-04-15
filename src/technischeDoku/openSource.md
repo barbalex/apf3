@@ -3,7 +3,7 @@ typ: 'technDoku'
 path: "/Technische-Dokumentation/Open-source"
 date: "2019-01-30"
 title: "Open source"
-sort: 1
+sort: 8
 ---
 
 [![js-standard-style](https://img.shields.io/badge/license-ISC-brightgreen.svg)](https://github.com/barbalex/apf2/blob/master/license.md)

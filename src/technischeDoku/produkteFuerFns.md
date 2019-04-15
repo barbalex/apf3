@@ -3,7 +3,7 @@ typ: 'technDoku'
 path: "/Technische-Dokumentation/Produkte-fuer-die-FNS"
 date: "2019-01-30"
 title: "Produkte für die Fachstelle Naturschutz"
-sort: 1
+sort: 4
 ---
 
 Die FNS erhält aus apflora folgende Produkte:
