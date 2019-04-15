@@ -8,7 +8,9 @@ sort: 8
 
 Bedingungen:
 * Strukturbaum ist offen
-* Im Strukturbaum ist das Projekt oder der Aktionsplan-Ordner aktiv (kein Aktionsplan oder tieferer Knoten)
+* Im Strukturbaum ist das Projekt oder der Aktionsplan-Ordner aktiv.
+
+   Ist ein Aktionsplan oder tieferer Knoten aktiv, wird nur der betreffende Aktionsplan angezeigt
 * Die Karte ist offen
 * In der Karte ist das Teil-Populationen-Layer aktiv
 * Die Karte ist auf einen kleinen Ausschnitt gezoomt.<br/>

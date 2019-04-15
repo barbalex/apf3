@@ -6,10 +6,10 @@ title: "Karte: Massstab-Werkzeug"
 sort: 10
 ---
 
-Wurde am 14.09.2018 eingeführt.
+Wurde am 14.09.2018 eingeführt.<br/><br/>
 
 Ihr findet es unten links auf der Karte, oberhalb des Werkzeugs, dass eine Distanz anzeigt:<br/>
-![Massstab-Werkzeug](_media/mapScale.png)
+![Massstab-Werkzeug](_media/mapScale.png)<br/>
 
 Was kann es?
 

@@ -12,7 +12,7 @@ Klickt man darauf, öffnet sich ein Menü:<br/>
 ![Menü](_media/tpopSymbols2.png)<br/>
 Darin kann man wählen, mit welcher Symbolisierung und Labels Populationen und Teil-Populationen angezeigt werden.
 
-Aktuell stehen zur Verfügung:
+Aktuell stehen zur Verfügung:<br/><br/>
 
 #### Symbole:
 - alle Populationen/Teil-Populationen gleich (wie bisher)
@@ -23,7 +23,7 @@ Aktuell stehen zur Verfügung:
   - ohne Status: ?
 
 
-![Neue Symbole](_media/tpopSymbols3.png)
+![Neue Symbole](_media/tpopSymbols3.png)<br/>
 
 #### Label:
 - Nr. (Populationen) bzw. Pop-Nr./Tpop-Nr. (Teil-Populationen)
