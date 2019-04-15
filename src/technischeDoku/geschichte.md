@@ -35,5 +35,3 @@ Web-Technologien entwickelten sich rasant weiter. Ebenso, wie die Bedürfnisse a
 Diese Ziele wurden erreicht :sparkles:. Leider hat die neue App zunächst leistungsmässig nicht überzeugt :snail:. Aber das sollte nun überwunden sein :stuck_out_tongue_winking_eye:.<br/><br/>
 
 Heute wird apflora regelmässig modernisiert. Informationen über die aktuell verwendeten Technologien finden sich [hier](/Technische-Dokumentation/Technische-Umsetzung).
-
-
