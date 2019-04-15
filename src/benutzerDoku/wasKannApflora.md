@@ -1,14 +1,10 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Projektbeschreibung"
-date: "2019-01-30"
-title: "Projektbeschreibung"
+path: "/Benutzer-Dokumentation/Was-kann-man-mit-apflora-machen"
+date: "2019-04-15"
+title: "Was kann man mit apflora.ch machen?"
 sort: 1
 ---
-
-Web-Applikation zur Verwaltung der [Aktionspläne Flora der Fachstelle Naturschutz des Kantons Zürich](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/artenfoerderung/ap_fl.html). [Hier](https://apflora.ch) erreichbar.
-
-## Was kann man mit apflora.ch machen?
 
 **Aktionspläne verwalten**
 
@@ -115,53 +111,6 @@ Die nachfolgend aufgelisteten Funktionen werden nur von Topos verwendet:
 - Ihre Wiederherstellung wird im Rahmen der Entwicklung bzw. des Unterhalts regelmässig getestet
 - Während einer Sitzung gelöschte Daten können direkt von den Benutzern wiederhergestellt werden
 
-## Produkte für die Fachstelle Naturschutz
-Die FNS erhält aus apflora folgende Produkte:
-
-- Den Jahresbericht (pdf oder Ausdruck)
-- Artbeobachtungen<br>
-Dazu werden die Feld- und Freiwilligenkontrollen (ausser solche von soeben angesäten, noch nicht etablierten Teilpopulationen) nach [EvAB](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/naturschutzdaten/tools/evab.html#a-content) importiert
-- Teilpopulationen, Kontrollen und Massnahmen für die Anzeige in GIS und [Web-GIS BUN](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/naturschutzdaten/web_gis.html)
-
-
-## Neu-Aufbau im Sommer 2017
-
-2017 wurde apflora nach 5 Jahren von Grund auf neu aufgebaut.
-
-### Ziele
-
-- Architektur modernisieren:
-  - Unterhalt- und Erweiterbarkeit verbessern.<br/>
-    Neue Features einzuführen ist nun einfacher und mit weniger Risiko verbunden.<br/>
-    Das war der Auslöser für die Modernisierung
-  - Anzahl Karten-Werkzeuge von zwei auf eines reduzieren
-  - Veraltete Abhängikeiten loswerden
-  - (Infra-)Struktur für Tests bereitstellen (und später nach und nach einführen)
-- Mehrere Projekte verwalten.<br/>
-  Andere Kantone bzw. Ökobüros können ähnliche Projekte verwalten. Damit würden Fixkosten geteilt bzw. die Weiterentwicklung finanziert
-- Grundlage schaffen, um Berichte direkt aus der Webanwendung heraus produzieren zu können.<br/>
-  Artverantwortliche sollen Jahresberichte für ihre Arten selber erzeugen und kontrollieren können
-- Grundlage schaffen, um auf das Access-Admin-Tool verzichten zu können (umgesetzt)
-- Grundlage schaffen, um allenfalls später netzunabhängig (im Feld) arbeiten zu können
-- Sicherheit erhöhen
-
-### Neue Fähigkeiten
-
-- Mehrere Projekte bearbeiten
-- Der Strukturbaum ist wesentlich leistungsfähiger.<br />Es gibt keine Grenzen mehr, wieviele Elemente einen Ebene darstellen kann!
-- Karten:
-  - In der Karte verwendete Symbole werden im Ebenen-Tool und im Strukturbaum eingeblendet
-  - Es werden immer alle Elemente einer Ebene angezeigt. Aktive sind gelb umrahmt
-  - Bequeme(re) Messung von Flächen und Linien
-  - Differenzierte(re) Darstellung der verschiedenen Typen von Beobachtungen<br />(nicht beurteilt, nicht zuzuordnen, zugeordnet)
-  - Bequeme(re) Zuordnung von Beobachtungen zu Teil-Populationen
-  - Bequemer(re) Darstellung von nahe bzw. direkt aufeinander liegenden Elementen
-  - Populationen, Teilpopulationen und Beobachtungen durch das Zeichnen von einem oder mehreren Umrissen (Recht- oder Vielecken) filtern
-  - Diesen geographischen Filter auf Exporte anwenden
-- Daten auch in .xlsx-Dateien exportieren
-- Beobachtungen können in beliebiger Datenstruktur importiert werden
-- API-Zugriff ist durch Anmeldung geschützt
-
 ### 2018 geplant
 
 - Login steuert, welche Projekte sichtbar sind (umgesetzt)
@@ -174,33 +123,3 @@ Dazu werden die Feld- und Freiwilligenkontrollen (ausser solche von soeben anges
 ### Langfristige Vision
 
 Heute wird apflora.ch für die Förderung von Flora-Arten verwendet. Ihre Grundstruktur eignet sich aber genau so gut für alle anderen Arten, z.B. Fauna und Moose...
-
-
-## Technische Umsetzung
-
-Die Anwendung wird auf einem virtuellen Server mit der jeweils aktuellen Ubuntu LTS Version gehostet.
-
-Serverseitig wird sie mit [node.js](//nodejs.org) gesteuert. Als Datenbank dient [PostgreSQL](//postgresql.org/). Hier ein [Diagramm der Beziehungen](//raw.githubusercontent.com/barbalex/apf2/master/src/etc/beziehungen.png).
-
-Die Anwendung ist zweigeteilt:
-- das Backend bietet die API (Daten) auf [apflora.ch/graphql](//apflora.ch/graphql) und [apflora.ch/api](//apflora.ch/api) an
-- das Frontend / die App bzw. die Benutzeroberfläche ist über [apflora.ch](//apflora.ch) erreichbar
-
-Die wichtigsten verwendeten Technologien sind:
-
-- [create-react-app](//github.com/facebookincubator/create-react-app): Abhängigkeiten einfach aktuell halten
-- [GraphQL](https://github.com/facebook/graphql) in Form von [PostGraphile](https://github.com/graphile/postgraphile)
-  - API-Server mit einer Zeile bauen und konfigurieren. Das sind _tausende_ weniger als bisher!
-  - Daten-Logik und Rechte-Verwaltung obliegen der Datenbank - wie es sein sollte<br/>
-  - GraphQL ist die kommende API-Technologie. Verglichen mit REST ist GraphQL einfach zu verstehen und extrem flexibel. Somit steht ein aussergewöhnlich benutzerfreundlicher API-Server zur Verfügung
-- [Apollo](https://www.apollodata.com). Komponenten definieren, welche Daten sie brauchen. GraphQL und Apollo kümmern sich um die Bereitstellung. React (siehe unten), GraphQL und Apollo haben die Entwicklung von Anwendungen revolutioniert
-- [React](//facebook.github.io/react): Deklarative Benutzer-Oberfläche. Aufgebaut aus Komponenten
-- [styled-components](https://github.com/styled-components/styled-components): modular stylen
-- [Flow](//flow.org): Static type checker. Fehler finden, bevor der Code ausgeführt wird
-
-
-## Open source
-
-[![js-standard-style](https://img.shields.io/badge/license-ISC-brightgreen.svg)](https://github.com/barbalex/apf2/blob/master/license.md)
-
-Die verwendete [Lizenz](https://github.com/barbalex/apf2/blob/master/license.md) ist sehr freizügig. Neben dem Code steht auch die [Datenstruktur](https://github.com/barbalex/apf2/tree/master/sql/apflora) zur Verfügung. Die eigentlichen Daten aber, mit denen gearbeitet wird, gehören der Fachstelle Naturschutz des Kantons Zürich und stehen nicht zur freien Verfügung. Die Beobachtungen werden an [Info Spezies](//www.infoflora.ch/de/allgemeines/info-species.html) geliefert.
