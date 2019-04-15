@@ -1,12 +1,12 @@
-import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import MaterialCard from '@material-ui/core/Card'
-import { graphql } from 'gatsby'
-import styled from 'styled-components'
-import Img from 'gatsby-image'
+import React from "react"
+import Typography from "@material-ui/core/Typography"
+import MaterialCard from "@material-ui/core/Card"
+import { graphql } from "gatsby"
+import styled from "styled-components"
+import Img from "gatsby-image"
 
-import ErrorBoundary from '../components/shared/ErrorBoundary'
-import Layout from '../components/Layout'
+import ErrorBoundary from "../components/shared/ErrorBoundary"
+import Layout from "../components/Layout"
 
 const ScrollContainer = styled.div`
   height: calc(100vh - 64px);
@@ -87,11 +87,11 @@ const PageTitle = styled(Typography)`
 const CardTitle = styled.h3``
 
 const bgImageStyle = {
-  position: 'absolute',
+  position: "absolute",
   left: 0,
   top: 0,
-  width: '100%',
-  height: '100%',
+  width: "100%",
+  height: "100%",
   zIndex: -1,
 }
 
@@ -107,7 +107,7 @@ export default ({ data }) => {
               fluid={data.file.childImageSharp.fluid}
               style={bgImageStyle}
             />
-            <PageTitle align="center" variant="h6" color="inherit" noWrap>
+            <PageTitle align="center" variant="h6" color="inherit">
               Bedrohte Pflanzen fördern
             </PageTitle>
             <CardContainer>
@@ -129,7 +129,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Massnahmen</CardTitle>
                 Die Arten werden gezielt gefördert, z.B. durch optimale
-                Bewirtschaftung, Lebensraum-Verbesserung oder{' '}
+                Bewirtschaftung, Lebensraum-Verbesserung oder{" "}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -162,7 +162,7 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Freiwillige</CardTitle>
                 Die Profis werden von Freiwilligen unterstützt. Z.B. bei der
-                Kontrolle von Populationen oder der{' '}
+                Kontrolle von Populationen oder der{" "}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -181,7 +181,7 @@ export default ({ data }) => {
                 >
                   Topos
                 </a>
-                &nbsp;im Auftrag der{' '}
+                &nbsp;im Auftrag der{" "}
                 <a
                   href="//aln.zh.ch/internet/baudirektion/aln/de/naturschutz/artenfoerderung/ap_fl.html"
                   target="_blank"
