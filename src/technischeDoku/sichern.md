@@ -6,10 +6,10 @@ title: "Daten-Sicherung"
 sort: 5
 ---
 
-Täglich nach Mitternacht wird von der Datenbank ein SQL-Dumpfile erstellt und in Alex's persönliche Dropbox übermittelt. Diese wird mehrfach auf Festplatten gesichert.<br/><br/>
+Täglich nach Mitternacht wird von der Datenbank ein SQL-Dumpfile erstellt und in eine Dropbox übermittelt. Diese wird mehrfach auf Festplatten gesichert.<br/><br/>
 
 
 Alle paar Tage wird der gesammte virtuelle Server auf [digitalocean.com](https://digitalocean.com) gesichert.<br/><br/>
 
 
-Sporadisch stellt Alex auf seinen Entwicklungs-PC's die Datenbank aus einer Sicherung her. Das dient einerseits dem Unterhalt der Anwendung (Anpassungen werden auf der lokalen Kopie entwickelt und getestet). Gleichzeitig wird so die Wiederherstellung erprobt.
+Sporadisch wird die Datenbank auf Entwicklungs-PC's aus einer Sicherung neu hergestellt. Das dient einerseits dem Unterhalt der Anwendung: Entwickelt wird auf einer lokalen Kopie. Gleichzeitig wird so die Sicherung und Wiederherstellung getestet.

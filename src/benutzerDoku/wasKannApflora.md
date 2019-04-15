@@ -20,7 +20,7 @@ sort: 1
 ### Beobachtungen den Teilpopulationen zuordnen
 
 - Alle Beobachtungen der [Info Flora](https://www.infoflora.ch) innerhalb des Kantons Zürich und im nahen Umfeld
-- Von InfoFlora bezogene Beobachtungen können korrigiert und die Änderung per mail an InfoFlora gemeldet werden
+- Von InfoFlora bezogene Beobachtungen können korrigiert und die Änderung per mail an InfoFlora gemeldet werden [(Anleitung)](/Benutzer-Dokumentation/Umgang-mit-falsch-bestimmten-Beobachtungen/)
 - Alle Beobachtungen aus Projekten der Fachstelle Naturschutz des Kantons Zürich
 - Eigene Beobachtungen aus [EvAB](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/naturschutzdaten/tools/evab.html#a-content)
 - Grundsätzlich alle verfügbaren Beobachtungen, unabhängig von ihrer Datenstruktur

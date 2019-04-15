@@ -6,14 +6,11 @@ title: "Technische Umsetzung"
 sort: 2
 ---
 
-Die Anwendung wird auf einem virtuellen Server mit der jeweils aktuellen Ubuntu LTS Version gehostet.<br/><br/>
-
-Serverseitig wird sie mit [node.js](//nodejs.org) gesteuert. Als Datenbank dient [PostgreSQL](//postgresql.org/). Hier ein [Diagramm der Beziehungen](//raw.githubusercontent.com/barbalex/apf2/master/src/etc/beziehungen.png).
-![Beziehungs-Diagramm](_media/beziehungen.png)<br/><br/>
-
 Die Anwendung ist zweigeteilt:
-- das Backend bietet die API (Daten) auf [apflora.ch/graphql](//apflora.ch/graphql) und [apflora.ch/api](//apflora.ch/api) an
-- das Frontend / die App bzw. die Benutzeroberfläche ist über [apflora.ch](//apflora.ch) erreichbar
+
+1. Das **Backend** bietet die API (Daten-Schnittstelle) auf [apflora.ch/graphql](//apflora.ch/graphql) an.<br/>
+  Es läuft auf einem virtuellen Server mit der jeweils aktuellen Ubuntu LTS Version.
+2. Die **App** bzw. das Frontend ist auf [apflora.ch](//apflora.ch) erreichbar. Sie läuft serverless auf [Zeit/now](https://zeit.co/now)
 
 Die wichtigsten verwendeten Technologien sind:
 
@@ -26,3 +23,5 @@ Die wichtigsten verwendeten Technologien sind:
 - [React](//facebook.github.io/react): Deklarative Benutzer-Oberfläche. Aufgebaut aus Komponenten. Verwendet werden ausschliesslich funktionale Komponenten mit "hooks"
 - [styled-components](https://github.com/styled-components/styled-components): modular stylen
 - [Cypress](https://www.cypress.io): Testen, testen, testen...
+- Als Datenbank dient [PostgreSQL](//postgresql.org/). Hier ein [Diagramm der Beziehungen](//raw.githubusercontent.com/barbalex/apf2/master/src/etc/beziehungen.png):
+  ![Beziehungs-Diagramm](_media/beziehungen.png)
