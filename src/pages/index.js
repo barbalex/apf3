@@ -17,6 +17,7 @@ const Container = styled.div`
   padding: 15px;
   position: relative;
   min-height: 100%;
+  color: black !important;
   @media (min-width: 700px) {
     padding: 20px;
   }
@@ -57,7 +58,7 @@ const CardContainer = styled.div`
 `
 const Card = styled(MaterialCard)`
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.65) !important;
+  background-color: rgba(255, 255, 255, 0.6) !important;
   ul {
     margin-bottom: 0;
   }
@@ -161,8 +162,8 @@ export default ({ data }) => {
               </Card>
               <Card>
                 <CardTitle>Freiwillige</CardTitle>
-                Die Profis werden von Freiwilligen unterstützt. Z.B. bei der
-                Kontrolle von Populationen oder der{" "}
+                ...unterstützen die Profis zum Beispiel bei der Kontrolle von
+                Populationen und der{" "}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
