@@ -10,40 +10,46 @@ Nachfolgend eine Liste der Funktionalitäten, die getestet werden sollen, wenn g
 
 Langfristig sollten diese Tests automatisiert werden.<br/><br/>
 
+Symbole:
+* :white_check_mark:: automatisiert
+* :ballot_box_with_check:: teilweise automatisiert
+* :white_medium_square:: todo
+<br/><br/>
+
 * alle Struktur-Elemente im Baum:
-  * laden
-  * filtern
-  * Änderung speichern
-  * Kontextmenus ausführen
-  * AP-Berichte testen
-* Formular-Filter
+   * :white_check_mark: laden
+   * :white_medium_square: filtern
+   * :white_check_mark: Änderung speichern
+   * :white_medium_square: Kontextmenus ausführen
+   * :white_medium_square: AP-Berichte testen
+* :white_medium_square: Formular-Filter
 * Karte
   * alle Layer
-    * anzeigen
-    * Legenden anzeigen
-    * stapeln
-    * auf alle zoomen (apflora)
-    * auf markierten zoomen (apflora)
+    * :white_medium_square: anzeigen
+    * :white_medium_square: Legenden anzeigen
+    * :white_medium_square: stapeln
+    * :white_medium_square: auf alle zoomen (apflora)
+    * :white_medium_square: auf markierten zoomen (apflora)
   * Karten-Filter
-    * zeichnen
-    * löschen
-    * im Strukturbaum zeigen
-    * in Exporten verwenden
-  * zoomen
-  * maximieren
-  * Messen
-  * Download
+    * :white_medium_square: zeichnen
+    * :white_medium_square: löschen
+    * :white_medium_square: im Strukturbaum zeigen
+    * :white_medium_square: in Exporten verwenden
+  * :white_medium_square: zoomen
+  * :white_medium_square: maximieren
+  * :white_medium_square: Messen
+  * :white_medium_square: Download
   * Koordinaten
-    * anzeigen
-    * springen
+    * :white_medium_square: anzeigen
+    * :white_medium_square: springen
   * Massstab
-    * anzeigen
-    * wählen
-  * Distanz zeigen
-  * Beobachtungen zuordnen
-* Exporte
+    * :white_medium_square: anzeigen
+    * :white_medium_square: wählen
+  * :white_medium_square: Distanz zeigen
+  * :white_medium_square: Beobachtungen zuordnen
+* :white_medium_square: Exporte
 * Layout und Navigation
-  * back und forward des Browsers
-  * Tabs ein-/ausblenden
-  * breite variieren
-  * Anpassung an kleine Bildschirme
+  * :white_medium_square: back und forward des Browsers
+  * :ballot_box_with_check:Tabs ein-/ausblenden
+  * :white_medium_square: breite variieren
+  * :white_medium_square: Anpassung an kleine Bildschirme
