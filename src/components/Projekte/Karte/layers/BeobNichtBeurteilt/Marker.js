@@ -113,7 +113,7 @@ const BeobNichtBeurteiltMarker = ({ treeName, beob }) => {
             )} / ${beob.y.toLocaleString("de-ch")}`}
           </div>
           <a
-            href={`${appBaseUrl()}/Projekte/${projekt}/Aktionspläne/${ap}/nicht-beurteilte-Beobachtungen/${
+            href={`${appBaseUrl()}/Daten/Projekte/${projekt}/Aktionspläne/${ap}/nicht-beurteilte-Beobachtungen/${
               beob.id
             }`}
             target="_blank"

@@ -6,7 +6,7 @@ title: "Tipps für den Einstieg"
 sort: 3
 ---
 
-* Die Anwendung ist hier: [https://apflora.ch](https://apflora.ch)
+* Die Anwendung ist hier: [https://apflora.ch/Daten](https://apflora.ch/Daten)
 
 * Ihr braucht ein `Login`. Das wird von Topos vergeben, z.B. von [Charlotte](mailto:salzmann@toposmm.ch)
 
