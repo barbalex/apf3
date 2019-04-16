@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Umgang-mit-falsch-bestimmten-Beobachtungen"
 date: "2019-01-30"
 title: "Umgang mit falsch bestimmten Beobachtungen"
-sort: 5
+sort: 6
 ---
 
 Bei AP-Arten ist vorgesehen:

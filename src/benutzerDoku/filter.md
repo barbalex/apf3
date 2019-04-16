@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Formular-Filter"
 date: "2019-01-30"
 title: "Formular-Filter"
-sort: 7
+sort: 8
 ---
 
 Am 12.09.2018 wurden Formular-Filter eingeführt. Am 15.3.2019 wurden sie verändert, um sie benutzerfreundlicher zu gestalten.<br/>

@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Tipps-fuer-den-Einstieg"
 date: "2019-01-30"
 title: "Tipps für den Einstieg"
-sort: 3
+sort: 4
 ---
 
 * Die __Anwendung__ ist hier: [https://apflora.ch/Daten](https://apflora.ch/Daten)

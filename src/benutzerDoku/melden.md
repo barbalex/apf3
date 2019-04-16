@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Fehler-Ideen-Vorschlaege-melden"
 date: "2019-04-16"
 title: "Fehler, Ideen, Vorschläge melden"
-sort: 11
+sort: 12
 ---
 
 ## Artverantwortliche und Freiwillige
