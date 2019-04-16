@@ -69,7 +69,7 @@ module.exports = {
         background_color: '#2e7d32',
         theme_color: '#2e7d32',
         display: 'standalone',
-        icon: 'src/images/apflora.png',
+        icon: 'src/images/ophr.png',
         include_favicon: true,
       },
     },
