@@ -53,7 +53,6 @@ const Sidebar = ({ title, titleLink, edges }) => {
             .includes(filter.toLowerCase())
         : true,
     )
-  console.log('Sidebar, filter', filter)
 
   return (
     <Menu>
