@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 
-import Layout from '../../components/Layout'
-import TechnDokuMenuItem from './MenuItem'
-import ErrorBoundary from '../../components/shared/ErrorBoundary'
+import Layout from '../components/Layout'
+import MenuItem from '../templates/MenuItem'
+import ErrorBoundary from '../components/shared/ErrorBoundary'
 
 const Container = styled.div`
   margin-top: 64px;
@@ -67,8 +67,8 @@ const Template = ({ data }) => {
         <Container>
           <Menu>
             <MenuTitle>
-              <MenuTitleLink to="/Technische-Dokumentation/">
-                Technische Dokumentation
+              <MenuTitleLink to="/Benutzer-Dokumentation/">
+                Benutzer-Dokumentation
               </MenuTitleLink>
             </MenuTitle>
             <List component="nav">
@@ -76,12 +76,12 @@ const Template = ({ data }) => {
               {edges
                 .filter(n => !!n && !!n.node)
                 .map(({ node }) => (
-                  <TechnDokuMenuItem node={node} key={node.id} />
+                  <MenuItem node={node} key={node.id} />
                 ))}
             </List>
           </Menu>
           <Doku>
-            <p>Hier erfahren Sie, wie vermehrung.apflora.ch funktioniert</p>
+            <p>Hoffentlich nützliche Infos für Sie</p>
           </Doku>
         </Container>
       </Layout>
@@ -93,7 +93,7 @@ export const pageQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { order: ASC, fields: [frontmatter___sort] }
-      filter: { fileAbsolutePath: { regex: "/(/technischeDoku)/.*.md$/" } }
+      filter: { fileAbsolutePath: { regex: "/(/benutzerDoku)/.*.md$/" } }
     ) {
       edges {
         node {
