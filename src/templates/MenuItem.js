@@ -16,17 +16,17 @@ const ListItem = styled(MListItem)`
   padding-bottom: 7px !important;
 `
 
-const TechnDokuMenuItem = ({ post }) => {
+const MenuItem = ({ node }) => {
   const onClickMenuItem = useCallback(
-    () => navigate(`${post.frontmatter.path}/`),
-    [post],
+    () => navigate(`${node.frontmatter.path}/`),
+    [node],
   )
 
   return (
     <Location>
       {({ location }) => {
         const active = (
-          `${post.frontmatter.path}/` === location.pathname
+          `${node.frontmatter.path}/` === location.pathname
         ).toString()
 
         return (
@@ -34,7 +34,7 @@ const TechnDokuMenuItem = ({ post }) => {
             <>
               <ListItem button onClick={onClickMenuItem} active={active}>
                 <ListItemText onClick={onClickMenuItem}>
-                  {get(post, 'frontmatter.title', '(Titel fehlt)')}
+                  {get(node, 'frontmatter.title', '(Titel fehlt)')}
                 </ListItemText>
               </ListItem>
               <Divider />
@@ -46,4 +46,4 @@ const TechnDokuMenuItem = ({ post }) => {
   )
 }
 
-export default TechnDokuMenuItem
+export default MenuItem

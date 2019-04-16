@@ -1,12 +1,12 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
-import styled from "styled-components"
-import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
+import styled from 'styled-components'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
 
-import Layout from "../../components/Layout"
-import MenuItem from "./MenuItem"
-import ErrorBoundary from "../../components/shared/ErrorBoundary"
+import Layout from '../../components/Layout'
+import MenuItem from './MenuItem'
+import ErrorBoundary from '../../components/shared/ErrorBoundary'
 
 const Container = styled.div`
   margin-top: 64px;
@@ -76,7 +76,7 @@ const Template = ({ data }) => {
               {edges
                 .filter(n => !!n && !!n.node)
                 .map(({ node }) => (
-                  <MenuItem post={node} key={node.id} />
+                  <MenuItem node={node} key={node.id} />
                 ))}
             </List>
           </Menu>

@@ -91,6 +91,7 @@
     "react": "16.8.6",
     "react-apollo": "2.5.4",
     "react-apollo-hooks": "0.4.5",
+    "react-burger-menu": "^2.6.8",
     "react-contextmenu": "2.11.0",
     "react-copy-to-clipboard": "5.0.1",
     "react-dom": "16.8.6",
