@@ -1,8 +1,8 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Technische-Umsetzung"
+path: "/Technische-Dokumentation/Technologien"
 date: "2019-01-30"
-title: "Technische Umsetzung"
+title: "Technologien"
 sort: 2
 ---
 
