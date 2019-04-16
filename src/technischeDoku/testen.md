@@ -12,12 +12,6 @@ Die Menge von Funktionalitäten ist eindrücklich. Vor allem, wenn man bedenkt, 
 
 Daher ist es wichtig und geplant, langfristig alle diese Tests zu automatisieren.<br/><br/>
 
-Symbole:
-* :white_check_mark:: automatisiert
-* :ballot_box_with_check:: teilweise automatisiert
-* :white_medium_square:: todo
-<br/><br/>
-
 * alle Struktur-Elemente im Baum:
    * :white_check_mark: laden
    * :white_medium_square: filtern
@@ -55,3 +49,8 @@ Symbole:
   * :ballot_box_with_check:Tabs ein-/ausblenden
   * :white_medium_square: breite variieren
   * :white_medium_square: Anpassung an kleine Bildschirme
+
+Symbole:
+* :white_check_mark:: automatisiert
+* :ballot_box_with_check:: teilweise automatisiert
+* :white_medium_square:: todo
