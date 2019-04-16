@@ -1,10 +1,19 @@
 ---
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Fehler-Ideen-Vorschlaege-melden"
-date: "2019-01-30"
+date: "2019-04-16"
 title: "Fehler, Ideen, Vorschläge melden"
 sort: 11
 ---
+
+## Artverantwortliche und Freiwillige
+
+Wendet euch bitte an [Topos](mailto:salzmann@toposmm.ch).<br/>
+Reine Software-Fehler könnt ihr auch direkt an [Alex, dem Entwickler](mailto:alex@gabriel-software.ch) melden.<br/><br/>
+
+Je besser ihr das Anliegen beschreibt, desto eher können wir das Problem lösen oder die Idee aufnehmen.<br/><br/>
+
+## Mitarbeiterinnen von Topos
 
 Das geht so:
 
@@ -14,4 +23,4 @@ Das geht so:
 
 GitHub ist dafür geeignet, weil man die Übersicht behält, priorisieren und den Verlauf dokumentieren kann. Jeder, der sich an einem Issue beteiligt, wird bei neuen Bemerkungen (z.B. wenn der Fehler korrigiert wurde) automatisch per email darüber informiert.<br/><br/>
 
-Allerdings ist GitHub öffentlich. Ihr könnt mir daher Anliegen auch per [email](mailto: alex@gabriel-software.ch) melden.
+Allerdings ist GitHub öffentlich. Ihr könnt mir daher Anliegen auch per [email](mailto:alex@gabriel-software.ch) melden.

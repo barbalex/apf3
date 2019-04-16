@@ -7,8 +7,6 @@ import { Location } from '@reach/router'
 import styled from 'styled-components'
 import get from 'lodash/get'
 
-import ErrorBoundary from '../components/shared/ErrorBoundary'
-
 const ListItem = styled(MListItem)`
   background-color: ${props =>
     props.active === 'true' ? 'rgb(255, 250, 198)' : 'unset'} !important;
@@ -30,16 +28,14 @@ const MenuItem = ({ node }) => {
         ).toString()
 
         return (
-          <ErrorBoundary>
-            <>
-              <ListItem button onClick={onClickMenuItem} active={active}>
-                <ListItemText onClick={onClickMenuItem}>
-                  {get(node, 'frontmatter.title', '(Titel fehlt)')}
-                </ListItemText>
-              </ListItem>
-              <Divider />
-            </>
-          </ErrorBoundary>
+          <>
+            <ListItem button onClick={onClickMenuItem} active={active}>
+              <ListItemText onClick={onClickMenuItem}>
+                {get(node, 'frontmatter.title', '(Titel fehlt)')}
+              </ListItemText>
+            </ListItem>
+            <Divider />
+          </>
         )
       }}
     </Location>

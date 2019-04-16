@@ -1,8 +1,6 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
 
 import Layout from '../components/Layout'
 import Sidebar from './Sidebar'
