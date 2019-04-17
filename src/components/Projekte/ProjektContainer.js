@@ -17,7 +17,6 @@ import ApberForYear from '../Print/ApberForYear'
 
 const Container = styled.div`
   height: 100%;
-  /*height: calc(100% - 64px);*/
   @media print {
     display: block;
     height: auto !important;
@@ -205,7 +204,21 @@ const ProjektContainer = ({ treeName, tabs: tabsPassed, projekteTabs }) => {
   }
 
   if (tabs.length < 2) {
-    return <Container>{elObj[tabs[0]]}</Container>
+    // return WITH split pane
+    // otherwise height is wrong
+    // and opening / closing tabs is slow
+    return (
+      <Container>
+        <StyledSplitPane
+          split="vertical"
+          size="100%"
+          minSize={100}
+          onDragFinished={onChange}
+        >
+          {elObj[tabs[0]]}
+        </StyledSplitPane>
+      </Container>
+    )
   }
 
   if (tabs.length === 2) {

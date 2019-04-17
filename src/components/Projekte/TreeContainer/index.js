@@ -1,85 +1,85 @@
 /**
  * need to keep class because of ref
  */
-import React, { useCallback, useContext } from "react"
-import styled from "styled-components"
-import get from "lodash/get"
-import uniq from "lodash/uniq"
-import isEqual from "lodash/isEqual"
-import { observer } from "mobx-react-lite"
-import { useApolloClient } from "react-apollo-hooks"
+import React, { useCallback, useContext } from 'react'
+import styled from 'styled-components'
+import get from 'lodash/get'
+import uniq from 'lodash/uniq'
+import isEqual from 'lodash/isEqual'
+import { observer } from 'mobx-react-lite'
+import { useApolloClient } from 'react-apollo-hooks'
 
-import LabelFilter from "./LabelFilter"
-import ApFilter from "./ApFilter"
-import Tree from "./Tree"
-import CmApFolder from "./contextmenu/ApFolder"
-import CmAp from "./contextmenu/Ap"
-import CmUserFolder from "./contextmenu/UserFolder"
-import CmUser from "./contextmenu/User"
-import CmAdresseFolder from "./contextmenu/AdresseFolder"
-import CmAdresse from "./contextmenu/Adresse"
-import CmApberuebersichtFolder from "./contextmenu/ApberuebersichtFolder"
-import CmApberuebersicht from "./contextmenu/Apberuebersicht"
-import CmAssozartFolder from "./contextmenu/AssozartFolder"
-import CmAssozart from "./contextmenu/Assozart"
-import CmEkfzaehleinheitFolder from "./contextmenu/EkfzaehleinheitFolder"
-import CmEkfzaehleinheit from "./contextmenu/Ekfzaehleinheit"
-import CmApartFolder from "./contextmenu/ApartFolder"
-import CmApart from "./contextmenu/Apart"
-import CmBeobZugeordnetFolder from "./contextmenu/BeobZugeordnetFolder"
-import CmBerFolder from "./contextmenu/BerFolder"
-import CmBer from "./contextmenu/Ber"
-import CmApberFolder from "./contextmenu/ApberFolder"
-import CmApber from "./contextmenu/Apber"
-import CmErfkritFolder from "./contextmenu/ErfkritFolder"
-import CmErfkrit from "./contextmenu/Erfkrit"
-import CmZielFolder from "./contextmenu/ZielFolder"
-import CmZielJahrFolder from "./contextmenu/ZielJahrFolder"
-import CmZiel from "./contextmenu/Ziel"
-import CmZielBerFolder from "./contextmenu/ZielBerFolder"
-import CmZielBer from "./contextmenu/Zielber"
-import CmPopFolder from "./contextmenu/PopFolder"
-import CmPop from "./contextmenu/Pop"
-import CmPopmassnberFolder from "./contextmenu/PopmassnberFolder"
-import CmPopmassnber from "./contextmenu/Popmassnber"
-import CmPopberFolder from "./contextmenu/PopberFolder"
-import CmPopber from "./contextmenu/Popber"
-import CmProjekt from "./contextmenu/Projekt"
-import CmWerteListen from "./contextmenu/WerteListen"
-import CmTpopFolder from "./contextmenu/TpopFolder"
-import CmTpop from "./contextmenu/Tpop"
-import CmTpopberFolder from "./contextmenu/TpopberFolder"
-import CmTpopber from "./contextmenu/Tpopber"
-import CmBeobZugeordnet from "./contextmenu/BeobZugeordnet"
-import CmBeobnichtbeurteilt from "./contextmenu/Beobnichtbeurteilt"
-import CmBeobNichtZuzuordnen from "./contextmenu/BeobNichtZuzuordnen"
-import CmTpopfreiwkontrFolder from "./contextmenu/TpopfreiwkontrFolder"
-import CmTpopfreiwkontr from "./contextmenu/Tpopfreiwkontr"
-import CmTpopfreiwkontrzaehlFolder from "./contextmenu/TpopfreiwkontrzaehlFolder"
-import CmTpopfreiwkontrzaehl from "./contextmenu/Tpopfreiwkontrzaehl"
-import CmTpopfeldkontrFolder from "./contextmenu/TpopfeldkontrFolder"
-import CmTpopfeldkontr from "./contextmenu/Tpopfeldkontr"
-import CmTpopfeldkontrzaehlFolder from "./contextmenu/TpopfeldkontrzaehlFolder"
-import CmTpopfeldkontrzaehl from "./contextmenu/Tpopfeldkontrzaehl"
-import CmTpopmassnberFolder from "./contextmenu/TpopmassnberFolder"
-import CmTpopmassnber from "./contextmenu/Tpopmassnber"
-import CmTpopmassnFolder from "./contextmenu/TpopmassnFolder"
-import CmTpopmassn from "./contextmenu/Tpopmassn"
-import DeleteDatasetModal from "./DeleteDatasetModal"
-import ErrorBoundary from "../../shared/ErrorBoundarySingleChild"
-import copyBiotopTo from "../../../modules/copyBiotopTo"
-import setUrlQueryValue from "../../../modules/setUrlQueryValue"
-import moveTo from "../../../modules/moveTo"
-import copyTo from "../../../modules/copyTo"
-import createNewPopFromBeob from "../../../modules/createNewPopFromBeob"
-import copyBeobZugeordnetKoordToTpop from "../../../modules/copyBeobZugeordnetKoordToTpop"
-import copyTpopKoordToPop from "../../../modules/copyTpopKoordToPop"
-import tpopById from "./tpopById"
-import beobById from "./beobById"
-import openLowerNodes from "./openLowerNodes"
-import closeLowerNodes from "./closeLowerNodes"
-import insertDataset from "./insertDataset"
-import storeContext from "../../../storeContext"
+import LabelFilter from './LabelFilter'
+import ApFilter from './ApFilter'
+import Tree from './Tree'
+import CmApFolder from './contextmenu/ApFolder'
+import CmAp from './contextmenu/Ap'
+import CmUserFolder from './contextmenu/UserFolder'
+import CmUser from './contextmenu/User'
+import CmAdresseFolder from './contextmenu/AdresseFolder'
+import CmAdresse from './contextmenu/Adresse'
+import CmApberuebersichtFolder from './contextmenu/ApberuebersichtFolder'
+import CmApberuebersicht from './contextmenu/Apberuebersicht'
+import CmAssozartFolder from './contextmenu/AssozartFolder'
+import CmAssozart from './contextmenu/Assozart'
+import CmEkfzaehleinheitFolder from './contextmenu/EkfzaehleinheitFolder'
+import CmEkfzaehleinheit from './contextmenu/Ekfzaehleinheit'
+import CmApartFolder from './contextmenu/ApartFolder'
+import CmApart from './contextmenu/Apart'
+import CmBeobZugeordnetFolder from './contextmenu/BeobZugeordnetFolder'
+import CmBerFolder from './contextmenu/BerFolder'
+import CmBer from './contextmenu/Ber'
+import CmApberFolder from './contextmenu/ApberFolder'
+import CmApber from './contextmenu/Apber'
+import CmErfkritFolder from './contextmenu/ErfkritFolder'
+import CmErfkrit from './contextmenu/Erfkrit'
+import CmZielFolder from './contextmenu/ZielFolder'
+import CmZielJahrFolder from './contextmenu/ZielJahrFolder'
+import CmZiel from './contextmenu/Ziel'
+import CmZielBerFolder from './contextmenu/ZielBerFolder'
+import CmZielBer from './contextmenu/Zielber'
+import CmPopFolder from './contextmenu/PopFolder'
+import CmPop from './contextmenu/Pop'
+import CmPopmassnberFolder from './contextmenu/PopmassnberFolder'
+import CmPopmassnber from './contextmenu/Popmassnber'
+import CmPopberFolder from './contextmenu/PopberFolder'
+import CmPopber from './contextmenu/Popber'
+import CmProjekt from './contextmenu/Projekt'
+import CmWerteListen from './contextmenu/WerteListen'
+import CmTpopFolder from './contextmenu/TpopFolder'
+import CmTpop from './contextmenu/Tpop'
+import CmTpopberFolder from './contextmenu/TpopberFolder'
+import CmTpopber from './contextmenu/Tpopber'
+import CmBeobZugeordnet from './contextmenu/BeobZugeordnet'
+import CmBeobnichtbeurteilt from './contextmenu/Beobnichtbeurteilt'
+import CmBeobNichtZuzuordnen from './contextmenu/BeobNichtZuzuordnen'
+import CmTpopfreiwkontrFolder from './contextmenu/TpopfreiwkontrFolder'
+import CmTpopfreiwkontr from './contextmenu/Tpopfreiwkontr'
+import CmTpopfreiwkontrzaehlFolder from './contextmenu/TpopfreiwkontrzaehlFolder'
+import CmTpopfreiwkontrzaehl from './contextmenu/Tpopfreiwkontrzaehl'
+import CmTpopfeldkontrFolder from './contextmenu/TpopfeldkontrFolder'
+import CmTpopfeldkontr from './contextmenu/Tpopfeldkontr'
+import CmTpopfeldkontrzaehlFolder from './contextmenu/TpopfeldkontrzaehlFolder'
+import CmTpopfeldkontrzaehl from './contextmenu/Tpopfeldkontrzaehl'
+import CmTpopmassnberFolder from './contextmenu/TpopmassnberFolder'
+import CmTpopmassnber from './contextmenu/Tpopmassnber'
+import CmTpopmassnFolder from './contextmenu/TpopmassnFolder'
+import CmTpopmassn from './contextmenu/Tpopmassn'
+import DeleteDatasetModal from './DeleteDatasetModal'
+import ErrorBoundary from '../../shared/ErrorBoundarySingleChild'
+import copyBiotopTo from '../../../modules/copyBiotopTo'
+import setUrlQueryValue from '../../../modules/setUrlQueryValue'
+import moveTo from '../../../modules/moveTo'
+import copyTo from '../../../modules/copyTo'
+import createNewPopFromBeob from '../../../modules/createNewPopFromBeob'
+import copyBeobZugeordnetKoordToTpop from '../../../modules/copyBeobZugeordnetKoordToTpop'
+import copyTpopKoordToPop from '../../../modules/copyTpopKoordToPop'
+import tpopById from './tpopById'
+import beobById from './beobById'
+import openLowerNodes from './openLowerNodes'
+import closeLowerNodes from './closeLowerNodes'
+import insertDataset from './insertDataset'
+import storeContext from '../../../storeContext'
 
 const Container = styled.div`
   height: 100%;
@@ -107,7 +107,7 @@ const Container = styled.div`
     outline: none;
     opacity: 0;
     pointer-events: none;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   .react-contextmenu.react-contextmenu--visible {
@@ -130,7 +130,7 @@ const Container = styled.div`
   }
 
   .react-contextmenu-title::after {
-    content: ":";
+    content: ':';
   }
 
   .react-contextmenu > .react-contextmenu-item {
@@ -166,7 +166,7 @@ const Container = styled.div`
   }
 
   .react-contextmenu-submenu:after {
-    content: "▶";
+    content: '▶';
     display: inline-block;
     position: absolute;
     right: 7px;
@@ -196,13 +196,13 @@ const getAndValidateCoordinatesOfTpop = async ({ id, addError, client }) => {
   } catch (error) {
     addError(error)
   }
-  const tpop = get(tpopResult, "data.tpopById")
+  const tpop = get(tpopResult, 'data.tpopById')
   const { x, y } = tpop
   if (!x || !y) {
     addError(
       new Error(
-        `Die Teilpopulation mit der ID ${id} kat keine (vollständigen) Koordinaten`
-      )
+        `Die Teilpopulation mit der ID ${id} kat keine (vollständigen) Koordinaten`,
+      ),
     )
     return { x: null, y: null }
   }
@@ -219,13 +219,13 @@ const getAndValidateCoordinatesOfBeob = async ({ id, addError, client }) => {
   } catch (error) {
     addError(error)
   }
-  const beob = get(beobResult, "data.beobById")
+  const beob = get(beobResult, 'data.beobById')
   const { x, y } = beob
   if (!x || !y) {
     addError(
       new Error(
-        `Die Teilpopulation mit der ID ${id} kat keine (vollständigen) Koordinaten`
-      )
+        `Die Teilpopulation mit der ID ${id} kat keine (vollständigen) Koordinaten`,
+      ),
     )
     return { x: null, y: null }
   }
@@ -258,25 +258,25 @@ const TreeContainer = ({ treeName }) => {
 
   const handleClick = useCallback(
     (e, data, element) => {
-      if (!data) return addError("no data passed with click")
-      if (!element) return addError(new Error("no element passed with click"))
+      if (!data) return addError('no data passed with click')
+      if (!element) return addError(new Error('no element passed with click'))
       const { table, action, actionTable } = data
       const { firstElementChild } = element
       if (!firstElementChild)
-        return addError(new Error("no firstElementChild passed with click"))
-      let id = firstElementChild.getAttribute("data-id")
-      const parentId = firstElementChild.getAttribute("data-parentid")
-      const urlPassed = firstElementChild.getAttribute("data-url")
+        return addError(new Error('no firstElementChild passed with click'))
+      let id = firstElementChild.getAttribute('data-id')
+      const parentId = firstElementChild.getAttribute('data-parentid')
+      const urlPassed = firstElementChild.getAttribute('data-url')
       const url = JSON.parse(urlPassed)
-      const label = firstElementChild.getAttribute("data-label")
-      const nodeType = firstElementChild.getAttribute("data-nodetype")
-      const menuType = firstElementChild.getAttribute("data-menutype")
+      const label = firstElementChild.getAttribute('data-label')
+      const nodeType = firstElementChild.getAttribute('data-nodetype')
+      const menuType = firstElementChild.getAttribute('data-menutype')
       const actions = {
         insert() {
-          if (nodeType === "table") {
+          if (nodeType === 'table') {
             url.pop()
           }
-          if (menuType === "zielFolder") {
+          if (menuType === 'zielFolder') {
             // db sets year 1 as standard
             url.push(1)
           }
@@ -316,10 +316,10 @@ const TreeContainer = ({ treeName }) => {
             setActiveNodeArray(url)
             setOpenNodes(newOpenNodes)
             const tableToUse = [
-              "tpopfeldkontrzaehl",
-              "tpopfreiwkontrzaehl",
+              'tpopfeldkontrzaehl',
+              'tpopfreiwkontrzaehl',
             ].includes(table)
-              ? "tpopkontrzaehl"
+              ? 'tpopkontrzaehl'
               : table
             refetch[`${tableToUse}s`]()
             refetch.aps()
@@ -340,7 +340,7 @@ const TreeContainer = ({ treeName }) => {
           // 2 add layer for actionTable
           if (activeApfloraLayers.includes(actionTable)) {
             setActiveApfloraLayers(
-              activeApfloraLayers.filter(o => o !== actionTable)
+              activeApfloraLayers.filter(o => o !== actionTable),
             )
           } else {
             setActiveApfloraLayers([...activeApfloraLayers, actionTable])
@@ -350,7 +350,7 @@ const TreeContainer = ({ treeName }) => {
           const { projekteTabs } = urlQuery
           setIdOfTpopBeingLocalized(id)
           showMapIfNotYetVisible(projekteTabs)
-          setActiveApfloraLayers(uniq([...activeApfloraLayers, "tpop"]))
+          setActiveApfloraLayers(uniq([...activeApfloraLayers, 'tpop']))
         },
         markForMoving() {
           setMoving({ table, id, label })
@@ -410,10 +410,10 @@ const TreeContainer = ({ treeName }) => {
             client,
           })
           if (x && y) {
-            typeof window !== "undefined" &&
+            typeof window !== 'undefined' &&
               window.open(
                 `https://maps.zh.ch/?x=${x}&y=${y}&scale=3000&markers=ring`,
-                'target="_blank"'
+                'target="_blank"',
               )
           }
         },
@@ -424,10 +424,10 @@ const TreeContainer = ({ treeName }) => {
             client,
           })
           if (x && y) {
-            typeof window !== "undefined" &&
+            typeof window !== 'undefined' &&
               window.open(
                 `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${x}&X=${y}&zoom=10&crosshair=circle`,
-                'target="_blank"'
+                'target="_blank"',
               )
           }
         },
@@ -438,10 +438,10 @@ const TreeContainer = ({ treeName }) => {
             client,
           })
           if (x && y) {
-            typeof window !== "undefined" &&
+            typeof window !== 'undefined' &&
               window.open(
                 `https://maps.zh.ch/?x=${x}&y=${y}&scale=3000&markers=ring`,
-                'target="_blank"'
+                'target="_blank"',
               )
           }
         },
@@ -452,10 +452,10 @@ const TreeContainer = ({ treeName }) => {
             client,
           })
           if (x && y) {
-            typeof window !== "undefined" &&
+            typeof window !== 'undefined' &&
               window.open(
                 `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${x}&X=${y}&zoom=10&crosshair=circle`,
-                'target="_blank"'
+                'target="_blank"',
               )
           }
         },
@@ -464,18 +464,18 @@ const TreeContainer = ({ treeName }) => {
         actions[action]()
       } else {
         addError(
-          new Error(`action "${action}" unknown, therefore not executed`)
+          new Error(`action "${action}" unknown, therefore not executed`),
         )
       }
     },
-    [treeName, activeApfloraLayers, activeOverlays, toDeleteId]
+    [treeName, activeApfloraLayers, activeOverlays, toDeleteId],
   )
   const showMapIfNotYetVisible = useCallback(projekteTabs => {
-    const isVisible = projekteTabs.includes("karte")
+    const isVisible = projekteTabs.includes('karte')
     if (!isVisible) {
       setUrlQueryValue({
-        key: "projekteTabs",
-        value: [...projekteTabs, "karte"],
+        key: 'projekteTabs',
+        value: [...projekteTabs, 'karte'],
         urlQuery,
         setUrlQuery,
       })
@@ -486,7 +486,7 @@ const TreeContainer = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <Container data-id={`tree-container${treeName === "tree" ? 1 : 2}`}>
+      <Container data-id={`tree-container${treeName === 'tree' ? 1 : 2}`}>
         {!!toDeleteId && <DeleteDatasetModal treeName={treeName} />}
         <LabelFilterContainer>
           <LabelFilter treeName={treeName} />
