@@ -19,12 +19,15 @@ import Daten from './Daten'
 import storeContext from '../../../storeContext'
 
 const StyledAppBar = styled(AppBar)`
+  min-height: 64px !important;
   @media print {
     display: none !important;
   }
 `
 const StyledToolbar = styled(Toolbar)`
   justify-content: space-between;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
 `
 // need to prevent boolean props from being passed to dom
 const StyledButton = ({ preceded, followed, ...rest }) => {
