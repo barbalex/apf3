@@ -120,7 +120,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         <MenuItem onClick={onClickLogout} className="appbar-more-logout">{`${
           user.name
         } abmelden`}</MenuItem>
-        <Version>Version: 1.3.2 vom 20.01.2019</Version>
+        <Version>Version: 1.4.0 vom 17.04.2019</Version>
       </Menu>
     </Container>
   )
