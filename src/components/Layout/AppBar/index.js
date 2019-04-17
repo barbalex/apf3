@@ -1,22 +1,22 @@
-import React, { useContext, useState, useCallback } from "react"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import Button from "@material-ui/core/Button"
-import remove from "lodash/remove"
-import styled from "styled-components"
-import jwtDecode from "jwt-decode"
-import { observer } from "mobx-react-lite"
-import { Location } from "@reach/router"
-import { Link } from "gatsby"
+import React, { useContext, useState, useCallback } from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import remove from 'lodash/remove'
+import styled from 'styled-components'
+import jwtDecode from 'jwt-decode'
+import { observer } from 'mobx-react-lite'
+import { Location } from '@reach/router'
+import { Link } from 'gatsby'
 
-import isMobilePhone from "../../../modules/isMobilePhone"
-import ErrorBoundary from "../../shared/ErrorBoundary"
-import setUrlQueryValue from "../../../modules/setUrlQueryValue"
-import More from "./More"
-import EkfYear from "./EkfYear"
-import User from "./User"
-import Daten from "./Daten"
-import storeContext from "../../../storeContext"
+import isMobilePhone from '../../../modules/isMobilePhone'
+import ErrorBoundary from '../../shared/ErrorBoundary'
+import setUrlQueryValue from '../../../modules/setUrlQueryValue'
+import More from './More'
+import EkfYear from './EkfYear'
+import User from './User'
+import Daten from './Daten'
+import storeContext from '../../../storeContext'
 
 const StyledAppBar = styled(AppBar)`
   @media print {
@@ -32,16 +32,16 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
     color: white !important;
     border-color: rgba(255, 255, 255, 0.5) !important;
     border-right-color: ${followed
-      ? " rgba(255, 255, 255, 0.25)"
-      : " rgba(255, 255, 255, 0.5)"} !important;
+      ? ' rgba(255, 255, 255, 0.25)'
+      : ' rgba(255, 255, 255, 0.5)'} !important;
     border-left-color: ${preceded
-      ? " rgba(255, 255, 255, 0.25)"
-      : " rgba(255, 255, 255, 0.5)"} !important;
-    border-top-left-radius: ${preceded ? "0" : "4px"} !important;
-    border-bottom-left-radius: ${preceded ? "0" : "4px"} !important;
-    border-top-right-radius: ${followed ? "0" : "4px"} !important;
-    border-bottom-right-radius: ${followed ? "0" : "4px"} !important;
-    margin-right: ${followed ? "-1px" : "unset"} !important;
+      ? ' rgba(255, 255, 255, 0.25)'
+      : ' rgba(255, 255, 255, 0.5)'} !important;
+    border-top-left-radius: ${preceded ? '0' : '4px'} !important;
+    border-bottom-left-radius: ${preceded ? '0' : '4px'} !important;
+    border-top-right-radius: ${followed ? '0' : '4px'} !important;
+    border-bottom-right-radius: ${followed ? '0' : '4px'} !important;
+    margin-right: ${followed ? '-1px' : 'unset'} !important;
     text-transform: none !important;
   `
   return <StyledButton {...rest} />
@@ -87,24 +87,23 @@ const MyAppBar = () => {
    * need to clone projekteTabs
    * because otherwise removing elements errors out (because elements are sealed)
    */
-  const { projekteTabs: projekteTabsOriginal } = urlQuery
-  const projekteTabs = projekteTabsOriginal.toJSON()
+  const projekteTabs = urlQuery.projekteTabs.slice().filter(el => !!el)
   const exporteIsActive = !!treeActiveNodes.projekt
   const isMobile = isMobilePhone()
 
   const { token, name: username } = user
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
-  const isFreiwillig = role === "apflora_freiwillig"
+  const isFreiwillig = role === 'apflora_freiwillig'
 
   const [userOpen, setUserOpen] = useState(false)
 
   const onClickButton = useCallback(
     name => {
-      if (isMobilePhone()) {
+      if (isMobile) {
         // show one tab only
         setUrlQueryValue({
-          key: "projekteTabs",
+          key: 'projekteTabs',
           value: [name],
           urlQuery,
           setUrlQuery,
@@ -112,71 +111,69 @@ const MyAppBar = () => {
       } else {
         if (projekteTabs.includes(name)) {
           remove(projekteTabs, el => el === name)
-          if (name === "tree2") {
+          if (name === 'tree2') {
             // close all tree2-tabs
-            remove(projekteTabs, el => el.includes("2"))
+            remove(projekteTabs, el => el.includes('2'))
           }
         } else {
           projekteTabs.push(name)
-          if (name === "tree2") {
+          if (name === 'tree2') {
             cloneTree2From1()
             nodeFilterClone1To2()
           }
         }
         setUrlQueryValue({
-          key: "projekteTabs",
+          key: 'projekteTabs',
           value: projekteTabs,
           urlQuery,
           setUrlQuery,
         })
       }
     },
-    [projekteTabs]
+    [projekteTabs],
   )
-  const onClickTree = useCallback(() => onClickButton("tree"))
-  const onClickKarte = useCallback(() => onClickButton("karte"))
-  const onClickFilter = useCallback(() => onClickButton("filter"))
-  const onClickFilter2 = useCallback(() => onClickButton("filter2"))
-  const onClickExporte = useCallback(() => onClickButton("exporte"))
-  const onClickTree2 = useCallback(() => onClickButton("tree2"))
-  const setViewNormal = useCallback(() => setView("normal"))
-  const setViewEkf = useCallback(() => setView("ekf"))
+  const onClickTree = useCallback(() => onClickButton('tree'))
+  const onClickKarte = useCallback(() => onClickButton('karte'))
+  const onClickFilter = useCallback(() => onClickButton('filter'))
+  const onClickFilter2 = useCallback(() => onClickButton('filter2'))
+  const onClickExporte = useCallback(() => onClickButton('exporte'))
+  const onClickTree2 = useCallback(() => onClickButton('tree2'))
+  const setViewNormal = useCallback(() => setView('normal'))
+  const setViewEkf = useCallback(() => setView('ekf'))
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
   return (
     <Location>
       {({ location }) => {
         const { pathname } = location
-        const isProjekte = pathname.startsWith("/Daten")
-
-        //console.log("AppBar", { pathname })
+        const isProjekte = pathname.startsWith('/Daten')
 
         return (
           <ErrorBoundary>
             <StyledAppBar position="fixed">
               <StyledToolbar>
-                {isMobile ? null : (
+                {!isMobile && (
                   <SiteTitle
                     variant="outlined"
                     component={Link}
                     to="/"
                     title="Home"
                   >
-                    {view === "ekf"
-                      ? "AP Flora: Erfolgs-Kontrolle Freiwillige"
-                      : "AP Flora"}
+                    {view === 'ekf'
+                      ? 'AP Flora: Erfolgs-Kontrolle Freiwillige'
+                      : 'AP Flora'}
                   </SiteTitle>
                 )}
                 <MenuDiv>
                   {isProjekte ? (
                     <>
-                      {view === "ekf" && <EkfYear />}
-                      {view === "ekf" && !isFreiwillig && (
+                      {view === 'ekf' && <EkfYear />}
+                      {view === 'ekf' && !isFreiwillig && (
                         <NormalViewButton onClick={setViewNormal}>
                           Normal-Ansicht
                         </NormalViewButton>
                       )}
-                      {view === "ekf" && isFreiwillig && (
+                      {view === 'ekf' && isFreiwillig && (
                         <>
                           <NormalViewButton onClick={toggleUserOpen}>
                             {`Benutzer: ${username}`}
@@ -188,7 +185,7 @@ const MyAppBar = () => {
                           />
                         </>
                       )}
-                      {view === "normal" && (
+                      {view === 'normal' && (
                         <>
                           {isFreiwillig && (
                             <NormalViewButton onClick={setViewEkf}>
@@ -198,11 +195,11 @@ const MyAppBar = () => {
                           <StyledButton
                             name="tree"
                             variant={
-                              projekteTabs.includes("tree")
-                                ? "outlined"
-                                : "text"
+                              projekteTabs.includes('tree')
+                                ? 'outlined'
+                                : 'text'
                             }
-                            followed={projekteTabs.includes("daten")}
+                            followed={projekteTabs.includes('daten')}
                             onClick={onClickTree}
                             data-id="nav-tree1"
                           >
@@ -211,12 +208,12 @@ const MyAppBar = () => {
                           <Daten />
                           <StyledButton
                             variant={
-                              projekteTabs.includes("filter")
-                                ? "outlined"
-                                : "text"
+                              projekteTabs.includes('filter')
+                                ? 'outlined'
+                                : 'text'
                             }
-                            preceded={projekteTabs.includes("daten")}
-                            followed={projekteTabs.includes("karte")}
+                            preceded={projekteTabs.includes('daten')}
+                            followed={projekteTabs.includes('karte')}
                             onClick={onClickFilter}
                             data-id="nav-filter1"
                             title="Daten filtern"
@@ -225,18 +222,18 @@ const MyAppBar = () => {
                           </StyledButton>
                           <StyledButton
                             variant={
-                              projekteTabs.includes("karte")
-                                ? "outlined"
-                                : "text"
+                              projekteTabs.includes('karte')
+                                ? 'outlined'
+                                : 'text'
                             }
-                            preceded={projekteTabs.includes("filter")}
+                            preceded={projekteTabs.includes('filter')}
                             followed={
                               (!isMobile &&
                                 exporteIsActive &&
-                                projekteTabs.includes("exporte")) ||
+                                projekteTabs.includes('exporte')) ||
                               (!isMobile &&
                                 !exporteIsActive &&
-                                projekteTabs.includes("tree2"))
+                                projekteTabs.includes('tree2'))
                             }
                             onClick={onClickKarte}
                             data-id="nav-karte1"
@@ -246,12 +243,12 @@ const MyAppBar = () => {
                           {!isMobile && exporteIsActive && (
                             <StyledButton
                               variant={
-                                projekteTabs.includes("exporte")
-                                  ? "outlined"
-                                  : "text"
+                                projekteTabs.includes('exporte')
+                                  ? 'outlined'
+                                  : 'text'
                               }
-                              preceded={projekteTabs.includes("karte")}
-                              followed={projekteTabs.includes("tree2")}
+                              preceded={projekteTabs.includes('karte')}
+                              followed={projekteTabs.includes('tree2')}
                               onClick={onClickExporte}
                               data-id="nav-exporte"
                             >
@@ -261,35 +258,35 @@ const MyAppBar = () => {
                           {!isMobile && (
                             <StyledButton
                               variant={
-                                projekteTabs.includes("tree2")
-                                  ? "outlined"
-                                  : "text"
+                                projekteTabs.includes('tree2')
+                                  ? 'outlined'
+                                  : 'text'
                               }
                               preceded={
                                 (exporteIsActive &&
-                                  projekteTabs.includes("exporte")) ||
+                                  projekteTabs.includes('exporte')) ||
                                 (!exporteIsActive &&
-                                  projekteTabs.includes("karte"))
+                                  projekteTabs.includes('karte'))
                               }
-                              followed={projekteTabs.includes("daten2")}
+                              followed={projekteTabs.includes('daten2')}
                               onClick={onClickTree2}
                               data-id="nav-tree2"
                             >
                               Strukturbaum 2
                             </StyledButton>
                           )}
-                          {!isMobile && projekteTabs.includes("tree2") && (
+                          {!isMobile && projekteTabs.includes('tree2') && (
                             <Daten treeNr="2" />
                           )}
-                          {!isMobile && projekteTabs.includes("tree2") && (
+                          {!isMobile && projekteTabs.includes('tree2') && (
                             <StyledButton
                               variant={
-                                projekteTabs.includes("filter2")
-                                  ? "outlined"
-                                  : "text"
+                                projekteTabs.includes('filter2')
+                                  ? 'outlined'
+                                  : 'text'
                               }
-                              preceded={projekteTabs.includes("daten2")}
-                              followed={projekteTabs.includes("karte2")}
+                              preceded={projekteTabs.includes('daten2')}
+                              followed={projekteTabs.includes('karte2')}
                               onClick={onClickFilter2}
                               data-id="nav-filter2"
                               title="Daten filtern"
@@ -305,9 +302,9 @@ const MyAppBar = () => {
                     <>
                       <StyledButton
                         variant={
-                          pathname.startsWith("/Benutzer-Dokumentation")
-                            ? "outlined"
-                            : "text"
+                          pathname.startsWith('/Benutzer-Dokumentation')
+                            ? 'outlined'
+                            : 'text'
                         }
                         component={Link}
                         to="/Benutzer-Dokumentation/"
@@ -316,9 +313,9 @@ const MyAppBar = () => {
                       </StyledButton>
                       <StyledButton
                         variant={
-                          pathname.startsWith("/Technische-Dokumentation")
-                            ? "outlined"
-                            : "text"
+                          pathname.startsWith('/Technische-Dokumentation')
+                            ? 'outlined'
+                            : 'text'
                         }
                         component={Link}
                         to="/Technische-Dokumentation/"

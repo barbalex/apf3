@@ -1,16 +1,16 @@
-import React, { useContext, useState, useCallback } from "react"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import Button from "@material-ui/core/Button"
-import styled from "styled-components"
-import { observer } from "mobx-react-lite"
-import { Link } from "gatsby"
+import React, { useContext, useState, useCallback } from 'react'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import Button from '@material-ui/core/Button'
+import styled from 'styled-components'
+import { observer } from 'mobx-react-lite'
+import { Link } from 'gatsby'
 
-import isMobilePhone from "../../../../modules/isMobilePhone"
-import logout from "../../../../modules/logout"
-import EkfAdresse from "./EkfAdresse"
-import storeContext from "../../../../storeContext"
-import idbContext from "../../../../idbContext"
+import isMobilePhone from '../../../../modules/isMobilePhone'
+import logout from '../../../../modules/logout'
+import EkfAdresse from './EkfAdresse'
+import storeContext from '../../../../storeContext'
+import idbContext from '../../../../idbContext'
 
 const Container = styled.div`
   margin-top: auto;
@@ -42,15 +42,15 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
    * need to clone projekteTabs
    * because otherwise removing elements errors out (because elements are sealed)
    */
-  const projekteTabs = { ...urlQuery }
+  const projekteTabs = urlQuery.projekteTabs.slice().filter(el => !!el)
   const exporteIsActive = !!treeActiveNodes.projekt
   const isMobile = isMobilePhone()
 
   const watchVideos = useCallback(() => {
     setAnchorEl(null)
-    typeof window !== "undefined" &&
+    typeof window !== 'undefined' &&
       window.open(
-        "https://www.youtube.com/playlist?list=PLTz8Xt5SOQPS-dbvpJ_DrB4-o3k3yj09J"
+        'https://www.youtube.com/playlist?list=PLTz8Xt5SOQPS-dbvpJ_DrB4-o3k3yj09J',
       )
   })
   const showDeletedDatasets = useCallback(() => {
@@ -60,7 +60,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
     setTimeout(() => setShowDeletions(true))
   })
   const onClickMehrButton = useCallback(event =>
-    setAnchorEl(event.currentTarget)
+    setAnchorEl(event.currentTarget),
   )
   const onClose = useCallback(() => setAnchorEl(null))
   const onClickExporte = useCallback(() => {
@@ -80,7 +80,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
     <Container>
       <MehrButton
         aria-label="Mehr"
-        aria-owns={anchorEl ? "long-menu" : null}
+        aria-owns={anchorEl ? 'long-menu' : null}
         aria-haspopup="true"
         onClick={onClickMehrButton}
         className="appbar-more"
@@ -96,7 +96,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         {isMobile && exporteIsActive && (
           <MenuItem
             onClick={onClickExporte}
-            disabled={projekteTabs.includes("exporte")}
+            disabled={projekteTabs.includes('exporte')}
           >
             Exporte
           </MenuItem>
@@ -107,7 +107,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         >
           gelöschte Datensätze wiederherstellen
         </MenuItem>
-        {["apflora_manager", "apflora_artverantwortlich"].includes(role) && (
+        {['apflora_manager', 'apflora_artverantwortlich'].includes(role) && (
           <EkfAdresse setAnchorEl={setAnchorEl} />
         )}
         <MenuItem component={Link} to="/Benutzer-Dokumentation/">
