@@ -66,24 +66,24 @@ sort: 1
 
 - Informations-Symbole informieren direkt in den Formularen über Anforderungen an die Datenerfassung
 - [Videos](https://www.youtube.com/playlist?list=PLTz8Xt5SOQPS-dbvpJ_DrB4-o3k3yj09J) demonstrieren das Arbeiten mit verschiedenen Teilen der Anwendung
-- Hier, in dieser Dokumentations-Webseite sind wichtige Fragen erklärt bzw. werden künftig alle neuen Features bechrieben
+- Hier sind wichtige Fragen erklärt und werden künftig alle neuen Features beschrieben
 
 ### Effizient arbeiten
 
-- Im Strukturbaum in jeder Ebene filtern
-- [Fomular-basierte Filter](https://barbalex.github.io/apf2/#/./docs/filter) anwenden
+- Im Strukturbaum in jeder Ebene nach dem Label filtern
+- [Fomular-basiert filtern](/Benutzer-Dokumentation/Formular-Filter)
 - Strukturelemente wie z.B. Teilpopulationen im Baum zu anderen Strukturelementen desselben Typs verschieben oder kopieren
 - Für übersichtliches Kopieren/Verschieben zweites Strukturbaum-Formular-Paar einblenden
 - Beobachtungen Teilpopulationen zuordnen: In einer nach Abstand zu den Teilpopulationen geordneten Liste im Formular. Oder mit drag and drop auf der Karte
 - Aus einer Beobachtung eine neue Populationen und Teilpopulationen gründen und gleich die Beobachtung zuordnen. Mit einem einzigen Klick
 - Alle Löschungen während einer Sitzung werden aufgelistet und können rückgängig gemacht werden
-- Mit rund hundert Kontroll-Abfragen die Qualität der Daten gewährleisten
+- Mit über hundert Kontroll-Abfragen die Qualität der Daten kontrollieren
 
 ### Freiwilligen-Erfolgskontrollen vorbereiten
 
-- Aktionsplan-Verantwortliche erfassen, wer welche Teilpopulationen kontrollieren soll...
-- ...und drucken gleich die Feld-Erfassungs-Formulare aus
-- [Anleitung](https://barbalex.github.io/apf2/#/./docs/ekf)
+- Aktionsplan-Verantwortliche erfassen, wer welche Teilpopulationen kontrolliert...
+- ...und drucken gleich die Feld-Formulare aus
+- [Anleitung](/Benutzer-Dokumentation/Erfolgs-Kontrollen-Freiwillige)
 
 ### Freiwillige erfassen ihre Kontrollen selber
 
@@ -92,14 +92,14 @@ sort: 1
 
 ### Freiwilligen-Erfolgskontrollen für Jahres-Berichte nutzen
 
-- Aktionsplan-Verantwortliche überprüfen die Kontrollen von Freiwilligen und bestimmen, ob sie in den Jahres-Berichten berücksichtigt werden
+- Aktionsplan-Verantwortliche überprüfen die Kontrollen von Freiwilligen und entscheiden, ob sie in den Jahres-Berichten berücksichtigt werden
 
 ### Projektdaten verwalten
 
-Die nachfolgend aufgelisteten Funktionen werden nur von Topos verwendet:
+Die nachfolgend aufgelisteten Funktionen werden nur von Topos und Gabriel-Software verwendet:
 
-- Adressen verwalten
-- Logins verwalten und Schreibrechte vergeben
+- Adressen verwalten (in apflora, nur für Benutzer mit der Rolle "manager" sichtbar)
+- Logins verwalten und Schreibrechte vergeben (in apflora, nur für Benutzer mit der Rolle "manager" sichtbar)
 - Mit dem GIS auf die Daten zugreifen
 - Beobachtungen nach [EvAB](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/naturschutzdaten/tools/evab.html#a-content) exportieren (separate Access-Anwendung)
 - Beobachtungen aus einem [EvAB](http://www.aln.zh.ch/internet/baudirektion/aln/de/naturschutz/naturschutzdaten/tools/evab.html#a-content) importieren (um sie danach in apflora Teilpopulationen zuzuordnen) (separate Access-Anwendung)
@@ -108,5 +108,5 @@ Die nachfolgend aufgelisteten Funktionen werden nur von Topos verwendet:
 
 - Die Daten werden täglich in der Cloud gesichert
 - In regelmässigen Abständen werden sie aus der Cloud auf mehrere unabhängige Festplatten gesichert
-- Ihre Wiederherstellung wird im Rahmen der Entwicklung bzw. des Unterhalts regelmässig getestet
+- Ihre gesamthafte Wiederherstellung wird im Rahmen der Entwicklung bzw. des Unterhalts regelmässig getestet (war aber noch nie nötig)
 - Während einer Sitzung gelöschte Daten können direkt von den Benutzern wiederhergestellt werden
