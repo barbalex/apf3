@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Test"
 date: "2019-01-30"
 title: "Test"
-sort: 13
+sort: 14
 ---
 
 Auf diese Weise können wir beliebige pdf-Dateien in der Dokumentation anzeigen.<br/>
