@@ -3,7 +3,6 @@ import "leaflet"
 import { withLeaflet } from "react-leaflet"
 import Control from "react-leaflet-control"
 import styled from "styled-components"
-import compose from "recompose/compose"
 
 import ShowCoordinates from "./ShowCoordinates"
 import PanToCoordinates from "./PanToCoordinates"
@@ -23,8 +22,6 @@ const StyledControl = styled(Control)`
   margin-right: 5px !important;
 `
 
-const enhance = compose(withLeaflet)
-
 const CoordinatesControl = ({ leaflet }) => {
   const [controlType, setControlType] = useState("coordinates")
   // hack to get control to show on first load
@@ -42,4 +39,4 @@ const CoordinatesControl = ({ leaflet }) => {
   )
 }
 
-export default enhance(CoordinatesControl)
+export default withLeaflet(CoordinatesControl)

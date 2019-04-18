@@ -32,6 +32,7 @@ sort: 2
 - :white_medium_square: EK: Jungpflanzen vorhanden als ja/nein Feld (rsp. zum Ankreuzen)
 - :white_medium_square: EK/EKF: Zählungen: mit Bemerkungsfeld
 - :white_medium_square: EKF-Zählungen, Knoten im Strukturbaum
+- :ballot_box_with_check: Tests einführen
 
 Symbole:
 * :white_check_mark:: durchgeführt

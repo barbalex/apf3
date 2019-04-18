@@ -1,16 +1,13 @@
-import React, { useEffect } from "react"
-import "leaflet"
-import { withLeaflet } from "react-leaflet"
+import React, { useEffect } from 'react'
+import 'leaflet'
+import { withLeaflet } from 'react-leaflet'
 // eslint-disable-next-line no-unused-vars
-import leafletFullscreen from "leaflet.fullscreen"
-import compose from "recompose/compose"
-
-const enhance = compose(withLeaflet)
+import leafletFullscreen from 'leaflet.fullscreen'
 
 const options = {
-  position: "topleft", // change the position of the button can be topleft, topright, bottomright or bottomleft, defaut topleft
-  title: "Karte maximieren", // change the title of the button, default Full Screen
-  titleCancel: "Karte verkleinern", // change the title of the button when fullscreen is on, default Exit Full Screen
+  position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, defaut topleft
+  title: 'Karte maximieren', // change the title of the button, default Full Screen
+  titleCancel: 'Karte verkleinern', // change the title of the button when fullscreen is on, default Exit Full Screen
   content: null, // change the content of the button, can be HTML, default null
   forceSeparateButton: false, // force seperate button to detach from zoom buttons, default false
   forcePseudoFullscreen: false, // force use of pseudo full screen even if full screen API is available, default false
@@ -19,12 +16,12 @@ const options = {
 
 const FullScreenControl = ({ leaflet }) => {
   useEffect(() => {
-    if (typeof window === "undefined") return
+    if (typeof window === 'undefined') return
     const fullscreenControl = window.L.control.fullscreen(options)
     fullscreenControl.addTo(leaflet.map)
   }, [])
 
-  return <div style={{ display: "none" }} />
+  return <div style={{ display: 'none' }} />
 }
 
-export default enhance(FullScreenControl)
+export default withLeaflet(FullScreenControl)
