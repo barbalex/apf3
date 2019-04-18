@@ -1,7 +1,7 @@
 ---
 typ: 'technDoku'
 path: "/Technische-Dokumentation/Entstehung"
-date: "2019-04-15"
+date: "2019-04-18"
 title: "Entstehungs-Geschichte"
 sort: 7
 ---
@@ -21,7 +21,7 @@ In den nächsten Jahren stiegen die Anforderungen weiter. Bis die Access-Datenba
 Es wurde versucht, Ende der Feldsaison Access-DB's an die Mitarbeitenden zu verteilen. Diese erfassten die Daten und schickten sie zurück. Danach wurden die Daten vereinigt bzw. synchronisiert. Theoretisch hätte das Access machen können sollen. Praktisch war es ein Flop :-1:<br/><br/>
 
 ## 2011: Access-DB mit MySQL Backend
-ca. 2011 wurde die Datenbank auf MySQL auf einem Webserver migriert. Als Anwendung diente weiterhin Access, welches über ODBC mit der Datenbank kommunizierte. Es funktionierte. Aber es war kompliziert, langsam und bei weitem nicht perfekt :unamused:<br/><br/>
+Ca. 2011 wurde die Datenbank auf MySQL auf einem Webserver migriert. Als Anwendung diente weiterhin Access, bei jedem Benutzer installiert und über ODBC mit der Datenbank kommunizierend. Es funktionierte grundsäztlich. Aber es war kompliziert, langsam und bei weitem nicht perfekt :unamused:<br/><br/>
 
 ## Ab 2012: Web-Applikation
 

@@ -1,7 +1,7 @@
 ---
 typ: 'technDoku'
 path: "/Technische-Dokumentation/Daten-Sicherung"
-date: "2019-01-30"
+date: "2019-04-18"
 title: "Daten-Sicherung"
 sort: 5
 ---
@@ -12,4 +12,4 @@ Täglich nach Mitternacht wird von der Datenbank ein SQL-Dumpfile erstellt und i
 Alle paar Tage wird der gesammte virtuelle Server auf [digitalocean.com](https://digitalocean.com) gesichert.<br/><br/>
 
 
-Sporadisch wird die Datenbank auf Entwicklungs-PC's aus einer Sicherung neu hergestellt. Das dient einerseits dem Unterhalt der Anwendung: Entwickelt wird auf einer lokalen Kopie. Gleichzeitig wird so die Sicherung und Wiederherstellung getestet.
+Sporadisch wird die Datenbank auf Entwicklungs-PC's aus einer Sicherung neu hergestellt. Das dient einerseits dem Unterhalt der Anwendung: Entwickelt wird auf einer lokalen Kopie. Gleichzeitig werden so Sicherung und Wiederherstellung getestet.

@@ -48,7 +48,7 @@ const Template = ({ data }) => {
             edges={edges}
           />
           <Doku>
-            <p>Hoffentlich nützliche Infos für Sie</p>
+            <p>{`<= Bitte wählen Sie ein Thema.`}</p>
           </Doku>
         </Container>
       </Layout>

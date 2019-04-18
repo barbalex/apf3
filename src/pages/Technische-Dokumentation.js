@@ -48,7 +48,8 @@ const Template = ({ data }) => {
             edges={edges}
           />
           <Doku>
-            <p>Hier erfahren Sie, wie apflora.ch funktioniert</p>
+            <p>Hier erfahren Sie, wie apflora.ch funktioniert.</p>
+            <p>{`<= Bitte wählen Sie ein Thema.`}</p>
           </Doku>
         </Container>
       </Layout>

@@ -6,6 +6,8 @@ title: "Ist apflora langsam?"
 sort: 5
 ---
 
+Normalerweise sollte apflora nicht langsam wirken.
+
 ## 1. Das Problem
 
 Nach einer BenutzerInnen-Aktion (z.B. Klicken oder Tippen) dauert es mehrere Sekunden, bis etwas passiert. Und zwar bei Vorgängen, die andere Male schnell waren. Oder apflora.ch reagiert gar nicht mehr.
@@ -14,9 +16,9 @@ Nach einer BenutzerInnen-Aktion (z.B. Klicken oder Tippen) dauert es mehrere Sek
 
 Bis ca. Mitte April 2019 war apflora.ch generell langsam. Dieses Problem sollte behoben sein. :simple_smile:<br/><br/>
 
-Die folgenden Vorgänge, dauern immer (etwas) länger, weil sie mit sehr vielen Daten arbeiten:
+Die folgenden Vorgänge dauern immer (etwas) länger, weil sie mit sehr vielen Daten arbeiten:
 - Im Strukturbaum einen Aktionsplan öffnen, der sehr viele Daten enthält
-- Einen zweiten Strukturbaum öffnen
+- Einen (zweiten) Strukturbaum öffnen
 - In der Karte Daten aller Arten anzeigen
 - In der Karte (viele) apflora-Ebenen einblenden, wenn sie sehr viele Daten enthalten
 - Daten exportieren, v.a. ab der Stufe Teilpopulationen
@@ -44,7 +46,7 @@ Wenn obige Umgehungen offensichtlich nützen (mindestens kurzfristig), ist das e
 Die folgenden Massnahmen können in bestimmten Situationen helfen:
 
 - Prüft, ob eure Internet-Verbindung zuverlässig funktioniert.<br/>
-  apflora.ch ist eine Web-App. Ohne Internet geht nix. Langsame Verbindungen führen zu - Langsamkeit :wink:. Unzuverlässige zu kaum nachvollziehbaren Fehlern.<br/>
+  apflora.ch ist eine Web-App. Ohne Internet geht nix. Langsame Verbindungen führen zu - Langsamkeit :wink:. Unzuverlässige (was manchmal schwer zu erkennen ist) zu kaum nachvollziehbaren Fehlern.<br/>
 - Prüft, ob ihr einen kompatiblen Browser verwendet.<br/>
   apflora.ch wird in Chrome gebaut und getestet. Das allermeiste sollte auch in Firefox, Safari, Edge und Opera funktionieren. Vermutlich gibt es aber die eine oder andere Funktion, die scheitert.<br/>
   Jedenfalls muss die verwendete Version aktuell sein. Alte Browser-Versionen werden nicht unterstützt. Und sie können **sehr** viel langsamer sein.<br/>

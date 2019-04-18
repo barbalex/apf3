@@ -1,8 +1,8 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/geplante-features"
+path: "/Benutzer-Dokumentation/geplant"
 date: "2019-04-15"
-title: "Für 2019 geplante Features"
+title: "Für 2019 geplant"
 sort: 2
 ---
 
@@ -42,4 +42,4 @@ Symbole:
 
 ### Langfristige Vision
 
-Heute wird apflora.ch für die Förderung von Flora-Arten verwendet. Ihre Grundstruktur eignet sich aber genau so gut für alle anderen Arten, z.B. Fauna und Moose...
+Heute wird apflora.ch für die Förderung von Flora-Arten verwendet. Ihre Grundstruktur eignet sich aber genau so gut für alle anderen Arten, z.B. Fauna und Moose.

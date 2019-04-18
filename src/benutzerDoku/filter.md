@@ -1,13 +1,14 @@
 ---
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Formular-Filter"
-date: "2019-01-30"
+date: "2019-04-18"
 title: "Formular-Filter"
 sort: 9
 ---
 
-Am 12.09.2018 wurden Formular-Filter eingeführt. Am 15.3.2019 wurden sie verändert, um sie benutzerfreundlicher zu gestalten.<br/>
-<img src="_media/filterForm.png" title="Filter-Formular" width="600" />
+Am 12.09.2018 wurden Formular-Filter eingeführt.<br/>
+Am 15.03.2019 wurden sie verändert, um die Benutzerfreundlichkeit zu erhöhen.<br/>
+<img src="_media/filterForm.png" title="Filter-Formular" width="600" /><br/>
 
 ## In diesen Formularen kann man filtern
 - Aktionsplan
@@ -21,10 +22,10 @@ Die Filter-Formulare entsprechen (fast) genau den normalen Formularen. Sie sind 
 
 Erfasst man in einem Filter-Feld Daten, wird der entsprechende Filter nach Verlassen des Feldes oder nach Drücken der Enter-Taste angewendet (bei Auswahl-Feldern sofort).
 
-Filtern kann man im `Strukturbaum` _und_ im `Strukturbaum 2`. Öffnet man den `Strukturbaum 2`, entspricht er genau dem `Strukturbaum`, d.h. es wird auch ein allfälliger Filter kopiert. Danach sind die Filter unabhängig.
+Filtern kann man im `Strukturbaum` _und_ im `Strukturbaum 2`. Öffnet man den `Strukturbaum 2`, entspricht er genau dem `Strukturbaum`, d.h. es wird auch ein allfälliger Filter kopiert. Danach sind die Filter unabhängig.<br/><br/>
 
 ## Wie öffnet man ein Filter-Formular?
-- Mit der Schaltfläche obn in der Navigationszeile, rechts neben der Daten-Schaltfläche<br/>
+- Mit der Schaltfläche oben in der Navigationszeile, rechts neben der Daten-Schaltfläche<br/>
   ![Filter öffnen](_media/filterButton.png)
 
 ## Wo wird der Filter angewendet?
@@ -32,7 +33,7 @@ Filtern kann man im `Strukturbaum` _und_ im `Strukturbaum 2`. Öffnet man den `S
   Ein Filter auf Ebene Teil-Population wirkt sich also nicht auf die Populationen aus
 - In der Karte (Populationen, Teil-Populationen).<br/>
   Ein Filter auf Ebene Teil-Population wirkt sich hier auch auf der Ebene Population aus. Und umgekehrt.
-- Nicht realisiert aber als Erweiterung denkbar: In Exporten der entsprechenden Ebene
+- Nicht realisiert aber als Erweiterung denkbar (und für 2019 vorgesehen): In Exporten der entsprechenden Ebene
 
 ## Wie werden Filter entfernt?
 Im Formular erscheinen oben zwei Symbole, sobald ein Filter angewendet wird:
@@ -44,13 +45,11 @@ Im Formular erscheinen oben zwei Symbole, sobald ein Filter angewendet wird:
 
 Vermutlich werden die Filter-Formulare vor allem für eher spezielle Aufgaben nützlich sein. Also eher für Power-UserInnen in Topos.
 
-Eine Möglichkeit: In der Karte nur einen bestimmten Status-Typ von Populationen oder Teil-Populationen anzeigen.
+Eine Möglichkeit: In der Karte nur einen bestimmten Status-Typ von Populationen oder Teil-Populationen anzeigen.<br/><br/>
 
 ## Was ist der Unterschied zum Filter-Feld im Strukturbaum?
 
-Im `Strukturbaum-Filter` kann man (nur) nach den Bezeichungen der Strukturbaum-Elemente der gerade aktiven Ebene filtern.<br/>
+Im **Strukturbaum-Filter** kann man (nur) nach den Bezeichungen der Strukturbaum-Elemente der gerade aktiven Ebene filtern.<br/>
 ![Strukturbaum-Filter](_media/filterTree.png)
 
 Das ist zwar weniger mächtig, dafür aber einfach und schnell. Daher wird der `Strukturbaum-Filter` beibehalten.
-
-Zuletzt aktualisiert am: 15.3.2019
