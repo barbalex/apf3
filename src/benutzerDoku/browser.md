@@ -6,7 +6,7 @@ title: "Technische Voraussetzungen"
 sort: 3
 ---
 
-Vorausgesetzt wird ein moderner Browser:
+Vorausgesetzt wird ein **moderner Browser**:
 
 * Empfehlenswert ist Google Chrome - darauf wird apflora.ch entwickelt.<br/>
   Meines Wissens funktionieren Ausdrucke nur auf Google Chrome richtig.<br/>

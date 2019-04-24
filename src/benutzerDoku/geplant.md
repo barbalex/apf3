@@ -2,7 +2,7 @@
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/geplant"
 date: "2019-04-15"
-title: "Für 2019 geplant"
+title: "2019 geplant"
 sort: 2
 ---
 
@@ -33,6 +33,7 @@ sort: 2
 - :white_medium_square: EK/EKF: Zählungen: mit Bemerkungsfeld
 - :white_medium_square: EKF-Zählungen, Knoten im Strukturbaum
 - :ballot_box_with_check: Tests einführen
+- :ballot_box_with_check: laufend modern halten
 
 Symbole:
 * :white_check_mark:: durchgeführt

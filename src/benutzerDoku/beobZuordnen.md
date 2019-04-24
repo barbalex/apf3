@@ -2,7 +2,7 @@
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Beobachtungen-einer-Teil-Population-zuordnen"
 date: "2019-01-30"
-title: "Beobachtungen einer Teil-Population zuordnen"
+title: "Beobachtungen Teil-Populationen zuordnen"
 sort: 6
 ---
 

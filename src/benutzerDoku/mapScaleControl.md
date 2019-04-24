@@ -1,14 +1,14 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Karte-Massstab-Werkzeug"
+path: "/Benutzer-Dokumentation/Karte-Massstab"
 date: "2019-04-18"
-title: "Karte: Massstab-Werkzeug"
+title: "Karte: Massstab"
 sort: 12
 ---
 
 Wurde am 14.09.2018 eingeführt.<br/><br/>
 
-Ihr findet es unten links auf der Karte, oberhalb des Werkzeugs, dass eine Distanz anzeigt:<br/>
+Ihr findet das Massstab-Werkzeug unten links auf der Karte, oberhalb des Werkzeugs, dass eine Distanz anzeigt:<br/>
 ![Massstab-Werkzeug](_media/mapScale.png)<br/>
 
 Was kann es?

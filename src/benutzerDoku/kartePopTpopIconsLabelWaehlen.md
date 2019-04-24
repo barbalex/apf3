@@ -2,7 +2,7 @@
 typ: 'benutzerDoku'
 path: "/Benutzer-Dokumentation/Karte-Symbole-und-Label-fuer-Populationen-und-Teil-Populationen-waehlen"
 date: "2019-01-30"
-title: "Karte: Symbole und Label für Populationen und Teil-Populationen wählen"
+title: "Karte: Symbole und Label für (Teil-)Populationen wählen"
 sort: 11
 ---
 

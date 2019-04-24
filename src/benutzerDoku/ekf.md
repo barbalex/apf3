@@ -6,7 +6,7 @@ title: "Erfolgs-Kontrollen Freiwillige (EKF)"
 sort: 8
 ---
 
-Freiwilligen-Kontrollen bzw. Erfolgs-Kontrollen-Freiwillige werden nachfolgend mit EKF abgekürzt.
+Freiwilligen-Kontrollen bzw. Erfolgs-Kontrollen Freiwillige werden nachfolgend mit "EKF" abgekürzt.
 
 ## Das Formular
 - Benutzer mit der Rolle "artverantwortich" oder "manager" können neue EKF erstellen. Benutzer mit der Rolle "freiwillig" können nur die darin enthaltenen Felder ausfüllen
