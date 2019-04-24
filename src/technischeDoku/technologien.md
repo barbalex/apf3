@@ -22,6 +22,6 @@ Die wichtigsten verwendeten Technologien sind:
 - [Apollo](https://www.apollodata.com). Komponenten definieren, welche Daten sie brauchen. GraphQL und Apollo kümmern sich um die Bereitstellung
 - [React](//facebook.github.io/react): Deklarative Benutzer-Oberfläche. Aufgebaut aus Komponenten. Verwendet werden ausschliesslich funktionale Komponenten mit "hooks"
 - [styled-components](https://github.com/styled-components/styled-components): modular stylen
-- [Cypress](https://www.cypress.io): Testen, testen, testen...
+- [Cypress](https://www.cypress.io): automatisiert testen
 - Als Datenbank dient [PostgreSQL](//postgresql.org/). Hier ein [Diagramm der Beziehungen](//raw.githubusercontent.com/barbalex/apf2/master/src/etc/beziehungen.png):
   ![Beziehungs-Diagramm](_media/beziehungen.png)
