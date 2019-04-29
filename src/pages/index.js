@@ -57,7 +57,10 @@ const CardContainer = styled.div`
 `
 const Card = styled(MaterialCard)`
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  font-weight: 500;
+  /*text-shadow: 1px 1px 2px white, -0px -0px 2px white, 1px -0px 2px white,
+    -0px 1px 2px white;*/
   ul {
     margin-bottom: 0;
   }
@@ -86,7 +89,9 @@ const PageTitle = styled(Typography)`
     padding-bottom: 50px;
   }
 `
-const CardTitle = styled.h3``
+const CardTitle = styled.h3`
+  font-weight: 900;
+`
 
 const bgImageStyle = {
   position: 'absolute',
@@ -135,7 +140,7 @@ export default ({ data }) => {
               </Card>
               <Card>
                 <CardTitle>Massnahmen</CardTitle>
-                Die Arten werden gezielt gefördert, zum Beispiel durch
+                Die Arten werden gezielt gefördert. Zum Beispiel durch
                 Lebensraum-Verbesserung oder{' '}
                 <a
                   href="//vermehrung.apflora.ch"
