@@ -25,28 +25,27 @@ const Container = styled.div`
     padding: 25px;
   }
   @media (min-width: 1700px) {
-    padding: 30px;
+    padding: 25px;
   }
 `
 const CardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
+  grid-gap: 20px;
   @media (min-width: 700px) {
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-row-gap: 40px;
   }
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 25px;
-    grid-row-gap: 25px;
+    grid-column-gap: 40px;
+    grid-row-gap: 80px;
   }
   @media (min-width: 1700px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
+    grid-column-gap: 65px;
+    grid-row-gap: 130px;
   }
   p {
     margin-bottom: 10px !important;
@@ -57,7 +56,7 @@ const CardContainer = styled.div`
   }
 `
 const Card = styled(MaterialCard)`
-  padding: 30px;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.6) !important;
   ul {
     margin-bottom: 0;
@@ -76,13 +75,15 @@ const PageTitle = styled(Typography)`
   text-shadow: 2px 2px 3px white, -2px -2px 3px white, 2px -2px 3px white,
     -2px 2px 3px white;
   @media (min-width: 700px) {
-    padding-bottom: 20px;
-  }
-  @media (min-width: 1200px) {
     padding-bottom: 25px;
   }
+  @media (min-width: 1200px) {
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
   @media (min-width: 1700px) {
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 50px;
   }
 `
 const CardTitle = styled.h3``
@@ -153,8 +154,12 @@ export default ({ data }) => {
               <Card>
                 <CardTitle>Berichte</CardTitle>
                 Jährlich wird über die Entwicklung der Populationen, den Erfolg
-                der Massnahmen und die Erreichung der Ziele berichtet. Auf
-                dieser Basis werden die Massnahmen für das nächste Jahr geplant.
+                der Massnahmen und die Erreichung der Ziele berichtet.
+              </Card>
+              <Card>
+                <CardTitle>Planung</CardTitle>
+                Aufgrund der Berichte werden die Massnahmen und Kontrollen für
+                das nächste Jahr geplant.
               </Card>
               <Card>
                 <CardTitle>Beobachtungen</CardTitle>
