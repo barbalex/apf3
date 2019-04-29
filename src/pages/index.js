@@ -1,12 +1,12 @@
-import React from "react"
-import Typography from "@material-ui/core/Typography"
-import MaterialCard from "@material-ui/core/Card"
-import { graphql } from "gatsby"
-import styled from "styled-components"
-import Img from "gatsby-image"
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import MaterialCard from '@material-ui/core/Card'
+import { graphql } from 'gatsby'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
 
-import ErrorBoundary from "../components/shared/ErrorBoundary"
-import Layout from "../components/Layout"
+import ErrorBoundary from '../components/shared/ErrorBoundary'
+import Layout from '../components/Layout'
 
 const ScrollContainer = styled.div`
   height: calc(100vh - 64px);
@@ -88,11 +88,11 @@ const PageTitle = styled(Typography)`
 const CardTitle = styled.h3``
 
 const bgImageStyle = {
-  position: "absolute",
+  position: 'absolute',
   left: 0,
   top: 0,
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
   zIndex: -1,
 }
 
@@ -128,9 +128,14 @@ export default ({ data }) => {
                 Basis für Ziele, Massnahmen, Kontrollen und Berichte.
               </Card>
               <Card>
+                <CardTitle>Ziele</CardTitle>
+                ...beschreiben, wie sich die Populationen künftig entwickeln
+                sollen, damit die Art langfristig erhalten bleibt.
+              </Card>
+              <Card>
                 <CardTitle>Massnahmen</CardTitle>
                 Die Arten werden gezielt gefördert, zum Beispiel durch
-                Lebensraum-Verbesserung oder{" "}
+                Lebensraum-Verbesserung oder{' '}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -146,24 +151,19 @@ export default ({ data }) => {
                 und Bestand und prüfen die Wirkung von Massnahmen.
               </Card>
               <Card>
+                <CardTitle>Berichte</CardTitle>
+                Jährlich wird über die Entwicklung der Populationen, den Erfolg
+                der Massnahmen und die Erreichung der Ziele berichtet. Auf
+                dieser Basis werden die Massnahmen für das nächste Jahr geplant.
+              </Card>
+              <Card>
                 <CardTitle>Beobachtungen</CardTitle>
                 Gemeldete Beobachtungen Dritter werden überprüft.
               </Card>
               <Card>
-                <CardTitle>Ziele</CardTitle>
-                ...beschreiben, wie sich die Populationen künftig entwickeln
-                sollen, damit die Art langfristig erhalten bleibt.
-              </Card>
-              <Card>
-                <CardTitle>Berichte</CardTitle>
-                Jährlich wird über die Entwicklung der Populationen, den Erfolg
-                der Massnahmen und die Erreichung der Ziele berichtet. Darauf
-                aufbauend werden die Massnahmen für das nächste Jahr geplant.
-              </Card>
-              <Card>
                 <CardTitle>Freiwillige</CardTitle>
-                ...unterstützen die Profis zum Beispiel bei der Kontrolle von
-                Populationen und der{" "}
+                ...unterstützen die Profis bei der Kontrolle von Populationen
+                und der{' '}
                 <a
                   href="//vermehrung.apflora.ch"
                   target="_blank"
@@ -182,7 +182,7 @@ export default ({ data }) => {
                 >
                   Topos
                 </a>
-                &nbsp;im Auftrag der{" "}
+                &nbsp;im Auftrag der{' '}
                 <a
                   href="//aln.zh.ch/internet/baudirektion/aln/de/naturschutz/artenfoerderung/ap_fl.html"
                   target="_blank"
