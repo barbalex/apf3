@@ -36,11 +36,11 @@ sort: 2
 - :ballot_box_with_check: laufend modern halten
 
 Symbole:
-* :white_check_mark:: durchgeführt
-* :ballot_box_with_check:: teilweise durchgeführt
-* :white_medium_square:: todo
+* :white_check_mark:: realisiert
+* :ballot_box_with_check:: teilweise realisiert
+* :white_medium_square:: geplant
 <br/>
 
 ### Langfristige Vision
 
-Heute wird apflora.ch für die Förderung von Flora-Arten verwendet. Ihre Grundstruktur eignet sich aber genau so gut für alle anderen Arten, z.B. Fauna und Moose.
+Heute wird apflora.ch für die Förderung von Flora-Arten verwendet. Ihre Grundstruktur eignet sich aber genau so gut für alle anderen Arten, z.B. Fauna und Moose :eyes:
