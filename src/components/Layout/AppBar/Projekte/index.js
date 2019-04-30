@@ -4,9 +4,9 @@ import remove from 'lodash/remove'
 import styled from 'styled-components'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
+import { Link } from 'gatsby'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import ErrorBoundary from '../../../shared/ErrorBoundary'
 import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import More from './More'
 import EkfYear from './EkfYear'
@@ -14,6 +14,24 @@ import User from './User'
 import Daten from './Daten'
 import storeContext from '../../../../storeContext'
 
+const SiteTitle = styled(Button)`
+  display: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  border-width: 0 !important;
+  text-transform: none !important;
+  @media (min-width: 750px) {
+    display: block !important;
+  }
+  :hover {
+    border-width: 1px !important;
+  }
+`
+const MenuDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 // need to prevent boolean props from being passed to dom
 const StyledButton = ({ preceded, followed, ...rest }) => {
   const StyledButton = styled(Button)`
@@ -113,114 +131,127 @@ const MyAppBar = () => {
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
   return (
-    <ErrorBoundary>
-      <>
-        {view === 'ekf' && <EkfYear />}
-        {view === 'ekf' && !isFreiwillig && (
-          <NormalViewButton onClick={setViewNormal}>
-            Normal-Ansicht
-          </NormalViewButton>
-        )}
-        {view === 'ekf' && isFreiwillig && (
-          <>
-            <NormalViewButton onClick={toggleUserOpen}>
-              {`Benutzer: ${username}`}
+    <>
+      {!isMobile && (
+        <SiteTitle variant="outlined" component={Link} to="/" title="Home">
+          {view === 'ekf'
+            ? 'AP Flora: Erfolgs-Kontrolle Freiwillige'
+            : 'AP Flora'}
+        </SiteTitle>
+      )}
+      <MenuDiv>
+        <>
+          {view === 'ekf' && <EkfYear />}
+          {view === 'ekf' && !isFreiwillig && (
+            <NormalViewButton onClick={setViewNormal}>
+              Normal-Ansicht
             </NormalViewButton>
-            <User
-              username={username}
-              userOpen={userOpen}
-              toggleUserOpen={toggleUserOpen}
-            />
-          </>
-        )}
-        {view === 'normal' && (
-          <>
-            {isFreiwillig && (
-              <NormalViewButton onClick={setViewEkf}>
-                EKF-Ansicht
+          )}
+          {view === 'ekf' && isFreiwillig && (
+            <>
+              <NormalViewButton onClick={toggleUserOpen}>
+                {`Benutzer: ${username}`}
               </NormalViewButton>
-            )}
-            <StyledButton
-              name="tree"
-              variant={projekteTabs.includes('tree') ? 'outlined' : 'text'}
-              followed={projekteTabs.includes('daten')}
-              onClick={onClickTree}
-              data-id="nav-tree1"
-            >
-              Strukturbaum
-            </StyledButton>
-            <Daten />
-            <StyledButton
-              variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
-              preceded={projekteTabs.includes('daten')}
-              followed={projekteTabs.includes('karte')}
-              onClick={onClickFilter}
-              data-id="nav-filter1"
-              title="Daten filtern"
-            >
-              Filter
-            </StyledButton>
-            <StyledButton
-              variant={projekteTabs.includes('karte') ? 'outlined' : 'text'}
-              preceded={projekteTabs.includes('filter')}
-              followed={
-                (!isMobile &&
-                  exporteIsActive &&
-                  projekteTabs.includes('exporte')) ||
-                (!isMobile &&
-                  !exporteIsActive &&
-                  projekteTabs.includes('tree2'))
-              }
-              onClick={onClickKarte}
-              data-id="nav-karte1"
-            >
-              Karte
-            </StyledButton>
-            {!isMobile && exporteIsActive && (
+              <User
+                username={username}
+                userOpen={userOpen}
+                toggleUserOpen={toggleUserOpen}
+              />
+            </>
+          )}
+          {view === 'normal' && (
+            <>
+              {isFreiwillig && (
+                <NormalViewButton onClick={setViewEkf}>
+                  EKF-Ansicht
+                </NormalViewButton>
+              )}
               <StyledButton
-                variant={projekteTabs.includes('exporte') ? 'outlined' : 'text'}
-                preceded={projekteTabs.includes('karte')}
-                followed={projekteTabs.includes('tree2')}
-                onClick={onClickExporte}
-                data-id="nav-exporte"
+                name="tree"
+                variant={projekteTabs.includes('tree') ? 'outlined' : 'text'}
+                followed={projekteTabs.includes('daten')}
+                onClick={onClickTree}
+                data-id="nav-tree1"
               >
-                Exporte
+                Strukturbaum
               </StyledButton>
-            )}
-            {!isMobile && (
+              <Daten />
               <StyledButton
-                variant={projekteTabs.includes('tree2') ? 'outlined' : 'text'}
-                preceded={
-                  (exporteIsActive && projekteTabs.includes('exporte')) ||
-                  (!exporteIsActive && projekteTabs.includes('karte'))
-                }
-                followed={projekteTabs.includes('daten2')}
-                onClick={onClickTree2}
-                data-id="nav-tree2"
-              >
-                Strukturbaum 2
-              </StyledButton>
-            )}
-            {!isMobile && projekteTabs.includes('tree2') && (
-              <Daten treeNr="2" />
-            )}
-            {!isMobile && projekteTabs.includes('tree2') && (
-              <StyledButton
-                variant={projekteTabs.includes('filter2') ? 'outlined' : 'text'}
-                preceded={projekteTabs.includes('daten2')}
-                followed={projekteTabs.includes('karte2')}
-                onClick={onClickFilter2}
-                data-id="nav-filter2"
+                variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
+                preceded={projekteTabs.includes('daten')}
+                followed={projekteTabs.includes('karte')}
+                onClick={onClickFilter}
+                data-id="nav-filter1"
                 title="Daten filtern"
               >
-                Filter 2
+                Filter
               </StyledButton>
-            )}
-          </>
-        )}
-        <More onClickExporte={onClickExporte} role={role} />
-      </>
-    </ErrorBoundary>
+              <StyledButton
+                variant={projekteTabs.includes('karte') ? 'outlined' : 'text'}
+                preceded={projekteTabs.includes('filter')}
+                followed={
+                  (!isMobile &&
+                    exporteIsActive &&
+                    projekteTabs.includes('exporte')) ||
+                  (!isMobile &&
+                    !exporteIsActive &&
+                    projekteTabs.includes('tree2'))
+                }
+                onClick={onClickKarte}
+                data-id="nav-karte1"
+              >
+                Karte
+              </StyledButton>
+              {!isMobile && exporteIsActive && (
+                <StyledButton
+                  variant={
+                    projekteTabs.includes('exporte') ? 'outlined' : 'text'
+                  }
+                  preceded={projekteTabs.includes('karte')}
+                  followed={projekteTabs.includes('tree2')}
+                  onClick={onClickExporte}
+                  data-id="nav-exporte"
+                >
+                  Exporte
+                </StyledButton>
+              )}
+              {!isMobile && (
+                <StyledButton
+                  variant={projekteTabs.includes('tree2') ? 'outlined' : 'text'}
+                  preceded={
+                    (exporteIsActive && projekteTabs.includes('exporte')) ||
+                    (!exporteIsActive && projekteTabs.includes('karte'))
+                  }
+                  followed={projekteTabs.includes('daten2')}
+                  onClick={onClickTree2}
+                  data-id="nav-tree2"
+                >
+                  Strukturbaum 2
+                </StyledButton>
+              )}
+              {!isMobile && projekteTabs.includes('tree2') && (
+                <Daten treeNr="2" />
+              )}
+              {!isMobile && projekteTabs.includes('tree2') && (
+                <StyledButton
+                  variant={
+                    projekteTabs.includes('filter2') ? 'outlined' : 'text'
+                  }
+                  preceded={projekteTabs.includes('daten2')}
+                  followed={projekteTabs.includes('karte2')}
+                  onClick={onClickFilter2}
+                  data-id="nav-filter2"
+                  title="Daten filtern"
+                >
+                  Filter 2
+                </StyledButton>
+              )}
+            </>
+          )}
+          <More onClickExporte={onClickExporte} role={role} />
+        </>
+      </MenuDiv>
+    </>
   )
 }
 
