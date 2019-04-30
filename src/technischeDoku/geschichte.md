@@ -1,6 +1,6 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Entstehung"
+path: "/Dokumentation/Technisch/Entstehung"
 date: "2019-04-18"
 title: "Entstehungs-Geschichte"
 sort: 7
@@ -34,4 +34,4 @@ Web-Technologien entwickelten sich rasant weiter. Ebenso, wie die Bedürfnisse a
 
 Diese Ziele wurden erreicht :sparkles:. Leider hat die neue App zunächst leistungsmässig nicht überzeugt :snail:. Aber das ist mittlerweile überwunden :stuck_out_tongue_winking_eye:.<br/><br/>
 
-Heute wird apflora regelmässig modernisiert. [Hier](/Technische-Dokumentation/Technologien) finden Sie Informationen über die aktuell verwendeten Technologien.
+Heute wird apflora regelmässig modernisiert. [Hier](/Dokumentation/Technisch/Technologien) finden Sie Informationen über die aktuell verwendeten Technologien.

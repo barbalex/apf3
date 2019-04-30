@@ -1,6 +1,6 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Beobachtungen-verwalten"
+path: "/Dokumentation/Technisch/Beobachtungen-verwalten"
 date: "2019-04-18"
 title: "Beobachtungen verwalten"
 sort: 3

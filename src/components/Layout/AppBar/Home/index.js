@@ -72,7 +72,7 @@ const MyAppBar = () => {
                   pathname.startsWith('/Dokumentation') ? 'outlined' : 'text'
                 }
                 component={Link}
-                to="/Benutzer-Dokumentation/"
+                to="/Dokumentation/Benutzer/"
               >
                 Dokumentation
               </StyledButton>

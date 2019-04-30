@@ -1,6 +1,6 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Falsch-bestimmte-Beobachtungen"
+path: "/Dokumentation/Benutzer/Falsch-bestimmte-Beobachtungen"
 date: "2019-01-30"
 title: "Falsch bestimmte Beobachtungen"
 sort: 7

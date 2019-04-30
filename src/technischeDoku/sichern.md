@@ -1,6 +1,6 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Daten-Sicherung"
+path: "/Dokumentation/Technisch/Daten-Sicherung"
 date: "2019-04-18"
 title: "Daten-Sicherung"
 sort: 5

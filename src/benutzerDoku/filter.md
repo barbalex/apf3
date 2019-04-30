@@ -1,6 +1,6 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/Formular-Filter"
+path: "/Dokumentation/Benutzer/Formular-Filter"
 date: "2019-04-18"
 title: "Formular-Filter"
 sort: 9

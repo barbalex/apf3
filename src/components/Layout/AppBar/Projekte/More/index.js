@@ -110,10 +110,10 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         {['apflora_manager', 'apflora_artverantwortlich'].includes(role) && (
           <EkfAdresse setAnchorEl={setAnchorEl} />
         )}
-        <MenuItem component={Link} to="/Benutzer-Dokumentation/">
+        <MenuItem component={Link} to="/Dokumentation/Benutzer/">
           Benutzer-Dokumentation
         </MenuItem>
-        <MenuItem component={Link} to="/Technische-Dokumentation/">
+        <MenuItem component={Link} to="/Dokumentation/Technisch/">
           Technische Dokumentation
         </MenuItem>
         <MenuItem onClick={watchVideos}>Video-Anleitungen</MenuItem>

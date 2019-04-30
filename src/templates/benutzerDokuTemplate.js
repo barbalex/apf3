@@ -50,7 +50,7 @@ const BenutzerDokuTemplate = ({ data }) => {
         <Container>
           <Sidebar
             title="Benutzer-Dokumentation"
-            titleLink="/Benutzer-Dokumentation/"
+            titleLink="/Dokumentation/Benutzer/"
             edges={edges}
           />
           <Doku>

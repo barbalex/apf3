@@ -1,6 +1,6 @@
 ---
 typ: 'benutzerDoku'
-path: "/Benutzer-Dokumentation/geplant"
+path: "/Dokumentation/Benutzer/geplant"
 date: "2019-04-15"
 title: "2019 geplant"
 sort: 2

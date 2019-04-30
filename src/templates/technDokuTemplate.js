@@ -50,7 +50,7 @@ const TechnDokuTemplate = ({ data }) => {
         <Container>
           <Sidebar
             title="Technische Dokumentation"
-            titleLink="/Technische-Dokumentation/"
+            titleLink="/Dokumentation/Technisch/"
             edges={edges}
           />
           <Doku>

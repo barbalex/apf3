@@ -1,6 +1,6 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Technologien"
+path: "/Dokumentation/Technisch/Technologien"
 date: "2019-01-30"
 title: "Technologien"
 sort: 2

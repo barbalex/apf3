@@ -1,6 +1,6 @@
 ---
 typ: 'technDoku'
-path: "/Technische-Dokumentation/Testen"
+path: "/Dokumentation/Technisch/Testen"
 date: "2019-04-18"
 title: "Funktionalität testen"
 sort: 6

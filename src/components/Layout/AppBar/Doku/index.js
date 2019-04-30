@@ -71,25 +71,25 @@ const MyAppBar = () => {
             <MenuDiv>
               <StyledButton
                 variant={
-                  pathname.startsWith('/Benutzer-Dokumentation')
+                  pathname.startsWith('/Dokumentation/Benutzer')
                     ? 'outlined'
                     : 'text'
                 }
                 component={Link}
-                to="/Benutzer-Dokumentation/"
+                to="/Dokumentation/Benutzer/"
               >
-                Benutzer-Dokumentation
+                Benutzer Doku
               </StyledButton>
               <StyledButton
                 variant={
-                  pathname.startsWith('/Technische-Dokumentation')
+                  pathname.startsWith('/Dokumentation/Technisch')
                     ? 'outlined'
                     : 'text'
                 }
                 component={Link}
-                to="/Technische-Dokumentation/"
+                to="/Dokumentation/Technisch/"
               >
-                Technische Dokumentation
+                Technische Doku
               </StyledButton>
               <StyledButton
                 variant="text"
