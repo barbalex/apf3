@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { Location } from '@reach/router'
 
 import ErrorBoundary from '../../shared/ErrorBoundary'
+import Home from './Home'
 import Doku from './Doku'
 import Projekte from './Projekte'
 
@@ -26,13 +27,15 @@ const MyAppBar = () => {
     <Location>
       {({ location }) => {
         const { pathname } = location
+        console.log({ pathname })
+        const isHome = pathname === '/'
         const isProjekte = pathname.startsWith('/Daten')
 
         return (
           <ErrorBoundary>
             <StyledAppBar position="fixed">
               <StyledToolbar>
-                {isProjekte ? <Projekte /> : <Doku />}
+                {isHome ? <Home /> : isProjekte ? <Projekte /> : <Doku />}
               </StyledToolbar>
             </StyledAppBar>
           </ErrorBoundary>

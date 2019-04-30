@@ -65,7 +65,7 @@ const MyAppBar = () => {
                 to="/"
                 title="Home"
               >
-                AP Flora: Dokumentation
+                AP Flora
               </SiteTitle>
             )}
             <MenuDiv>
