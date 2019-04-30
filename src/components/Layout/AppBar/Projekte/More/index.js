@@ -6,11 +6,11 @@ import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'gatsby'
 
-import isMobilePhone from '../../../../modules/isMobilePhone'
-import logout from '../../../../modules/logout'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
+import logout from '../../../../../modules/logout'
 import EkfAdresse from './EkfAdresse'
-import storeContext from '../../../../storeContext'
-import idbContext from '../../../../idbContext'
+import storeContext from '../../../../../storeContext'
+import idbContext from '../../../../../idbContext'
 
 const Container = styled.div`
   margin-top: auto;

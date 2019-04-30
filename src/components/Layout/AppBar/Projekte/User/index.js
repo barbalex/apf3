@@ -16,11 +16,11 @@ import Button from "@material-ui/core/Button"
 import { useApolloClient, useQuery } from "react-apollo-hooks"
 
 import query from "./data"
-import TextField from "../../../shared/TextField2"
-import ErrorBoundary from "../../../shared/ErrorBoundary"
+import TextField from "../../../../shared/TextField2"
+import ErrorBoundary from "../../../../shared/ErrorBoundary"
 import updateUserByIdGql from "./updateUserById"
-import storeContext from "../../../../storeContext"
-import dealWithError from "../../../../modules/dealWithError"
+import storeContext from "../../../../../storeContext"
+import dealWithError from "../../../../../modules/dealWithError"
 
 const Container = styled.div`
   height: 100%;
