@@ -136,7 +136,7 @@ const MyAppBar = () => {
         <SiteTitle variant="outlined" component={Link} to="/" title="Home">
           {view === 'ekf'
             ? 'AP Flora: Erfolgs-Kontrolle Freiwillige'
-            : 'AP Flora: bearbeiten'}
+            : 'AP Flora'}
         </SiteTitle>
       )}
       <MenuDiv>
