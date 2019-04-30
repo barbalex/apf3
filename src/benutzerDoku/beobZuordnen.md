@@ -13,13 +13,14 @@ Verworfen werden Beobachtungen in der Regel, wenn:
 - die Artbestimmung (zu) unsicher ist
 
 ## 1. So wird's gemacht
-Im Formular:
+**Im Formular**:
 
 1. Aktionsplan wählen
 2. Im Strukturbaum eine nicht beurteilte Beobachtung wählen
 3. Im Formular bei "Einer Teilpopulation zuordnen" die gewünschte wählen
 
-oder in Karten (Anleitung ausstehend)
+oder **in Karten** gemäss diesem Video:
+`youtube: https://www.youtube.com/watch?v=Oy-TDV37xhI&list=PLTz8Xt5SOQPS-dbvpJ_DrB4-o3k3yj09J&index=8`
 
 ## 2. Verfügbare Beobachtungen
 
