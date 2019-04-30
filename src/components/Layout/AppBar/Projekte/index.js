@@ -62,7 +62,7 @@ const NormalViewButton = styled(Button)`
   text-transform: none !important;
 `
 
-const MyAppBar = () => {
+const ProjekteAppBar = () => {
   const store = useContext(storeContext)
   const {
     nodeFilterClone1To2,
@@ -266,4 +266,4 @@ const MyAppBar = () => {
   )
 }
 
-export default observer(MyAppBar)
+export default observer(ProjekteAppBar)

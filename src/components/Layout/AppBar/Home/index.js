@@ -46,7 +46,7 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
   return <StyledButton {...rest} />
 }
 
-const MyAppBar = () => {
+const HomeAppBar = () => {
   const isMobile = isMobilePhone()
 
   return (
@@ -91,4 +91,4 @@ const MyAppBar = () => {
   )
 }
 
-export default observer(MyAppBar)
+export default observer(HomeAppBar)

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
@@ -6,7 +6,6 @@ import { Location } from '@reach/router'
 import { Link } from 'gatsby'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import storeContext from '../../../../storeContext'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -47,8 +46,7 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
   return <StyledButton {...rest} />
 }
 
-const MyAppBar = () => {
-  const store = useContext(storeContext)
+const DokuAppBar = () => {
   const isMobile = isMobilePhone()
 
   return (
@@ -106,4 +104,4 @@ const MyAppBar = () => {
   )
 }
 
-export default observer(MyAppBar)
+export default observer(DokuAppBar)
