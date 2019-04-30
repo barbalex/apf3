@@ -27,7 +27,6 @@ const MyAppBar = () => {
     <Location>
       {({ location }) => {
         const { pathname } = location
-        console.log({ pathname })
         const isHome = pathname === '/'
         const isProjekte = pathname.startsWith('/Daten')
 

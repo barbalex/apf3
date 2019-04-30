@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
@@ -6,7 +6,6 @@ import { Location } from '@reach/router'
 import { Link } from 'gatsby'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import storeContext from '../../../../storeContext'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -48,7 +47,6 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
 }
 
 const MyAppBar = () => {
-  const store = useContext(storeContext)
   const isMobile = isMobilePhone()
 
   return (
@@ -71,25 +69,12 @@ const MyAppBar = () => {
             <MenuDiv>
               <StyledButton
                 variant={
-                  pathname.startsWith('/Benutzer-Dokumentation')
-                    ? 'outlined'
-                    : 'text'
+                  pathname.startsWith('/Dokumentation') ? 'outlined' : 'text'
                 }
                 component={Link}
                 to="/Benutzer-Dokumentation/"
               >
-                Benutzer-Dokumentation
-              </StyledButton>
-              <StyledButton
-                variant={
-                  pathname.startsWith('/Technische-Dokumentation')
-                    ? 'outlined'
-                    : 'text'
-                }
-                component={Link}
-                to="/Technische-Dokumentation/"
-              >
-                Technische Dokumentation
+                Dokumentation
               </StyledButton>
               <StyledButton
                 variant="text"

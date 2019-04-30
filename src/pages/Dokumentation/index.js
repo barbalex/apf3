@@ -1,9 +1,7 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../../components/Layout'
-import Sidebar from '../../templates/Sidebar'
 import ErrorBoundary from '../../components/shared/ErrorBoundary'
 
 const Container = styled.div`
@@ -34,46 +32,18 @@ const Doku = styled.div`
   }
 `
 
-const Template = ({ data }) => {
-  const { allMarkdownRemark } = data
-  const { edges } = allMarkdownRemark
-
+const Template = () => {
   return (
     <ErrorBoundary>
       <Layout>
         <Container>
-          <Sidebar
-            title="Benutzer-Dokumentation"
-            titleLink="/Benutzer-Dokumentation/"
-            edges={edges}
-          />
           <Doku>
-            <p>{`<= Bitte wählen Sie ein Thema.`}</p>
+            <p>{`Bitte wählen Sie einen Bereich.`}</p>
           </Doku>
         </Container>
       </Layout>
     </ErrorBoundary>
   )
 }
-
-export const pageQuery = graphql`
-  query {
-    allMarkdownRemark(
-      sort: { order: ASC, fields: [frontmatter___sort] }
-      filter: { fileAbsolutePath: { regex: "/(/benutzerDoku)/.*.md$/" } }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD.MM.YYYY")
-            path
-          }
-        }
-      }
-    }
-  }
-`
 
 export default Template
