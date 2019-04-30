@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Dokumentation/Benutzer/Karte-Teil-Populationen-aller-Aktionsplaene-anzeigen"
 date: "2019-04-18"
 title: "Karte: (Teil-)Populationen aller Aktionspläne anzeigen"
-sort: 10
+sort: 11
 ---
 
 Bedingungen:

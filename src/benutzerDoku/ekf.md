@@ -3,7 +3,7 @@ typ: 'benutzerDoku'
 path: "/Dokumentation/Benutzer/Erfolgs-Kontrollen-Freiwillige"
 date: "2019-01-30"
 title: "Erfolgs-Kontrollen Freiwillige (EKF)"
-sort: 8
+sort: 9
 ---
 
 Freiwilligen-Kontrollen bzw. Erfolgs-Kontrollen Freiwillige werden nachfolgend mit "EKF" abgekürzt.
