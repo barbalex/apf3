@@ -52,6 +52,10 @@ const StyledButton = ({ preceded, followed, ...rest }) => {
   `
   return <StyledButton {...rest} />
 }
+const DokuButton = styled(Button)`
+  color: white !important;
+  text-transform: none !important;
+`
 const NormalViewButton = styled(Button)`
   color: white !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
@@ -248,6 +252,13 @@ const MyAppBar = () => {
               )}
             </>
           )}
+          <DokuButton
+            variant="text"
+            component={Link}
+            to="/Dokumentation/Benutzer/"
+          >
+            Dokumentation
+          </DokuButton>
           <More onClickExporte={onClickExporte} role={role} />
         </>
       </MenuDiv>

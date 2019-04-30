@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'gatsby'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import logout from '../../../../../modules/logout'
@@ -110,12 +109,6 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
         {['apflora_manager', 'apflora_artverantwortlich'].includes(role) && (
           <EkfAdresse setAnchorEl={setAnchorEl} />
         )}
-        <MenuItem component={Link} to="/Dokumentation/Benutzer/">
-          Benutzer-Dokumentation
-        </MenuItem>
-        <MenuItem component={Link} to="/Dokumentation/Technisch/">
-          Technische Dokumentation
-        </MenuItem>
         <MenuItem onClick={watchVideos}>Video-Anleitungen</MenuItem>
         <MenuItem onClick={onClickLogout} className="appbar-more-logout">{`${
           user.name
