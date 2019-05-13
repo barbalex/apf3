@@ -1,10 +1,10 @@
-import React, { useCallback, useState, useEffect } from "react"
-import "leaflet"
-import { withLeaflet } from "react-leaflet"
-import "leaflet-easyprint"
-import Control from "react-leaflet-control"
-import styled from "styled-components"
-import FileDownloadIcon from "@material-ui/icons/GetApp"
+import React, { useCallback, useState, useEffect } from 'react'
+import 'leaflet'
+import { useLeaflet } from 'react-leaflet'
+import 'leaflet-easyprint'
+import Control from 'react-leaflet-control'
+import styled from 'styled-components'
+import FileDownloadIcon from '@material-ui/icons/GetApp'
 
 const StyledButton = styled.button`
   background-color: white;
@@ -23,25 +23,26 @@ const StyledButton = styled.button`
 
 const options = {
   hidden: true,
-  position: "topright",
+  position: 'topright',
   // sizeModes may not be needed?
-  sizeModes: ["Current"],
+  sizeModes: ['Current'],
   exportOnly: true,
-  filename: "apfloraKarte",
+  filename: 'apfloraKarte',
   hideControlContainer: true,
 }
 
-const PngControl = ({ leaflet }) => {
+const PngControl = () => {
   const [printPlugin, changePrintPlugin] = useState({})
+  const { map } = useLeaflet()
 
   const savePng = useCallback(event => {
     event.preventDefault()
-    printPlugin.printMap("CurrentSize", "apfloraKarte")
+    printPlugin.printMap('CurrentSize', 'apfloraKarte')
   })
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-    const pp = window.L.easyPrint(options).addTo(leaflet.map)
+    if (typeof window === 'undefined') return
+    const pp = window.L.easyPrint(options).addTo(map)
     changePrintPlugin(pp)
   }, [])
 
@@ -56,4 +57,4 @@ const PngControl = ({ leaflet }) => {
   )
 }
 
-export default withLeaflet(PngControl)
+export default PngControl
