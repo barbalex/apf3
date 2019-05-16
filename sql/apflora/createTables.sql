@@ -1270,3 +1270,11 @@ COMMENT ON COLUMN apflora.tpopkontr_frequenz_werte.changed_by IS 'Von wem wurde 
 insert into apflora.tpopkontr_frequenz_werte (code, text, sort, changed_by) values (0, 'nie', 1, 'alex'), (1, 'jährlich', 2, 'alex'), (2, 'alle 2 Jahre', 3, 'alex'), (3, 'alle 3 Jahre', 4, 'alex');
 ALTER TABLE ONLY apflora.tpopkontr_frequenz_werte ALTER COLUMN changed_by drop default;
 ALTER TABLE ONLY apflora.tpopkontr_frequenz_werte ALTER COLUMN changed_by SET DEFAULT null;
+
+drop table if exists apflora.evab_personen;
+create table apflora.evab_personen (
+  idPerson UUID PRIMARY KEY,
+  Name varchar(50),
+  Vorname varchar(50),
+  Ort varchar(50)
+);
