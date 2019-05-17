@@ -62,7 +62,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        scope: 'https://apflora.ch/',
+        scope: '/',
         name: 'apflora.ch',
         short_name: 'apflora',
         start_url: '/',
