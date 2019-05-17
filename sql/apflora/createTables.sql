@@ -1273,9 +1273,9 @@ ALTER TABLE ONLY apflora.tpopkontr_frequenz_werte ALTER COLUMN changed_by SET DE
 
 drop table if exists apflora.evab_personen;
 create table apflora.evab_personen (
-  idPerson UUID PRIMARY KEY,
-  Name varchar(50),
-  Vorname varchar(50),
-  Ort varchar(50)
+  idperson UUID PRIMARY KEY,
+  name varchar(50),
+  vorname varchar(50),
+  ort varchar(50)
 );
 comment on table apflora.evab_personen is 'Diese Tabelle wird nur beim EvAB-Export genutzt. Vor dem Export werden die aktuellen EvAB-Adressen hierhin importiert, um die Adressen apflora-seitig zu bereinigen.';
