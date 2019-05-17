@@ -31,4 +31,11 @@ Die FNS gibt vor, dass in eine Access-GEO-DB importiert werden muss. Leider gibt
       order by name;
       ```
    1. In `beob_nach_evab.accdb`, Tabelle `apflora_adresse`: leeren, dann die aktuellen Daten importieren
-1. In `beob_nach_evab.accdb`, Tabelle `apflora_evab_typologie` mit `apflora.evab_typologie` aktualisieren (wenn nötig)
+1. Alle `v_exportevab...` views: In PgAdmin öffnen, als .csv speichern
+1. Alle `apflora_v_exportevab...`-Tabellen in `beob_nach_evab.accdb`: leeren, dann aus den views importieren. WICHTIG: Im ersten Dialog in Access UTF-8 einstellen
+1. Es braucht in tblPersonen einen Datensatz für Topos (`{7C71B8AF-DF3E-4844-A83B-55735F80B993}	topos Marti & Müller AG	-	Zürich`). Der wird zwar jedes Jahr hinzugefügt, er taucht aber trotzdem nie im Template auf. Daher muss er aus dem Vorjahr hinein kopiert werden
+1. Jetzt die Import-Abfragen in `beob_nach_evab.accdb` nacheinander ausführen. Dabei darauf achten, dass immer alle Datensätze importiert wurden. Falls nicht, muss dem nachgegangen werden. Es kann z.B. an veränderten Stammdaten in EvAB liegen
+1. `EvabGeoDB_apflora.mdb` ist nun bereit
+1. `EvabGeoDB_apflora.mdb` in EvAB öffnen und prüfen, ob es i.O. aussieht
+1. `EvabGeoDB_apflora.mdb`: Abfrage `vExportZDSF` nach Excel exportieren: Damit Topos die Daten in Tabellenform prüfen kann
+1. `EvabGeoDB_apflora.mdb` und `vExportZDSF.xlsx` Topos zur Prüfung und Weiterleitung an die FNS übermitteln
