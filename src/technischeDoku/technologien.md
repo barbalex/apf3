@@ -8,7 +8,7 @@ sort: 2
 
 Die Anwendung ist zweigeteilt:
 
-1. Das **Backend** bietet die API (Daten-Schnittstelle) auf [apflora.ch/graphql](//apflora.ch/graphql) an.<br/>
+1. Das **Backend** bietet die API (Daten-Schnittstelle) auf [api.apflora.ch/graphql](//api.apflora.ch/graphql) an.<br/>
   Es läuft auf einem virtuellen Server mit der jeweils aktuellen Ubuntu LTS Version.
 2. Die **App** bzw. das Frontend ist auf [apflora.ch](//apflora.ch) erreichbar. Sie läuft serverless auf [Zeit/now](https://zeit.co/now)
 
