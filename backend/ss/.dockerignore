@@ -1,0 +1,10 @@
+.env
+.git
+.github
+.vscode
+node_modules
+npm-debug.log
+.yarn/cache
+
+*Dockerfile*
+*docker-compose*
