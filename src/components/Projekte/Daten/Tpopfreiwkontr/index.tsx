@@ -44,7 +44,7 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
   const tree = store[treeName]
   const { activeNodeArray } = tree
 
-  let id = idPassed
+  const id = idPassed
     ? idPassed
     : activeNodeArray.length > 9
     ? activeNodeArray[9]
@@ -125,13 +125,11 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
   ])
 
   const onClickPrint = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      setIsPrint(true)
-      setTimeout(() => {
-        window.print()
-        setIsPrint(false)
-      })
-    }
+    setIsPrint(true)
+    setTimeout(() => {
+      window.print()
+      setIsPrint(false)
+    })
   }, [setIsPrint])
 
   if (loading) return <Spinner />

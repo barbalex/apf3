@@ -154,14 +154,11 @@ const ApAuswertungPopMenge = ({
   }, [enqueNotification, refetchPopMenge, refreshData, refreshing])
 
   const onClickMoreInfo = useCallback(() => {
-    const url =
-      'https://apflora.ch/Dokumentation/ap-auswertung-pop-menge'
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    const url = 'https://apflora.ch/Dokumentation/ap-auswertung-pop-menge'
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [])
 
   if (errorPopMenge) return <Error error={errorPopMenge} />

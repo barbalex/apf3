@@ -187,15 +187,13 @@ const ApberForAp = ({
   )
 
   const onClickPrint = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      setIsPrint(true)
-      // need a long enough timeout
-      // because the component is loaded anew
-      setTimeout(() => {
-        window.print()
-        setIsPrint(false)
-      })
-    }
+    setIsPrint(true)
+    // need a long enough timeout
+    // because the component is loaded anew
+    setTimeout(() => {
+      window.print()
+      setIsPrint(false)
+    })
   }, [setIsPrint])
 
   if (!node) {

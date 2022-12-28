@@ -169,14 +169,12 @@ const Qk = ({ treeName, qkNameQueries, qks }) => {
                 <OutsideLink
                   onClick={() => {
                     const url = `${appBaseUrl()}Daten/${m.url.join('/')}`
-                    if (typeof window !== 'undefined') {
-                      if (
-                        window.matchMedia('(display-mode: standalone)').matches
-                      ) {
-                        return window.open(url, '_blank', 'toolbar=no')
-                      }
-                      window.open(url)
+                    if (
+                      window.matchMedia('(display-mode: standalone)').matches
+                    ) {
+                      return window.open(url, '_blank', 'toolbar=no')
                     }
+                    window.open(url)
                   }}
                   title="in neuem Fenster öffnen"
                 >

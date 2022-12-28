@@ -175,12 +175,10 @@ const TpopHistory = ({ tpopId }) => {
 
   const openDocs = useCallback(() => {
     const url = `${appBaseUrl()}/Dokumentation/historisierung`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [])
 
   if (loading) return <Spinner />

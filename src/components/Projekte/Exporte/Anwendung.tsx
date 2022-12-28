@@ -19,7 +19,7 @@ const Anwendung = () => {
 
   const onClickAction = useCallback(() => setExpanded(!expanded), [expanded])
   const onClickGrafisch = useCallback(() => {
-    typeof window !== 'undefined' && window.open(beziehungen)
+    window.open(beziehungen)
   }, [])
 
   return (

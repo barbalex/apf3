@@ -17,9 +17,7 @@ const StyledDialog = styled(Dialog)`
   display: flex;
   flex-direction: column;
   > div > div {
-    max-width: ${typeof window !== 'undefined'
-      ? window.innerWidth * 0.8
-      : 0}px !important;
+    max-width: ${window.innerWidth * 0.8}px !important;
     min-width: 368px !important;
     min-width: 80% !important;
   }

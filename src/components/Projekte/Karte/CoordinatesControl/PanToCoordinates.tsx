@@ -78,18 +78,15 @@ const PanToCoordinates = ({ setControlType, map }) => {
     setY('')
     setControlType('coordinates')
   }, [marker, map, setControlType])
-  const onBlurGotoContainer = useCallback(
-    (event) => {
-      const newTimeoutId = setTimeout(() => {
-        if (gotoFocused) {
-          changeGotoFocused(false)
-          setControlType('coordinates')
-        }
-      })
-      changeTimeoutId(newTimeoutId)
-    },
-    [gotoFocused, setControlType],
-  )
+  const onBlurGotoContainer = useCallback(() => {
+    const newTimeoutId = setTimeout(() => {
+      if (gotoFocused) {
+        changeGotoFocused(false)
+        setControlType('coordinates')
+      }
+    })
+    changeTimeoutId(newTimeoutId)
+  }, [gotoFocused, setControlType])
   /**
    * for unknown reason
    * onClickGoto happens TWICE
@@ -98,7 +95,7 @@ const PanToCoordinates = ({ setControlType, map }) => {
    * but marker passed second time is saved in state...
    */
   const onClickGoto = useCallback(() => {
-    if (x && y && !xError && !yError && typeof window !== 'undefined') {
+    if (x && y && !xError && !yError) {
       const latLng = new window.L.LatLng(...epsg2056to4326(x, y))
       map.flyTo(latLng)
       const newMarker = window.L.marker(latLng, {
