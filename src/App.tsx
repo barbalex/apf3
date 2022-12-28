@@ -4,6 +4,7 @@ import React from 'react'
 // otherwise apollo errors during the build
 // see: https://github.com/gatsbyjs/gatsby/issues/11225#issuecomment-457211628
 import queryString from 'query-string'
+import { BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import theme from './utils/materialTheme'
@@ -39,6 +40,8 @@ import NotificationDismisser from './components/shared/NotificationDismisser'
 import setUserFromIdb from './modules/setUserFromIdb'
 import initiateDataFromUrl from './modules/initiateDataFromUrl'
 import getActiveNodeArrayFromPathname from './modules/getActiveNodeArrayFromPathname'
+
+import Layout from './components/Layout'
 
 import 'simplebar/dist/simplebar.min.css'
 
@@ -184,28 +187,30 @@ const App = ({ element }) => {
   window.store = store
 
   return (
-    <IdbProvider value={idbContext}>
-      <MobxProvider value={store}>
-        <ApolloProvider client={client}>
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <SnackbarProvider
-                maxSnack={3}
-                preventDuplicate
-                autoHideDuration={20000}
-                action={(key) => <NotificationDismisser nKey={key} />}
-              >
-                <>
-                  <GlobalStyle />
-                  {element}
-                  <Notifier />
-                </>
-              </SnackbarProvider>
-            </ThemeProvider>
-          </StyledEngineProvider>
-        </ApolloProvider>
-      </MobxProvider>
-    </IdbProvider>
+    <BrowserRouter>
+      <IdbProvider value={idbContext}>
+        <MobxProvider value={store}>
+          <ApolloProvider client={client}>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={theme}>
+                <SnackbarProvider
+                  maxSnack={3}
+                  preventDuplicate
+                  autoHideDuration={20000}
+                  action={(key) => <NotificationDismisser nKey={key} />}
+                >
+                  <>
+                    <GlobalStyle />
+                    <Layout>{element}</Layout>
+                    <Notifier />
+                  </>
+                </SnackbarProvider>
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </ApolloProvider>
+        </MobxProvider>
+      </IdbProvider>
+    </BrowserRouter>
   )
 }
 

@@ -5,9 +5,7 @@ import styled from '@emotion/styled'
 import { StaticImage } from 'gatsby-plugin-image'
 import Button from '@mui/material/Button'
 
-import Layout from '../components/Layout'
 import ErrorBoundary from '../components/shared/ErrorBoundary'
-import Header from '../components/Head'
 
 const Container = styled.div`
   height: calc(100% - 64px);
@@ -51,7 +49,6 @@ const FourOFour = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <Layout>
           <div>
             <StaticImage
               style={bgImageStyle}
@@ -79,7 +76,6 @@ const FourOFour = () => {
               </StyledButton>
             </TextContainer>
           </div>
-        </Layout>
       </Container>
     </ErrorBoundary>
   )
@@ -87,6 +83,3 @@ const FourOFour = () => {
 
 export default FourOFour
 
-
-
-export const Head = () => <Header />

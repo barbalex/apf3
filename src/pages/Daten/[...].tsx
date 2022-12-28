@@ -3,12 +3,9 @@ import { observer } from 'mobx-react-lite'
 import { getSnapshot } from 'mobx-state-tree'
 import isEqual from 'lodash/isEqual'
 
-import Layout from '../../components/Layout'
 import storeContext from '../../storeContext'
 import Unterhalt from '../../components/Unterhalt'
-import ErrorBoundary from '../../components/shared/ErrorBoundary'
 import getActiveNodeArrayFromPathname from '../../modules/getActiveNodeArrayFromPathname'
-import Header from '../../components/Head'
 import DatenPageRouter from './_Router'
 
 const DatenPage = ({ location }) => {
@@ -55,23 +52,11 @@ const DatenPage = ({ location }) => {
   // set unterhalt to true to show this page when servicing
   const unterhalt = false
   if (unterhalt) {
-    return (
-      <Layout>
-        <Unterhalt />
-      </Layout>
-    )
+    return <Unterhalt />
   }
 
   // using render props on Layout to pass down appbarheight without using store
-  return (
-    <ErrorBoundary>
-      <Layout>
-        <DatenPageRouter />
-      </Layout>
-    </ErrorBoundary>
-  )
+  return <DatenPageRouter />
 }
 
 export default observer(DatenPage)
-
-export const Head = () => <Header />

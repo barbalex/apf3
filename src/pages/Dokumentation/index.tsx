@@ -2,10 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 
-import Layout from '../../components/Layout'
 import Sidebar from '../../templates/Sidebar'
 import ErrorBoundary from '../../components/shared/ErrorBoundary'
-import Header from '../../components/Head'
 
 const Container = styled.div`
   height: ${(props) => `calc(100% - ${props.appbarheight}px)`};
@@ -41,18 +39,16 @@ const Template = ({ data }) => {
 
   return (
     <ErrorBoundary>
-      <Layout>
-        <Container>
-          <Sidebar
-            title="Dokumentation"
-            titleLink="/Dokumentation/"
-            edges={edges}
-          />
-          <Doku>
-            <p>{`<= Bitte wählen Sie ein Thema.`}</p>
-          </Doku>
-        </Container>
-      </Layout>
+      <Container>
+        <Sidebar
+          title="Dokumentation"
+          titleLink="/Dokumentation/"
+          edges={edges}
+        />
+        <Doku>
+          <p>{`<= Bitte wählen Sie ein Thema.`}</p>
+        </Doku>
+      </Container>
     </ErrorBoundary>
   )
 }
@@ -78,5 +74,3 @@ export const pageQuery = graphql`
 `
 
 export default Template
-
-export const Head = () => <Header />
