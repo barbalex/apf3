@@ -523,7 +523,7 @@ const Karte = ({ treeName }) => {
 
   const showMapFilter = activeApfloraLayers.includes('mapFilter')
 
-  // TODO: explicitly sort Layers
+  // explicitly sort Layers
   // Use Pane with z-index: https://github.com/PaulLeCam/react-leaflet/issues/271#issuecomment-609752044
   // Idea:
   // 1. create pane for each layer, give it className of layer name
@@ -531,13 +531,11 @@ const Karte = ({ treeName }) => {
   // 3. give overlays 100 + index in activeOverlaysSorted
   // 4. apflora layers always on top
 
-  if (typeof window === 'undefined') return null
-
-  console.log('Map', {
-    activeBaseLayer,
-    activeOverlaysSorted,
-    activeApfloraLayers,
-  })
+  // console.log('Map', {
+  //   activeBaseLayer,
+  //   activeOverlaysSorted,
+  //   activeApfloraLayers,
+  // })
 
   // clustered layers receive a key that rebuilds them every time the cluster
   // tool would erroneously add new markers from last time it build

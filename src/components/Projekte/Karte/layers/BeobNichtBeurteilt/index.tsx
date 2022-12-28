@@ -16,7 +16,7 @@ const iconCreateFunction = function (cluster) {
   const className = hasHighlightedBeob
     ? 'beobClusterHighlighted'
     : 'beobCluster'
-  if (typeof window === 'undefined') return {}
+
   return window.L.divIcon({
     html: markers.length,
     className,
@@ -31,7 +31,7 @@ const BeobNichtBeurteiltMarker = ({ treeName, clustered }) => {
   const tree = store[treeName]
   const { beobGqlFilter } = tree
 
-  var { data, error } = useQuery(query, {
+  const { data, error } = useQuery(query, {
     variables: {
       beobFilter: beobGqlFilter('nichtBeurteilt').filtered,
     },

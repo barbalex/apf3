@@ -13,10 +13,10 @@ const iconCreateFunction = function (cluster) {
   const hasHighlightedTpop = markers.some(
     (m) => m.options.icon.options.className === 'beobIconHighlighted',
   )
-  if (typeof window === 'undefined') return {}
   const className = hasHighlightedTpop
     ? 'beobZugeordnetClusterHighlighted'
     : 'beobZugeordnetCluster'
+
   return window.L.divIcon({
     html: markers.length,
     className,
@@ -31,7 +31,7 @@ const BeobZugeordnetMarker = ({ treeName, clustered }) => {
   const tree = store[treeName]
   const { beobGqlFilter } = tree
 
-  var { data, error } = useQuery(query, {
+  const { data, error } = useQuery(query, {
     variables: { beobFilter: beobGqlFilter('zugeordnet').filtered },
   })
 

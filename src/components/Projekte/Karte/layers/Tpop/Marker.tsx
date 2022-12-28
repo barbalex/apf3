@@ -114,7 +114,6 @@ const TpopMarker = ({ treeName, tpop }) => {
     window.open(url)
   }, [apId, popId, projId, tpop.id])
 
-  if (typeof window === 'undefined') return null
   const latLng = new window.L.LatLng(tpop.wgs84Lat, tpop.wgs84Long)
   const icon = window.L.icon({
     iconUrl,

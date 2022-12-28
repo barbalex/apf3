@@ -11,8 +11,6 @@ import query from './query'
 import updateTpopById from './updateTpopById'
 
 const iconCreateFunction = (cluster) => {
-  if (typeof window === 'undefined') return () => {}
-
   const hasHighlightedTpop = cluster
     .getAllChildMarkers()
     .some((m) => m.options.icon.options.isHighlighted)

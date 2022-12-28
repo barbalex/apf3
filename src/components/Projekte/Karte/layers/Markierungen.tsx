@@ -22,10 +22,8 @@ const pTLOptions = {
   opacity: 1,
   fillOpacity: 0.8,
 }
-const pointToLayer = (feature, latlng) => {
-  if (typeof window === 'undefined') return {}
-  return window.L.circleMarker(latlng, pTLOptions)
-}
+const pointToLayer = (feature, latlng) =>
+  window.L.circleMarker(latlng, pTLOptions)
 
 const MarkierungenLayer = () => {
   const map = useMap()

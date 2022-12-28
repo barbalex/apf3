@@ -1,16 +1,10 @@
-import React, {
-  useContext,
-  useRef,
-  useCallback,
-  useEffect,
-  Suspense,
-} from 'react'
+import React, { useContext, useRef, useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
 import { observer } from 'mobx-react-lite'
 import { useDebouncedCallback } from 'use-debounce'
 
-import KarteOderNull from './KarteOderNull'
+import Karte from './Karte'
 import TreeContainer from './TreeContainer'
 import Daten from './Daten'
 import Exporte from './Exporte'
@@ -18,7 +12,6 @@ import Filter from './Filter'
 import storeContext from '../../storeContext'
 import ApberForApFromAp from '../Print/ApberForApFromAp'
 import ApberForYear from '../Print/ApberForYear'
-import Spinner from '../shared/Spinner'
 
 const Container = styled.div`
   height: 100%;
@@ -153,14 +146,12 @@ const ProjektContainer = ({
     ),
     karte: (
       <InnerContainer>
-        <Suspense fallback={<Spinner />}>
-          <KarteOderNull treeName={treeName} />
-        </Suspense>
+        <Karte treeName={treeName} />
       </InnerContainer>
     ),
     exporte: (
       <InnerContainer>
-        <Exporte treeName={treeName}  />
+        <Exporte treeName={treeName} />
       </InnerContainer>
     ),
   }

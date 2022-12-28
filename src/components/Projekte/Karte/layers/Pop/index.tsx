@@ -15,8 +15,8 @@ const iconCreateFunction = function (cluster) {
     (m) => m.options.icon.options.className === 'popIconHighlighted',
   )
   const className = hasHighlightedPop ? 'popClusterHighlighted' : 'popCluster'
-  if (typeof window === 'undefined') return () => {}
-  return window.L.divIcon({ 
+
+  return window.L.divIcon({
     html: markers.length,
     className,
     iconSize: window.L.point(40, 40),
@@ -33,7 +33,7 @@ const Pop = ({ treeName }) => {
   const popFilter = cloneDeep(popGqlFilter.filtered)
   popFilter.or.forEach((f) => (f.wgs84Lat = { isNull: false }))
 
-  var { data, error } = useQuery(query, {
+  const { data, error } = useQuery(query, {
     variables: {
       popFilter,
     },
