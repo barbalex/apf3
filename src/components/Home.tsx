@@ -74,20 +74,22 @@ const Card = styled(MaterialCard)`
 `
 const PageTitle = styled(Typography)`
   font-size: 2em !important;
-  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 0;
   font-weight: 700 !important;
   text-shadow: 2px 2px 3px white, -2px -2px 3px white, 2px -2px 3px white,
     -2px 2px 3px white;
   @media (min-width: 700px) {
-    padding-bottom: 25px;
+    padding-top: 20px;
+    padding-bottom: 5;
   }
   @media (min-width: 1200px) {
-    padding-top: 10px;
-    padding-bottom: 40px;
+    padding-top: 25px;
+    padding-bottom: 10px;
   }
   @media (min-width: 1700px) {
-    padding-top: 20px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 15px;
   }
 `
 const CardTitle = styled.h3`
@@ -96,8 +98,8 @@ const CardTitle = styled.h3`
 
 const Home = ({ appbarheight }) => (
   <OuterContainer data-appbarheight={appbarheight}>
+    <ProgressiveImg src={image} placeholderSrc={placeholderSrc} />
     <ScrollContainer>
-      <ProgressiveImg src={image} placeholderSrc={placeholderSrc} />
       <PageTitle align="center" variant="h6" color="inherit">
         Bedrohte Pflanzenarten fördern
       </PageTitle>
