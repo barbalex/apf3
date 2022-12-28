@@ -1,7 +1,6 @@
 import { types, getParent, getSnapshot } from 'mobx-state-tree'
 import isEqual from 'lodash/isEqual'
 import queryString from 'query-string'
-import { navigate } from 'gatsby'
 import nestedObjectAssign from 'nested-object-assign'
 import isUuid from 'is-uuid'
 
@@ -61,7 +60,13 @@ export default types
     formHeight: types.optional(types.number, 500),
     filterWidth: types.optional(types.number, 500),
   })
+  .volatile(() => ({
+    navigate: undefined,
+  }))
   .actions((self) => ({
+    setNavigate(val) {
+      self.navigate = val
+    },
     setMapFilter(val) {
       self.mapFilter = val
     },
@@ -97,8 +102,7 @@ export default types
       self.apFilter = val
     },
     // TODO: ensure navigate is passed
-    setActiveNodeArray(val, navigate, nonavigate) {
-      if (!navigate) throw new Error('navigate is not passed')
+    setActiveNodeArray(val, nonavigate) {
       if (isEqual(val, self.activeNodeArray)) {
         // do not do this if already set
         // trying to stop vicious cycle of reloading in first start after update
@@ -109,7 +113,7 @@ export default types
         const { urlQuery } = store
         const search = queryString.stringify(urlQuery)
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
-        navigate(`/Daten/${val.join('/')}${query}`)
+        self.navigate(`/Daten/${val.join('/')}${query}`)
       }
       self.activeNodeArray = val
     },

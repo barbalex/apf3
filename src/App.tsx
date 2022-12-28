@@ -129,6 +129,8 @@ const App = ({ element }) => {
         const username = await setUserFromIdb({ idb, store })
         const isUser = !!username
 
+        store.setNavigate(navigate)
+
         // window.store = store
 
         // set last activeNodeArray
