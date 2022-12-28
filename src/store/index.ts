@@ -96,8 +96,12 @@ const myTypes = types
     deletedDatasets: [],
     notifications: [],
     client: null,
+    navigate: undefined,
   }))
   .actions((self) => ({
+    setNavigate(val) {
+      self.navigate = val
+    },
     setClient(val) {
       self.client = val
     },

@@ -52,7 +52,7 @@ import Router from './Router'
 registerLocale('de', de)
 setDefaultLocale('de')
 
-const App = ({ element }) => {
+const App = () => {
   const idb = initializeIdb()
   const store = MobxStore.create()
   const client = buildClient({ store })

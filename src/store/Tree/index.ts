@@ -60,13 +60,7 @@ export default types
     formHeight: types.optional(types.number, 500),
     filterWidth: types.optional(types.number, 500),
   })
-  .volatile(() => ({
-    navigate: undefined,
-  }))
   .actions((self) => ({
-    setNavigate(val) {
-      self.navigate = val
-    },
     setMapFilter(val) {
       self.mapFilter = val
     },
@@ -112,7 +106,7 @@ export default types
         const { urlQuery } = store
         const search = queryString.stringify(urlQuery)
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
-        self.navigate(`/Daten/${val.join('/')}${query}`)
+        store.navigate(`/Daten/${val.join('/')}${query}`)
       }
       self.activeNodeArray = val
     },
