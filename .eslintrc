@@ -6,6 +6,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "strict": 0,
     "react/prop-types": 0,
