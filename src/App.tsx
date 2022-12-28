@@ -4,7 +4,6 @@ import React from 'react'
 // otherwise apollo errors during the build
 // see: https://github.com/gatsbyjs/gatsby/issues/11225#issuecomment-457211628
 import queryString from 'query-string'
-import { BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import theme from './utils/materialTheme'
@@ -14,7 +13,7 @@ import { ApolloProvider } from '@apollo/client'
 import localForage from 'localforage'
 import MobxStore from './store'
 import { SnackbarProvider } from 'notistack'
-import { navigate } from 'gatsby'
+import { useNavigate } from 'react-router-dom'
 //import { onPatch } from 'mobx-state-tree'
 import { getSnapshot } from 'mobx-state-tree'
 
@@ -56,6 +55,8 @@ const App = ({ element }) => {
   const store = MobxStore.create()
   const client = buildClient({ store })
   const idbContext = { idb }
+
+  const navigate = useNavigate()
 
   const visitedTopDomain = window.location.pathname === '/'
   const blacklist = [
@@ -187,30 +188,28 @@ const App = ({ element }) => {
   window.store = store
 
   return (
-    <BrowserRouter>
-      <IdbProvider value={idbContext}>
-        <MobxProvider value={store}>
-          <ApolloProvider client={client}>
-            <StyledEngineProvider injectFirst>
-              <ThemeProvider theme={theme}>
-                <SnackbarProvider
-                  maxSnack={3}
-                  preventDuplicate
-                  autoHideDuration={20000}
-                  action={(key) => <NotificationDismisser nKey={key} />}
-                >
-                  <>
-                    <GlobalStyle />
-                    <Layout>{element}</Layout>
-                    <Notifier />
-                  </>
-                </SnackbarProvider>
-              </ThemeProvider>
-            </StyledEngineProvider>
-          </ApolloProvider>
-        </MobxProvider>
-      </IdbProvider>
-    </BrowserRouter>
+    <IdbProvider value={idbContext}>
+      <MobxProvider value={store}>
+        <ApolloProvider client={client}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <SnackbarProvider
+                maxSnack={3}
+                preventDuplicate
+                autoHideDuration={20000}
+                action={(key) => <NotificationDismisser nKey={key} />}
+              >
+                <>
+                  <GlobalStyle />
+                  <Layout>{element}</Layout>
+                  <Notifier />
+                </>
+              </SnackbarProvider>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </ApolloProvider>
+      </MobxProvider>
+    </IdbProvider>
   )
 }
 

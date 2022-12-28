@@ -2,7 +2,7 @@ import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import styled from '@emotion/styled'
-import { useLocation } from '@reach/router'
+import { useLocation } from 'react-router-dom'
 
 import HomeBar from './Home'
 import DokuBar from './Doku'

@@ -1,18 +1,19 @@
 import React, { useCallback } from 'react'
-import { navigate } from 'gatsby'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import { useLocation } from '@reach/router'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const MenuItem = ({ node }) => {
   const location = useLocation()
+  const navigate = useNavigate()
+
   const activeUrl = `/Dokumentation/${node.frontmatter.slug}`
   const active =
     activeUrl === location.pathname || `${activeUrl}/` === location.pathname
 
   const onClickMenuItem = useCallback(
     () => navigate(`${activeUrl}/`),
-    [activeUrl],
+    [activeUrl, navigate],
   )
 
   return (
