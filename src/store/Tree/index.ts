@@ -1,7 +1,7 @@
 import { types, getParent, getSnapshot } from 'mobx-state-tree'
 import isEqual from 'lodash/isEqual'
+import merge from 'lodash/merge'
 import queryString from 'query-string'
-import nestedObjectAssign from 'nested-object-assign'
 import isUuid from 'is-uuid'
 
 import NodeLabelFilter, {
@@ -101,7 +101,6 @@ export default types
     setApFilter(val) {
       self.apFilter = val
     },
-    // TODO: ensure navigate is passed
     setActiveNodeArray(val, nonavigate) {
       if (isEqual(val, self.activeNodeArray)) {
         // do not do this if already set
@@ -320,15 +319,14 @@ export default types
       const projHiearchyFilter = projId
         ? { apByApId: { projId: { equalTo: projId } } }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
+      const singleFilterByHierarchy = merge(
         apHiearchyFilter,
         projHiearchyFilter,
       )
       const singleFilterByParentFiltersForAll = {
         apByApId: self.apGqlFilter.all,
       }
-      const singleFilterForAll = nestedObjectAssign(
+      const singleFilterForAll = merge(
         singleFilterByHierarchy,
         singleFilterByParentFiltersForAll,
       )
@@ -360,8 +358,7 @@ export default types
       const filterArray = []
       for (const filter of filterArrayInStore) {
         // add hiearchy filter
-        const singleFilter = nestedObjectAssign(
-          {},
+        const singleFilter = merge(
           singleFilterByHierarchy,
           singleFilterByParentFiltersForFiltered,
         )
@@ -434,16 +431,14 @@ export default types
       const projHiearchyFilter = projId
         ? { popByPopId: { apByApId: { projId: { equalTo: projId } } } }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
-        // popHierarchyFilter,
+      const singleFilterByHierarchy = merge(
         apHiearchyFilter,
         projHiearchyFilter,
       )
       const singleFilterByParentFiltersForAll = {
         popByPopId: self.popGqlFilter.all,
       }
-      const singleFilterForAll = nestedObjectAssign(
+      const singleFilterForAll = merge(
         singleFilterByHierarchy,
         singleFilterByParentFiltersForAll,
       )
@@ -475,8 +470,7 @@ export default types
       const filterArray = []
       for (const filter of filterArrayInStore) {
         // add hiearchy filter
-        const singleFilter = nestedObjectAssign(
-          {},
+        const singleFilter = merge(
           singleFilterByHierarchy,
           singleFilterByParentFiltersForFiltered,
         )
@@ -561,17 +555,14 @@ export default types
             },
           }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
-        // tpopHierarchyFilter,
-        // popHierarchyFilter,
+      const singleFilterByHierarchy = merge(
         apHiearchyFilter,
         projHiearchyFilter,
       )
       const singleFilterByParentFiltersForAll = {
         tpopByTpopId: self.tpopGqlFilter.all,
       }
-      const singleFilterForAll = nestedObjectAssign(
+      const singleFilterForAll = merge(
         singleFilterByHierarchy,
         singleFilterByParentFiltersForAll,
       )
@@ -603,8 +594,7 @@ export default types
       const filterArray = []
       for (const filter of filterArrayInStore) {
         // add hiearchy filter
-        const singleFilter = nestedObjectAssign(
-          {},
+        const singleFilter = merge(
           singleFilterByHierarchy,
           singleFilterByParentFiltersForFiltered,
         )
@@ -691,23 +681,22 @@ export default types
             },
           }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
-        {
-          or: [
-            { typ: { isNull: true } },
-            { typ: { in: ['Zwischenbeurteilung', 'Ausgangszustand'] } },
-          ],
-        },
-        // tpopHierarchyFilter,
-        // popHierarchyFilter,
-        apHiearchyFilter,
+      const singleFilterByHierarchy = merge(
+        merge(
+          {
+            or: [
+              { typ: { isNull: true } },
+              { typ: { in: ['Zwischenbeurteilung', 'Ausgangszustand'] } },
+            ],
+          },
+          apHiearchyFilter,
+        ),
         projHiearchyFilter,
       )
       const singleFilterByParentFiltersForAll = {
         tpopByTpopId: self.tpopGqlFilter.all,
       }
-      const singleFilterForAll = nestedObjectAssign(
+      const singleFilterForAll = merge(
         singleFilterByHierarchy,
         singleFilterByParentFiltersForAll,
       )
@@ -739,8 +728,7 @@ export default types
       const filterArray = []
       for (const filter of filterArrayInStore) {
         // add hiearchy filter
-        const singleFilter = nestedObjectAssign(
-          {},
+        const singleFilter = merge(
           singleFilterByHierarchy,
           singleFilterByParentFiltersForFiltered,
         )
@@ -823,18 +811,17 @@ export default types
             },
           }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
-        { typ: { equalTo: 'Freiwilligen-Erfolgskontrolle' } },
-        // tpopHierarchyFilter,
-        // popHierarchyFilter,
-        apHiearchyFilter,
+      const singleFilterByHierarchy = merge(
+        merge(
+          { typ: { equalTo: 'Freiwilligen-Erfolgskontrolle' } },
+          apHiearchyFilter,
+        ),
         projHiearchyFilter,
       )
       const singleFilterByParentFiltersForAll = {
         tpopByTpopId: self.tpopGqlFilter.all,
       }
-      const singleFilterForAll = nestedObjectAssign(
+      const singleFilterForAll = merge(
         singleFilterByHierarchy,
         singleFilterByParentFiltersForAll,
       )
@@ -866,8 +853,7 @@ export default types
       const filterArray = []
       for (const filter of filterArrayInStore) {
         // add hiearchy filter
-        const singleFilter = nestedObjectAssign(
-          {},
+        const singleFilter = merge(
           singleFilterByHierarchy,
           singleFilterByParentFiltersForFiltered,
         )
@@ -971,10 +957,7 @@ export default types
             },
           }
         : {}
-      const singleFilterByHierarchy = nestedObjectAssign(
-        {},
-        // tpopHierarchyFilter,
-        // popHierarchyFilter,
+      const singleFilterByHierarchy = merge(
         apHiearchyFilter,
         projHiearchyFilter,
       )
@@ -997,13 +980,11 @@ export default types
       }
       const singleFilterForAll =
         type === 'zugeordnet'
-          ? nestedObjectAssign(
-              typeFilter,
-              apFilter,
-              singleFilterByHierarchy,
+          ? merge(
+              merge(merge(typeFilter, apFilter), singleFilterByHierarchy),
               singleFilterByParentFiltersForAll,
             )
-          : nestedObjectAssign(typeFilter, apFilter)
+          : merge(typeFilter, apFilter)
       const singleFilterByParentFiltersForFiltered = {
         tpopByTpopId: self.tpopGqlFilter.filtered,
       }
@@ -1024,14 +1005,16 @@ export default types
             },
           }
         : {}
-      const singleFilter = nestedObjectAssign(
-        typeFilter,
-        apFilter,
-        type === 'zugeordnet' ? singleFilterByHierarchy : {},
-        type === 'zugeordnet' ? singleFilterByParentFiltersForFiltered : {},
-        nodeLabelFilter,
-        mapFilter,
-      )
+      let singleFilter = merge(typeFilter, apFilter)
+      if (type === 'zugeordnet') {
+        singleFilter = merge(singleFilter, singleFilterByHierarchy)
+        singleFilter = merge(
+          singleFilter,
+          singleFilterByParentFiltersForFiltered,
+        )
+      }
+      singleFilter = merge(singleFilter, nodeLabelFilter)
+      singleFilter = merge(singleFilter, mapFilter)
 
       const beobGqlFilter = {
         all: Object.keys(singleFilterForAll).length

@@ -47,6 +47,8 @@ import 'simplebar/dist/simplebar.min.css'
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import Router from './Router'
+
 registerLocale('de', de)
 setDefaultLocale('de')
 
@@ -205,7 +207,9 @@ const App = ({ element }) => {
               >
                 <>
                   <GlobalStyle />
-                  <Layout>{element}</Layout>
+                  <Layout>
+                    <Router />
+                  </Layout>
                   <Notifier />
                 </>
               </SnackbarProvider>
