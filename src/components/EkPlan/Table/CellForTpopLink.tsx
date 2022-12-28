@@ -26,18 +26,16 @@ const CellForTpopLink = ({ field, style, row }) => {
 
   const { hovered } = store.ekPlan
   const className = hovered.tpopId === row.id ? 'tpop-hovered' : ''
-  const onMouseEnter = useCallback(() => hovered.setTpopId(row.id), [
-    hovered,
-    row.id,
-  ])
+  const onMouseEnter = useCallback(
+    () => hovered.setTpopId(row.id),
+    [hovered, row.id],
+  )
 
   const onClickLink = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        window.open(field.value, '_blank', 'toolbar=no')
-      }
-      window.open(field.value)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      window.open(field.value, '_blank', 'toolbar=no')
     }
+    window.open(field.value)
   }, [field.value])
 
   return (

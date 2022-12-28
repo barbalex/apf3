@@ -119,7 +119,7 @@ const User = () => {
       })
       // this is easiest way to make sure everything is correct
       // as client is rebuilt with new settings
-      typeof window !== 'undefined' && window.location.reload(true)
+      window.location.reload(true)
     },
     [client, idb.currentUser, name, password],
   )

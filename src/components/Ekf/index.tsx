@@ -97,12 +97,9 @@ const Ekf = () => {
 
   // reset dimensions when window resizes
   useEffect(() => {
-    typeof window !== 'undefined' &&
-      window.addEventListener('resize', setDimensions)
+    window.addEventListener('resize', setDimensions)
     setDimensions()
-    return () =>
-      typeof window !== 'undefined' &&
-      window.removeEventListener('resize', setDimensions)
+    return () => window.removeEventListener('resize', setDimensions)
   }, [setDimensions])
 
   const ekfIds = ekfIdsRaw?.toJSON()

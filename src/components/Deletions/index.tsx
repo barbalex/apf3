@@ -22,7 +22,7 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
-  max-width: ${typeof window !== 'undefined' && window.innerWidth * 0.8}px;
+  max-width: ${window.innerWidth * 0.8}px;
 `
 const Row = styled.div`
   display: flex;
@@ -91,7 +91,7 @@ const Deletions = () => {
   ])
   const toggleChoosenDeletions = useCallback(
     (event) => {
-      let id = event.target.value
+      const id = event.target.value
       let newChoosenDeletions
       if (choosenDeletions.includes(id)) {
         newChoosenDeletions = choosenDeletions.filter((d) => d !== id)
