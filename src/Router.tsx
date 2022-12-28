@@ -2,10 +2,10 @@ import { Routes, Route } from 'react-router-dom'
 
 import Home from './components/Home'
 
-const RouterComponent = () => {
+const RouterComponent = ({ appbarheight }) => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home appbarheight={appbarheight} />} />
     </Routes>
   )
 }
