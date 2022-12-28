@@ -103,16 +103,15 @@ const TpopMarker = ({ treeName, tpop }) => {
       tpop.id,
     ])
   }, [apId, openTree2WithActiveNodeArray, popId, projId, tpop.id])
+
   const openTpopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${
       tpop.id
     }`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [apId, popId, projId, tpop.id])
 
   if (typeof window === 'undefined') return null

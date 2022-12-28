@@ -36,18 +36,12 @@ const BeobZugeordnetMarker = ({ treeName, beob }) => {
     projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
   const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === beob.id
-  const latLng =
-    typeof window !== 'undefined'
-      ? new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
-      : {}
-  const icon =
-    typeof window !== 'undefined'
-      ? window.L.icon({
-          iconUrl: isHighlighted ? beobIconHighlighted : beobIcon,
-          iconSize: [24, 24],
-          className: isHighlighted ? 'beobIconHighlighted' : 'beobIcon',
-        })
-      : {}
+  const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
+  const icon = window.L.icon({
+    iconUrl: isHighlighted ? beobIconHighlighted : beobIcon,
+    iconSize: [24, 24],
+    className: isHighlighted ? 'beobIconHighlighted' : 'beobIcon',
+  })
   // some dates are not valid
   // need to account for that
   let datum = '(kein Datum)'
@@ -123,12 +117,10 @@ const BeobZugeordnetMarker = ({ treeName, beob }) => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}/Beobachtungen/${
       beob.id
     }`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [apId, beob.id, popId, projId, tpopId])
 
   return (

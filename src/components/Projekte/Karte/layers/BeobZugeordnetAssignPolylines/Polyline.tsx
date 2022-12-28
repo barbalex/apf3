@@ -26,18 +26,11 @@ const PolylineComponent = ({ treeName, beob }) => {
   const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
   const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === beob.id
-  const beobLatLng =
-    typeof window !== 'undefined'
-      ? new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
-      : []
+  const beobLatLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
   const tpopLong = beob?.tpopByTpopId?.wgs84Long
   const tpopLat = beob?.tpopByTpopId?.wgs84Lat
   const tpopLatLng =
-    tpopLong && tpopLat
-      ? typeof window !== 'undefined'
-        ? new window.L.LatLng(tpopLat, tpopLong)
-        : []
-      : beobLatLng
+    tpopLong && tpopLat ? new window.L.LatLng(tpopLat, tpopLong) : beobLatLng
   // some dates are not valid
   // need to account for that
   let datum = '(kein Datum)'
@@ -69,12 +62,10 @@ const PolylineComponent = ({ treeName, beob }) => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}/Beobachtungen/${
       beob.id
     }`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [apId, beob.id, popId, projId, tpopId])
 
   const openTpopInTree2 = useCallback(() => {
@@ -89,14 +80,13 @@ const PolylineComponent = ({ treeName, beob }) => {
       tpopId,
     ])
   }, [apId, openTree2WithActiveNodeArray, popId, projId, tpopId])
+
   const openTpopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [apId, popId, projId, tpopId])
 
   return (

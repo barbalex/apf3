@@ -248,11 +248,7 @@ const SortableItem = SortableElement(
                   <StyledIconButton
                     color="inherit"
                     title={`Legende für ${layer.name} öffnen`}
-                    onClick={() => {
-                      if (typeof window !== 'undefined') {
-                        window.open(layer.url, '_blank')
-                      }
-                    }}
+                    onClick={() => window.open(layer.url, '_blank')}
                   >
                     <StyledLegendIcon />
                   </StyledIconButton>

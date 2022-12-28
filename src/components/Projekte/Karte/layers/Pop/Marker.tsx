@@ -68,6 +68,7 @@ const PopMarker = ({ treeName, pop }) => {
       if (isHighlighted) iconUrl = uIconHighlighted
     }
   }
+
   const openPopInTree2 = useCallback(() => {
     openTree2WithActiveNodeArray([
       'Projekte',
@@ -78,19 +79,17 @@ const PopMarker = ({ treeName, pop }) => {
       pop.id,
     ])
   }, [apId, openTree2WithActiveNodeArray, pop.id, projId])
+
   const openPopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${
       pop.id
     }`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [apId, pop.id, projId])
 
-  if (typeof window === 'undefined') return null
   const latLng = new window.L.LatLng(pop.wgs84Lat, pop.wgs84Long)
   const icon = window.L.icon({
     iconUrl,
@@ -101,8 +100,6 @@ const PopMarker = ({ treeName, pop }) => {
     (apfloraLayer) => apfloraLayer.value === 'pop',
   )
   const artname = pop?.apByApId?.aeTaxonomyByArtId?.artname ?? ''
-
-  console.log('Pop Marker', { iconUrl, popIcon })
 
   return (
     <Marker

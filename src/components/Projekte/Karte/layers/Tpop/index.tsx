@@ -86,7 +86,7 @@ const Tpop = ({ treeName, clustered }) => {
       // the crazy thing is:
       // in some areas (not all) the second event
       // has wrong coordinates!!!!
-      typeof window !== 'undefined' && window.L.DomEvent.stopPropagation(event)
+      window.L.DomEvent.stopPropagation(event)
       /**
        * how to update a geometry value?
        * v1: "SRID=4326;POINT(long lat)" https://github.com/graphile/postgraphile/issues/575#issuecomment-372030995

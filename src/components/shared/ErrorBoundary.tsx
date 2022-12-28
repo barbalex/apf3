@@ -33,11 +33,7 @@ const Pre = styled.pre`
 `
 
 const ErrorFallback = ({ error, componentStack, resetErrorBoundary }) => {
-  const onReload = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      window.location.reload(true)
-    }
-  }, [])
+  const onReload = useCallback(() => window.location.reload(true), [])
 
   return (
     <Container>

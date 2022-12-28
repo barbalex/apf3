@@ -86,12 +86,10 @@ const FilterTitle = ({
 
   const onClickInfo = useCallback(() => {
     const url = `${appBaseUrl()}Dokumentation/filter`
-    if (typeof window !== 'undefined') {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        return window.open(url, '_blank', 'toolbar=no')
-      }
-      window.open(url)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return window.open(url, '_blank', 'toolbar=no')
     }
+    window.open(url)
   }, [])
 
   return (

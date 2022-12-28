@@ -272,12 +272,7 @@ const getAndValidateCoordinatesOfBeob = async ({
   return { lv95X, lv95Y }
 }
 
-const TreeContainer = ({
-  treeName,
-  nodes,
-  treeLoading,
-  treeError,
-}) => {
+const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
@@ -522,11 +517,10 @@ const TreeContainer = ({
             client,
           })
           if (lv95X && lv95Y) {
-            typeof window !== 'undefined' &&
-              window.open(
-                `https://maps.zh.ch/?x=${lv95X}&y=${lv95Y}&scale=3000&markers=ring`,
-                'target="_blank"',
-              )
+            window.open(
+              `https://maps.zh.ch/?x=${lv95X}&y=${lv95Y}&scale=3000&markers=ring`,
+              'target="_blank"',
+            )
           }
         },
         async showCoordOfTpopOnMapGeoAdminCh() {
@@ -536,11 +530,10 @@ const TreeContainer = ({
             client,
           })
           if (lv95X && lv95Y) {
-            typeof window !== 'undefined' &&
-              window.open(
-                `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${lv95X}&X=${lv95Y}&zoom=10&crosshair=circle`,
-                'target="_blank"',
-              )
+            window.open(
+              `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${lv95X}&X=${lv95Y}&zoom=10&crosshair=circle`,
+              'target="_blank"',
+            )
           }
         },
         async showCoordOfBeobOnMapsZhCh() {
@@ -550,11 +543,10 @@ const TreeContainer = ({
             client,
           })
           if (lv95X && lv95Y) {
-            typeof window !== 'undefined' &&
-              window.open(
-                `https://maps.zh.ch/?x=${lv95X}&y=${lv95Y}&scale=3000&markers=ring`,
-                'target="_blank"',
-              )
+            window.open(
+              `https://maps.zh.ch/?x=${lv95X}&y=${lv95Y}&scale=3000&markers=ring`,
+              'target="_blank"',
+            )
           }
         },
         async showCoordOfBeobOnMapGeoAdminCh() {
@@ -564,11 +556,10 @@ const TreeContainer = ({
             client,
           })
           if (lv95X && lv95Y) {
-            typeof window !== 'undefined' &&
-              window.open(
-                `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${lv95X}&X=${lv95Y}&zoom=10&crosshair=circle`,
-                'target="_blank"',
-              )
+            window.open(
+              `https://map.geo.admin.ch/?bgLayer=ch.swisstopo.pixelkarte-farbe&Y=${lv95X}&X=${lv95Y}&zoom=10&crosshair=circle`,
+              'target="_blank"',
+            )
           }
         },
       }

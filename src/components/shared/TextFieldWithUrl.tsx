@@ -40,7 +40,6 @@ const TextFieldWithUrl = ({
   type = 'text',
   multiLine = false,
   disabled = false,
-  hintText = '',
 }) => {
   const { onChange, onBlur, value, name } = field
   const { error: errors, handleSubmit } = form
@@ -88,9 +87,7 @@ const TextFieldWithUrl = ({
       {Array.from(urls).map((url, index) => (
         <div key={index} title={`${url} öffnen`}>
           <StyledOpenInNewIcon
-            onClick={() =>
-              typeof window !== 'undefined' && window.open(url, '_blank') 
-            }
+            onClick={() => window.open(url, '_blank')}
             data-id="open-url"
           />
         </div>
