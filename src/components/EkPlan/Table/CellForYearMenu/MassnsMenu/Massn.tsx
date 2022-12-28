@@ -71,12 +71,10 @@ const MassnMenu = ({ tpop, massn, border }) => {
         <StyledListItemText primary={title} />
         <OutsideLink
           onClick={() => {
-            if (typeof window !== 'undefined') {
-              if (window.matchMedia('(display-mode: standalone)').matches) {
-                return window.open(url, '_blank', 'toolbar=no')
-              }
-              window.open(url)
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+              return window.open(url, '_blank', 'toolbar=no')
             }
+            window.open(url)
           }}
           title="in neuem Fenster öffnen"
         >

@@ -62,7 +62,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
   }, [idb])
 
   const onClickUptime = useCallback(() => {
-    typeof window !== 'undefined' && window.open('https://uptime.apflora.ch')
+    window.open('https://uptime.apflora.ch')
     setAnchorEl(null)
   }, [])
 

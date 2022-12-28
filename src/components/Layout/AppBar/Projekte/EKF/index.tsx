@@ -164,29 +164,25 @@ const ProjekteAppBar = () => {
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
   const onClickPrintSingle = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      setEkfMultiPrint(false)
-      setIsPrint(true)
-      setTimeout(() => {
-        window.print()
-        setIsPrint(false)
-      })
-    }
+    setEkfMultiPrint(false)
+    setIsPrint(true)
+    setTimeout(() => {
+      window.print()
+      setIsPrint(false)
+    })
   }, [setEkfMultiPrint, setIsPrint])
   const onClickPrintAll = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      setPreparingEkfMultiprint(true)
-      setEkfMultiPrint(true)
-      setIsPrint(true)
-      // TODO: need to know when all tpopfreiwkontr forms have finisched rendering
-      // idea for hack: use ekfCount to set timeout value?
-      setTimeout(() => {
-        window.print()
-        setIsPrint(false)
-        setPreparingEkfMultiprint(false)
-        setPreparingEkfMultiprint(false)
-      }, 3000 + ekfCount * 300)
-    }
+    setPreparingEkfMultiprint(true)
+    setEkfMultiPrint(true)
+    setIsPrint(true)
+    // TODO: need to know when all tpopfreiwkontr forms have finisched rendering
+    // idea for hack: use ekfCount to set timeout value?
+    setTimeout(() => {
+      window.print()
+      setIsPrint(false)
+      setPreparingEkfMultiprint(false)
+      setPreparingEkfMultiprint(false)
+    }, 3000 + ekfCount * 300)
   }, [ekfCount, setEkfMultiPrint, setIsPrint])
 
   console.log('EKF, isFreiwillig:', isFreiwillig)

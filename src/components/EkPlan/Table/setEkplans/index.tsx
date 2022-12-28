@@ -40,7 +40,7 @@ const setEkplans = async ({
     ekplansToDeleteResult?.data?.allEkplans?.nodes ?? []
   ).map((e) => e.id)
   // 2. delete them
-  for (let id of ekplansToDelete) {
+  for (const id of ekplansToDelete) {
     try {
       await client.mutate({
         mutation: mutationDeleteEkplan,
@@ -87,7 +87,7 @@ const setEkplans = async ({
       },
     })
   }
-  for (let jahr of kontrolljahre) {
+  for (const jahr of kontrolljahre) {
     try {
       await client.mutate({
         mutation: mutationCreateEkplan,
@@ -108,13 +108,11 @@ const setEkplans = async ({
   }
   // 5. tell user how it went
   let jahreList = kontrolljahre.join(', ')
-  if (typeof window !== 'undefined') {
-    const formatter = new Intl.ListFormat('de', {
-      style: 'long',
-      type: 'conjunction',
-    })
-    jahreList = formatter.format(kontrolljahre.map((j) => j.toString()))
-  }
+  const formatter = new Intl.ListFormat('de', {
+    style: 'long',
+    type: 'conjunction',
+  })
+  jahreList = formatter.format(kontrolljahre.map((j) => j.toString()))
   enqueNotification({
     message: `Ab ${ekfrequenzStartjahr} wurden allfällige bestehende EK-Pläne gelöscht und gemäss EK-Frequenz neue für ${
       kontrolljahre.length > 1 ? 'die Jahre' : 'das Jahr'
