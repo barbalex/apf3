@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useNavigate } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -56,12 +57,14 @@ const fieldTypes = {
 const Pop = ({ treeName }) => {
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const {  urlQuery, setUrlQuery } = store
+  const { urlQuery, setUrlQuery } = store
   const { activeNodeArray } = store[treeName]
+
+  const navigate = useNavigate()
 
   const [fieldErrors, setFieldErrors] = useState({})
 
-  let id =
+  const id =
     activeNodeArray.length > 5
       ? activeNodeArray[5]
       : '99999999-9999-9999-9999-999999999999'
@@ -85,10 +88,11 @@ const Pop = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
+        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery],
+    [setUrlQuery, urlQuery, navigate],
   )
 
   const row = useMemo(() => data?.popById ?? {}, [data?.popById])
@@ -146,7 +150,7 @@ const Pop = ({ treeName }) => {
       }
       setFieldErrors({})
     },
-    [client,  row, store.user.name],
+    [client, row, store.user.name],
   )
 
   if (loading) return <Spinner />

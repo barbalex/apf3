@@ -149,6 +149,7 @@ const App = ({ element }) => {
           console.log('App, mst-persist: will initiate data from url')
           initiateDataFromUrl({
             store,
+            navigate,
           })
         }
       }),
@@ -157,6 +158,7 @@ const App = ({ element }) => {
   if (activeNodeArray[0] === 'Projekte') {
     initiateDataFromUrl({
       store,
+      navigate,
     })
   }
   // inform users of old browsers

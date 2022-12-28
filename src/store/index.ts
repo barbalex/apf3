@@ -2,7 +2,6 @@ import { types } from 'mobx-state-tree'
 import cloneDeep from 'lodash/cloneDeep'
 import isEqual from 'lodash/isEqual'
 import queryString from 'query-string'
-import { navigate } from 'gatsby'
 
 import ApfloraLayer from './ApfloraLayer'
 import Copying, { defaultValue as defaultCopying } from './Copying'
@@ -270,6 +269,7 @@ const myTypes = types
       feldkontrTab,
       idealbiotopTab,
       qkTab,
+      navigate,
     }) {
       const newUrlQuery = {
         projekteTabs,

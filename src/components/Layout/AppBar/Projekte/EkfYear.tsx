@@ -2,6 +2,7 @@ import React, { useContext, useState, useCallback, useEffect } from 'react'
 import Input from '@mui/material/Input'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
 
 import initiateDataFromUrl from '../../../../modules/initiateDataFromUrl'
 import storeContext from '../../../../storeContext'
@@ -30,6 +31,8 @@ const EkfYear = () => {
   const store = useContext(storeContext)
   const { ekfYear, setEkfYear } = store
 
+  const navigate = useNavigate()
+
   const [stateValue, setStateValue] = useState(
     ekfYear || ekfYear === 0 ? ekfYear : '',
   )
@@ -37,21 +40,22 @@ const EkfYear = () => {
   useEffect(() => setStateValue(ekfYear), [ekfYear])
 
   const onChange = useCallback(
-    event => setStateValue(event.target.value ? +event.target.value : ''),
+    (event) => setStateValue(event.target.value ? +event.target.value : ''),
     [],
   )
   const onBlur = useCallback(
-    event => {
+    (event) => {
       const newValue = event.target.value ? +event.target.value : ekfRefYear
       setEkfYear(newValue)
       if (ekfYear !== stateValue) {
         initiateDataFromUrl({
           activeNodeArray: ['Projekte'],
           store,
+          navigate,
         })
       }
     },
-    [ekfYear, setEkfYear, stateValue, store],
+    [ekfYear, setEkfYear, stateValue, store, navigate],
   )
 
   return (

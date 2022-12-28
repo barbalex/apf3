@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
+import { useNavigate } from 'react-router-dom'
 
 import LabelFilter from './LabelFilter'
 import ApFilter from './ApFilter'
@@ -277,6 +278,8 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
 
+  const navigate = useNavigate()
+
   const {
     activeApfloraLayers,
     setActiveApfloraLayers,
@@ -345,10 +348,11 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           value: [...projekteTabs, 'karte'],
           urlQuery,
           setUrlQuery,
+          navigate,
         })
       }
     },
-    [setUrlQuery, urlQuery],
+    [setUrlQuery, urlQuery, navigate],
   )
   const handleClick = useCallback(
     (e, data, element) => {

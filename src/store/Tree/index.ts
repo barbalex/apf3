@@ -96,7 +96,9 @@ export default types
     setApFilter(val) {
       self.apFilter = val
     },
-    setActiveNodeArray(val, nonavigate) {
+    // TODO: ensure navigate is passed
+    setActiveNodeArray(val, navigate, nonavigate) {
+      if (!navigate) throw new Error('navigate is not passed')
       if (isEqual(val, self.activeNodeArray)) {
         // do not do this if already set
         // trying to stop vicious cycle of reloading in first start after update
@@ -410,7 +412,7 @@ export default types
       const firstFilterObject = {
         ...(self.popGqlFilter?.filtered?.or?.[0] ?? {}),
       }
-      let entries = Object.entries(firstFilterObject).filter(
+      const entries = Object.entries(firstFilterObject).filter(
         (e) => !['projId', 'apId', 'apByApId', 'geomPoint'].includes(e[0]),
       )
       return entries.length > 0
@@ -428,7 +430,7 @@ export default types
       const projHiearchyFilter = projId
         ? { popByPopId: { apByApId: { projId: { equalTo: projId } } } }
         : {}
-      let singleFilterByHierarchy = nestedObjectAssign(
+      const singleFilterByHierarchy = nestedObjectAssign(
         {},
         // popHierarchyFilter,
         apHiearchyFilter,
@@ -526,7 +528,7 @@ export default types
       const firstFilterObject = {
         ...(self.tpopGqlFilter?.filtered?.or?.[0] ?? {}),
       }
-      let entries = Object.entries(firstFilterObject).filter(
+      const entries = Object.entries(firstFilterObject).filter(
         (e) =>
           !['projId', 'apId', 'popId', 'popByPopId', 'geomPoint'].includes(
             e[0],
@@ -555,7 +557,7 @@ export default types
             },
           }
         : {}
-      let singleFilterByHierarchy = nestedObjectAssign(
+      const singleFilterByHierarchy = nestedObjectAssign(
         {},
         // tpopHierarchyFilter,
         // popHierarchyFilter,
@@ -656,7 +658,7 @@ export default types
         ...(self.tpopmassnGqlFilter?.filtered?.or?.[0] ?? {}),
       }
       // console.log('tpopmassnIsFiltered, firstFilterObject:', firstFilterObject)
-      let entries = Object.entries(firstFilterObject).filter(
+      const entries = Object.entries(firstFilterObject).filter(
         (e) =>
           !['projId', 'apId', 'popId', 'tpopByTpopId', 'geomPoint'].includes(
             e[0],
@@ -685,7 +687,7 @@ export default types
             },
           }
         : {}
-      let singleFilterByHierarchy = nestedObjectAssign(
+      const singleFilterByHierarchy = nestedObjectAssign(
         {},
         {
           or: [
@@ -791,7 +793,7 @@ export default types
       const firstFilterObject = {
         ...(self.ekGqlFilter?.filtered?.or?.[0] ?? {}),
       }
-      let entries = Object.entries(firstFilterObject).filter(
+      const entries = Object.entries(firstFilterObject).filter(
         (e) => !['tpopByTpopId'].includes(e[0]),
       )
       return entries.length > 0
@@ -918,7 +920,7 @@ export default types
       const firstFilterObject = {
         ...(self.ekfGqlFilter?.filtered?.or?.[0] ?? {}),
       }
-      let entries = Object.entries(firstFilterObject).filter(
+      const entries = Object.entries(firstFilterObject).filter(
         (e) => !['tpopByTpopId'].includes(e[0]),
       )
       return entries.length > 0
@@ -965,7 +967,7 @@ export default types
             },
           }
         : {}
-      let singleFilterByHierarchy = nestedObjectAssign(
+      const singleFilterByHierarchy = nestedObjectAssign(
         {},
         // tpopHierarchyFilter,
         // popHierarchyFilter,

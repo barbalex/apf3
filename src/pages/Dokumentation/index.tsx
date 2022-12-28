@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 
 import Sidebar from '../../templates/Sidebar'
@@ -34,6 +33,7 @@ const Doku = styled.div`
   }
 `
 
+// TODO: refactor
 const Template = ({ data }) => {
   const edges = data.allMarkdownRemark.edges
 
@@ -52,25 +52,5 @@ const Template = ({ data }) => {
     </ErrorBoundary>
   )
 }
-
-export const pageQuery = graphql`
-  query {
-    allMarkdownRemark(
-      sort: { frontmatter: { sort: ASC } }
-      filter: { fileAbsolutePath: { regex: "/(/doku)/.*.md$/" } }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD.MM.YYYY")
-            slug
-          }
-        }
-      }
-    }
-  }
-`
 
 export default Template

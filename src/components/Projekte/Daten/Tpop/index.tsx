@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import query from './query'
@@ -86,6 +87,8 @@ const TpopForm = ({ treeName }) => {
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
 
+  const navigate = useNavigate()
+
   const { activeNodeArray } = store[treeName]
   const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
   const onChangeTab = useCallback(
@@ -95,13 +98,14 @@ const TpopForm = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
+        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery],
+    [setUrlQuery, urlQuery, navigate],
   )
 
-  let id =
+  const id =
     activeNodeArray.length > 7
       ? activeNodeArray[7]
       : '99999999-9999-9999-9999-999999999999'
@@ -179,10 +183,9 @@ const TpopForm = ({ treeName }) => {
             (field === 'lv95X' && row?.y))) ||
         (!value && (field === 'ylv95Y' || field === 'lv95X'))
       ) {
-        
-      client.refetchQueries({
-        include: ['TpopForMapQuery', 'PopForMapQuery'],
-      })
+        client.refetchQueries({
+          include: ['TpopForMapQuery', 'PopForMapQuery'],
+        })
       }
       if (Object.keys(fieldErrors).length) {
         setFieldErrors({})

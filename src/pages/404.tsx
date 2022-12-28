@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import Typography from '@mui/material/Typography'
-import { navigate } from 'gatsby'
+import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { StaticImage } from 'gatsby-plugin-image'
 import Button from '@mui/material/Button'
@@ -44,42 +44,42 @@ const bgImageStyle = {
 }
 
 const FourOFour = () => {
-  const onClickBack = useCallback(() => navigate('/'), [])
+  const onClickBack = useCallback(() => navigate('/'), [navigate])
+  const navigate = useNavigate()
 
   return (
     <ErrorBoundary>
       <Container>
-          <div>
-            <StaticImage
-              style={bgImageStyle}
-              src="../images/ophr-ara.jpg"
-              alt="Ophrys"
-              layout="fullWidth"
-            />
-            <TextContainer>
-              <PageTitle align="center" variant="h6">
-                Oh je
-              </PageTitle>
-            </TextContainer>
-            <TextContainer>
-              <Text align="center" variant="h6">
-                Diese Seite ist nicht verfügbar.
-              </Text>
-            </TextContainer>
-            <TextContainer>
-              <StyledButton
-                variant="outlined"
-                onClick={onClickBack}
-                color="inherit"
-              >
-                Zurück zur Startseite
-              </StyledButton>
-            </TextContainer>
-          </div>
+        <div>
+          <StaticImage
+            style={bgImageStyle}
+            src="../images/ophr-ara.jpg"
+            alt="Ophrys"
+            layout="fullWidth"
+          />
+          <TextContainer>
+            <PageTitle align="center" variant="h6">
+              Oh je
+            </PageTitle>
+          </TextContainer>
+          <TextContainer>
+            <Text align="center" variant="h6">
+              Diese Seite ist nicht verfügbar.
+            </Text>
+          </TextContainer>
+          <TextContainer>
+            <StyledButton
+              variant="outlined"
+              onClick={onClickBack}
+              color="inherit"
+            >
+              Zurück zur Startseite
+            </StyledButton>
+          </TextContainer>
+        </div>
       </Container>
     </ErrorBoundary>
   )
 }
 
 export default FourOFour
-

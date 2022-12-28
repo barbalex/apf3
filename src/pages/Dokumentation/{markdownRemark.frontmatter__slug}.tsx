@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 
 import Layout from '../../components/Layout'
@@ -51,6 +50,7 @@ const Title = styled.h1`
   padding-top: 25px;
 `
 
+// TODO: refactor
 const BenutzerDokuTemplate = ({ data }) => {
   const frontmatter = data?.markdownRemark?.frontmatter
   const html = data?.markdownRemark?.html
@@ -78,33 +78,5 @@ const BenutzerDokuTemplate = ({ data }) => {
     </ErrorBoundary>
   )
 }
-
-export const pageQuery = graphql`
-  query ($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        date(formatString: "DD.MM.YYYY")
-        slug
-        title
-        pdf
-      }
-    }
-    allMarkdownRemark(
-      sort: { frontmatter: { sort: ASC } } # filter: { fileAbsolutePath: { regex: "/(/doku)/.*.md$/" } }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD.MM.YYYY")
-            slug
-          }
-        }
-      }
-    }
-  }
-`
 
 export default BenutzerDokuTemplate

@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useNavigate } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -110,6 +111,8 @@ const TpopfeldkontrFilter = ({ treeName }) => {
     // tpopIdInActiveNodeArray,
   } = store[treeName]
 
+  const navigate = useNavigate()
+
   const apId = apIdInActiveNodeArray
   // const popId = popIdInActiveNodeArray
   // const tpopId = tpopIdInActiveNodeArray
@@ -141,10 +144,11 @@ const TpopfeldkontrFilter = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
+        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery],
+    [setUrlQuery, urlQuery, navigate],
   )
 
   const saveToDb = useCallback(

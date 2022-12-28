@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
 
 import Ap from './Ap'
 import Auswertung from './Auswertung'
@@ -31,7 +32,9 @@ const ApTabs = ({ treeName }) => {
   const { urlQuery, setUrlQuery } = store
   const { activeNodeArray } = store[treeName]
 
-  let id =
+  const navigate = useNavigate()
+
+  const id =
     activeNodeArray.length > 3
       ? activeNodeArray[3]
       : '99999999-9999-9999-9999-999999999999'
@@ -44,10 +47,11 @@ const ApTabs = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
+        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery],
+    [navigate, setUrlQuery, urlQuery],
   )
 
   return (

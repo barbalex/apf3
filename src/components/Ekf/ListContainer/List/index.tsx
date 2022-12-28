@@ -5,6 +5,7 @@ import sortBy from 'lodash/sortBy'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import SimpleBar from 'simplebar-react'
+import { useNavigate } from 'react-router-dom'
 
 import Item from './Item'
 import storeContext from '../../../../storeContext'
@@ -55,6 +56,8 @@ const EkfList = ({ data, loading }) => {
   const ekf = getEkfFromData({ data, ekfAdresseId })
   setEkfIds(ekf.map((e) => e.id))
 
+  const navigate = useNavigate()
+
   const { activeNodeArray, treeWidth } = tree
   const activeTpopkontrId =
     activeNodeArray.length > 9
@@ -84,9 +87,10 @@ const EkfList = ({ data, loading }) => {
       initiateDataFromUrl({
         activeNodeArray: url,
         store,
+        navigate,
       })
     }
-  }, [ekfYear, ekf.length, ekf, activeTpopkontrId, store])
+  }, [ekfYear, ekf.length, ekf, activeTpopkontrId, store, navigate])
 
   if (!loading && ekf.length === 0) {
     return (

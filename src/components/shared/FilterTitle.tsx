@@ -4,7 +4,6 @@ import { FaTrash, FaTrashAlt, FaRegTrashAlt } from 'react-icons/fa'
 import { MdInfoOutline } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'gatsby'
 
 import storeContext from '../../storeContext'
 import exists from '../../modules/exists'
