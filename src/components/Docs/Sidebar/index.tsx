@@ -28,20 +28,17 @@ const MenuTitleLink = styled(Link)`
   }
 `
 
-const Sidebar = ({ title, titleLink, edges = [] }) => {
-  console.log('Sidebar', { title, titleLink, edges })
+const Sidebar = ({ nodes = [] }) => {
   const store = useContext(storeContext)
   const { dokuFilter, setDokuFilter } = store
 
-  const items = edges
-    .filter((n) => !!n && !!n.node)
-    .filter((n) =>
-      dokuFilter
-        ? (n?.node?.frontmatter?.title ?? '(Titel fehlt)')
-            .toLowerCase()
-            .includes(dokuFilter.toLowerCase())
-        : true,
-    )
+  const items = nodes.filter((n) =>
+    dokuFilter
+      ? (n?.title ?? '(Titel fehlt)')
+          .toLowerCase()
+          .includes(dokuFilter.toLowerCase())
+      : true,
+  )
 
   return (
     <Menu>
