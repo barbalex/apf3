@@ -16,8 +16,6 @@ const LegacyBrowserInformer = () => {
     module.default(browserUpdateConfiguration),
   )
 
-  console.log('LegacyBrowserInformer rendering')
-
   return null
 }
 
