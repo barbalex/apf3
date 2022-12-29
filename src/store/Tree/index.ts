@@ -103,10 +103,10 @@ export default types
       }
       if (self.name === 'tree' && !nonavigate) {
         const store = getParent(self)
-        const { urlQuery } = store
+        const { urlQuery, navigate } = store
         const search = queryString.stringify(urlQuery)
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
-        store.navigate(`/Daten/${val.join('/')}${query}`)
+        navigate?.(`/Daten/${val.join('/')}${query}`)
       }
       self.activeNodeArray = val
     },
