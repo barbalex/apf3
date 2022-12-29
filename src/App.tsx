@@ -51,6 +51,7 @@ import Router from './Router'
 import IsPrintSetter from './components/IsPrintSetter'
 import LastTouchedNodeSetter from './components/LastTouchedNodeSetter'
 import ActiveNodeArraySetter from './components/ActiveNodeArraySetter'
+import NavigateSetter from './components/NavigateSetter'
 
 registerLocale('de', de)
 setDefaultLocale('de')
@@ -134,14 +135,12 @@ const App = () => {
         const username = await setUserFromIdb({ idb, store })
         const isUser = !!username
 
-        store.setNavigate(navigate)
-
         // window.store = store
 
         // set last activeNodeArray
         // only if top domain was visited
         if (isUser && visitedTopDomain) {
-          console.log('App, mst-persist: will navigate')
+          // console.log('App, mst-persist: will navigate')
           const { urlQuery } = store
           const search = queryString.stringify(urlQuery)
           const query = `${
@@ -196,6 +195,8 @@ const App = () => {
 
   window.store = store
 
+  console.log('App rendering')
+
   return (
     <IdbProvider value={idbContext}>
       <MobxProvider value={store}>
@@ -217,6 +218,7 @@ const App = () => {
                   <IsPrintSetter />
                   <LastTouchedNodeSetter />
                   <ActiveNodeArraySetter />
+                  <NavigateSetter />
                 </>
               </SnackbarProvider>
             </ThemeProvider>
