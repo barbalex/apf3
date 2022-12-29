@@ -65,8 +65,6 @@ const App = () => {
     })
   }
 
-  //onPatch(store, patch => console.log(patch))
-
   console.log('App rendering')
 
   return (
