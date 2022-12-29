@@ -111,7 +111,7 @@ const StorePersister = () => {
           const url = `/Daten/${store.tree.activeNodeArray.join('/')}${query}`
           console.log('App, mst-persist: will navigate to url:', url)
 
-          return store.navigate(url)
+          return store.navigate?.(url)
         }
         const activeNodeArray = getActiveNodeArrayFromPathname()
         if (activeNodeArray[0] === 'Projekte') {

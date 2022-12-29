@@ -28,7 +28,7 @@ const MenuTitleLink = styled(Link)`
   }
 `
 
-const Sidebar = ({ title, titleLink, edges }) => {
+const Sidebar = ({ title, titleLink, edges = [] }) => {
   console.log('Sidebar', { title, titleLink, edges })
   const store = useContext(storeContext)
   const { dokuFilter, setDokuFilter } = store
@@ -46,7 +46,7 @@ const Sidebar = ({ title, titleLink, edges }) => {
   return (
     <Menu>
       <MenuTitle>
-        <MenuTitleLink to={titleLink}>{title}</MenuTitleLink>
+        <MenuTitleLink to="/Dokumentation/">Dokumentation</MenuTitleLink>
         <Filter filter={dokuFilter} setFilter={setDokuFilter} />
       </MenuTitle>
       <MenuItems items={items} />

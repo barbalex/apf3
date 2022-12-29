@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import Sidebar from '../../templates/Sidebar'
-import ErrorBoundary from '../../components/shared/ErrorBoundary'
+import Sidebar from './Sidebar'
+import ErrorBoundary from '../shared/ErrorBoundary'
 
 const Container = styled.div`
   height: ${(props) => `calc(100% - ${props.appbarheight}px)`};
@@ -34,17 +34,11 @@ const Doku = styled.div`
 `
 
 // TODO: refactor
-const Template = ({ data }) => {
-  const edges = data.allMarkdownRemark.edges
-
+const Docs = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <Sidebar
-          title="Dokumentation"
-          titleLink="/Dokumentation/"
-          edges={edges}
-        />
+        <Sidebar />
         <Doku>
           <p>{`<= Bitte wählen Sie ein Thema.`}</p>
         </Doku>
@@ -53,4 +47,4 @@ const Template = ({ data }) => {
   )
 }
 
-export default Template
+export default Docs

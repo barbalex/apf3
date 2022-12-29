@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Daten from './components/Daten'
 import EkPlan from './components/EkPlan'
 import FourOhFour from './components/404'
+import Docs from './components/Docs'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -14,6 +15,9 @@ const RouterComponent = () => (
     {/* <Route path="/*" element={<Unterhalt />}></Route> */}
     <Route path="/Daten/*" element={<Daten />}></Route>
     <Route path="/Daten/Projekte/:projektId/EK-Planung" element={<EkPlan />} />
+    <Route path="/Dokumentation/*" element={<Docs />}>
+      <Route path="technische-voraussetzungen" element={<div>TODO:</div>} />
+    </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
 )
