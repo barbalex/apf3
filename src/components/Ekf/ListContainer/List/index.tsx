@@ -19,6 +19,7 @@ const Container = styled.div`
 `
 const Scrollcontainer = styled.div`
   overflow-y: auto;
+  height: 100%;
 `
 const NoDataContainer = styled.div`
   padding 15px;
