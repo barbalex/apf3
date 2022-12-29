@@ -12,7 +12,6 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import { useNavigate } from 'react-router-dom'
 
 import LabelFilter from './LabelFilter'
 import ApFilter from './ApFilter'
@@ -278,8 +277,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
 
-  const navigate = useNavigate()
-
   const {
     activeApfloraLayers,
     setActiveApfloraLayers,
@@ -348,11 +345,10 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           value: [...projekteTabs, 'karte'],
           urlQuery,
           setUrlQuery,
-          navigate,
         })
       }
     },
-    [setUrlQuery, urlQuery, navigate],
+    [setUrlQuery, urlQuery],
   )
   const handleClick = useCallback(
     (e, data, element) => {
@@ -382,7 +378,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           },
         })
       }
-      let id = firstElementChild.getAttribute('data-id')
+      const id = firstElementChild.getAttribute('data-id')
       const parentId = firstElementChild.getAttribute('data-parentid')
       const urlPassed = firstElementChild.getAttribute('data-url')
       const url = JSON.parse(urlPassed)

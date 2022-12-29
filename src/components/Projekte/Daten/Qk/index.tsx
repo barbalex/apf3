@@ -5,7 +5,6 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useNavigate } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
@@ -40,8 +39,6 @@ const QkForm = ({ treeName }) => {
   const { activeNodeArray } = store[treeName]
   const apId = activeNodeArray[3]
 
-  const navigate = useNavigate()
-
   const { data, loading, error, refetch } = useQuery(queryQk, {
     variables: { apId },
     fetchPolicy: 'no-cache',
@@ -72,11 +69,10 @@ const QkForm = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
-        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery, navigate],
+    [setUrlQuery, urlQuery],
   )
 
   if (error) return <Error error={error} />

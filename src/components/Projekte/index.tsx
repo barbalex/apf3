@@ -250,7 +250,7 @@ const Projekte = () => {
     treeLoading,
   ])
 
-  // console.log('Projekte rendering')
+  console.log('Projekte rendering')
 
   if (tree2Tabs.length === 0 || isPrint) {
     return (

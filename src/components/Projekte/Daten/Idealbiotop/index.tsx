@@ -5,7 +5,6 @@ import { useApolloClient, useQuery, gql } from '@apollo/client'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import SimpleBar from 'simplebar-react'
-import { useNavigate } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import DateField from '../../../shared/Date'
@@ -88,8 +87,6 @@ const Idealbiotop = ({ treeName }) => {
   const { urlQuery, setUrlQuery } = store
   const client = useApolloClient()
 
-  const navigate = useNavigate()
-
   const [fieldErrors, setFieldErrors] = useState({})
 
   const [tab, setTab] = useState(urlQuery?.idealbiotopTab ?? 'idealbiotop')
@@ -160,11 +157,10 @@ const Idealbiotop = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
-        navigate,
       })
       setTab(value)
     },
-    [navigate, setUrlQuery, urlQuery],
+    [setUrlQuery, urlQuery],
   )
 
   const columnWidth =

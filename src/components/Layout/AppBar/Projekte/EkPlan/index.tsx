@@ -4,7 +4,7 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
@@ -49,8 +49,6 @@ const EkPlanAppBar = () => {
     tree,
   } = store
 
-  const navigate = useNavigate()
-
   /**
    * need to clone projekteTabs
    * because otherwise removing elements errors out (because elements are sealed)
@@ -71,7 +69,6 @@ const EkPlanAppBar = () => {
           value: [name],
           urlQuery,
           setUrlQuery,
-          navigate,
         })
       } else {
         if (projekteTabs.includes(name)) {
@@ -92,7 +89,6 @@ const EkPlanAppBar = () => {
           value: projekteTabs,
           urlQuery,
           setUrlQuery,
-          navigate,
         })
       }
     },
@@ -100,7 +96,6 @@ const EkPlanAppBar = () => {
       isMobile,
       urlQuery,
       setUrlQuery,
-      navigate,
       projekteTabs,
       cloneTree2From1,
       dataFilterClone1To2,

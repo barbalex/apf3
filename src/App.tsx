@@ -144,9 +144,10 @@ const App = () => {
           const query = `${
             Object.keys(urlQuery).length > 0 ? `?${search}` : ''
           }`
-          return navigate(
-            `/Daten/${store.tree.activeNodeArray.join('/')}${query}`,
-          )
+          const url = `/Daten/${store.tree.activeNodeArray.join('/')}${query}`
+          console.log('App, mst-persist: will navigate to url:', url)
+
+          return store.navigate(url)
         }
         const activeNodeArray = getActiveNodeArrayFromPathname()
         if (activeNodeArray[0] === 'Projekte') {
@@ -158,6 +159,7 @@ const App = () => {
         }
       }),
   )
+
   const activeNodeArray = getActiveNodeArrayFromPathname()
   if (activeNodeArray[0] === 'Projekte') {
     initiateDataFromUrl({

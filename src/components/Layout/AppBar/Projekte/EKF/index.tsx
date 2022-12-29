@@ -6,7 +6,7 @@ import { keyframes } from '@emotion/react'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MdPrint, MdHourglassEmpty } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
@@ -84,8 +84,6 @@ const ProjekteAppBar = () => {
   const { ekfIdInActiveNodeArray } = store.tree
   const ekfIsActive = !!ekfIdInActiveNodeArray
 
-  const navigate = useNavigate()
-
   /**
    * need to clone projekteTabs
    * because otherwise removing elements errors out (because elements are sealed)
@@ -126,7 +124,6 @@ const ProjekteAppBar = () => {
           value: [name],
           urlQuery,
           setUrlQuery,
-          navigate,
         })
       } else {
         if (projekteTabs.includes(name)) {
@@ -147,7 +144,6 @@ const ProjekteAppBar = () => {
           value: projekteTabs,
           urlQuery,
           setUrlQuery,
-          navigate,
         })
       }
     },
@@ -155,7 +151,6 @@ const ProjekteAppBar = () => {
       isMobile,
       urlQuery,
       setUrlQuery,
-      navigate,
       projekteTabs,
       cloneTree2From1,
       dataFilterClone1To2,

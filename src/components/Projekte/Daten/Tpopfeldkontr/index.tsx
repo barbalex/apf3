@@ -5,7 +5,6 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useNavigate } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -129,8 +128,6 @@ const Tpopfeldkontr = ({ treeName }) => {
   const { urlQuery, setUrlQuery } = store
   const { activeNodeArray, formWidth } = store[treeName]
 
-  const navigate = useNavigate()
-
   const [fieldErrors, setFieldErrors] = useState({})
 
   const id =
@@ -152,11 +149,10 @@ const Tpopfeldkontr = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
-        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery, navigate],
+    [setUrlQuery, urlQuery],
   )
 
   const row = data?.tpopkontrById ?? {}

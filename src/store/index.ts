@@ -273,7 +273,6 @@ const myTypes = types
       feldkontrTab,
       idealbiotopTab,
       qkTab,
-      navigate,
     }) {
       const newUrlQuery = {
         projekteTabs,
@@ -293,7 +292,7 @@ const myTypes = types
           Object.keys(newUrlQuery).length > 0 ? `?${search}` : ''
         }`
         const { activeNodeArray } = self.tree
-        navigate(`/Daten/${activeNodeArray.join('/')}${query}`)
+        self.navigate?.(`/Daten/${activeNodeArray.join('/')}${query}`)
       }
     },
     setMoving({ table, id, label }) {

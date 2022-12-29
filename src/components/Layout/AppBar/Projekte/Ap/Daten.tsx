@@ -3,7 +3,6 @@ import Button from '@mui/material/Button'
 import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { useNavigate } from 'react-router-dom'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
@@ -38,8 +37,6 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
     useContext(storeContext)
   const { activeNodeArray } = tree
 
-  const navigate = useNavigate()
-
   const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
   const isDaten = projekteTabs.includes(`daten${treeNr}`)
   const isTree = projekteTabs.includes(`tree${treeNr}`)
@@ -57,7 +54,6 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
         value: [`daten${treeNr}`],
         urlQuery,
         setUrlQuery,
-        navigate,
       })
     } else {
       if (copyOfProjekteTabs.includes(`daten${treeNr}`)) {
@@ -74,13 +70,11 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
         value: copyOfProjekteTabs,
         urlQuery,
         setUrlQuery,
-        navigate,
       })
     }
   }, [
     cloneTree2From1,
     dataFilterClone1To2,
-    navigate,
     projekteTabs,
     setUrlQuery,
     treeNr,

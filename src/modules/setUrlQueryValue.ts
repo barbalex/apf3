@@ -1,4 +1,4 @@
-const setUrlQueryValue = async ({ key, value, urlQuery, setUrlQuery, navigate }) => {
+const setUrlQueryValue = async ({ key, value, urlQuery, setUrlQuery }) => {
   let {
     projekteTabs,
     popTab,
@@ -34,7 +34,7 @@ const setUrlQueryValue = async ({ key, value, urlQuery, setUrlQuery, navigate })
     apTab,
     feldkontrTab,
     idealbiotopTab,
-    qkTab,navigate
+    qkTab
   })
 }
 

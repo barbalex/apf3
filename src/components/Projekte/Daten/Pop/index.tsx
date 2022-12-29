@@ -6,7 +6,6 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useNavigate } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -60,8 +59,6 @@ const Pop = ({ treeName }) => {
   const { urlQuery, setUrlQuery } = store
   const { activeNodeArray } = store[treeName]
 
-  const navigate = useNavigate()
-
   const [fieldErrors, setFieldErrors] = useState({})
 
   const id =
@@ -88,11 +85,10 @@ const Pop = ({ treeName }) => {
         value,
         urlQuery,
         setUrlQuery,
-        navigate,
       })
       setTab(value)
     },
-    [setUrlQuery, urlQuery, navigate],
+    [setUrlQuery, urlQuery],
   )
 
   const row = useMemo(() => data?.popById ?? {}, [data?.popById])

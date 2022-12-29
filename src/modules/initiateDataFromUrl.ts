@@ -7,7 +7,6 @@ import setOpenNodesFromActiveNodeArray from '../modules/setOpenNodesFromActiveNo
 const initiateDataFromUrl = ({
   activeNodeArray: activeNodeArrayPassed,
   store,
-  navigate,
 }) => {
   const { setUrlQuery, cloneTree2From1 } = store
   const activeNodeArrayFromPathname =
@@ -24,7 +23,7 @@ const initiateDataFromUrl = ({
   })
   // clone tree2 in case tree2 is open
   cloneTree2From1()
-  setUrlQuery({ ...urlQuery, navigate })
+  setUrlQuery(urlQuery)
 
   // set projekte tabs of not yet existing
   if (
@@ -37,7 +36,6 @@ const initiateDataFromUrl = ({
         value: ['tree'],
         urlQuery,
         setUrlQuery,
-        navigate,
       })
     } else {
       setUrlQueryValue({
@@ -45,7 +43,6 @@ const initiateDataFromUrl = ({
         value: ['tree', 'daten'],
         urlQuery,
         setUrlQuery,
-        navigate,
       })
     }
   }
