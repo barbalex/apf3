@@ -6,6 +6,7 @@ import Daten from './components/Daten'
 import EkPlan from './components/EkPlan'
 import FourOhFour from './components/404'
 import Docs from './components/Docs'
+import WasKannApflora from './components/Docs/docs/WasKannApflora'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -16,7 +17,10 @@ const RouterComponent = () => (
     <Route path="/Daten/*" element={<Daten />}></Route>
     <Route path="/Daten/Projekte/:projektId/EK-Planung" element={<EkPlan />} />
     <Route path="/Dokumentation/*" element={<Docs />}>
-      <Route path="technische-voraussetzungen" element={<div>TODO:</div>} />
+      <Route
+        path="was-kann-man-mit-apflora-machen"
+        element={<WasKannApflora />}
+      />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

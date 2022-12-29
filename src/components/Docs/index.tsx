@@ -34,6 +34,10 @@ const Doku = styled.div`
     margin-bottom: 10px;
   }
 `
+export const DokuDate = styled.p`
+  margin-bottom: 15px !important;
+  color: grey;
+`
 
 // TODO: refactor
 const Docs = () => {
