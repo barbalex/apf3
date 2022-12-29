@@ -1,17 +1,19 @@
 import { useContext, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import isEqual from 'lodash/isEqual'
+import { useLocation } from 'react-router-dom'
 
 import storeContext from '../storeContext'
 import getActiveNodeArrayFromPathname from '../modules/getActiveNodeArrayFromPathname'
 
-const ActiveNodeArraySetter = ({ location }) => {
+const ActiveNodeArraySetter = () => {
   const store = useContext(storeContext)
   const { activeNodeArray, setActiveNodeArray } = store.tree
 
+  const { pathname } = useLocation()
+
   // when pathname changes, update activeNodeArray
   // seems no more needed?
-  const { pathname } = location
   useEffect(() => {
     const newAna = getActiveNodeArrayFromPathname(pathname)
     if (!isEqual(newAna, activeNodeArray.slice())) {
