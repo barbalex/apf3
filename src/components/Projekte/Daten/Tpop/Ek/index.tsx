@@ -50,8 +50,8 @@ const StyledTable = styled(Table)`
   tbody tr:nth-of-type(even) {
     background: rgba(128, 128, 128, 0.05);
   }
-  th:first-child,
-  td:first-child {
+  th:first-of-type,
+  td:first-of-type {
     padding-left: 10px;
   }
 `

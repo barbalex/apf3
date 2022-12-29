@@ -38,8 +38,8 @@ const FieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  > div:first-child {
-    > div:first-child {
+  > div:first-of-type {
+    > div:first-of-type {
       display: block !important;
     }
   }

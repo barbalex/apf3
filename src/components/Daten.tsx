@@ -4,6 +4,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
+import { getSnapshot } from 'mobx-state-tree'
 
 import storeContext from '../storeContext'
 import Projekte from './Projekte'
@@ -29,22 +30,23 @@ const Container = styled.div`
 const DatenComponent = () => {
   const store = useContext(storeContext)
   const { view, showDeletions, user } = store
-  const { activeNodeArray } = store.tree
+  const { activeNodeArray: aNARAw } = store.tree
+  const activeNodeArray = getSnapshot(aNARAw)
 
-  const isEkPlan =
-    activeNodeArray.length === 3 &&
-    activeNodeArray[0] === 'Projekte' &&
-    activeNodeArray[2] === 'EK-Planung'
-  const form = useMemo(
-    () => (isEkPlan ? 'ekplan' : view === 'ekf' ? 'ekf' : 'projekte'),
-    [isEkPlan, view],
-  )
+  const form = useMemo(() => {
+    const isEkPlan =
+      activeNodeArray.length === 3 &&
+      activeNodeArray[0] === 'Projekte' &&
+      activeNodeArray[2] === 'EK-Planung'
+
+    return isEkPlan ? 'ekplan' : view === 'ekf' ? 'ekf' : 'projekte'
+  }, [activeNodeArray, view])
 
   // set unterhalt to true to show this page when servicing
   const unterhalt = false
   if (unterhalt) return <Unterhalt />
 
-  console.log('DatenPageComponent', { token: user.token, form, showDeletions })
+  console.log('DatenPageComponent rendering')
 
   // using render props on Layout to pass down appbarheight without using store
   return (
