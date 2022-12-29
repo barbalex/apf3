@@ -6,13 +6,7 @@ const getActiveForm = ({ store, treeName, nodes }) => {
   const { activeNodeArray } = store[treeName]
 
   let key
-  if (
-    activeNodeArray.length === 3 &&
-    activeNodeArray[0] === 'Projekte' &&
-    activeNodeArray[2] === 'EK-Planung'
-  ) {
-    key = 'ekplan'
-  } else if (activeNodeArray.length > 2 && activeNodeArray[2] === 'Exporte') {
+  if (activeNodeArray.length > 2 && activeNodeArray[2] === 'Exporte') {
     key = 'exporte'
   } else if (
     activeNodeArray.length > 4 &&
@@ -49,7 +43,6 @@ const getActiveForm = ({ store, treeName, nodes }) => {
     case 'assozart':
     case 'currentIssue':
     case 'message':
-    case 'ekplan':
     case 'ekzaehleinheit':
     case 'ekfrequenz':
     case 'erfkrit':

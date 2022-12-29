@@ -8,7 +8,7 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
-import intersection from 'lodash/intersection'
+import intersection from 'lodash/intersection' 
 import { observer } from 'mobx-react-lite'
 import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
