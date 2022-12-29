@@ -1,8 +1,5 @@
 // This is the entry file for the application
 import React from 'react'
-// importing isomorphic-fetch is essential
-// otherwise apollo errors during the build
-// see: https://github.com/gatsbyjs/gatsby/issues/11225#issuecomment-457211628
 import queryString from 'query-string'
 
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
@@ -52,6 +49,7 @@ import IsPrintSetter from './components/IsPrintSetter'
 import LastTouchedNodeSetter from './components/LastTouchedNodeSetter'
 import ActiveNodeArraySetter from './components/ActiveNodeArraySetter'
 import NavigateSetter from './components/NavigateSetter'
+import MouseWheelHandler from './components/MouseWheelHandler'
 
 registerLocale('de', de)
 setDefaultLocale('de')
@@ -73,6 +71,7 @@ const App = () => {
     'overlays', // 2022.10.26 added overlay. Need to refresh or users will not get new ones
     'apfloraLayers', // 2022.10.28 added. Need to refresh or users will not get new ones
   ]
+
   import('mst-persist').then((module) =>
     module
       .default('store', store, {
@@ -140,7 +139,6 @@ const App = () => {
         // set last activeNodeArray
         // only if top domain was visited
         if (isUser && visitedTopDomain) {
-          // console.log('App, mst-persist: will navigate')
           const { urlQuery } = store
           const search = queryString.stringify(urlQuery)
           const query = `${
@@ -219,6 +217,7 @@ const App = () => {
                   <LastTouchedNodeSetter />
                   <ActiveNodeArraySetter />
                   <NavigateSetter />
+                  <MouseWheelHandler />
                 </>
               </SnackbarProvider>
             </ThemeProvider>

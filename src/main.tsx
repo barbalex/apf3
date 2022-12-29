@@ -23,15 +23,17 @@ registerSW({
   },
 })
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+  // todo: causes mstPersist to run twice
+  // .render(
+  //   <React.StrictMode>
+  //     <BrowserRouter>
+  //       <App />
+  //     </BrowserRouter>
+  //   </React.StrictMode>,
+  // )
+  .render(
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-)
-// .render(
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>,
-// )
+    </BrowserRouter>,
+  )
