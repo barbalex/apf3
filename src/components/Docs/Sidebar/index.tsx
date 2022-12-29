@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
-import storeContext from '../../storeContext'
+import storeContext from '../../../storeContext'
 import MenuItems from './MenuItems'
 import Filter from './Filter'
 

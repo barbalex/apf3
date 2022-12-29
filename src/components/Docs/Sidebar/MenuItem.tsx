@@ -7,7 +7,7 @@ const MenuItem = ({ node }) => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const activeUrl = `/Dokumentation/${node.frontmatter.slug}`
+  const activeUrl = `/Dokumentation/${node?.slug}`
   const active =
     activeUrl === location.pathname || `${activeUrl}/` === location.pathname
 
@@ -20,7 +20,7 @@ const MenuItem = ({ node }) => {
     <>
       <ListItemButton onClick={onClickMenuItem} selected={active} divider dense>
         <ListItemText onClick={onClickMenuItem}>
-          {node?.frontmatter?.title ?? '(Titel fehlt)'}
+          {node?.title ?? '(Titel fehlt)'}
         </ListItemText>
       </ListItemButton>
     </>
