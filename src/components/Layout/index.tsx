@@ -5,7 +5,9 @@ import { useResizeDetector } from 'react-resize-detector'
 import AppBar from './AppBar'
 
 const Container = styled.div`
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   @media print {
     height: auto;
