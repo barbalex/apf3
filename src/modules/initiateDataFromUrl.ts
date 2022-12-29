@@ -5,7 +5,7 @@ import setUrlQueryValue from '../modules/setUrlQueryValue'
 import setOpenNodesFromActiveNodeArray from '../modules/setOpenNodesFromActiveNodeArray'
 
 const initiateDataFromUrl = ({
-  activeNodeArray: activeNodeArrayPassed,
+  activeNodeArray: activeNodeArrayPassed,  
   store,
 }) => {
   const { setUrlQuery, cloneTree2From1 } = store

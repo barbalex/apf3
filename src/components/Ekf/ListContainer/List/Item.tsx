@@ -1,7 +1,6 @@
 import React, { useCallback, useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { useNavigate } from 'react-router-dom'
 
 import initiateDataFromUrl from '../initiateDataFromUrl'
 import storeContext from '../../../../storeContext'
@@ -36,8 +35,6 @@ const EkfList = ({ activeTpopkontrId, projektCount, style, row }) => {
   const store = useContext(storeContext)
   const innerContainerHeight = projektCount > 1 ? 110 : 91
 
-  const navigate = useNavigate()
-
   const onClick = useCallback(() => {
     const url = [
       'Projekte',
@@ -54,9 +51,8 @@ const EkfList = ({ activeTpopkontrId, projektCount, style, row }) => {
     initiateDataFromUrl({
       activeNodeArray: url,
       store,
-      navigate,
     })
-  }, [row.apId, row.id, row.popId, row.projId, row.tpopId, store, navigate])
+  }, [row.apId, row.id, row.popId, row.projId, row.tpopId, store])
 
   return (
     <OuterContainer

@@ -10,7 +10,6 @@ import { ApolloProvider } from '@apollo/client'
 import localForage from 'localforage'
 import MobxStore from './store'
 import { SnackbarProvider } from 'notistack'
-import { useNavigate } from 'react-router-dom'
 //import { onPatch } from 'mobx-state-tree'
 import { getSnapshot } from 'mobx-state-tree'
 
@@ -59,8 +58,6 @@ const App = () => {
   const store = MobxStore.create()
   const client = buildClient({ store })
   const idbContext = { idb }
-
-  const navigate = useNavigate()
 
   const visitedTopDomain = window.location.pathname === '/'
   const blacklist = [
@@ -134,7 +131,14 @@ const App = () => {
         const username = await setUserFromIdb({ idb, store })
         const isUser = !!username
 
-        // window.store = store
+        if (window.Cypress) {
+          // enable directly using these in tests
+          window.__client__ = client
+          window.__store__ = store
+          window.__idb__ = idb
+        }
+
+        window.store = store
 
         // set last activeNodeArray
         // only if top domain was visited
@@ -154,19 +158,20 @@ const App = () => {
           console.log('App, mst-persist: will initiate data from url')
           initiateDataFromUrl({
             store,
-            navigate,
           })
         }
       }),
   )
 
+  // initiate now even if mst-persist is not finished
+  // this prevents ui-flickering
   const activeNodeArray = getActiveNodeArrayFromPathname()
   if (activeNodeArray[0] === 'Projekte') {
     initiateDataFromUrl({
       store,
-      navigate,
     })
   }
+
   // inform users of old browsers
   const browserUpdateConfiguration = {
     required: { e: -2, f: -2, o: -2, s: -2, c: -2 },
@@ -185,15 +190,6 @@ const App = () => {
   )
 
   //onPatch(store, patch => console.log(patch))
-
-  if (window.Cypress) {
-    // enable directly using these in tests
-    window.__client__ = client
-    window.__store__ = store
-    window.__idb__ = idb
-  }
-
-  window.store = store
 
   console.log('App rendering')
 

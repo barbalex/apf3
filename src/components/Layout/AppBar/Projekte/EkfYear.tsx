@@ -2,7 +2,6 @@ import React, { useContext, useState, useCallback, useEffect } from 'react'
 import Input from '@mui/material/Input'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { useNavigate } from 'react-router-dom'
 
 import initiateDataFromUrl from '../../../../modules/initiateDataFromUrl'
 import storeContext from '../../../../storeContext'
@@ -31,8 +30,6 @@ const EkfYear = () => {
   const store = useContext(storeContext)
   const { ekfYear, setEkfYear } = store
 
-  const navigate = useNavigate()
-
   const [stateValue, setStateValue] = useState(
     ekfYear || ekfYear === 0 ? ekfYear : '',
   )
@@ -51,11 +48,10 @@ const EkfYear = () => {
         initiateDataFromUrl({
           activeNodeArray: ['Projekte'],
           store,
-          navigate,
         })
       }
     },
-    [ekfYear, setEkfYear, stateValue, store, navigate],
+    [ekfYear, setEkfYear, stateValue, store],
   )
 
   return (
