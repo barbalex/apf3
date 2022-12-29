@@ -24,6 +24,7 @@ const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  box-sizing: border-box;
   > div {
     white-space: nowrap;
     overflow: hidden;
