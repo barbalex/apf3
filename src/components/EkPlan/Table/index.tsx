@@ -64,12 +64,14 @@ export const StyledTableCell = styled.div`
   border-left: solid hsla(70, 80%, 75%, 1) 1px;
   border-right: solid hsla(70, 80%, 75%, 1) 1px;
   border-bottom: solid #e6e6e6 1px;
+  box-sizing: border-box;
   background: ${(props) =>
     props['data-clicked']
       ? 'rgb(255,211,167) !important'
       : props['data-isodd']
       ? 'rgb(255, 255, 252)'
       : 'unset'};
+  box-sizing: border-box;
   &.tpop-hovered {
     background-color: hsla(45, 100%, 90%, 1);
   }
@@ -87,6 +89,7 @@ export const StyledCellForSelect = styled(StyledTableCell)`
   font-size: unset !important;
   border-left: solid green 1px;
   border-right: solid green 1px;
+  box-sizing: border-box;
   &:focus-within {
     border: solid orange 3px;
   }
@@ -100,6 +103,7 @@ const TpopTitle = styled.h4`
   position: absolute;
   left: 10px;
   z-index: 3;
+  top: -20px;
 `
 const ExportButton = styled(Button)`
   position: absolute !important;

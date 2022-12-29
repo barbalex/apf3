@@ -18,6 +18,7 @@ const Container = styled.div`
   border-left: solid hsla(70, 80%, 75%, 1) 1px;
   border-right: solid hsla(70, 80%, 75%, 1) 1px;
   border-bottom: solid #e6e6e6 1px;
+  box-sizing: border-box;
   background: ${(props) =>
     props['data-clicked']
       ? 'rgb(255,211,167) !important'

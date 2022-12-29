@@ -19,6 +19,7 @@ import EkfsMenu from './EkfsMenu'
 import MassnsMenu from './MassnsMenu'
 
 const YearCellMenuTitle = styled.h5`
+  margin-top: 0;
   padding-top: 8px;
   padding-left: 16px;
   padding-right: 16px;
