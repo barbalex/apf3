@@ -4,7 +4,7 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
@@ -40,14 +40,11 @@ const DokuButton = styled(Button)`
 
 const EkPlanAppBar = () => {
   const store = useContext(storeContext)
-  const {
-    dataFilterClone1To2,
-    user,
-    urlQuery,
-    setUrlQuery,
-    cloneTree2From1,
-    tree,
-  } = store
+  const { dataFilterClone1To2, user, urlQuery, setUrlQuery, cloneTree2From1 } =
+    store
+
+  const { projectId } = useParams()
+  const navigate = useNavigate()
 
   /**
    * need to clone projekteTabs
@@ -105,11 +102,10 @@ const EkPlanAppBar = () => {
     () => onClickButton('exporte'),
     [onClickButton],
   )
-  const onClickAp = useCallback(() => {
-    // eslint-disable-next-line no-unused-vars
-    const [projectTitle, projectId, ...rest] = tree.activeNodeArray
-    tree.setActiveNodeArray([projectTitle, projectId])
-  }, [tree])
+  const onClickAp = useCallback(
+    () => navigate(`Daten/Projekte/${projectId}`),
+    [navigate, projectId],
+  )
 
   return (
     <>

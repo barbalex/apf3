@@ -4,7 +4,6 @@
 import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { getSnapshot } from 'mobx-state-tree'
 
 import storeContext from '../storeContext'
 import Projekte from './Projekte'
@@ -12,8 +11,6 @@ import User from './User'
 import Messages from './Messages'
 import Ekf from './Ekf'
 import Deletions from './Deletions'
-import EkPlan from './EkPlan'
-import Unterhalt from './Unterhalt'
 
 const Container = styled.div`
   background-color: #fffde7;
@@ -30,32 +27,17 @@ const Container = styled.div`
 const DatenComponent = () => {
   const store = useContext(storeContext)
   const { view, showDeletions, user } = store
-  const { activeNodeArray: aNARAw } = store.tree
-  const activeNodeArray = getSnapshot(aNARAw)
 
-  const form = useMemo(() => {
-    const isEkPlan =
-      activeNodeArray.length === 3 &&
-      activeNodeArray[0] === 'Projekte' &&
-      activeNodeArray[2] === 'EK-Planung'
+  const form = useMemo(() => (view === 'ekf' ? 'ekf' : 'projekte'), [view])
 
-    return isEkPlan ? 'ekplan' : view === 'ekf' ? 'ekf' : 'projekte'
-  }, [activeNodeArray, view])
+  // console.log('DatenPageComponent rendering')
 
-  // set unterhalt to true to show this page when servicing
-  const unterhalt = false
-  if (unterhalt) return <Unterhalt />
-
-  console.log('DatenPageComponent rendering')
-
-  // using render props on Layout to pass down appbarheight without using store
   return (
     <Container>
       {!!user.token && (
         <>
           {form === 'ekf' && <Ekf />}
           {form === 'projekte' && <Projekte />}
-          {form === 'ekplan' && <EkPlan />}
           <Messages />
           {showDeletions && <Deletions />}
         </>

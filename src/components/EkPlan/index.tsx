@@ -12,6 +12,7 @@ import storeContext from '../../storeContext'
 import appBaseUrl from '../../modules/appBaseUrl'
 import Error from '../shared/Error'
 import ErrorBoundary from '../shared/ErrorBoundary'
+import User from '../User'
 
 const Container = styled.div`
   height: 100%;
@@ -36,6 +37,7 @@ const AnleitungButton = styled(Button)`
 
 const EkPlan = () => {
   const store = useContext(storeContext)
+  const { user } = store
   const { aps, setApsData, setApsDataLoading } = store.ekPlan
 
   const { data, loading, error } = useQuery(queryAps, {
@@ -59,18 +61,23 @@ const EkPlan = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <Header>
-          <ApList />
-          <AnleitungButton
-            variant="outlined"
-            onClick={onClickAnleitung}
-            color="inherit"
-          >
-            Anleitung
-          </AnleitungButton>
-          <Choose />
-        </Header>
-        <Table />
+        {!!user.token && (
+          <>
+            <Header>
+              <ApList />
+              <AnleitungButton
+                variant="outlined"
+                onClick={onClickAnleitung}
+                color="inherit"
+              >
+                Anleitung
+              </AnleitungButton>
+              <Choose />
+            </Header>
+            <Table />
+          </>
+        )}
+        <User />
       </Container>
     </ErrorBoundary>
   )

@@ -4,7 +4,7 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
@@ -77,6 +77,8 @@ const ProjekteAppBar = () => {
     tree,
   } = store
   const { projIdInActiveNodeArray } = store.tree
+
+  const navigate = useNavigate()
 
   /**
    * need to clone projekteTabs
@@ -160,7 +162,8 @@ const ProjekteAppBar = () => {
     // eslint-disable-next-line no-unused-vars
     const [projectTitle, projectId, ...rest] = tree.activeNodeArray
     tree.setActiveNodeArray([projectTitle, projectId, 'EK-Planung'])
-  }, [tree])
+    navigate(`/Daten/Projekte/${projectId}/EK-Planung`)
+  }, [navigate, tree])
 
   return (
     <>

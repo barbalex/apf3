@@ -3,11 +3,16 @@ import { observer } from 'mobx-react-lite'
 
 import Home from './components/Home'
 import Daten from './components/Daten'
+import EkPlan from './components/EkPlan'
+// import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/Daten/*" element={<Daten />} />
+    {/* uncommeent next rout while commenting the following for Unterhalt */}
+    {/* <Route path="/*" element={<Unterhalt />}></Route> */}
+    <Route path="/Daten/*" element={<Daten />}></Route>
+    <Route path="/Daten/Projekte/:projektId/EK-Planung" element={<EkPlan />} />
   </Routes>
 )
 
