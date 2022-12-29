@@ -56,7 +56,7 @@ const fetchImageIfNeeded = async ({
   if (!image && !!apId) {
     let newImage
     try {
-      newImage = await import(`./${apId}.png`)
+      newImage = await import(`./images/${apId}.png`)
     } catch (error) {
       if (!isActive) return
 

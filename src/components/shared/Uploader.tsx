@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Widget } from '@uploadcare/react-widget'
 
 import { signature, expire } from '../../utils/uploadcareSignature'
@@ -10,7 +10,7 @@ const Uploader = ({ onChange }) => {
   return (
     <Widget
       // value={value}
-      publicKey={process.env.GATSBY_UPLOADCARE_PUBLIC_KEY}
+      publicKey={import.meta.env.VITE_UPLOADCARE_PUBLIC_KEY}
       locale="de"
       localeTranslations={{
         buttons: {
