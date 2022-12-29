@@ -5,13 +5,14 @@ import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 
-import storeContext from '../../storeContext'
-import Projekte from '../../components/Projekte'
-import User from '../../components/User'
-import Messages from '../../components/Messages'
-import Ekf from '../../components/Ekf'
-import Deletions from '../../components/Deletions'
-import EkPlan from '../../components/EkPlan'
+import storeContext from '../storeContext'
+import Projekte from './Projekte'
+import User from './User'
+import Messages from './Messages'
+import Ekf from './Ekf'
+import Deletions from './Deletions'
+import EkPlan from './EkPlan'
+import Unterhalt from './Unterhalt'
 
 const Container = styled.div`
   background-color: #fffde7;
@@ -25,7 +26,7 @@ const Container = styled.div`
   }
 `
 
-const DatenPageComponent = () => {
+const DatenComponent = () => {
   const store = useContext(storeContext)
   const { view, showDeletions, user } = store
   const { activeNodeArray } = store.tree
@@ -39,9 +40,15 @@ const DatenPageComponent = () => {
     [isEkPlan, view],
   )
 
+  // set unterhalt to true to show this page when servicing
+  const unterhalt = false
+  if (unterhalt) return <Unterhalt />
+
+  console.log('DatenPageComponent', { token: user.token, form, showDeletions })
+
   // using render props on Layout to pass down appbarheight without using store
   return (
-    <Container  path="/*">
+    <Container>
       {!!user.token && (
         <>
           {form === 'ekf' && <Ekf />}
@@ -56,4 +63,4 @@ const DatenPageComponent = () => {
   )
 }
 
-export default observer(DatenPageComponent)
+export default observer(DatenComponent)

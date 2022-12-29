@@ -48,6 +48,9 @@ import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import Router from './Router'
+import IsPrintSetter from './components/IsPrintSetter'
+import LastTouchedNodeSetter from './components/LastTouchedNodeSetter'
+import ActiveNodeArraySetter from './components/ActiveNodeArraySetter'
 
 registerLocale('de', de)
 setDefaultLocale('de')
@@ -211,6 +214,9 @@ const App = () => {
                     <Router />
                   </Layout>
                   <Notifier />
+                  <IsPrintSetter />
+                  <LastTouchedNodeSetter />
+                  <ActiveNodeArraySetter />
                 </>
               </SnackbarProvider>
             </ThemeProvider>
