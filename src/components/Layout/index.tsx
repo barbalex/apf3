@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { useResizeDetector } from 'react-resize-detector'
 
 import AppBar from './AppBar'
 
@@ -15,21 +14,11 @@ const Container = styled.div`
   }
 `
 
-const Layout = ({ children }) => {
-  /**
-   * passing appbar height as props to children
-   * NOT as store state as that created ui updating conflicts
-   */
-  const { height: appbarheight, ref: resizeRef } = useResizeDetector()
-
-  return (
-    <Container>
-      <div ref={resizeRef}>
-        <AppBar />
-      </div>
-      {React.cloneElement(children, { appbarheight })}
-    </Container>
-  )
-}
+const Layout = ({ children }) => (
+  <Container>
+    <AppBar />
+    {children}
+  </Container>
+)
 
 export default Layout

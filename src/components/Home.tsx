@@ -9,7 +9,7 @@ import image from '../images/ophr-ara.jpg'
 import placeholderSrc from '../images/ophr-ara.jpg'
 
 const OuterContainer = styled.div`
-  height: ${(props) => `calc(100% - ${props['data-appbarheight']}px)`};
+  height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -96,8 +96,8 @@ const CardTitle = styled.h3`
   font-weight: 700;
 `
 
-const Home = ({ appbarheight }) => (
-  <OuterContainer data-appbarheight={appbarheight}>
+const Home = () => (
+  <OuterContainer>
     <ProgressiveImg src={image} placeholderSrc={placeholderSrc} />
     <ScrollContainer>
       <PageTitle align="center" variant="h6" color="inherit">
