@@ -90,11 +90,12 @@ const StyledRemoveIcon = styled(MdRemove)`
   padding-left: 6px;
   padding-right: 2px;
   height: 22px !important;
-  width: 24px !important;
+  width: 16px !important;
   font-size: 1.5rem;
 `
 const SymbolDiv = styled.div`
   cursor: pointer;
+  width: 28px;
 `
 const TextSpan = styled.span`
   margin-left: 0;

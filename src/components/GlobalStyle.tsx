@@ -14,6 +14,7 @@ const GlobalStyle = () => (
         margin: 0;
         color: rgba(0, 0, 0, 0.87);
         background-color: #fffde7;
+        hyphens: auto;
       }
 
       @media print {
