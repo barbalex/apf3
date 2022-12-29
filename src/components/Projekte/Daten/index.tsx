@@ -187,10 +187,6 @@ const Daten = ({ treeName, nodes }) => {
 
   if (!form) return null
 
-  /**
-   * ReactDOMServer does not yet support Suspense
-   */
-
   return (
     <Container data-id={`daten-container${treeName === 'tree' ? 1 : 2}`}>
       {form}
