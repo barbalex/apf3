@@ -17,12 +17,14 @@ const Doku = styled.div`
   width: 100%;
   padding: 25px;
   overflow-y: auto;
+  box-sizing: border-box;
   ul {
     margin-top: 0;
   }
   p,
   li {
     margin-bottom: 0;
+    line-height: 1.5em;
   }
   h1,
   h3,
