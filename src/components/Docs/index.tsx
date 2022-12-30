@@ -11,6 +11,9 @@ const Container = styled.div`
   display: flex;
   overflow: hidden;
   background-color: #fffde7;
+  .simplebar-content {
+    height: 100% !important;
+  }
 `
 const Doku = styled.div`
   height: 100%;

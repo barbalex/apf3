@@ -33,7 +33,10 @@ const nodes = [
     slug: 'videos-fuer-den-einstieg',
     title: 'Videos für den Einstieg',
     sort: 6,
-  },
+  },{
+    slug: 'anleitung-eingabe',
+    title: 'Anleitung zur Eingabe (inhaltlich), topos',
+    sort: 7}
 ]
 
 const MenuItems = () => {
