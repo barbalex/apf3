@@ -29,6 +29,11 @@ const nodes = [
     title: 'Tipps für den Einstieg',
     sort: 5,
   },
+  {
+    slug: 'videos-fuer-den-einstieg',
+    title: 'Videos für den Einstieg',
+    sort: 6,
+  },
 ]
 
 const MenuItems = () => {

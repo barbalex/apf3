@@ -9,6 +9,7 @@ import Docs from './components/Docs'
 import WasKannApflora from './components/Docs/docs/WasKannApflora'
 import TechnischeVoraussetzungen from './components/Docs/docs/TechnischeVoraussetzungen'
 import TippsFuerDenEinstieg from './components/Docs/docs/TippsFuerDenEinstieg'
+import VideosFuerDenEinstieg from './components/Docs/docs/VideosFuerDenEinstieg'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -30,6 +31,10 @@ const RouterComponent = () => (
       <Route
         path="tipps-fuer-den-einstieg"
         element={<TippsFuerDenEinstieg />}
+      />
+      <Route
+        path="videos-fuer-den-einstieg"
+        element={<VideosFuerDenEinstieg />}
       />
     </Route>
     <Route path="*" element={<FourOhFour />} />
