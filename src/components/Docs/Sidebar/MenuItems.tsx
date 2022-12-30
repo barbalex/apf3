@@ -22,7 +22,12 @@ const nodes = [
   {
     slug: 'technische-voraussetzungen',
     title: 'Technische Voraussetzungen',
-    sort: 4
+    sort: 4,
+  },
+  {
+    slug: 'tipps-fuer-den-einstieg',
+    title: 'Tipps für den Einstieg',
+    sort: 5,
   },
 ]
 

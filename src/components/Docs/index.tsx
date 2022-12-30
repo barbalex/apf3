@@ -20,10 +20,11 @@ const Doku = styled.div`
   box-sizing: border-box;
   ul {
     margin-top: 0;
+    padding-inline-start: 20px;
   }
   p,
   li {
-    margin-bottom: 0;
+    margin-bottom: 3px;
     line-height: 1.5em;
   }
   h1,

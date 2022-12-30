@@ -8,6 +8,7 @@ import FourOhFour from './components/404'
 import Docs from './components/Docs'
 import WasKannApflora from './components/Docs/docs/WasKannApflora'
 import TechnischeVoraussetzungen from './components/Docs/docs/TechnischeVoraussetzungen'
+import TippsFuerDenEinstieg from './components/Docs/docs/TippsFuerDenEinstieg'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -25,6 +26,10 @@ const RouterComponent = () => (
       <Route
         path="technische-voraussetzungen"
         element={<TechnischeVoraussetzungen />}
+      />
+      <Route
+        path="tipps-fuer-den-einstieg"
+        element={<TippsFuerDenEinstieg />}
       />
     </Route>
     <Route path="*" element={<FourOhFour />} />

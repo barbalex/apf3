@@ -2,8 +2,8 @@ import { DokuDate } from '..'
 
 const TechnischeVoraussetzungen = () => (
   <>
-    <h1>Was kann man mit apflora.ch machen?</h1>
-    <DokuDate>15.04.2019</DokuDate>
+    <h1>Technische Voraussetzungen</h1>
+    <DokuDate>29.04.2020</DokuDate>
     <p>
       Vorausgesetzt wird ein <strong>moderner Browser</strong>:
     </p>
@@ -24,7 +24,11 @@ const TechnischeVoraussetzungen = () => (
       <li>
         Wer keinen modernen Browser einsetzen darf (wie z.B. die Fachstelle
         Naturschutz Kt. Zürich) oder aus einem anderen Grund lieber will, kann{' '}
-        <a href="https://www.dropbox.com/sh/5ar4f0fu5uqvhar/AADJmUo_9pakOnjL_U27EpQMa?dl=0">
+        <a
+          href="https://www.dropbox.com/sh/5ar4f0fu5uqvhar/AADJmUo_9pakOnjL_U27EpQMa?dl=0"
+          target="_blank"
+          rel="noreferrer"
+        >
           hier
         </a>{' '}
         eine lokal installierbare Version beziehen. Für die Installation auf
