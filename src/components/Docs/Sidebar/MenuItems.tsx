@@ -44,6 +44,11 @@ const nodes = [
     title: 'Ist apflora langsam?',
     sort: 8,
   },
+  {
+    slug: 'art-auswertung-pop-menge',
+    title: 'Art: Auswertung Population Mengen',
+    sort: 9,
+  },
 ]
 
 const MenuItems = () => {
