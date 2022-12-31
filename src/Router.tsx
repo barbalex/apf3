@@ -11,6 +11,7 @@ import TechnischeVoraussetzungen from './components/Docs/docs/TechnischeVorausse
 import TippsFuerDenEinstieg from './components/Docs/docs/TippsFuerDenEinstieg'
 import VideosFuerDenEinstieg from './components/Docs/docs/VideosFuerDenEinstieg'
 import AnleitungZurEingabe from './components/Docs/docs/AnleitungZurEingabe'
+import IstApfloraLangsam from './components/Docs/docs/IstApfloraLangsam'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -38,6 +39,7 @@ const RouterComponent = () => (
         element={<VideosFuerDenEinstieg />}
       />
       <Route path="anleitung-eingabe" element={<AnleitungZurEingabe />} />
+      <Route path="ist-apflora-langsam" element={<IstApfloraLangsam />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
