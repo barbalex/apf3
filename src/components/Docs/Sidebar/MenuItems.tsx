@@ -122,6 +122,10 @@ const nodes = [
     slug: 'beobachtungen-verwalten',
     title: 'Beobachtungen verwalten',
   },
+  {
+    slug: 'produkte-fuer-die-fns',
+    title: 'Produkte für die Fachstelle Naturschutz',
+  },
 ]
 
 const MenuItems = () => {

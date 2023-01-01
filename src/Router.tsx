@@ -32,8 +32,8 @@ import Koordinaten from './components/Docs/docs/Koordinaten'
 import Melden from './components/Docs/docs/Melden'
 import Pwa from './components/Docs/docs/Pwa'
 import Technologien from './components/Docs/docs/Technologien'
-import BeobachtungenVerwalten from './components/Docs/docs/BeobachtungenVerwalten'
 import BeobVerwalten from './components/Docs/docs/BeobVerwalten'
+import ProdukteFuerFNS from './components/Docs/docs/ProdukteFuerFNS'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -98,6 +98,7 @@ const RouterComponent = () => (
       <Route path="pwa" element={<Pwa />} />
       <Route path="technologien" element={<Technologien />} />
       <Route path="beobachtungen-verwalten" element={<BeobVerwalten />} />
+      <Route path="produkte-fuer-die-fns" element={<ProdukteFuerFNS />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
