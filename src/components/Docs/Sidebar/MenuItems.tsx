@@ -109,6 +109,11 @@ const nodes = [
     title: 'Karte: Massstab',
     sort: 20,
   },
+  {
+    slug: 'karte-drucken',
+    title: 'Karte: Drucken',
+    sort: 21,
+  },
 ]
 
 const MenuItems = () => {
