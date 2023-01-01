@@ -99,6 +99,11 @@ const nodes = [
     title: 'Karte: Filter',
     sort: 19,
   },
+  {
+    slug: 'karte-symbole-und-label-fuer-populationen-und-teil-populationen-waehlen',
+    title: 'Karte: Symbole und Label für (Teil-)Populationen wählen',
+    sort: 19,
+  },
 ]
 
 const MenuItems = () => {

@@ -23,6 +23,7 @@ import Markdown from './components/Docs/docs/markdown'
 import Historisierung from './components/Docs/docs/Historisierung'
 import KarteTpopAllerArten from './components/Docs/docs/KarteTpopAllerArten'
 import KarteFilter from './components/Docs/docs/KarteFilter'
+import KartePopTpopIconsLabelWaehlen from './components/Docs/docs/KartePopTpopIconsLabelWaehlen'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -74,6 +75,10 @@ const RouterComponent = () => (
         element={<KarteTpopAllerArten />}
       />
       <Route path="karte-filter" element={<KarteFilter />} />
+      <Route
+        path="karte-symbole-und-label-fuer-populationen-und-teil-populationen-waehlen"
+        element={<KartePopTpopIconsLabelWaehlen />}
+      />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
