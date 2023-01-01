@@ -126,6 +126,10 @@ const nodes = [
     slug: 'produkte-fuer-die-fns',
     title: 'Produkte für die Fachstelle Naturschutz',
   },
+  {
+    slug: 'daten-sichern',
+    title: 'Daten sichern',
+  },
 ]
 
 const MenuItems = () => {
