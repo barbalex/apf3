@@ -21,6 +21,7 @@ import Ekf from './components/Docs/docs/Ekf'
 import Filter from './components/Docs/docs/Filter'
 import Markdown from './components/Docs/docs/markdown'
 import Historisierung from './components/Docs/docs/Historisierung'
+import KarteTpopAllerArten from './components/Docs/docs/KarteTpopAllerArten'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -67,6 +68,10 @@ const RouterComponent = () => (
       <Route path="filter" element={<Filter />} />
       <Route path="markdown" element={<Markdown />} />
       <Route path="historisierung" element={<Historisierung />} />
+      <Route
+        path="karte-teil-populationen-aller-arten-anzeigen"
+        element={<KarteTpopAllerArten />}
+      />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

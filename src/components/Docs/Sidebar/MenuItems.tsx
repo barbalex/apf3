@@ -88,7 +88,10 @@ const nodes = [
     slug: 'historisierung',
     title: 'Historisierung',
     sort: 16,
-  },
+  },{
+    slug: 'karte-teil-populationen-aller-arten-anzeigen',
+    title: 'Karte: (Teil-)Populationen aller Arten anzeigen',
+    sort: 17}
 ]
 
 const MenuItems = () => {
