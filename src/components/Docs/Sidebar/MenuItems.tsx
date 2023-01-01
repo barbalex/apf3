@@ -69,6 +69,11 @@ const nodes = [
     title: 'Benutzer-Konti',
     sort: 13,
   },
+  {
+    slug: 'erfolgs-kontrollen-freiwillige',
+    title: 'Erfolgs-Kontrollen Freiwillige (EKF)',
+    sort: 13,
+  },
 ]
 
 const MenuItems = () => {

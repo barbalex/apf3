@@ -17,6 +17,7 @@ import BeobZuordnen from './components/Docs/docs/beobZuordnen'
 import FalschBestimmteBeob from './components/Docs/docs/FalschBestimmteBeob'
 import EkPlanen from './components/Docs/docs/ekPlanen'
 import BenutzerKonti from './components/Docs/docs/BenutzerKonti'
+import Ekf from './components/Docs/docs/Ekf'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -59,6 +60,7 @@ const RouterComponent = () => (
       />
       <Route path="erfolgs-kontrollen-planen" element={<EkPlanen />} />
       <Route path="benutzer-konti" element={<BenutzerKonti />} />
+      <Route path="erfolgs-kontrollen-freiwillige" element={<Ekf />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
