@@ -21,7 +21,8 @@ const Doku = styled.div`
   padding: 25px;
   overflow-y: auto;
   box-sizing: border-box;
-  ul {
+  ul,
+  ol {
     margin-top: 0;
     padding-inline-start: 20px;
   }

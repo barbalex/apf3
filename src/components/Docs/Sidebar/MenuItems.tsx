@@ -54,6 +54,11 @@ const nodes = [
     title: 'Beobachtungen Teil-Populationen zuordnen',
     sort: 10,
   },
+  {
+    slug: 'falsch-bestimmte-beobachtungen',
+    title: 'Falsch bestimmte Beobachtungen',
+    sort: 11,
+  },
 ]
 
 const MenuItems = () => {

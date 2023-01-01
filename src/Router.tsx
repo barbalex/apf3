@@ -14,6 +14,7 @@ import AnleitungZurEingabe from './components/Docs/docs/AnleitungZurEingabe'
 import IstApfloraLangsam from './components/Docs/docs/IstApfloraLangsam'
 import ArtAuswertungPopMenge from './components/Docs/docs/ArtAuswertungPopMenge'
 import BeobZuordnen from './components/Docs/docs/beobZuordnen'
+import FalschBestimmteBeob from './components/Docs/docs/FalschBestimmteBeob'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -49,6 +50,10 @@ const RouterComponent = () => (
       <Route
         path="beobachtungen-einer-teil-population-zuordnen"
         element={<BeobZuordnen />}
+      />
+      <Route
+        path="falsch-bestimmte-beobachtungen"
+        element={<FalschBestimmteBeob />}
       />
     </Route>
     <Route path="*" element={<FourOhFour />} />
