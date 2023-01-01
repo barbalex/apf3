@@ -26,6 +26,7 @@ import KarteFilter from './components/Docs/docs/KarteFilter'
 import KartePopTpopIconsLabelWaehlen from './components/Docs/docs/KartePopTpopIconsLabelWaehlen'
 import KarteMassstab from './components/Docs/docs/KarteMassstab'
 import KarteDrucken from './components/Docs/docs/KarteDrucken'
+import Gedaechtnis from './components/Docs/docs/Gedaechtnis'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -83,6 +84,7 @@ const RouterComponent = () => (
       />
       <Route path="karte-massstab" element={<KarteMassstab />} />
       <Route path="karte-drucken" element={<KarteDrucken />} />
+      <Route path="gedaechtnis" element={<Gedaechtnis />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
