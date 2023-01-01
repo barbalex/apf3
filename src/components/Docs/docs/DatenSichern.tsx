@@ -1,6 +1,6 @@
 import { DokuDate } from '..'
 
-const Sichern = () => (
+const DatenSichern = () => (
   <>
     <h1>Daten sichern</h1>
     <DokuDate>18.04.2019</DokuDate>
@@ -20,4 +20,4 @@ const Sichern = () => (
   </>
 )
 
-export default Sichern
+export default DatenSichern

@@ -130,6 +130,10 @@ const nodes = [
     slug: 'daten-sichern',
     title: 'Daten sichern',
   },
+  {
+    slug: 'daten-wiederherstellen',
+    title: 'Daten aus Sicherung herstellen',
+  },
 ]
 
 const MenuItems = () => {
