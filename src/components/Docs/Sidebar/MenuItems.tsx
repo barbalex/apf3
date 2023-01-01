@@ -104,6 +104,11 @@ const nodes = [
     title: 'Karte: Symbole und Label für (Teil-)Populationen wählen',
     sort: 19,
   },
+  {
+    slug: 'karte-massstab',
+    title: 'Karte: Massstab',
+    sort: 20,
+  },
 ]
 
 const MenuItems = () => {
