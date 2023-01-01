@@ -118,6 +118,10 @@ const nodes = [
     slug: 'technologien',
     title: 'Technologien',
   },
+  {
+    slug: 'beobachtungen-verwalten',
+    title: 'Beobachtungen verwalten',
+  },
 ]
 
 const MenuItems = () => {
