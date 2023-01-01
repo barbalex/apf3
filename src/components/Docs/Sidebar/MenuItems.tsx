@@ -79,6 +79,11 @@ const nodes = [
     title: 'Filter',
     sort: 14,
   },
+  {
+    slug: 'markdown',
+    title: 'Formatierbare Felder',
+    sort: 15,
+  },
 ]
 
 const MenuItems = () => {
