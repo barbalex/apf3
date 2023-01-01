@@ -74,6 +74,11 @@ const nodes = [
     title: 'Erfolgs-Kontrollen Freiwillige (EKF)',
     sort: 13,
   },
+  {
+    slug: 'filter',
+    title: 'Filter',
+    sort: 14,
+  },
 ]
 
 const MenuItems = () => {
