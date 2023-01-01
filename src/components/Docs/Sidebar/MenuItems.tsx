@@ -98,6 +98,10 @@ const nodes = [
     slug: 'gedaechtnis',
     title: 'apflora erinnert sich an euch',
   },
+  {
+    slug: 'dateien',
+    title: 'Dateien anfügen',
+  },
 ]
 
 const MenuItems = () => {
