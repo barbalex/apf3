@@ -64,6 +64,11 @@ const nodes = [
     title: 'Erfolgs-Kontrollen planen',
     sort: 12,
   },
+  {
+    slug: 'benutzer-konti',
+    title: 'Benutzer-Konti',
+    sort: 13,
+  },
 ]
 
 const MenuItems = () => {
