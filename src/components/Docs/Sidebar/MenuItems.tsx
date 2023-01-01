@@ -102,6 +102,10 @@ const nodes = [
     slug: 'dateien',
     title: 'Dateien anfügen',
   },
+  {
+    slug: 'koordinaten',
+    title: 'Koordinaten',
+  },
 ]
 
 const MenuItems = () => {
