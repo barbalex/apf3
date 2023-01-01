@@ -110,6 +110,10 @@ const nodes = [
     slug: 'melden',
     title: 'Fehler, Ideen, Vorschläge melden',
   },
+  {
+    slug: 'pwa',
+    title: 'Progressive Web App',
+  },
 ]
 
 const MenuItems = () => {
