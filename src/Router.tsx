@@ -13,6 +13,7 @@ import VideosFuerDenEinstieg from './components/Docs/docs/VideosFuerDenEinstieg'
 import AnleitungZurEingabe from './components/Docs/docs/AnleitungZurEingabe'
 import IstApfloraLangsam from './components/Docs/docs/IstApfloraLangsam'
 import ArtAuswertungPopMenge from './components/Docs/docs/ArtAuswertungPopMenge'
+import BeobZuordnen from './components/Docs/docs/beobZuordnen'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -44,6 +45,10 @@ const RouterComponent = () => (
       <Route
         path="art-auswertung-pop-menge"
         element={<ArtAuswertungPopMenge />}
+      />
+      <Route
+        path="beobachtungen-einer-teil-population-zuordnen"
+        element={<BeobZuordnen />}
       />
     </Route>
     <Route path="*" element={<FourOhFour />} />

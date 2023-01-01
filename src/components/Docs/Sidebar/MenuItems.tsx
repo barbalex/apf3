@@ -49,6 +49,11 @@ const nodes = [
     title: 'Art: Auswertung Population Mengen',
     sort: 9,
   },
+  {
+    slug: 'beobachtungen-einer-teil-population-zuordnen',
+    title: 'Beobachtungen Teil-Populationen zuordnen',
+    sort: 10,
+  },
 ]
 
 const MenuItems = () => {
