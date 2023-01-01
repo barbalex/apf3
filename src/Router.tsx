@@ -15,6 +15,7 @@ import IstApfloraLangsam from './components/Docs/docs/IstApfloraLangsam'
 import ArtAuswertungPopMenge from './components/Docs/docs/ArtAuswertungPopMenge'
 import BeobZuordnen from './components/Docs/docs/beobZuordnen'
 import FalschBestimmteBeob from './components/Docs/docs/FalschBestimmteBeob'
+import EkPlanen from './components/Docs/docs/ekPlanen'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -55,6 +56,7 @@ const RouterComponent = () => (
         path="falsch-bestimmte-beobachtungen"
         element={<FalschBestimmteBeob />}
       />
+      <Route path="erfolgs-kontrollen-planen" element={<EkPlanen />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

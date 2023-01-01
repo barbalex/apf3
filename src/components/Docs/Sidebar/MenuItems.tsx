@@ -59,6 +59,11 @@ const nodes = [
     title: 'Falsch bestimmte Beobachtungen',
     sort: 11,
   },
+  {
+    slug: 'erfolgs-kontrollen-planen',
+    title: 'Erfolgs-Kontrollen planen',
+    sort: 12,
+  },
 ]
 
 const MenuItems = () => {

@@ -14,6 +14,7 @@ const Menu = styled.div`
   overflow-y: auto;
   padding: 25px 0;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
 `
 const MenuTitle = styled.div`
   padding: 0 16px;
