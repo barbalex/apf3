@@ -114,6 +114,10 @@ const nodes = [
     slug: 'pwa',
     title: 'Progressive Web App',
   },
+  {
+    slug: 'technologien',
+    title: 'Technologien',
+  },
 ]
 
 const MenuItems = () => {
