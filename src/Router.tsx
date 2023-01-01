@@ -29,6 +29,7 @@ import KarteDrucken from './components/Docs/docs/KarteDrucken'
 import Gedaechtnis from './components/Docs/docs/Gedaechtnis'
 import Dateien from './components/Docs/docs/Dateien'
 import Koordinaten from './components/Docs/docs/Koordinaten'
+import Melden from './components/Docs/docs/Melden'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -89,6 +90,7 @@ const RouterComponent = () => (
       <Route path="gedaechtnis" element={<Gedaechtnis />} />
       <Route path="dateien" element={<Dateien />} />
       <Route path="koordinaten" element={<Koordinaten />} />
+      <Route path="melden" element={<Melden />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

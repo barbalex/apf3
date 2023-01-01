@@ -106,6 +106,10 @@ const nodes = [
     slug: 'koordinaten',
     title: 'Koordinaten',
   },
+  {
+    slug: 'melden',
+    title: 'Fehler, Ideen, Vorschläge melden',
+  },
 ]
 
 const MenuItems = () => {
