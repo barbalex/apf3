@@ -84,6 +84,11 @@ const nodes = [
     title: 'Formatierbare Felder',
     sort: 15,
   },
+  {
+    slug: 'historisierung',
+    title: 'Historisierung',
+    sort: 16,
+  },
 ]
 
 const MenuItems = () => {

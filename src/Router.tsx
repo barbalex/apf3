@@ -20,6 +20,7 @@ import BenutzerKonti from './components/Docs/docs/BenutzerKonti'
 import Ekf from './components/Docs/docs/Ekf'
 import Filter from './components/Docs/docs/Filter'
 import Markdown from './components/Docs/docs/markdown'
+import Historisierung from './components/Docs/docs/Historisierung'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -65,6 +66,7 @@ const RouterComponent = () => (
       <Route path="erfolgs-kontrollen-freiwillige" element={<Ekf />} />
       <Route path="filter" element={<Filter />} />
       <Route path="markdown" element={<Markdown />} />
+      <Route path="historisierung" element={<Historisierung />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

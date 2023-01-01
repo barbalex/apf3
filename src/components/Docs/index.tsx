@@ -54,6 +54,13 @@ const Doku = styled.div`
     width: 100%;
     position: absolute;
   }
+  td {
+    text-align: right;
+  }
+  td,
+  th {
+    padding: 0 5px 0 0;
+  }
 `
 export const DokuDate = styled.p`
   margin-bottom: 15px !important;
