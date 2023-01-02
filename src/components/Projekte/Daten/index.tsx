@@ -1,13 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
-
-import getActiveForm from '../../../modules/getActiveForm'
 
 /**
  * ReactDOMServer does not yet support Suspense
  */
-import storeContext from '../../../storeContext'
 import Adresse from './Adresse'
 import Ap from './Ap'
 import Apart from './Apart'
@@ -51,10 +47,7 @@ const Container = styled.div`
   }
 `
 
-const Daten = ({ treeName, nodes }) => {
-  const store = useContext(storeContext)
-  const activeForm = getActiveForm({ store, treeName, nodes })
-
+const Daten = ({ treeName, activeForm }) => {
   let form
   switch (activeForm.form) {
     case 'adresse': {
@@ -194,4 +187,4 @@ const Daten = ({ treeName, nodes }) => {
   )
 }
 
-export default observer(Daten)
+export default Daten

@@ -79,7 +79,6 @@ const LabelFilter = ({ treeName, nodes }) => {
 
   const setValuesAfterChange = useCallback(
     (val) => {
-      console.log('setting values')
       const { filterTable, url, label } = activeNode
       // pop if is not folder and label does not comply to filter
       if (
@@ -89,7 +88,7 @@ const LabelFilter = ({ treeName, nodes }) => {
         const newActiveNodeArray = [...url]
         const newActiveUrl = [...url]
         newActiveNodeArray.pop()
-        let newOpenNodes = openNodes.filter((n) => n !== newActiveUrl)
+        const newOpenNodes = openNodes.filter((n) => n !== newActiveUrl)
         setActiveNodeArray(newActiveNodeArray)
         setOpenNodes(newOpenNodes)
       }

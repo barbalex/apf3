@@ -10,8 +10,9 @@ import Daten from './Daten'
 import Exporte from './Exporte'
 import Filter from './Filter'
 import storeContext from '../../storeContext'
-import ApberForApFromAp from '../Print/ApberForApFromAp' 
+import ApberForApFromAp from '../Print/ApberForApFromAp'
 import ApberForYear from '../Print/ApberForYear'
+import getActiveForm from '../../modules/getActiveForm'
 
 const Container = styled.div`
   height: 100%;
@@ -136,7 +137,10 @@ const ProjektContainer = ({
     ),
     daten: (
       <InnerContainer ref={datenEl}>
-        <Daten treeName={treeName} nodes={nodes} />
+        <Daten
+          treeName={treeName}
+          activeForm={getActiveForm({ store, treeName, nodes })}
+        />
       </InnerContainer>
     ),
     filter: (
@@ -197,7 +201,12 @@ const ProjektContainer = ({
   }
 
   if (isPrint) {
-    return <Daten treeName={treeName} nodes={nodes} />
+    return (
+      <Daten
+        treeName={treeName}
+        activeForm={getActiveForm({ store, treeName, nodes })}
+      />
+    )
   }
 
   if (tabs.length < 2) {
