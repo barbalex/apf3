@@ -93,6 +93,9 @@ const Projekte = () => {
   )
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
+  const { token } = user
+  const role = token ? jwtDecode(token).role : null
+
   const treeDataFilter = getSnapshot(store.tree.dataFilter)
   const treeNodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
   const treeOpenNodes = getSnapshot(store.tree.openNodes)
@@ -143,6 +146,7 @@ const Projekte = () => {
       ekfGqlFilterTree2,
       apGqlFilterTree2,
       beobGqlFilterTree2,
+      role,
     ],
     queryFn: async () => {
       const { data: treeData } = await client.query({
@@ -179,6 +183,7 @@ const Projekte = () => {
           beobGqlFilter: beobGqlFilterTree2,
         }),
       })
+
       return {
         treeData,
         tree2Data,
@@ -187,9 +192,6 @@ const Projekte = () => {
   })
   const treeData = data?.treeData
   const tree2Data = data?.tree2Data
-
-  const { token } = user
-  const role = token ? jwtDecode(token).role : null
 
   const [treeNodes, setTreeNodes] = useState([])
   const [tree2Nodes, setTree2Nodes] = useState([])
