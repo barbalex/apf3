@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useState } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Select from '../../../../shared/Select'
 import storeContext from '../../../../../storeContext'
@@ -32,9 +33,10 @@ const EinheitLabel = styled(Label)`
   margin-top: 5px;
 `
 
-const Einheit = ({ nr, row, refetch, zaehleinheitWerte }) => {
+const Einheit = ({ nr, row, refetch, zaehleinheitWerte, treeName }) => {
   const store = useContext(storeContext)
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [error, setErrors] = useState(null)
 
@@ -57,11 +59,18 @@ const Einheit = ({ nr, row, refetch, zaehleinheitWerte }) => {
         return setErrors(error.message)
       }
       refetch()
-      client.refetchQueries({
-        include: ['TreeAllQuery'],
-      })
+      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
     },
-    [client, refetch, row.anzahl, row.id, row.methode, store.user.name],
+    [
+      client,
+      queryClient,
+      refetch,
+      row.anzahl,
+      row.id,
+      row.methode,
+      store.user.name,
+      treeName,
+    ],
   )
 
   return (

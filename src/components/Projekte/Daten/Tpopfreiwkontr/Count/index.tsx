@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import { MdAddCircleOutline, MdDeleteForever } from 'react-icons/md'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Einheit from './Einheit'
 import Gezaehlt from './Gezaehlt'
@@ -171,8 +172,9 @@ const Count = ({
   ekzaehleinheitsOriginal = [],
   treeName,
 }) => {
-  const store = useContext(storeContext)
+  const queryClient = useQueryClient()
   const client = useApolloClient()
+  const store = useContext(storeContext)
   const { setToDelete } = useContext(storeContext)
 
   const { activeNodeArray } = store[treeName]
@@ -236,9 +238,7 @@ const Count = ({
     ({ row }) => {
       const afterDeletionHook = () => {
         refetch()
-        client.refetchQueries({
-          include: ['TreeAllQuery'],
-        })
+        queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
       }
       setToDelete({
         table: 'tpopkontrzaehl',
@@ -248,7 +248,7 @@ const Count = ({
         afterDeletionHook,
       })
     },
-    [setToDelete, activeNodeArray, refetch, client],
+    [setToDelete, activeNodeArray, refetch, queryClient, treeName],
   )
 
   //console.log('Count, row:', row)
@@ -287,14 +287,15 @@ const Count = ({
         refetch={refetch}
         zaehleinheitWerte={zaehleinheitWerte}
         nr={nr}
+        treeName={treeName}
       />
       <GezaehltLabel>gezählt</GezaehltLabel>
       <GeschaetztLabel>geschätzt</GeschaetztLabel>
       <GezaehltVal>
-        <Gezaehlt row={row} refetch={refetchMe} />
+        <Gezaehlt row={row} refetch={refetchMe} treeName={treeName} />
       </GezaehltVal>
       <GeschaetztVal>
-        <Geschaetzt row={row} refetch={refetchMe} />
+        <Geschaetzt row={row} refetch={refetchMe} treeName={treeName} />
       </GeschaetztVal>
       {showDelete && (
         <Delete>

@@ -119,9 +119,13 @@ const Projekte = () => {
   const beobGqlFilterTree = store.tree.beobGqlFilter
   const beobGqlFilterTree2 = store.tree2.beobGqlFilter
 
-  const { data, error, isLoading } = useQuery({
+  const {
+    data: data1,
+    error: error1,
+    isLoading: isLoading1,
+  } = useQuery({
     queryKey: [
-      'projekteQuery',
+      'treeQuery',
       treeDataFilter,
       treeOpenNodes,
       treeApFilter,
@@ -134,22 +138,10 @@ const Projekte = () => {
       ekfGqlFilterTree,
       apGqlFilterTree,
       beobGqlFilterTree,
-      tree2DataFilter,
-      tree2OpenNodes,
-      tree2ApFilter,
-      tree2NodeLabelFilter,
-      apIdInActiveNodeArray,
-      popGqlFilterTree2,
-      tpopGqlFilterTree2,
-      tpopmassnGqlFilterTree2,
-      ekGqlFilterTree2,
-      ekfGqlFilterTree2,
-      apGqlFilterTree2,
-      beobGqlFilterTree2,
       role,
     ],
-    queryFn: async () => {
-      const { data: treeData } = await client.query({
+    queryFn: () =>
+      client.query({
         query: queryTree,
         variables: buildTreeQueryVariables({
           dataFilter: treeDataFilter,
@@ -165,8 +157,32 @@ const Projekte = () => {
           apGqlFilter: apGqlFilterTree,
           beobGqlFilter: beobGqlFilterTree,
         }),
-      })
-      const { data: tree2Data } = await client.query({
+      }),
+  })
+
+  const {
+    data: data2,
+    error: error2,
+    isLoading: isLoading2,
+  } = useQuery({
+    queryKey: [
+      'tree2Query',
+      tree2DataFilter,
+      tree2OpenNodes,
+      tree2ApFilter,
+      tree2NodeLabelFilter,
+      apIdInActiveNodeArray,
+      popGqlFilterTree2,
+      tpopGqlFilterTree2,
+      tpopmassnGqlFilterTree2,
+      ekGqlFilterTree2,
+      ekfGqlFilterTree2,
+      apGqlFilterTree2,
+      beobGqlFilterTree2,
+      role,
+    ],
+    queryFn: async () =>
+      client.query({
         query: queryTree,
         variables: buildTreeQueryVariables({
           dataFilter: tree2DataFilter,
@@ -182,35 +198,29 @@ const Projekte = () => {
           apGqlFilter: apGqlFilterTree2,
           beobGqlFilter: beobGqlFilterTree2,
         }),
-      })
-
-      return {
-        treeData,
-        tree2Data,
-      }
-    },
+      }),
   })
-  const treeData = data?.treeData
-  const tree2Data = data?.tree2Data
+  const treeData = data1?.data
+  const tree2Data = data2?.data
 
   const [treeNodes, setTreeNodes] = useState([])
   const [tree2Nodes, setTree2Nodes] = useState([])
 
   useEffect(() => {
     //console.log('Projekte, building treeNodes')
-    if (!isLoading) {
+    if (!isLoading1) {
       setTreeNodes(
         buildNodes({
           treeName: 'tree',
           role,
           data: treeData,
-          loading: isLoading,
+          loading: isLoading1,
           store,
         }),
       )
     }
   }, [
-    isLoading,
+    isLoading1,
     store.tree.openNodes,
     store.tree.openNodes.length,
     treeData,
@@ -221,20 +231,19 @@ const Projekte = () => {
   useEffect(() => {
     if (!(tree2Tabs.length === 0 || isPrint)) {
       //console.log('Projekte, building tree2Nodes')
-      if (!isLoading) {
+      if (!isLoading2) {
         setTree2Nodes(
           buildNodes({
             treeName: 'tree2',
             role,
             data: tree2Data,
-            loading: isLoading,
+            loading: isLoading2,
             store,
           }),
         )
       }
     }
   }, [
-    //activeNodeArray,
     store.tree2.openNodes,
     store.tree2.openNodes.length,
     tree2Data,
@@ -243,13 +252,10 @@ const Projekte = () => {
     store,
     tree2Tabs.length,
     isPrint,
-    isLoading,
+    isLoading2,
   ])
 
-  console.log('Projekte rendering', {
-    treeData,
-    treeApFilter,
-  })
+  console.log('Projekte rendering')
 
   if (tree2Tabs.length === 0 || isPrint) {
     return (
@@ -258,8 +264,8 @@ const Projekte = () => {
           treeName="tree"
           tabs={treeTabs}
           nodes={treeNodes}
-          treeLoading={isLoading}
-          treeError={error}
+          treeLoading={isLoading1}
+          treeError={error1}
         />
       </Container>
     )
@@ -272,15 +278,15 @@ const Projekte = () => {
           treeName="tree"
           tabs={treeTabs}
           nodes={treeNodes}
-          treeLoading={isLoading}
-          treeError={error}
+          treeLoading={isLoading1}
+          treeError={error1}
         />
         <ProjektContainer
           treeName="tree2"
           tabs={tree2Tabs}
           nodes={tree2Nodes}
-          treeLoading={isLoading}
-          treeError={error}
+          treeLoading={isLoading2}
+          treeError={error2}
         />
       </StyledSplitPane>
     </Container>

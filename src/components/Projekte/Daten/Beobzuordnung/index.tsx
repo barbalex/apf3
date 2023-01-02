@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import { FaRegEnvelope as SendIcon } from 'react-icons/fa'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 import SimpleBar from 'simplebar-react'
 
 import FormTitle from '../../../shared/FormTitle'
@@ -124,6 +125,7 @@ const nichtZuordnenPopover = (
 )
 
 const Beobzuordnung = ({ type, treeName }) => {
+  const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
   const tree = store[treeName]
@@ -159,9 +161,9 @@ const Beobzuordnung = ({ type, treeName }) => {
   const onSaveArtIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveArtIdToDb({ value, row, treeName, client, store })
+      saveArtIdToDb({ value, row, treeName, client, store, queryClient })
     },
-    [client, row, store, treeName],
+    [client, queryClient, row, store, treeName],
   )
   const onSaveNichtZuordnenToDb = useCallback(
     (value) => {
@@ -172,9 +174,10 @@ const Beobzuordnung = ({ type, treeName }) => {
         refetch,
         client,
         store,
+        queryClient,
       })
     },
-    [client, id, refetch, store, treeName],
+    [client, id, queryClient, refetch, store, treeName],
   )
   const onSaveTpopIdToDb = useCallback(
     (event) => {

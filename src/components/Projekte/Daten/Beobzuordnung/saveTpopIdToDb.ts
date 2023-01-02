@@ -3,7 +3,15 @@ import { gql } from '@apollo/client'
 
 import updateBeobByIdGql from './updateBeobById'
 
-const saveTpopIdToDb = async ({ value, id, treeName, type, client, store }) => {
+const saveTpopIdToDb = async ({
+  value,
+  id,
+  treeName,
+  type,
+  client,
+  store,
+  queryClient,
+}) => {
   const variables = {
     id,
     tpopId: value,
@@ -217,8 +225,14 @@ const saveTpopIdToDb = async ({ value, id, treeName, type, client, store }) => {
   setActiveNodeArray(newANA)
   setOpenNodes(newOpenNodes)
   client.refetchQueries({
-    include: ['TreeAllQuery', 'KarteBeobNichtZuzuordnenQuery', 'BeobZugeordnetForMapQuery', 'BeobNichtBeurteiltForMapQuery', 'BeobAssignLinesQuery'],
+    include: [
+      'KarteBeobNichtZuzuordnenQuery',
+      'BeobZugeordnetForMapQuery',
+      'BeobNichtBeurteiltForMapQuery',
+      'BeobAssignLinesQuery',
+    ],
   })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default saveTpopIdToDb

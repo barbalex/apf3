@@ -7,6 +7,7 @@ import uniq from 'lodash/uniq'
 import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -276,6 +277,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
+  const queryClient = useQueryClient()
 
   const {
     activeApfloraLayers,
@@ -431,9 +433,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             afterDeletionHook: () => {
               const newOpenNodes = openNodes.filter((n) => !isEqual(n, url))
               setOpenNodes(newOpenNodes)
-              client.refetchQueries({
-                include: ['TreeAllQuery'],
-              })
+              queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
             },
           })
         },
@@ -582,6 +582,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
       setToDelete,
       openNodes,
       setOpenNodes,
+      queryClient,
       urlQuery,
       showMapIfNotYetVisible,
       activeApfloraLayers,

@@ -9,6 +9,7 @@ const saveNichtZuordnenToDb = async ({
   refetch: refetchPassed,
   client,
   store,
+  queryClient,
 }) => {
   const variables = {
     id,
@@ -19,8 +20,8 @@ const saveNichtZuordnenToDb = async ({
   await client.mutate({
     mutation: updateBeobByIdGql,
     variables,
-    refetchQueries: ['TreeAllQuery'],
   })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
   // need to update activeNodeArray and openNodes
   const { activeNodeArray, setActiveNodeArray, openNodes, addOpenNodes } =
     store[treeName]
