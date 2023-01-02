@@ -40,6 +40,7 @@ import Testen from './components/Docs/docs/Testen'
 import Geschichte from './components/Docs/docs/Geschichte'
 import OpenSource from './components/Docs/docs/OpenSource'
 import ArtTaxonomieErgaenzen from './components/Docs/docs/ArtTaxonomieErgaenzen'
+import InfoFloraExport from './components/Docs/docs/InfofloraExport'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -117,6 +118,7 @@ const RouterComponent = () => (
         path="art-taxonomien-ergaenzen"
         element={<ArtTaxonomieErgaenzen />}
       />
+      <Route path="info-flora-export" element={<InfoFloraExport />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

@@ -150,6 +150,10 @@ const nodes = [
     slug: 'art-taxonomien-ergaenzen',
     title: 'Art-Taxonomien ergänzen',
   },
+  {
+    slug: 'info-flora-export',
+    title: 'Info-Flora-Export',
+  },
 ]
 
 const MenuItems = () => {
