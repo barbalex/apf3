@@ -37,6 +37,7 @@ import ProdukteFuerFNS from './components/Docs/docs/ProdukteFuerFNS'
 import DatenSichern from './components/Docs/docs/DatenSichern'
 import DatenWiederherstellen from './components/Docs/docs/DatenWiederherstellen'
 import Testen from './components/Docs/docs/Testen'
+import Geschichte from './components/Docs/docs/Geschichte'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -108,6 +109,7 @@ const RouterComponent = () => (
         element={<DatenWiederherstellen />}
       />
       <Route path="testen" element={<Testen />} />
+      <Route path="geschichte" element={<Geschichte />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>

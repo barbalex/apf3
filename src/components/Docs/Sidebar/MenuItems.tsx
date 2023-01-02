@@ -138,6 +138,10 @@ const nodes = [
     slug: 'testen',
     title: 'Funktionalität testen',
   },
+  {
+    slug: 'geschichte',
+    title: 'Entstehungs-Geschichte',
+  },
 ]
 
 const MenuItems = () => {
