@@ -134,6 +134,10 @@ const nodes = [
     slug: 'daten-wiederherstellen',
     title: 'Daten aus Sicherung herstellen',
   },
+  {
+    slug: 'testen',
+    title: 'Funktionalität testen',
+  },
 ]
 
 const MenuItems = () => {

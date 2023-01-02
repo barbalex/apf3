@@ -36,6 +36,7 @@ import BeobVerwalten from './components/Docs/docs/BeobVerwalten'
 import ProdukteFuerFNS from './components/Docs/docs/ProdukteFuerFNS'
 import DatenSichern from './components/Docs/docs/DatenSichern'
 import DatenWiederherstellen from './components/Docs/docs/DatenWiederherstellen'
+import Testen from './components/Docs/docs/Testen'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -106,6 +107,7 @@ const RouterComponent = () => (
         path="daten-wiederherstellen"
         element={<DatenWiederherstellen />}
       />
+      <Route path="testen" element={<Testen />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
