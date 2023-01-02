@@ -142,6 +142,10 @@ const nodes = [
     slug: 'geschichte',
     title: 'Entstehungs-Geschichte',
   },
+  {
+    slug: 'open-source',
+    title: 'Open source',
+  },
 ]
 
 const MenuItems = () => {

@@ -38,6 +38,7 @@ import DatenSichern from './components/Docs/docs/DatenSichern'
 import DatenWiederherstellen from './components/Docs/docs/DatenWiederherstellen'
 import Testen from './components/Docs/docs/Testen'
 import Geschichte from './components/Docs/docs/Geschichte'
+import OpenSource from './components/Docs/docs/OpenSource'
 // import Unterhalt from './components/Unterhalt'
 
 const RouterComponent = () => (
@@ -110,6 +111,7 @@ const RouterComponent = () => (
       />
       <Route path="testen" element={<Testen />} />
       <Route path="geschichte" element={<Geschichte />} />
+      <Route path="open-source" element={<OpenSource />} />
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
