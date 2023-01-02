@@ -146,6 +146,10 @@ const nodes = [
     slug: 'open-source',
     title: 'Open source',
   },
+  {
+    slug: 'art-taxonomien-ergaenzen',
+    title: 'Art-Taxonomien ergänzen',
+  },
 ]
 
 const MenuItems = () => {
