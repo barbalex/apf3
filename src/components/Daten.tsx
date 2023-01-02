@@ -1,7 +1,7 @@
 // file name need underscore
 // otherwise weird things happen (edits are not registered)
 // see: https://github.com/gatsbyjs/gatsby/issues/26554#issuecomment-677915552
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 
@@ -28,16 +28,13 @@ const DatenComponent = () => {
   const store = useContext(storeContext)
   const { view, showDeletions, user } = store
 
-  const form = useMemo(() => (view === 'ekf' ? 'ekf' : 'projekte'), [view])
-
   // console.log('DatenPageComponent rendering')
 
   return (
     <Container>
       {!!user.token && (
         <>
-          {form === 'ekf' && <Ekf />}
-          {form === 'projekte' && <Projekte />}
+          {view === 'ekf' ? <Ekf /> : <Projekte />}
           <Messages />
           {showDeletions && <Deletions />}
         </>
