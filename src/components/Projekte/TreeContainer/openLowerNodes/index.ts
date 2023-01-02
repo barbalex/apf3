@@ -29,7 +29,7 @@ const openLowerNodes = ({
       popFolder({ treeName, id, client, store, queryClient })
       break
     case 'pop':
-      pop({ treeName, id, client, store })
+      pop({ treeName, id, client, store, queryClient })
       break
     case 'tpopFolder':
       tpopFolder({ treeName, id, client, store, queryClient })

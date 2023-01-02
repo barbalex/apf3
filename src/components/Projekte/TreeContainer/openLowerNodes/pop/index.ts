@@ -6,7 +6,13 @@
  */
 import dataGql from './data'
 
-const openLowerNodesPop = async ({ treeName, id, client, store }) => {
+const openLowerNodesPop = async ({
+  treeName,
+  id,
+  client,
+  store,
+  queryClient,
+}) => {
   const tree = store[treeName]
   const { addOpenNodes, apIdInActiveNodeArray, projIdInActiveNodeArray } = tree
   const projId =
@@ -86,9 +92,7 @@ const openLowerNodesPop = async ({ treeName, id, client, store }) => {
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  client.refetchQueries({
-    include: ['TreeAllQuery'],
-  })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default openLowerNodesPop

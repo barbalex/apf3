@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Switch from '@mui/material/Switch'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 
 import apById from './apById'
 import Label from '../../../shared/Label'
@@ -22,6 +23,7 @@ const StyledSwitch = styled(Switch)`
 `
 
 const ApFilter = ({ treeName }) => {
+  const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
   const {
@@ -43,9 +45,7 @@ const ApFilter = ({ treeName }) => {
     console.log('ApFilter, onChange', { apFilter, previousApFilter })
     if (!previousApFilter) {
       // need to fetch previously not had aps
-      client.refetchQueries({
-        include: ['TreeAllQuery'],
-      })
+      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
       // apFilter was set to true
       let result
       if (apId) {
@@ -85,9 +85,11 @@ const ApFilter = ({ treeName }) => {
     apId,
     client,
     openNodes,
+    queryClient,
     setActiveNodeArray,
     setApFilter,
     setOpenNodes,
+    treeName,
   ])
 
   return (

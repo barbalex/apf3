@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import AsyncSelect from 'react-select/async'
 import styled from '@emotion/styled'
 import { gql, useApolloClient } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 
 import userIsReadOnly from '../../../../modules/userIsReadOnly'
 import storeContext from '../../../../storeContext'
@@ -73,6 +74,8 @@ const Error = styled.div`
 const EkfrequenzFolder = ({ onClick, treeName }) => {
   const client = useApolloClient()
   const { user, enqueNotification } = useContext(storeContext)
+
+  const queryClient = useQueryClient()
 
   // according to https://github.com/vkbansal/react-contextmenu/issues/65
   // this is how to pass data from ContextMenuTrigger to ContextMenu
@@ -253,10 +256,9 @@ const EkfrequenzFolder = ({ onClick, treeName }) => {
                 sort: ekf.sort,
                 changedBy: user.name,
               },
-              refetchQueries: ['TreeAllQuery'],
-              awaitRefetchQueries: true,
             })
           }),
+          queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] }),
         )
       } catch (error) {
         console.log({ error })
@@ -274,7 +276,7 @@ const EkfrequenzFolder = ({ onClick, treeName }) => {
         },
       })
     },
-    [apId, client, enqueNotification, user.name],
+    [apId, client, enqueNotification, queryClient, treeName, user.name],
   )
 
   const [apOptionsError, setApOptionsError] = useState(undefined)
