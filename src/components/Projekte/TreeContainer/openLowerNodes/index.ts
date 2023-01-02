@@ -26,16 +26,16 @@ const openLowerNodes = ({
    */
   switch (menuType) {
     case 'popFolder':
-      popFolder({ treeName, id, client, store })
+      popFolder({ treeName, id, client, store, queryClient })
       break
     case 'pop':
       pop({ treeName, id, client, store })
       break
     case 'tpopFolder':
-      tpopFolder({ treeName, id, client, store })
+      tpopFolder({ treeName, id, client, store, queryClient })
       break
     case 'tpop':
-      tpop({ treeName, id, client, store })
+      tpop({ treeName, id, client, store, queryClient })
       break
     case 'tpopfeldkontrFolder':
       tpopfeldkontrFolder({
@@ -43,6 +43,7 @@ const openLowerNodes = ({
         id,
         client,
         store,
+        queryClient,
       })
       break
     case 'tpopfreiwkontrFolder':
@@ -51,6 +52,7 @@ const openLowerNodes = ({
         id,
         client,
         store,
+        queryClient,
       })
       break
     case 'zielFolder':

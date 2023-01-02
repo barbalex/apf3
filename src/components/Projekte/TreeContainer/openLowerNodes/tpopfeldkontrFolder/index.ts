@@ -11,6 +11,7 @@ const openLowerNodesTpopfeldkontrFolder = async ({
   id,
   client,
   store,
+  queryClient,
 }) => {
   const tree = store[treeName]
   const {
@@ -98,9 +99,7 @@ const openLowerNodesTpopfeldkontrFolder = async ({
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  client.refetchQueries({
-    include: ['TreeAllQuery'],
-  })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default openLowerNodesTpopfeldkontrFolder
