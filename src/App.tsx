@@ -6,6 +6,7 @@ import theme from './utils/materialTheme'
 import { registerLocale, setDefaultLocale } from 'react-datepicker'
 import de from 'date-fns/locale/de'
 import { ApolloProvider } from '@apollo/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import MobxStore from './store'
 import { SnackbarProvider } from 'notistack'
 //import { onPatch } from 'mobx-state-tree'
@@ -50,6 +51,8 @@ import StorePersister from './components/StorePersister'
 registerLocale('de', de)
 setDefaultLocale('de')
 
+const queryClient = new QueryClient()
+
 const App = () => {
   const idb = initializeIdb()
   const store = MobxStore.create()
@@ -71,31 +74,33 @@ const App = () => {
     <IdbProvider value={idbContext}>
       <MobxProvider value={store}>
         <ApolloProvider client={client}>
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <SnackbarProvider
-                maxSnack={3}
-                preventDuplicate
-                autoHideDuration={20000}
-                action={(key) => <NotificationDismisser nKey={key} />}
-              >
-                <>
-                  <GlobalStyle />
-                  <Layout>
-                    <Router />
-                  </Layout>
-                  <Notifier />
-                  <IsPrintSetter />
-                  <LastTouchedNodeSetter />
-                  <ActiveNodeArraySetter />
-                  <NavigateSetter />
-                  <MouseWheelHandler />
-                  <LegacyBrowserInformer />
-                  <StorePersister />
-                </>
-              </SnackbarProvider>
-            </ThemeProvider>
-          </StyledEngineProvider>
+          <QueryClientProvider client={queryClient}>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={theme}>
+                <SnackbarProvider
+                  maxSnack={3}
+                  preventDuplicate
+                  autoHideDuration={20000}
+                  action={(key) => <NotificationDismisser nKey={key} />}
+                >
+                  <>
+                    <GlobalStyle />
+                    <Layout>
+                      <Router />
+                    </Layout>
+                    <Notifier />
+                    <IsPrintSetter />
+                    <LastTouchedNodeSetter />
+                    <ActiveNodeArraySetter />
+                    <NavigateSetter />
+                    <MouseWheelHandler />
+                    <LegacyBrowserInformer />
+                    <StorePersister />
+                  </>
+                </SnackbarProvider>
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </QueryClientProvider>
         </ApolloProvider>
       </MobxProvider>
     </IdbProvider>

@@ -33,11 +33,14 @@ const ApFilter = ({ treeName }) => {
     setOpenNodes,
     apIdInActiveNodeArray,
   } = store[treeName]
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
+
+  console.log('ApFilter, render', { apFilter, apId })
 
   const onChange = useCallback(async () => {
     const previousApFilter = apFilter
     setApFilter(!apFilter)
+    console.log('ApFilter, onChange', { apFilter, previousApFilter })
     if (!previousApFilter) {
       // need to fetch previously not had aps
       client.refetchQueries({
