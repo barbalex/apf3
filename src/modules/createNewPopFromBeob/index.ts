@@ -7,7 +7,7 @@ import createPop from './createPop'
 import createTpop from './createTpop'
 import updateBeobById from './updateBeobById'
 
-const createNewPopFromBeob = async ({ treeName, id, client, store }) => {
+const createNewPopFromBeob = async ({ treeName, id, client, store, queryClient }) => {
   const { enqueNotification } = store
   const tree = store[treeName]
   const {
@@ -176,13 +176,13 @@ const createNewPopFromBeob = async ({ treeName, id, client, store }) => {
   // TODO: what is this for?
   client.refetchQueries({
     include: [
-      'TreeAllQuery',
       'KarteBeobNichtZuzuordnenQuery',
       'BeobZugeordnetForMapQuery',
       'BeobNichtBeurteiltForMapQuery',
       'BeobAssignLinesQuery',
     ],
   })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default createNewPopFromBeob

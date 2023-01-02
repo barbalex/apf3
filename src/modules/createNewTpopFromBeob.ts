@@ -84,6 +84,7 @@ const createNewTpopFromBeob = async ({
   beobId,
   client,
   store,
+  queryClient,
 }) => {
   const { enqueNotification } = store
   const tree = store[treeName]
@@ -188,7 +189,7 @@ const createNewTpopFromBeob = async ({
     beobId,
   ]
 
-  let newOpenNodes = [
+  const newOpenNodes = [
     ...tree.openNodes,
     // add Beob and it's not yet existing parents to open nodes
     [`Projekte`, projId, `Arten`, apId, `Populationen`],
@@ -244,13 +245,13 @@ const createNewTpopFromBeob = async ({
 
   client.refetchQueries({
     include: [
-      'TreeAllQuery',
       'KarteBeobNichtZuzuordnenQuery',
       'BeobZugeordnetForMapQuery',
       'BeobNichtBeurteiltForMapQuery',
       'BeobAssignLinesQuery',
     ],
   })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default createNewTpopFromBeob

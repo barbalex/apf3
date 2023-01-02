@@ -12,6 +12,7 @@ const openLowerNodesZieljahrFolder = async ({
   parentId: apId,
   client,
   store,
+  queryClient,
 }) => {
   const tree = store[treeName]
   const jahr = +jahrString
@@ -66,9 +67,7 @@ const openLowerNodesZieljahrFolder = async ({
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  client.refetchQueries({
-    include: ['TreeAllQuery'],
-  })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default openLowerNodesZieljahrFolder

@@ -29,6 +29,7 @@ const insertDataset = async ({
   url,
   client,
   store,
+  queryClient
 }) => {
   const { enqueNotification } = store
   const { setActiveNodeArray, openNodes, setOpenNodes } = store[treeName]
@@ -218,9 +219,7 @@ const insertDataset = async ({
     newOpenNodes = [...newOpenNodes, newOpenFolder, newOpenNode]
   }
   setOpenNodes(newOpenNodes)
-  client.refetchQueries({
-    include: ['TreeAllQuery'],
-  })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default insertDataset

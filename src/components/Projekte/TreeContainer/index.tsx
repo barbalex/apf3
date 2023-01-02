@@ -405,6 +405,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             id,
             client,
             store,
+            queryClient,
           })
         },
         openLowerNodes() {
@@ -415,6 +416,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             menuType,
             client,
             store,
+            queryClient,
           })
         },
         closeLowerNodes() {
@@ -460,7 +462,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           setMoving({ table, id, label })
         },
         move() {
-          moveTo({ id, store, client })
+          moveTo({ id, store, client, treeName, queryClient })
         },
         markForCopying() {
           setCopying({ table, id, label, withNextLevel: false })
@@ -481,6 +483,8 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             parentId: id,
             client,
             store,
+            treeName,
+            queryClient,
           })
         },
         markForCopyingBiotop() {
@@ -501,6 +505,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             id,
             client,
             store,
+            queryClient,
           })
         },
         createNewTpopFromBeob() {

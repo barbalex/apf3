@@ -8,7 +8,13 @@ import groupBy from 'lodash/groupBy'
 
 import dataGql from './data'
 
-const openLowerNodesZielFolder = async ({ treeName, id, client, store }) => {
+const openLowerNodesZielFolder = async ({
+  treeName,
+  id,
+  client,
+  store,
+  queryClient,
+}) => {
   const tree = store[treeName]
   const { addOpenNodes, projIdInActiveNodeArray } = tree
   const projId =
@@ -68,9 +74,7 @@ const openLowerNodesZielFolder = async ({ treeName, id, client, store }) => {
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  client.refetchQueries({
-    include: ['TreeAllQuery'],
-  })
+  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
 }
 
 export default openLowerNodesZielFolder

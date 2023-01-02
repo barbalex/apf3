@@ -14,6 +14,7 @@ const openLowerNodes = ({
   menuType,
   client,
   store,
+  queryClient,
 }) => {
   /**
    * 1. load all data
@@ -53,7 +54,7 @@ const openLowerNodes = ({
       })
       break
     case 'zielFolder':
-      zielFolder({ treeName, id, client, store })
+      zielFolder({ treeName, id, client, store, queryClient })
       break
     case 'zieljahrFolder':
       zieljahrFolder({
@@ -62,6 +63,7 @@ const openLowerNodes = ({
         parentId,
         store,
         client,
+        queryClient,
       })
       break
     default:

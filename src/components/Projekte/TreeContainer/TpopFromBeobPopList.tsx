@@ -4,6 +4,7 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import { observer } from 'mobx-react-lite'
@@ -30,6 +31,8 @@ const TpopFromBeobPopList = ({
   const tree = store[treeName]
   const { activeNodeArray } = tree
   const apId = activeNodeArray[3]
+
+  const queryClient = useQueryClient()
 
   const query = gql`
     query allPopsQueryForTpopFromBeobPopList($apId: UUID!) {
@@ -68,6 +71,8 @@ const TpopFromBeobPopList = ({
                 beobId,
                 client,
                 store,
+                treeName,
+                queryClient,
               })
               closeNewTpopFromBeobDialog()
             }}
