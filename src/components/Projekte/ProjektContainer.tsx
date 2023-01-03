@@ -213,7 +213,6 @@ const ProjektContainer = ({
       <Container ref={containerEl}>
         <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
           {elObj[tabs[0]]}
-
           <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
             {elObj[tabs[1]]}
             {elObj[tabs[2]]}
@@ -228,7 +227,6 @@ const ProjektContainer = ({
       <Container ref={containerEl}>
         <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
           {elObj[tabs[0]]}
-
           <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
             {elObj[tabs[1]]}
             <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
@@ -246,7 +244,6 @@ const ProjektContainer = ({
       <Container ref={containerEl}>
         <StyledSplitPane split="vertical" size="20%" maxSize={-10}>
           {elObj[tabs[0]]}
-
           <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
             {elObj[tabs[1]]}
             <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
