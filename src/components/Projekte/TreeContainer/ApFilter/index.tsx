@@ -37,7 +37,7 @@ const ApFilter = ({ treeName }) => {
   } = store[treeName]
   const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
-  console.log('ApFilter, render', { apFilter, apId })
+  // console.log('ApFilter, render', { apFilter, apId })
 
   const onChange = useCallback(async () => {
     const previousApFilter = apFilter
