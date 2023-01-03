@@ -2,7 +2,7 @@ import React, { useContext, useRef, useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
 import { observer } from 'mobx-react-lite'
-import { useDebouncedCallback } from 'use-debounce' 
+import { useDebouncedCallback } from 'use-debounce'
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
@@ -86,11 +86,11 @@ const ProjektContainer = ({
     activeNodeArray,
   } = store[treeName]
 
-  const showApberForAp =
+  const showApberForArt =
     activeNodeArray.length === 7 &&
     activeNodeArray[4] === 'AP-Berichte' &&
     activeNodeArray[6] === 'print'
-  const showApberForYear =
+  const showApberForAll =
     activeNodeArray.length === 5 &&
     activeNodeArray[2] === 'AP-Berichte' &&
     activeNodeArray[4] === 'print'
@@ -162,7 +162,12 @@ const ProjektContainer = ({
 
   const paneSize = tabs[0] === 'tree' ? '33%' : '50%'
 
-  if (showApberForYear) {
+  console.log('ProjektContainer', {
+    showApberForAll,
+    showApberForArt,
+  })
+
+  if (showApberForAll) {
     if (isPrint) return <ApberForYear />
     return (
       <Container ref={containerEl}>
@@ -180,9 +185,8 @@ const ProjektContainer = ({
     )
   }
 
-  if (showApberForAp) {
-    const component = <ApberForApFromAp />
-    if (isPrint) return component
+  if (showApberForArt) {
+    if (isPrint) return <ApberForApFromAp />
     return (
       <Container ref={containerEl}>
         <StyledSplitPane
@@ -193,7 +197,9 @@ const ProjektContainer = ({
           overflow="auto"
         >
           {elObj.tree}
-          <InnerContainer>{component}</InnerContainer>
+          <InnerContainer>
+            <ApberForApFromAp />
+          </InnerContainer>
         </StyledSplitPane>
       </Container>
     )
