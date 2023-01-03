@@ -71,7 +71,6 @@ const TpopFromBeobPopList = ({
                 beobId,
                 client,
                 store,
-                treeName,
                 queryClient,
               })
               closeNewTpopFromBeobDialog()
