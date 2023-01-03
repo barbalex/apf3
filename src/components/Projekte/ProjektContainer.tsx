@@ -2,7 +2,7 @@ import React, { useContext, useRef, useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
 import { observer } from 'mobx-react-lite'
-import { useDebouncedCallback } from 'use-debounce'
+import { useDebouncedCallback } from 'use-debounce' 
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
@@ -163,8 +163,7 @@ const ProjektContainer = ({
   const paneSize = tabs[0] === 'tree' ? '33%' : '50%'
 
   if (showApberForYear) {
-    const component = <ApberForYear />
-    if (isPrint) return component
+    if (isPrint) return <ApberForYear />
     return (
       <Container ref={containerEl}>
         <StyledSplitPane
@@ -175,7 +174,7 @@ const ProjektContainer = ({
           overflow="auto"
         >
           {elObj.tree}
-          {component}
+          <ApberForYear />
         </StyledSplitPane>
       </Container>
     )
