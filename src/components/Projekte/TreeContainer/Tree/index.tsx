@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 // 2022 02 08: removed simplebar as was hard to get to work with virtuoso
 // see: https://github.com/petyosi/react-virtuoso/issues/253
 import { Virtuoso } from 'react-virtuoso'
+import { useResizeDetector } from 'react-resize-detector'
 
 import Row from './Row'
 
@@ -25,11 +26,13 @@ const Container = styled.div`
 const Tree = ({ treeName, nodes }) => {
   const store = useContext(storeContext)
   const tree = store[treeName]
-  const {
-    activeNodeArray,
-    lastTouchedNode: lastTouchedNodeProxy,
-    formHeight: height,
-  } = tree
+  const { activeNodeArray, lastTouchedNode: lastTouchedNodeProxy } = tree
+
+  const { height = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
 
   const lastTouchedNode = lastTouchedNodeProxy?.slice()
   // when loading on url, lastTouchedNode may not be set
@@ -51,7 +54,7 @@ const Tree = ({ treeName, nodes }) => {
   if (initialTopMostIndex === undefined) return null
 
   return (
-    <Container>
+    <Container ref={resizeRef}>
       <Virtuoso
         initialTopMostItemIndex={initialTopMostIndex}
         height={height}

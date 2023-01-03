@@ -56,7 +56,7 @@ const EkfList = ({ data, loading }) => {
   const ekf = getEkfFromData({ data, ekfAdresseId })
   setEkfIds(ekf.map((e) => e.id))
 
-  const { activeNodeArray, treeWidth } = tree
+  const { activeNodeArray } = tree
   const activeTpopkontrId =
     activeNodeArray.length > 9
       ? activeNodeArray[9]
@@ -110,7 +110,7 @@ const EkfList = ({ data, loading }) => {
             height={ekf.length * itemHeight}
             itemCount={ekf.length}
             itemSize={itemHeight}
-            width={treeWidth}
+            width={window.innerWidth / 3}
           >
             {({ index, style }) => (
               <Item

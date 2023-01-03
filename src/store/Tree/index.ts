@@ -55,7 +55,6 @@ export default types
     //   types.union(Geojson, types.literal(undefined)),
     //   undefined,
     // ),
-    treeWidth: types.optional(types.number, 500),
     formWidth: types.optional(types.number, 500),
     formHeight: types.optional(types.number, 500),
     filterWidth: types.optional(types.number, 500),
@@ -70,14 +69,8 @@ export default types
     setLastTouchedNode(val) {
       self.lastTouchedNode = val
     },
-    setTreeWidth(val) {
-      self.treeWidth = val
-    },
     setFormWidth(val) {
       self.formWidth = val
-    },
-    setFormHeight(val) {
-      self.formHeight = val
     },
     setFilterWidth(val) {
       self.filterWidth = val

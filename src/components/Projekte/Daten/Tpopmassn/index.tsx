@@ -364,7 +364,7 @@ const Tpopmassn = ({ treeName, showFilter = false }) => {
   )
 
   const columnWidth =
-    width > 2 * constants.columnWidth ? constants.columnWidth : undefined
+    width > 2 * constants.columnWidth ? constants.columnWidth : undefined 
 
   if (loading) return <Spinner />
 

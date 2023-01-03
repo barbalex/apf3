@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useRef, useEffect } from 'react'
+import React, { useContext, useRef } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
 import jwtDecode from 'jwt-decode'
@@ -59,8 +59,6 @@ const InnerContainer = styled.div`
   height: 100%;
 `
 
-const standardWidth = 500
-
 const Ekf = () => {
   const {
     user,
@@ -73,7 +71,7 @@ const Ekf = () => {
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
 
-  const { activeNodeArray, setTreeWidth } = tree
+  const { activeNodeArray } = tree
   const tpopkontrId =
     activeNodeArray.length > 9
       ? activeNodeArray[9]
@@ -84,23 +82,6 @@ const Ekf = () => {
 
   const treeEl = useRef(null)
   const datenEl = useRef(null)
-
-  const setDimensions = useCallback(() => {
-    if (treeEl.current && treeEl.current.clientWidth) {
-      setTreeWidth(treeEl.current.clientWidth)
-    } else {
-      setTreeWidth(standardWidth)
-    }
-  }, [setTreeWidth])
-
-  const onDragFinished = useCallback(() => setDimensions(), [setDimensions])
-
-  // reset dimensions when window resizes
-  useEffect(() => {
-    window.addEventListener('resize', setDimensions)
-    setDimensions()
-    return () => window.removeEventListener('resize', setDimensions)
-  }, [setDimensions])
 
   const ekfIds = ekfIdsRaw?.toJSON()
   if (isPrint && ekfIds.length > 0 && ekfMultiPrint) {
@@ -119,12 +100,7 @@ const Ekf = () => {
 
   return (
     <Container>
-      <StyledSplitPane
-        split="vertical"
-        size="33%"
-        minSize={100}
-        onDragFinished={onDragFinished}
-      >
+      <StyledSplitPane split="vertical" size="33%" minSize={100}>
         <InnerContainer ref={treeEl}>
           <EkfList />
         </InnerContainer>

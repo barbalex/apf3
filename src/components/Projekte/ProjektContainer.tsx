@@ -79,10 +79,8 @@ const ProjektContainer = ({
   const store = useContext(storeContext)
   const { isPrint } = store
   const {
-    setTreeWidth,
     setFormWidth,
     setFilterWidth,
-    setFormHeight,
     activeNodeArray,
   } = store[treeName]
 
@@ -104,11 +102,9 @@ const ProjektContainer = ({
   const tabs = [...tabsPassed].map((t) => t.replace('2', ''))
 
   const setDimensions = useCallback(() => {
-    setTreeWidth(treeEl?.current?.clientWidth ?? standardWidth)
     setFormWidth(datenEl?.current?.clientWidth ?? standardWidth)
-    setFormHeight(containerEl?.current?.clientHeight ?? standardWidth)
     setFilterWidth(filterEl?.current?.clientWidth ?? standardWidth)
-  }, [setFilterWidth, setFormHeight, setFormWidth, setTreeWidth])
+  }, [setFilterWidth, setFormWidth])
 
   const setDimensionsDebounced = useDebouncedCallback(setDimensions, 600)
 
