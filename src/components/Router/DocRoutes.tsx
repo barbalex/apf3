@@ -36,7 +36,7 @@ import OpenSource from '../Docs/docs/OpenSource'
 import ArtTaxonomieErgaenzen from '../Docs/docs/ArtTaxonomieErgaenzen'
 import InfoFloraExport from '../Docs/docs/InfofloraExport'
 
-const DocsRoutes = () => (
+const DocRoutes = () => (
   <>
     <Route
       path="was-kann-man-mit-apflora-machen"
@@ -103,4 +103,4 @@ const DocsRoutes = () => (
   </>
 )
 
-export default DocsRoutes
+export default DocRoutes
