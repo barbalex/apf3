@@ -8,12 +8,12 @@ import DocsRoutes from './DocsRoutes'
 import Docs from '../Docs'
 // import Unterhalt from './components/Unterhalt'
 
+// uncommeent unterhalt route for Unterhalt
 const RouterComponent = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    {/* uncommeent next rout while commenting the following for Unterhalt */}
-    {/* <Route path="/*" element={<Unterhalt />}></Route> */}
     <Route path="/Daten/*">
+      {/* <Route path="*" element={<Unterhalt />}></Route> */}
       <Route path="*" element={<Daten />} />
       <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
     </Route>
