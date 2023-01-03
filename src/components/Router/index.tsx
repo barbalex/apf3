@@ -4,7 +4,7 @@ import Home from '../Home'
 import Daten from '../Daten'
 import EkPlan from '../EkPlan'
 import FourOhFour from '../404'
-import DocsRoutes from './DocsRoutes'
+import DocRoutes from './DocRoutes'
 import Docs from '../Docs'
 // import Unterhalt from './components/Unterhalt'
 
@@ -18,7 +18,7 @@ const RouterComponent = () => (
       <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
     </Route>
     <Route path="/Dokumentation/*" element={<Docs />}>
-      {DocsRoutes()}
+      {DocRoutes()}
     </Route>
     <Route path="*" element={<FourOhFour />} />
   </Routes>
