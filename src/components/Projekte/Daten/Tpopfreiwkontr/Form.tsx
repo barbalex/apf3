@@ -4,6 +4,7 @@ import sortBy from 'lodash/sortBy'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, gql } from '@apollo/client'
 import jwtDecode from 'jwt-decode'
+import { useResizeDetector } from 'react-resize-detector'
 
 import StringToCopy from '../../../shared/StringToCopyOnlyButton'
 import Title from './Title'
@@ -151,7 +152,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { dataFilterSetValue, isPrint, view, user } = store
-  const { formWidth: width } = store[treeName]
   const { token } = user
   const role = token ? jwtDecode(token).role : null
 
@@ -328,8 +328,14 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
     setErrors({})
   }, [row.id])
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
+
   return (
-    <FormContainer>
+    <FormContainer ref={resizeRef}>
       <GridContainer width={width}>
         <Title row={row} />
         <Headdata pop={pop} tpop={tpop} row={row} />

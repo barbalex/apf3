@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -126,7 +127,7 @@ const Tpopfeldkontr = ({ treeName }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray, formWidth } = store[treeName]
+  const { activeNodeArray } = store[treeName]
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -134,7 +135,6 @@ const Tpopfeldkontr = ({ treeName }) => {
     activeNodeArray.length > 9
       ? activeNodeArray[9]
       : '99999999-9999-9999-9999-999999999999'
-  const width = formWidth
   const { data, loading, error } = useQuery(query, {
     variables: {
       id,
@@ -220,6 +220,11 @@ const Tpopfeldkontr = ({ treeName }) => {
     )
     .map((o) => ({ value: o, label: o }))
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -229,7 +234,7 @@ const Tpopfeldkontr = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <Container>
+      <Container ref={resizeRef}>
         <FormTitle
           apId={activeNodeArray[3]}
           title="Feld-Kontrolle"

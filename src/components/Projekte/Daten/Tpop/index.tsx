@@ -222,7 +222,6 @@ const TpopForm = ({ treeName }) => {
                 row={row}
                 apJahr={apJahr}
                 refetchTpop={refetchTpop}
-                treeName={treeName}
                 loadingParent={loading}
               />
             ) : tab === 'ek' ? (

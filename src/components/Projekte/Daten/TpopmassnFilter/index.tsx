@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -59,7 +60,6 @@ const TpopmassnFilter = ({ treeName }) => {
 
   const {
     dataFilter,
-    filterWidth: width,
     tpopmassnGqlFilter,
     nodeLabelFilter,
     mapFilter,
@@ -109,6 +109,11 @@ const TpopmassnFilter = ({ treeName }) => {
     [dataFilterSetValue, treeName, activeTab],
   )
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -150,7 +155,7 @@ const TpopmassnFilter = ({ treeName }) => {
   if (error) return <Error error={error} />
 
   return (
-    <Container>
+    <Container ref={resizeRef}>
       <ErrorBoundary>
         <FilterTitle
           title="Massnahmen"

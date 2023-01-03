@@ -1,8 +1,7 @@
-import React, { useContext, useRef, useCallback, useEffect } from 'react'
+import React, { useContext, useRef } from 'react'
 import styled from '@emotion/styled'
 import SplitPane from 'react-split-pane'
 import { observer } from 'mobx-react-lite'
-import { useDebouncedCallback } from 'use-debounce'
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
@@ -68,8 +67,6 @@ const InnerContainer = styled.div`
   height: 100%;
 `
 
-const standardWidth = 500
-
 const ProjektContainer = ({
   treeName,
   tabs: tabsPassed,
@@ -78,11 +75,7 @@ const ProjektContainer = ({
 }) => {
   const store = useContext(storeContext)
   const { isPrint } = store
-  const {
-    setFormWidth,
-    setFilterWidth,
-    activeNodeArray,
-  } = store[treeName]
+  const { activeNodeArray } = store[treeName]
 
   const showApberForArt =
     activeNodeArray.length === 7 &&
@@ -100,26 +93,6 @@ const ProjektContainer = ({
 
   // remove 2 to treat all same
   const tabs = [...tabsPassed].map((t) => t.replace('2', ''))
-
-  const setDimensions = useCallback(() => {
-    setFormWidth(datenEl?.current?.clientWidth ?? standardWidth)
-    setFilterWidth(filterEl?.current?.clientWidth ?? standardWidth)
-  }, [setFilterWidth, setFormWidth])
-
-  const setDimensionsDebounced = useDebouncedCallback(setDimensions, 600)
-
-  const onDragSplitter = useCallback(setDimensions, [setDimensions])
-
-  // reset dimensions when window resizes
-  useEffect(() => {
-    window.addEventListener('resize', setDimensionsDebounced)
-    return () => window.removeEventListener('resize', setDimensionsDebounced)
-  }, [setDimensionsDebounced])
-
-  // reset dimensions when tabs are toggled
-  useEffect(() => {
-    setDimensions()
-  }, [tabs.length, isPrint, setDimensions])
 
   const elObj = {
     tree: (
@@ -171,7 +144,6 @@ const ProjektContainer = ({
           split="vertical"
           size={paneSize}
           maxSize={-10}
-          onDragFinished={onDragSplitter}
           overflow="auto"
         >
           {elObj.tree}
@@ -189,7 +161,6 @@ const ProjektContainer = ({
           split="vertical"
           size={paneSize}
           maxSize={-10}
-          onDragFinished={onDragSplitter}
           overflow="auto"
         >
           {elObj.tree}
@@ -218,12 +189,7 @@ const ProjektContainer = ({
     // missing a second div
     return (
       <Container ref={containerEl}>
-        <StyledSplitPane
-          split="vertical"
-          size="100%"
-          maxSize={-10}
-          onDragFinished={onDragSplitter}
-        >
+        <StyledSplitPane split="vertical" size="100%" maxSize={-10}>
           {elObj[tabs[0]]}
           <></>
         </StyledSplitPane>
@@ -234,12 +200,7 @@ const ProjektContainer = ({
   if (tabs.length === 2) {
     return (
       <Container ref={containerEl}>
-        <StyledSplitPane
-          split="vertical"
-          size={paneSize}
-          maxSize={-10}
-          onDragFinished={onDragSplitter}
-        >
+        <StyledSplitPane split="vertical" size={paneSize} maxSize={-10}>
           {elObj[tabs[0]]}
           {elObj[tabs[1]]}
         </StyledSplitPane>
@@ -250,20 +211,10 @@ const ProjektContainer = ({
   if (tabs.length === 3) {
     return (
       <Container ref={containerEl}>
-        <StyledSplitPane
-          split="vertical"
-          size="33%"
-          maxSize={-10}
-          onDragFinished={onDragSplitter}
-        >
+        <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
           {elObj[tabs[0]]}
 
-          <StyledSplitPane
-            split="vertical"
-            size="50%"
-            maxSize={-10}
-            onDragFinished={onDragSplitter}
-          >
+          <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
             {elObj[tabs[1]]}
             {elObj[tabs[2]]}
           </StyledSplitPane>
@@ -275,27 +226,12 @@ const ProjektContainer = ({
   if (tabs.length === 4) {
     return (
       <Container ref={containerEl}>
-        <StyledSplitPane
-          split="vertical"
-          size="25%"
-          maxSize={-10}
-          onDragFinished={onDragSplitter}
-        >
+        <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
           {elObj[tabs[0]]}
 
-          <StyledSplitPane
-            split="vertical"
-            size="33%"
-            maxSize={-10}
-            onDragFinished={onDragSplitter}
-          >
+          <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
             {elObj[tabs[1]]}
-            <StyledSplitPane
-              split="vertical"
-              size="50%"
-              maxSize={-10}
-              onDragFinished={onDragSplitter}
-            >
+            <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
               {elObj[tabs[2]]}
               {elObj[tabs[3]]}
             </StyledSplitPane>
@@ -308,34 +244,14 @@ const ProjektContainer = ({
   if (tabs.length === 5) {
     return (
       <Container ref={containerEl}>
-        <StyledSplitPane
-          split="vertical"
-          size="20%"
-          maxSize={-10}
-          onDragFinished={onDragSplitter}
-        >
+        <StyledSplitPane split="vertical" size="20%" maxSize={-10}>
           {elObj[tabs[0]]}
 
-          <StyledSplitPane
-            split="vertical"
-            size="25%"
-            maxSize={-10}
-            onDragFinished={onDragSplitter}
-          >
+          <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
             {elObj[tabs[1]]}
-            <StyledSplitPane
-              split="vertical"
-              size="33%"
-              maxSize={-10}
-              onDragFinished={onDragSplitter}
-            >
+            <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
               {elObj[tabs[2]]}
-              <StyledSplitPane
-                split="vertical"
-                size="50%"
-                maxSize={-10}
-                onDragFinished={onDragSplitter}
-              >
+              <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
                 {elObj[tabs[3]]}
                 {elObj[tabs[4]]}
               </StyledSplitPane>

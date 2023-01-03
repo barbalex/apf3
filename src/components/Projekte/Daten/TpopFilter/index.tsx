@@ -202,7 +202,6 @@ const TpopFilter = ({ treeName }) => {
                 fieldErrors={fieldErrors}
                 setFieldErrors={setFieldErrors}
                 row={row}
-                treeName={treeName}
                 rowStringified={JSON.stringify(row)}
               />
             ) : (

@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -78,7 +79,7 @@ const Tpopmassn = ({ treeName, showFilter = false }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray, formWidth: width } = store[treeName]
+  const { activeNodeArray } = store[treeName]
   const apId = activeNodeArray[3]
 
   const [fieldErrors, setFieldErrors] = useState({})
@@ -363,8 +364,13 @@ const Tpopmassn = ({ treeName, showFilter = false }) => {
     [setUrlQuery, urlQuery],
   )
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
-    width > 2 * constants.columnWidth ? constants.columnWidth : undefined 
+    width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
   if (loading) return <Spinner />
 
@@ -372,7 +378,7 @@ const Tpopmassn = ({ treeName, showFilter = false }) => {
 
   return (
     <ErrorBoundary>
-      <Container>
+      <Container ref={resizeRef}>
         <FormTitle
           apId={activeNodeArray[3]}
           title="Massnahme"

@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -63,7 +64,7 @@ const fieldTypes = {
 const Apber = ({ treeName }) => {
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const { activeNodeArray, formWidth: width } = store[treeName]
+  const { activeNodeArray } = store[treeName]
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -77,6 +78,12 @@ const Apber = ({ treeName }) => {
   })
 
   const row = useMemo(() => data?.apberById ?? {}, [data?.apberById])
+
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
 
   const saveToDb = useCallback(
     async (event) => {
@@ -131,7 +138,7 @@ const Apber = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <Container>
+      <Container ref={resizeRef}>
         <FormTitle
           apId={row.apId}
           title="AP-Bericht"

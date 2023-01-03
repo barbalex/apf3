@@ -55,9 +55,6 @@ export default types
     //   types.union(Geojson, types.literal(undefined)),
     //   undefined,
     // ),
-    formWidth: types.optional(types.number, 500),
-    formHeight: types.optional(types.number, 500),
-    filterWidth: types.optional(types.number, 500),
   })
   .actions((self) => ({
     setMapFilter(val) {
@@ -68,12 +65,6 @@ export default types
     },
     setLastTouchedNode(val) {
       self.lastTouchedNode = val
-    },
-    setFormWidth(val) {
-      self.formWidth = val
-    },
-    setFilterWidth(val) {
-      self.filterWidth = val
     },
     setOpenNodes(val) {
       // need set to ensure contained arrays are unique

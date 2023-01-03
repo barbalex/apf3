@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
+import { useResizeDetector } from 'react-resize-detector'
 
 import Headdata from './Headdata'
 import Date from './Date'
@@ -106,7 +107,6 @@ const GridContainer = styled.div`
 const TpopfreiwkontrForm = ({ treeName, row, activeTab }) => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
-  const { formWidth: width } = store[treeName]
 
   const saveToDb = useCallback(
     async (event) => {
@@ -122,8 +122,14 @@ const TpopfreiwkontrForm = ({ treeName, row, activeTab }) => {
     [activeTab, dataFilterSetValue, treeName],
   )
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
+
   return (
-    <FormContainer>
+    <FormContainer ref={resizeRef}>
       <GridContainer width={width}>
         <Headdata row={row} treeName={treeName} activeTab={activeTab} />
         <Date saveToDb={saveToDb} row={row} />

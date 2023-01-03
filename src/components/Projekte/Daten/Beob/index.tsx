@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
+import { useResizeDetector } from 'react-resize-detector'
 
 import TextFieldNonUpdatable from '../../../shared/TextFieldNonUpdatable'
 import constants from '../../../../modules/constants'
@@ -21,7 +22,7 @@ const Container = styled.div`
 
 const Beob = ({ treeName }) => {
   const store = useContext(storeContext)
-  const { activeNodeArray, formWidth: width } = store[treeName]
+  const { activeNodeArray } = store[treeName]
 
   const { data, loading, error } = useQuery(query, {
     variables: {
@@ -38,6 +39,12 @@ const Beob = ({ treeName }) => {
 
   //console.log('Beob', { row, beobFields, data, loading, error })
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
+
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -49,7 +56,7 @@ const Beob = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <div>
+      <div ref={resizeRef}>
         <Container data-column-width={columnWidth}>
           {beobFields.map(([key, value]) => (
             <div key={key}>

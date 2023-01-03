@@ -5,6 +5,7 @@ import { useApolloClient, useQuery, gql } from '@apollo/client'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import TextField from '../../../shared/TextField'
 import DateField from '../../../shared/Date'
@@ -90,7 +91,7 @@ const Idealbiotop = ({ treeName }) => {
   const [fieldErrors, setFieldErrors] = useState({})
 
   const [tab, setTab] = useState(urlQuery?.idealbiotopTab ?? 'idealbiotop')
-  const { activeNodeArray, formWidth: width } = store[treeName]
+  const { activeNodeArray } = store[treeName]
 
   const { data, loading, error } = useQuery(query, {
     variables: {
@@ -163,6 +164,11 @@ const Idealbiotop = ({ treeName }) => {
     [setUrlQuery, urlQuery],
   )
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -172,7 +178,7 @@ const Idealbiotop = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <Container>
+      <Container ref={resizeRef}>
         <FormTitle
           apId={row.apId}
           title="Idealbiotop"

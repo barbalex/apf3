@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery, useApolloClient, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -24,21 +25,12 @@ const Container = styled.div`
     `column-width: ${props['data-column-width']}px;`}
 `
 
-const Tpop = ({
-  saveToDb,
-  fieldErrors,
-  setFieldErrors,
-  row,
-  apJahr,
-  treeName,
-}) => {
+const Tpop = ({ saveToDb, fieldErrors, setFieldErrors, row, apJahr }) => {
   const store = useContext(storeContext)
-  const { formWidth: width } = store[treeName]
+  const { enqueNotification } = store
   const client = useApolloClient()
 
   //console.log('Tpop rendering')
-
-  const { enqueNotification } = store
 
   const {
     data: dataLists,
@@ -67,6 +59,11 @@ const Tpop = ({
     }
   `)
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -76,7 +73,7 @@ const Tpop = ({
 
   return (
     <SimpleBar style={{ maxHeight: '100%', height: '100%' }}>
-      <Container data-column-width={columnWidth}>
+      <Container ref={resizeRef} data-column-width={columnWidth}>
         <TextField
           name="nr"
           label="Nr."

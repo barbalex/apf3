@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -97,7 +98,6 @@ const TpopfeldkontrFilter = ({ treeName }) => {
   const { dataFilterSetValue, urlQuery, setUrlQuery } = store
   const {
     dataFilter,
-    filterWidth,
     ekGqlFilter,
     nodeLabelFilter,
     mapFilter,
@@ -124,7 +124,6 @@ const TpopfeldkontrFilter = ({ treeName }) => {
 
   const row = dataFilter.tpopfeldkontr[activeTab]
 
-  const width = filterWidth
   const { data, loading, error } = useQuery(query)
   const { data: dataTpopkontrs } = useQuery(queryTpopkontrs, {
     variables: {
@@ -165,6 +164,11 @@ const TpopfeldkontrFilter = ({ treeName }) => {
     )
     .map((o) => ({ value: o, label: o }))
 
+  const { width = 500, ref: resizeRef } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 100,
+    refreshOptions: { leading: true },
+  })
   const columnWidth =
     width > 2 * constants.columnWidth ? constants.columnWidth : undefined
 
@@ -209,7 +213,7 @@ const TpopfeldkontrFilter = ({ treeName }) => {
 
   return (
     <ErrorBoundary>
-      <Container>
+      <Container ref={resizeRef}>
         <FilterTitle
           title="Feld-Kontrollen"
           treeName={treeName}
