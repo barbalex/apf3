@@ -42,7 +42,7 @@ const ApFilter = ({ treeName }) => {
   const onChange = useCallback(async () => {
     const previousApFilter = apFilter
     setApFilter(!apFilter)
-    console.log('ApFilter, onChange', { apFilter, previousApFilter })
+    // console.log('ApFilter, onChange', { apFilter, previousApFilter })
     if (!previousApFilter) {
       // need to fetch previously not had aps
       queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
