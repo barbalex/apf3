@@ -131,10 +131,10 @@ const ProjektContainer = ({
 
   const paneSize = tabs[0] === 'tree' ? '33%' : '50%'
 
-  console.log('ProjektContainer', {
-    showApberForAll,
-    showApberForArt,
-  })
+  // console.log('ProjektContainer', {
+  //   showApberForAll,
+  //   showApberForArt,
+  // })
 
   if (showApberForAll) {
     if (isPrint) return <ApberForYear />

@@ -13,8 +13,10 @@ const RouterComponent = () => (
     <Route path="/" element={<Home />} />
     {/* uncommeent next rout while commenting the following for Unterhalt */}
     {/* <Route path="/*" element={<Unterhalt />}></Route> */}
-    <Route path="/Daten/*" element={<Daten />}></Route>
-    <Route path="/Daten/Projekte/:projektId/EK-Planung" element={<EkPlan />} />
+    <Route path="/Daten/*">
+      <Route path="*" element={<Daten />} />
+      <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
+    </Route>
     <Route path="/Dokumentation/*" element={<Docs />}>
       {DocsRoutes()}
     </Route>
