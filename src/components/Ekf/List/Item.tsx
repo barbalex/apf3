@@ -15,7 +15,6 @@ const OuterContainer = styled.div`
   }
   &:last-of-type {
     border-bottom: 1px solid rgba(46, 125, 50, 0.5);
-    margin-top: -2px;
   }
 `
 const InnerContainer = styled.div`
