@@ -13,6 +13,7 @@ import jwtDecode from 'jwt-decode'
 import { useApolloClient } from '@apollo/client'
 import { useQuery } from '@tanstack/react-query'
 import { getSnapshot } from 'mobx-state-tree'
+import { useParams } from 'react-router-dom'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
@@ -38,8 +39,8 @@ const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
 const Projekte = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { isPrint, urlQuery, user, tree } = store
-  const { projIdInActiveNodeArray, apIdInActiveNodeArray } = tree
+  const { isPrint, urlQuery, user } = store
+  const { projId, artId } = useParams()
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -49,7 +50,7 @@ const Projekte = () => {
     'daten',
     'filter',
     'karte',
-    ...(projIdInActiveNodeArray ? ['exporte'] : []),
+    ...(projId ? ['exporte'] : []),
   ]
 
   const { projekteTabs } = urlQuery
@@ -96,7 +97,7 @@ const Projekte = () => {
       treeOpenNodes,
       treeApFilter,
       treeNodeLabelFilter,
-      apIdInActiveNodeArray,
+      artId,
       popGqlFilterTree,
       tpopGqlFilterTree,
       tpopmassnGqlFilterTree,
@@ -114,7 +115,7 @@ const Projekte = () => {
           openNodes: treeOpenNodes,
           apFilter: treeApFilter,
           nodeLabelFilter: treeNodeLabelFilter,
-          apIdInActiveNodeArray,
+          artId,
           popGqlFilter: popGqlFilterTree,
           tpopGqlFilter: tpopGqlFilterTree,
           tpopmassnGqlFilter: tpopmassnGqlFilterTree,
@@ -137,7 +138,7 @@ const Projekte = () => {
       tree2OpenNodes,
       tree2ApFilter,
       tree2NodeLabelFilter,
-      apIdInActiveNodeArray,
+      artId,
       popGqlFilterTree2,
       tpopGqlFilterTree2,
       tpopmassnGqlFilterTree2,
@@ -155,7 +156,7 @@ const Projekte = () => {
           openNodes: tree2OpenNodes,
           apFilter: tree2ApFilter,
           nodeLabelFilter: tree2NodeLabelFilter,
-          apIdInActiveNodeArray,
+          artId,
           popGqlFilter: popGqlFilterTree2,
           tpopGqlFilter: tpopGqlFilterTree2,
           tpopmassnGqlFilter: tpopmassnGqlFilterTree2,
