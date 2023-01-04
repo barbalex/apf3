@@ -26,7 +26,7 @@ const EkfAdresse = ({ closeMenu }) => {
     [closeMenu, navigate],
   )
 
-  // if (loading) return '...'
+  if (loading) return <Container>{'lade...'}</Container>
   if (error) return <Error error={error} />
 
   return (
