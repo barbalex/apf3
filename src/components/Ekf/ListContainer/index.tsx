@@ -7,12 +7,11 @@ import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import styled from '@emotion/styled'
 import sortBy from 'lodash/sortBy'
+import { useParams } from 'react-router-dom'
 
 import storeContext from '../../../storeContext'
-import dataByUserNameGql from './dataByUserName'
-import dataByAdresseIdGql from './dataByAdresseId'
-import dataWithDateByUserNameGql from './dataWithDateByUserName'
-import dataWithDateByAdresseIdGql from './dataWithDateByAdresseId'
+import dataByUserIdGql from './dataByUserId'
+import dataWithDateByUserIdGql from './dataWithDateByUserId'
 import List from './List'
 import Error from '../../shared/Error'
 import initiateDataFromUrl from './initiateDataFromUrl'
@@ -21,10 +20,9 @@ const NoDataContainer = styled.div`
   padding 15px;
 `
 
-const getEkfFromData = ({ data, ekfAdresseId }) => {
-  const ekfNodes = ekfAdresseId
-    ? data?.adresseById?.tpopkontrsByBearbeiter?.nodes ?? []
-    : data?.userByName?.adresseByAdresseId?.tpopkontrsByBearbeiter?.nodes ?? []
+const getEkfFromData = ({ data }) => {
+  const ekfNodes =
+    data?.userById?.adresseByAdresseId?.tpopkontrsByBearbeiter?.nodes ?? []
 
   const ekf = ekfNodes.map((e) => ({
     projekt: e?.tpopByTpopId?.popByPopId?.apByApId?.projektByProjId?.name ?? '',
@@ -49,29 +47,24 @@ const getEkfFromData = ({ data, ekfAdresseId }) => {
 }
 
 const EkfListContainer = () => {
-  const store = useContext(storeContext)
-  const { ekfYear, ekfAdresseId, user, setEkfIds } = store
+  const { userId } = useParams()
 
-  let query = ekfAdresseId ? dataByAdresseIdGql : dataByUserNameGql
+  const store = useContext(storeContext)
+  const { ekfYear, setEkfIds } = store
+
   const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
   const ekfRefYear = new Date(ekfRefDate).getFullYear()
-  if (ekfRefYear !== ekfYear) {
-    query = ekfAdresseId
-      ? dataWithDateByAdresseIdGql
-      : dataWithDateByUserNameGql
-  }
-  const { name: userName } = user
-  const variables = ekfAdresseId
-    ? { id: ekfAdresseId, jahr: ekfYear }
-    : { userName, jahr: ekfYear }
+
+  const query =
+    ekfRefYear === ekfYear ? dataByUserIdGql : dataWithDateByUserIdGql
 
   const { data, loading, error } = useQuery(query, {
-    variables,
+    variables: { id: userId, jahr: ekfYear },
   })
 
-  const ekf = getEkfFromData({ data, ekfAdresseId })
+  const ekf = getEkfFromData({ data })
   setEkfIds(ekf.map((e) => e.id))
- 
+
   const { activeNodeArray } = store.tree
   const activeTpopkontrId =
     activeNodeArray.length > 9

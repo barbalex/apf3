@@ -3,8 +3,8 @@ import { gql } from '@apollo/client'
 import { aeTaxonomies, projekt } from '../../shared/fragments'
 
 export default gql`
-  query ekfDataByUserQuery($userName: String!, $jahr: Int!) {
-    userByName(name: $userName) {
+  query ekfDataByUserQuery($id: UUID!, $jahr: Int!) {
+    userById(id: $id) {
       id
       adresseByAdresseId {
         id

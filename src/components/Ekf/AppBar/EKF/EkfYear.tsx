@@ -3,7 +3,6 @@ import Input from '@mui/material/Input'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 
-import initiateDataFromUrl from '../../../../modules/initiateDataFromUrl'
 import storeContext from '../../../../storeContext'
 
 const StyledInput = styled(Input)`
@@ -44,14 +43,8 @@ const EkfYear = () => {
     (event) => {
       const newValue = event.target.value ? +event.target.value : ekfRefYear
       setEkfYear(newValue)
-      if (ekfYear !== stateValue) {
-        initiateDataFromUrl({
-          activeNodeArray: ['Projekte'],
-          store,
-        })
-      }
     },
-    [ekfYear, setEkfYear, stateValue, store],
+    [setEkfYear],
   )
 
   return (
