@@ -37,7 +37,7 @@ const StyledIconButton = styled(IconButton)`
   margin-right: 10px !important;
 `
 
-const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
+const Tpopfreiwkontr = ({ treeName, id: idPassed }) => { 
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification, isPrint, setIsPrint, view, user } = store

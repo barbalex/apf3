@@ -26,15 +26,11 @@ const InnerContainer = styled.div`
 
 const Ekf = () => {
   const {
-    user,
     isPrint,
     tree,
     ekfIds: ekfIdsRaw,
     ekfMultiPrint,
   } = useContext(storeContext)
-  const token = user?.token
-  const tokenDecoded = token ? jwtDecode(token) : null
-  const role = tokenDecoded ? tokenDecoded.role : null
 
   const { activeNodeArray } = tree
   const tpopkontrId =
@@ -50,14 +46,14 @@ const Ekf = () => {
     return (
       <>
         {ekfIds.map((id) => (
-          <Tpopfreiwkontr treeName={treeName} role={role} id={id} key={id} />
+          <Tpopfreiwkontr treeName={treeName} id={id} key={id} />
         ))}
       </>
     )
   }
 
   if (isPrint && tpopkontrIdExists) {
-    return <Tpopfreiwkontr treeName={treeName} role={role} />
+    return <Tpopfreiwkontr treeName={treeName} />
   }
 
   return (
@@ -68,7 +64,7 @@ const Ekf = () => {
         </InnerContainer>
         <InnerContainer>
           {tpopkontrIdExists ? (
-            <Tpopfreiwkontr treeName={treeName} role={role} />
+            <Tpopfreiwkontr treeName={treeName} />
           ) : (
             <InnerContainer />
           )}
