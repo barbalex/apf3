@@ -7,7 +7,6 @@
  */
 import React, { useContext, useMemo, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-import SplitPane from 'react-split-pane'
 import intersection from 'lodash/intersection'
 import { observer } from 'mobx-react-lite'
 import jwtDecode from 'jwt-decode'
@@ -22,6 +21,7 @@ import storeContext from '../../storeContext'
 import buildTreeQueryVariables from './buildTreeQueryVariables'
 import queryTree from './queryTree'
 import buildNodes from './TreeContainer/nodes'
+import StyledSplitPane from '../shared/StyledSplitPane'
 
 const Container = styled.div`
   height: 100%;
@@ -31,40 +31,6 @@ const Container = styled.div`
     height: auto !important;
     overflow: visible !important;
     display: block;
-  }
-`
-const StyledSplitPane = styled(SplitPane)`
-  .Resizer {
-    background: #388e3c;
-    opacity: 1;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  .Resizer:hover {
-    -webkit-transition: all 2s ease;
-    transition: all 2s ease;
-  }
-
-  .Resizer.vertical {
-    border-left: 3px solid #388e3c;
-    cursor: col-resize;
-    background-color: #388e3c;
-  }
-
-  .Resizer.vertical:hover {
-    border-left: 2px solid rgba(0, 0, 0, 0.3);
-    border-right: 2px solid rgba(0, 0, 0, 0.3);
-  }
-  .Resizer.disabled {
-    cursor: not-allowed;
-  }
-  .Resizer.disabled:hover {
-    border-color: transparent;
-  }
-  .Pane {
-    overflow: hidden;
   }
 `
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
