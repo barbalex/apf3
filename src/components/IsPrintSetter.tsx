@@ -5,7 +5,7 @@ import storeContext from '../storeContext'
 
 const IsPrintSetter = () => {
   const store = useContext(storeContext)
-  const { setIsPrint, setEkfIds } = store
+  const { setIsPrint } = store
 
   /**
    * In Firefox this does not work! Bug is open since 7 years:
@@ -16,14 +16,13 @@ const IsPrintSetter = () => {
   useEffect(() => {
     window.matchMedia('print').addListener((mql) => {
       setIsPrint(mql.matches)
-      if (!mql.matches) setEkfIds([])
     })
     return () => {
       window.matchMedia('print').removeListener((mql) => {
         setIsPrint(mql.matches)
       })
     }
-  }, [setEkfIds, setIsPrint])
+  }, [setIsPrint])
 
   // using render props on Layout to pass down appbarheight without using store
   return null

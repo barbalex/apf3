@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client'
 
-import { aeTaxonomies, projekt } from '../../shared/fragments'
+import { aeTaxonomies, projekt } from '../shared/fragments'
 
 export default gql`
-  query ekfDataWithDateByUseridQuery($id: UUID!, $jahr: Int!) {
+  query ekfDataByUserQuery($id: UUID!, $jahr: Int!) {
     userById(id: $id) {
       id
       adresseByAdresseId {
@@ -11,7 +11,7 @@ export default gql`
         tpopkontrsByBearbeiter(
           filter: {
             typ: { equalTo: "Freiwilligen-Erfolgskontrolle" }
-            jahr: { equalTo: $jahr }
+            or: [{ jahr: { equalTo: $jahr } }, { jahr: { isNull: true } }]
           }
         ) {
           nodes {

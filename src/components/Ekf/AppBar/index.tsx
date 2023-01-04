@@ -28,11 +28,11 @@ const StyledToolbar = styled(Toolbar)`
   padding-right: 4px !important;
 `
 
-const EkPlanAppbar = ({ children }) => (
+const EkPlanAppbar = ({ children, ekf }) => (
   <Container>
     <StyledAppBar position="static">
       <StyledToolbar>
-        <Bar />
+        <Bar ekf={ekf} />
       </StyledToolbar>
     </StyledAppBar>
     {children}

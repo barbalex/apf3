@@ -68,7 +68,6 @@ const myTypes = types
     isPrint: types.optional(types.boolean, false),
     printingJberYear: types.optional(types.number, 0),
     ekfYear: types.optional(types.number, ekfYear),
-    ekfIds: types.array(types.string),
     ekfMultiPrint: types.optional(types.boolean, false),
     copying: types.optional(Copying, defaultCopying),
     copyingBiotop: types.optional(CopyingBiotop, defaultCopyingBiotop),
@@ -108,9 +107,6 @@ const myTypes = types
     },
     setHideMapControls(val) {
       self.hideMapControls = val
-    },
-    setEkfIds(ids) {
-      self.ekfIds = [...ids]
     },
     setEkfMultiPrint(val) {
       self.ekfMultiPrint = val

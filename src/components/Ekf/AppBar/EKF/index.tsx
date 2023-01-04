@@ -64,11 +64,11 @@ const StyledMdHourglassEmpty = styled(MdHourglassEmpty)`
   animation: ${spinning} 3s linear infinite;
 `
 
-const ProjekteAppBar = () => {
+const ProjekteAppBar = ({ ekf }) => {
   const { userId, ekfId } = useParams()
 
   const store = useContext(storeContext)
-  const { user, setIsPrint, ekfIds, setEkfMultiPrint } = store
+  const { user, setIsPrint, setEkfMultiPrint } = store
   const ekfIsActive = !!ekfId
 
   const isMobile = isMobilePhone()
@@ -86,7 +86,7 @@ const ProjekteAppBar = () => {
   })
 
   const userName = data?.userById?.name ?? null
-  const ekfCount = ekfIds.length
+  const ekfCount = ekf.length
 
   const [userOpen, setUserOpen] = useState(false)
   const [preparingEkfMultiprint, setPreparingEkfMultiprint] = useState(false)

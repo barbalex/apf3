@@ -19,7 +19,7 @@ const Scrollcontainer = styled.div`
   height: 100%;
 `
 
-const EkfList = ({ ekf, activeTpopkontrId }) => {
+const EkfList = ({ ekf }) => {
   const projektCount = uniq(ekf.map((e) => e.projekt)).length
   const itemHeight = projektCount > 1 ? 110 : 91
 
@@ -40,7 +40,6 @@ const EkfList = ({ ekf, activeTpopkontrId }) => {
           >
             {({ index, style }) => (
               <Item
-                activeTpopkontrId={activeTpopkontrId}
                 projektCount={projektCount}
                 style={style}
                 row={ekf[index]}

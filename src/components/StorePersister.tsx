@@ -23,7 +23,6 @@ const StorePersister = () => {
   const blacklist = [
     'user',
     'notifications',
-    'ekfIds',
     'hideMapControls',
     'overlays', // 2022.10.26 added overlay. Need to refresh or users will not get new ones
     'apfloraLayers', // 2022.10.28 added. Need to refresh or users will not get new ones

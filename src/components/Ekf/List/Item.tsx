@@ -1,9 +1,6 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
-
-import initiateDataFromUrl from '../initiateDataFromUrl'
-import storeContext from '../../../../storeContext'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const OuterContainer = styled.div`
   border-bottom: 1px solid rgba(46, 125, 50, 0.5);
@@ -32,35 +29,17 @@ const InnerContainer = styled.div`
   }
 `
 
-const EkfList = ({ activeTpopkontrId, projektCount, style, row }) => {
-  const store = useContext(storeContext)
+const EkfList = ({ projektCount, style, row }) => {
+  const { ekfId } = useParams()
+  const navigate = useNavigate()
   const innerContainerHeight = projektCount > 1 ? 110 : 91
 
   const onClick = useCallback(() => {
-    const url = [
-      'Projekte',
-      row.projId,
-      'Arten',
-      row.apId,
-      'Populationen',
-      row.popId,
-      'Teil-Populationen',
-      row.tpopId,
-      'Freiwilligen-Kontrollen',
-      row.id,
-    ]
-    initiateDataFromUrl({
-      activeNodeArray: url,
-      store,
-    })
-  }, [row.apId, row.id, row.popId, row.projId, row.tpopId, store])
+    navigate(row.id)
+  }, [navigate, row.id])
 
   return (
-    <OuterContainer
-      style={style}
-      onClick={onClick}
-      active={activeTpopkontrId === row.id}
-    >
+    <OuterContainer style={style} onClick={onClick} active={ekfId === row.id}>
       <InnerContainer height={innerContainerHeight}>
         {projektCount > 1 && <div>{row.projekt}</div>}
         <div>{row.art}</div>
@@ -71,4 +50,4 @@ const EkfList = ({ activeTpopkontrId, projektCount, style, row }) => {
   )
 }
 
-export default observer(EkfList)
+export default EkfList
