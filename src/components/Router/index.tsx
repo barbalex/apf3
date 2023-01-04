@@ -1,28 +1,37 @@
 import { Routes, Route } from 'react-router-dom'
+import { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
 
 import Home from '../Home'
-import Daten from '../Daten'
 import EkPlan from '../EkPlan'
 import FourOhFour from '../404'
 import DocRoutes from './DocRoutes'
 import Docs from '../Docs'
 import ProtectedRoute from './ProtectedRoute'
+import Ekf from '../Ekf'
+import Projekte from '../Projekte'
+import storeContext from '../../storeContext'
 // import Unterhalt from './components/Unterhalt'
 
 // uncommeent unterhalt route for Unterhalt
-const RouterComponent = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/Daten/*" element={<ProtectedRoute />}>
-      {/* <Route path="*" element={<Unterhalt />}></Route> */}
-      <Route path="*" element={<Daten />} />
-      <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
-    </Route>
-    <Route path="/Dokumentation/*" element={<Docs />}>
-      {DocRoutes()}
-    </Route>
-    <Route path="*" element={<FourOhFour />} />
-  </Routes>
-)
+const RouterComponent = () => {
+  const store = useContext(storeContext)
+  const { view } = store
 
-export default RouterComponent
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/Daten/*" element={<ProtectedRoute />}>
+        {/* <Route path="*" element={<Unterhalt />}></Route> */}
+        <Route path="*" element={view === 'ekf' ? <Ekf /> : <Projekte />} />
+        <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
+      </Route>
+      <Route path="/Dokumentation/*" element={<Docs />}>
+        {DocRoutes()}
+      </Route>
+      <Route path="*" element={<FourOhFour />} />
+    </Routes>
+  )
+}
+
+export default observer(RouterComponent)
