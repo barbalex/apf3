@@ -5,7 +5,7 @@
  * and react would not like this to happen from below
  * so needed to move building nodes up to here
  */
-import React, { useContext, useRef, useMemo, useState, useEffect } from 'react'
+import React, { useContext, useMemo, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { getSnapshot } from 'mobx-state-tree'
@@ -249,10 +249,6 @@ const ProjektContainer = ({ treeName }) => {
     activeNodeArray[2] === 'AP-Berichte' &&
     activeNodeArray[4] === 'print'
 
-  const treeEl = useRef(null)
-  const datenEl = useRef(null)
-  const filterEl = useRef(null)
-
   // remove 2 to treat all same
   let tabs = treeName === 'tree' ? treeTabs : tree2Tabs
   tabs = [...tabs].map((t) => t.replace('2', ''))
@@ -261,7 +257,7 @@ const ProjektContainer = ({ treeName }) => {
 
   const elObj = {
     tree: (
-      <InnerContainer ref={treeEl}>
+      <InnerContainer>
         <TreeContainer
           treeName={treeName}
           nodes={nodes}
@@ -270,7 +266,7 @@ const ProjektContainer = ({ treeName }) => {
       </InnerContainer>
     ),
     daten: (
-      <InnerContainer ref={datenEl}>
+      <InnerContainer>
         <Daten
           treeName={treeName}
           activeForm={getActiveForm({
@@ -282,7 +278,7 @@ const ProjektContainer = ({ treeName }) => {
       </InnerContainer>
     ),
     filter: (
-      <InnerContainer ref={filterEl}>
+      <InnerContainer>
         <Filter treeName={treeName} />
       </InnerContainer>
     ),
