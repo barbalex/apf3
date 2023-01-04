@@ -34,4 +34,7 @@ export default styled(SplitPane)`
   .Pane {
     overflow: hidden;
   }
+  .Pane2 {
+    overflow: ${(props) => (props.overflow === 'auto' ? 'auto' : 'hidden')};
+  }
 `
