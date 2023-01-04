@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
-import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
 
 // when Karte was loaded async, it did not load,
