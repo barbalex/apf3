@@ -2,13 +2,20 @@ import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import styled from '@emotion/styled'
-import { useLocation } from 'react-router-dom'
 
-import HomeBar from './Home'
-import DokuBar from './Doku'
-import ProjekteBar from './Projekte'
+import Bar from './Bar'
 import ErrorBoundary from '../../shared/ErrorBoundary'
 
+const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  @media print {
+    height: auto;
+    overflow: visible !important;
+  }
+`
 const StyledAppBar = styled(AppBar)`
   min-height: 64px !important;
 
@@ -22,21 +29,17 @@ const StyledToolbar = styled(Toolbar)`
   padding-right: 4px !important;
 `
 
-const MyAppBar = () => {
-  const location = useLocation()
-  const { pathname } = location
-  const isHome = pathname === '/'
-  const isProjekte = pathname.startsWith('/Daten')
-
-  return (
-    <ErrorBoundary>
+const MyAppBar = ({ children }) => (
+  <ErrorBoundary>
+    <Container>
       <StyledAppBar position="static">
         <StyledToolbar>
-          {isHome ? <HomeBar /> : isProjekte ? <ProjekteBar /> : <DokuBar />}
+          <Bar />
         </StyledToolbar>
       </StyledAppBar>
-    </ErrorBoundary>
-  )
-}
+      {children}
+    </Container>
+  </ErrorBoundary>
+)
 
 export default MyAppBar

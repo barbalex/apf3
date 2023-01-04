@@ -11,12 +11,11 @@ import { MdPrint, MdHourglassEmpty } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 
-import isMobilePhone from '../../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
-import More from '../More'
-import EkfYear from '../EkfYear'
+import isMobilePhone from '../../../../modules/isMobilePhone'
+import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
+import EkfYear from './EkfYear'
 import User from './User'
-import storeContext from '../../../../../storeContext'
+import storeContext from '../../../../storeContext'
 import queryAdresse from './queryAdresse'
 import queryUser from './queryUser'
 
@@ -156,10 +155,7 @@ const ProjekteAppBar = () => {
       dataFilterClone1To2,
     ],
   )
-  const onClickExporte = useCallback(
-    () => onClickButton('exporte'),
-    [onClickButton],
-  )
+
   const setViewNormal = useCallback(() => setView('normal'), [setView])
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
@@ -238,7 +234,6 @@ const ProjekteAppBar = () => {
           <StyledButton variant="text" component={Link} to="/Dokumentation/">
             Dokumentation
           </StyledButton>
-          <More onClickExporte={onClickExporte} role={role} />
         </>
       </MenuDiv>
     </>

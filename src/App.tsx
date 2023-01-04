@@ -32,8 +32,6 @@ import NotificationDismisser from './components/shared/NotificationDismisser'
 import initiateDataFromUrl from './modules/initiateDataFromUrl'
 import getActiveNodeArrayFromPathname from './modules/getActiveNodeArrayFromPathname'
 
-import Layout from './components/Layout'
-
 import 'simplebar/dist/simplebar.min.css'
 
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
@@ -85,9 +83,7 @@ const App = () => {
                 >
                   <>
                     <GlobalStyle />
-                    <Layout>
-                      <Router />
-                    </Layout>
+                    <Router />
                     <Notifier />
                     <IsPrintSetter />
                     <LastTouchedNodeSetter />

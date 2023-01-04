@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-import { user } from '../../../../../shared/fragments'
+import { user } from '../../../../shared/fragments'
 
 export default gql`
   mutation updateUserForEkfUser(

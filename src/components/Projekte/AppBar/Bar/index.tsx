@@ -6,11 +6,11 @@ import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
 import { Link, useNavigate } from 'react-router-dom'
 
-import isMobilePhone from '../../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../../modules/setUrlQueryValue'
-import More from '../More'
+import isMobilePhone from '../../../../modules/isMobilePhone'
+import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
+import More from './More'
 import Daten from './Daten'
-import storeContext from '../../../../../storeContext'
+import storeContext from '../../../../storeContext'
 
 const SiteTitle = styled(Button)`
   display: none !important;

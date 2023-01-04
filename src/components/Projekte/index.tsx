@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite'
 import ProjektContainer from './ProjektContainer'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
+import AppBar from './AppBar'
 
 const Container = styled.div`
   height: 100%;
@@ -32,19 +33,23 @@ const Projekte = () => {
 
   if (tree2Tabs.length === 0 || isPrint) {
     return (
-      <Container>
-        <ProjektContainer treeName="tree" />
-      </Container>
+      <AppBar>
+        <Container>
+          <ProjektContainer treeName="tree" />
+        </Container>
+      </AppBar>
     )
   }
 
   return (
-    <Container>
-      <StyledSplitPane split="vertical" defaultSize="50%">
-        <ProjektContainer treeName="tree" />
-        <ProjektContainer treeName="tree2" />
-      </StyledSplitPane>
-    </Container>
+    <AppBar>
+      <Container>
+        <StyledSplitPane split="vertical" defaultSize="50%">
+          <ProjektContainer treeName="tree" />
+          <ProjektContainer treeName="tree2" />
+        </StyledSplitPane>
+      </Container>
+    </AppBar>
   )
 }
 

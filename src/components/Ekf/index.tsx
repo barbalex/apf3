@@ -9,6 +9,8 @@ import EkfList from './ListContainer'
 import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
+import AppBar from './AppBar'
+import App from '../../App'
 
 const Container = styled.div`
   height: 100%;
@@ -46,29 +48,33 @@ const Ekf = () => {
   const ekfIds = ekfIdsRaw?.toJSON()
   if (isPrint && ekfIds.length > 0 && ekfMultiPrint) {
     return (
-      <>
-        {ekfIds.map((id) => (
-          <Tpopfreiwkontr treeName={treeName} id={id} key={id} />
-        ))}
-      </>
+      <AppBar>
+        <>
+          {ekfIds.map((id) => (
+            <Tpopfreiwkontr treeName={treeName} id={id} key={id} />
+          ))}
+        </>
+      </AppBar>
     )
   }
 
   return (
-    <Container>
-      <StyledSplitPane split="vertical" size="33%" minSize={100}>
-        <InnerContainer>
-          <EkfList />
-        </InnerContainer>
-        <InnerContainer>
-          {tpopkontrIdExists ? (
-            <Tpopfreiwkontr treeName={treeName} />
-          ) : (
-            <InnerContainer />
-          )}
-        </InnerContainer>
-      </StyledSplitPane>
-    </Container>
+    <AppBar>
+      <Container>
+        <StyledSplitPane split="vertical" size="33%" minSize={100}>
+          <InnerContainer>
+            <EkfList />
+          </InnerContainer>
+          <InnerContainer>
+            {tpopkontrIdExists ? (
+              <Tpopfreiwkontr treeName={treeName} />
+            ) : (
+              <InnerContainer />
+            )}
+          </InnerContainer>
+        </StyledSplitPane>
+      </Container>
+    </AppBar>
   )
 }
 

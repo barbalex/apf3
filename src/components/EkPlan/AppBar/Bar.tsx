@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useLocation, Link } from 'react-router-dom'
 
-import isMobilePhone from '../../../../modules/isMobilePhone'
+import isMobilePhone from '../../../modules/isMobilePhone'
 
 const SiteTitle = styled(Button)`
   display: none !important;

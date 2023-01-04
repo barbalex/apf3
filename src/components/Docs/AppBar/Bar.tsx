@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useLocation, Link } from 'react-router-dom'
 
-import isMobilePhone from '../../../../modules/isMobilePhone'
+import isMobilePhone from '../../../modules/isMobilePhone'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -27,11 +27,11 @@ const MenuDiv = styled.div`
 
 const StyledButton = styled(Button)`
   color: white !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
   text-transform: none !important;
 `
-const HomeAppBar = () => {
+const DokuAppBar = () => {
   const isMobile = isMobilePhone()
-
   const location = useLocation()
   const { pathname } = location
 
@@ -62,4 +62,4 @@ const HomeAppBar = () => {
   )
 }
 
-export default observer(HomeAppBar)
+export default observer(DokuAppBar)
