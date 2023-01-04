@@ -19,6 +19,9 @@ import Error from '../shared/Error'
 const Container = styled.div`
   height: 100%;
   overflow: hidden;
+  .SplitPane {
+    position: relative !important;
+  }
 
   @media print {
     display: block;
@@ -114,16 +117,12 @@ const Ekf = () => {
     <AppBar ekf={ekf}>
       <Container>
         <StyledSplitPane split="vertical" size="350px" minSize={100}>
-          <InnerContainer>
-            <EkfList ekf={ekf} />
-          </InnerContainer>
-          <InnerContainer>
-            {ekfId ? (
-              <Tpopfreiwkontr treeName="tree" id={ekfId} />
-            ) : (
-              <InnerContainer />
-            )}
-          </InnerContainer>
+          <EkfList ekf={ekf} />
+          {ekfId ? (
+            <Tpopfreiwkontr treeName="tree" id={ekfId} />
+          ) : (
+            <InnerContainer />
+          )}
         </StyledSplitPane>
       </Container>
     </AppBar>

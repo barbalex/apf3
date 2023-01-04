@@ -3,16 +3,19 @@ import styled from '@emotion/styled'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const OuterContainer = styled.div`
-  border-bottom: 1px solid rgba(46, 125, 50, 0.5);
+  box-sizing: border-box;
   cursor: pointer;
   background-color: ${(props) =>
     props.active ? 'rgb(255, 250, 198)' : 'unset'};
-  border-top: ${(props) =>
-    props.active ? '1px solid rgba(46, 125, 50, 0.5)' : 'unset'};
+  outline: 1px solid rgba(46, 125, 50, 0.5);
+  height: ${(props) => props.height}px;
   &:hover {
     background-color: rgb(255, 250, 198);
-    border-top: 1px solid rgba(46, 125, 50, 0.5);
-    margin-top: -1px;
+    /* outline: 2px solid rgba(46, 125, 50, 0.5); */
+  }
+  &:last-of-type {
+    border-bottom: 1px solid rgba(46, 125, 50, 0.5);
+    margin-top: -2px;
   }
 `
 const InnerContainer = styled.div`
@@ -39,7 +42,12 @@ const EkfList = ({ projektCount, style, row }) => {
   }, [navigate, row.id, userId])
 
   return (
-    <OuterContainer style={style} onClick={onClick} active={ekfId === row.id}>
+    <OuterContainer
+      style={style}
+      onClick={onClick}
+      active={ekfId === row.id}
+      height={innerContainerHeight}
+    >
       <InnerContainer height={innerContainerHeight}>
         {projektCount > 1 && <div>{row.projekt}</div>}
         <div>{row.art}</div>

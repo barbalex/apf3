@@ -13,10 +13,9 @@ const Container = styled.div`
   flex-direction: column;
   overflow: hidden;
   border-right: 1px solid rgb(46, 125, 50);
-`
-const Scrollcontainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
+  .simplebar-content {
+    height: 100%;
+  }
 `
 
 const EkfList = ({ ekf }) => {
@@ -25,29 +24,23 @@ const EkfList = ({ ekf }) => {
 
   return (
     <Container>
-      <Scrollcontainer>
-        <SimpleBar
-          style={{
-            maxHeight: '100%',
-            height: '100%',
-          }}
+      <SimpleBar
+        style={{
+          maxHeight: '100%',
+          height: '100%',
+        }}
+      >
+        <List
+          height={ekf.length * itemHeight}
+          itemCount={ekf.length}
+          itemSize={itemHeight}
+          width={350}
         >
-          <List
-            height={ekf.length * itemHeight}
-            itemCount={ekf.length}
-            itemSize={itemHeight}
-            width={350}
-          >
-            {({ index, style }) => (
-              <Item
-                projektCount={projektCount}
-                style={style}
-                row={ekf[index]}
-              />
-            )}
-          </List>
-        </SimpleBar>
-      </Scrollcontainer>
+          {({ index, style }) => (
+            <Item projektCount={projektCount} style={style} row={ekf[index]} />
+          )}
+        </List>
+      </SimpleBar>
     </Container>
   )
 }
