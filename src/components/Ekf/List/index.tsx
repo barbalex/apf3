@@ -36,7 +36,7 @@ const EkfList = ({ ekf }) => {
             height={ekf.length * itemHeight}
             itemCount={ekf.length}
             itemSize={itemHeight}
-            width={window.innerWidth / 3}
+            width={350}
           >
             {({ index, style }) => (
               <Item

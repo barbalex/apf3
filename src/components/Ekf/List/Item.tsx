@@ -30,13 +30,13 @@ const InnerContainer = styled.div`
 `
 
 const EkfList = ({ projektCount, style, row }) => {
-  const { ekfId } = useParams()
+  const { ekfId, userId } = useParams()
   const navigate = useNavigate()
   const innerContainerHeight = projektCount > 1 ? 110 : 91
 
   const onClick = useCallback(() => {
-    navigate(row.id)
-  }, [navigate, row.id])
+    navigate(`/Daten/Benutzer/${userId}/EKF/${row.id}`)
+  }, [navigate, row.id, userId])
 
   return (
     <OuterContainer style={style} onClick={onClick} active={ekfId === row.id}>

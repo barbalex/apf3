@@ -80,7 +80,7 @@ const Ekf = () => {
     // navigate to first kontrId so form is shown for first ekf
     // IF none is choosen yet
     if (ekf.length > 0 && !ekfId) {
-      navigate(`/Daten/Benutzer/${userId}/EKFs/${ekf[0].id}`)
+      navigate(`/Daten/Benutzer/${userId}/EKF/${ekf[0].id}`)
     }
   }, [ekfYear, ekf.length, ekfId, ekf, navigate, userId])
 
@@ -98,7 +98,7 @@ const Ekf = () => {
     )
   }
 
-  if (isPrint && ekf.length > 0 && ekfMultiPrint) {
+  if (isPrint && ekf.length > 0) {
     return (
       <AppBar ekf={ekf}>
         <>
@@ -113,12 +113,16 @@ const Ekf = () => {
   return (
     <AppBar ekf={ekf}>
       <Container>
-        <StyledSplitPane split="vertical" size="33%" minSize={100}>
+        <StyledSplitPane split="vertical" size="350px" minSize={100}>
           <InnerContainer>
             <EkfList ekf={ekf} />
           </InnerContainer>
           <InnerContainer>
-            {ekfId ? <Tpopfreiwkontr treeName="tree" /> : <InnerContainer />}
+            {ekfId ? (
+              <Tpopfreiwkontr treeName="tree" id={ekfId} />
+            ) : (
+              <InnerContainer />
+            )}
           </InnerContainer>
         </StyledSplitPane>
       </Container>
