@@ -249,7 +249,6 @@ const ProjektContainer = ({ treeName }) => {
     activeNodeArray[2] === 'AP-Berichte' &&
     activeNodeArray[4] === 'print'
 
-  const containerEl = useRef(null)
   const treeEl = useRef(null)
   const datenEl = useRef(null)
   const filterEl = useRef(null)
@@ -309,7 +308,7 @@ const ProjektContainer = ({ treeName }) => {
   if (showApberForAll) {
     if (isPrint) return <ApberForYear />
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane
           split="vertical"
           size={paneSize}
@@ -326,7 +325,7 @@ const ProjektContainer = ({ treeName }) => {
   if (showApberForArt) {
     if (isPrint) return <ApberForApFromAp />
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane
           split="vertical"
           size={paneSize}
@@ -362,7 +361,7 @@ const ProjektContainer = ({ treeName }) => {
     // add empty div to prevent split-pane from
     // missing a second div
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane split="vertical" size="100%" maxSize={-10}>
           {elObj[tabs[0]]}
           <></>
@@ -373,7 +372,7 @@ const ProjektContainer = ({ treeName }) => {
 
   if (tabs.length === 2) {
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane split="vertical" size={paneSize} maxSize={-10}>
           {elObj[tabs[0]]}
           {elObj[tabs[1]]}
@@ -384,7 +383,7 @@ const ProjektContainer = ({ treeName }) => {
 
   if (tabs.length === 3) {
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
           {elObj[tabs[0]]}
           <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
@@ -398,7 +397,7 @@ const ProjektContainer = ({ treeName }) => {
 
   if (tabs.length === 4) {
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
           {elObj[tabs[0]]}
           <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
@@ -415,7 +414,7 @@ const ProjektContainer = ({ treeName }) => {
 
   if (tabs.length === 5) {
     return (
-      <Container ref={containerEl}>
+      <Container>
         <StyledSplitPane split="vertical" size="20%" maxSize={-10}>
           {elObj[tabs[0]]}
           <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
