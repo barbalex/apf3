@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
@@ -8,7 +8,7 @@ import { observer } from 'mobx-react-lite'
 import EkfList from './ListContainer'
 import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
 import storeContext from '../../storeContext'
-import StyledSplitPane from '../shared/StyledSplitPane' 
+import StyledSplitPane from '../shared/StyledSplitPane'
 
 const Container = styled.div`
   height: 100%;
@@ -45,9 +45,6 @@ const Ekf = () => {
     tpopkontrId !== '99999999-9999-9999-9999-999999999999'
   const treeName = 'tree'
 
-  const treeEl = useRef(null)
-  const datenEl = useRef(null)
-
   const ekfIds = ekfIdsRaw?.toJSON()
   if (isPrint && ekfIds.length > 0 && ekfMultiPrint) {
     return (
@@ -66,10 +63,10 @@ const Ekf = () => {
   return (
     <Container>
       <StyledSplitPane split="vertical" size="33%" minSize={100}>
-        <InnerContainer ref={treeEl}>
+        <InnerContainer>
           <EkfList />
         </InnerContainer>
-        <InnerContainer ref={datenEl}>
+        <InnerContainer>
           {tpopkontrIdExists ? (
             <Tpopfreiwkontr treeName={treeName} role={role} />
           ) : (
