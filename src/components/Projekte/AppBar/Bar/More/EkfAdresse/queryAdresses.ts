@@ -2,20 +2,13 @@ import { gql } from '@apollo/client'
 
 export default gql`
   query adrQuery {
-    allAdresses(
+    allUsers(
       orderBy: NAME_ASC
-      filter: {
-        usersByAdresseId: { some: { role: { equalTo: "apflora_freiwillig" } } }
-      }
+      filter: { role: { equalTo: "apflora_freiwillig" } }
     ) {
       nodes {
         value: id
         label: name
-        users: usersByAdresseId {
-          nodes {
-            id
-          }
-        }
       }
     }
   }
