@@ -88,10 +88,10 @@ const ProjekteAppBar = () => {
   const exporteIsActive = !!projIdInActiveNodeArray
   const isMobile = isMobilePhone()
 
-  const { token } = user
+  const token = user?.token
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
-  const isFreiwillig = role === 'apflora_freiwillig' 
+  const isFreiwillig = role === 'apflora_freiwillig'
 
   const isProjekt = tree.activeNodeArray[0] === 'Projekte'
 
