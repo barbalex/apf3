@@ -1,6 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
 import Button from '@mui/material/Button'
-import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import jwtDecode from 'jwt-decode'
@@ -10,14 +9,13 @@ import { Link } from 'react-router-dom'
 import { MdPrint, MdHourglassEmpty } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
+import { useParams } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import EkfYear from './EkfYear'
 import User from './User'
 import storeContext from '../../../../storeContext'
-import queryAdresse from './queryAdresse'
-import queryUser from './queryUser'
+import query from './query'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -67,27 +65,12 @@ const StyledMdHourglassEmpty = styled(MdHourglassEmpty)`
 `
 
 const ProjekteAppBar = () => {
-  const store = useContext(storeContext)
-  const {
-    dataFilterClone1To2,
-    user,
-    setView,
-    urlQuery,
-    setUrlQuery,
-    cloneTree2From1,
-    ekfAdresseId,
-    setIsPrint,
-    ekfIds,
-    setEkfMultiPrint,
-  } = store
-  const { ekfIdInActiveNodeArray } = store.tree
-  const ekfIsActive = !!ekfIdInActiveNodeArray
+  const { userId, ekfId } = useParams()
 
-  /**
-   * need to clone projekteTabs
-   * because otherwise removing elements errors out (because elements are sealed)
-   */
-  const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
+  const store = useContext(storeContext)
+  const { user, setIsPrint, ekfIds, setEkfMultiPrint } = store
+  const ekfIsActive = !!ekfId
+
   const isMobile = isMobilePhone()
 
   const { token, name: username } = user
@@ -98,65 +81,16 @@ const ProjekteAppBar = () => {
   // if no ekfAdresseId
   // need to fetch adresse.id for this user
   // and use that instead
-  const { data: dataUser } = useQuery(queryUser, {
-    variables: { name: username },
+  const { data } = useQuery(query, {
+    variables: { userId: userId ?? '99999999-9999-9999-9999-999999999999' },
   })
-  const userAdresseId = dataUser?.userByName?.adresseId
-  const { data } = useQuery(queryAdresse, {
-    variables: {
-      id:
-        ekfAdresseId || userAdresseId || '99999999-9999-9999-9999-999999999999',
-    },
-  })
-  const adresseName = data?.adresseById?.name ?? null
+
+  const userName = data?.userById?.name ?? null
   const ekfCount = ekfIds.length
 
   const [userOpen, setUserOpen] = useState(false)
   const [preparingEkfMultiprint, setPreparingEkfMultiprint] = useState(false)
 
-  const onClickButton = useCallback(
-    (name) => {
-      if (isMobile) {
-        // show one tab only
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: [name],
-          urlQuery,
-          setUrlQuery,
-        })
-      } else {
-        if (projekteTabs.includes(name)) {
-          remove(projekteTabs, (el) => el === name)
-          if (name === 'tree2') {
-            // close all tree2-tabs
-            remove(projekteTabs, (el) => el.includes('2'))
-          }
-        } else {
-          projekteTabs.push(name)
-          if (name === 'tree2') {
-            cloneTree2From1()
-            dataFilterClone1To2()
-          }
-        }
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: projekteTabs,
-          urlQuery,
-          setUrlQuery,
-        })
-      }
-    },
-    [
-      isMobile,
-      urlQuery,
-      setUrlQuery,
-      projekteTabs,
-      cloneTree2From1,
-      dataFilterClone1To2,
-    ],
-  )
-
-  const setViewNormal = useCallback(() => setView('normal'), [setView])
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
   const onClickPrintSingle = useCallback(() => {
@@ -167,6 +101,7 @@ const ProjekteAppBar = () => {
       setIsPrint(false)
     })
   }, [setEkfMultiPrint, setIsPrint])
+
   const onClickPrintAll = useCallback(() => {
     setPreparingEkfMultiprint(true)
     setEkfMultiPrint(true)
@@ -181,14 +116,12 @@ const ProjekteAppBar = () => {
     }, 3000 + ekfCount * 300)
   }, [ekfCount, setEkfMultiPrint, setIsPrint])
 
-  console.log('EKF, isFreiwillig:', isFreiwillig)
-
   return (
     <>
       {!isMobile && (
         <SiteTitle variant="outlined" component={Link} to="/" title="Home">
-          {adresseName
-            ? `AP Flora: EKF von ${adresseName}`
+          {userName
+            ? `AP Flora: EKF von ${userName}`
             : 'AP Flora: Erfolgs-Kontrolle Freiwillige'}
         </SiteTitle>
       )}
@@ -217,7 +150,13 @@ const ProjekteAppBar = () => {
           </StyledIconButton>
           <EkfYear />
           {!isFreiwillig && (
-            <StyledButton onClick={setViewNormal}>Normal-Ansicht</StyledButton>
+            <StyledButton
+              variant="text"
+              component={Link}
+              to="/Daten/Projekte/e57f56f4-4376-11e8-ab21-4314b6749d13"
+            >
+              Normal-Ansicht
+            </StyledButton>
           )}
           {isFreiwillig && (
             <>

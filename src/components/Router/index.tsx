@@ -17,7 +17,6 @@ import storeContext from '../../storeContext'
 // uncommeent unterhalt route for Unterhalt
 const RouterComponent = () => {
   const store = useContext(storeContext)
-  const { view } = store
 
   return (
     <Routes>
@@ -26,14 +25,14 @@ const RouterComponent = () => {
         {/* <Route path="*" element={<Unterhalt />}></Route> */}
         <Route path="Benutzer/:userId/EKF/" element={<Ekf />} />
         <Route path="Benutzer/:userId/EKF/:ekfId" element={<EkfSingle />} />
-        <Route path="*" element={view === 'ekf' ? <Ekf /> : <Projekte />} />
+        <Route path="*" element={<Projekte />} />
         <Route
           path="projekte/:projId/*"
-          element={view === 'ekf' ? <Ekf /> : <Projekte />}
+          element={<Projekte />}
         />
         <Route
           path="projekte/:projId/Arten/:artId/*"
-          element={view === 'ekf' ? <Ekf /> : <Projekte />}
+          element={<Projekte />}
         />
         <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
       </Route>

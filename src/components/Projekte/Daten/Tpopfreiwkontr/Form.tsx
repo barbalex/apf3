@@ -151,7 +151,7 @@ const fieldTypes = {
 const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { dataFilterSetValue, isPrint, view, user } = store
+  const { dataFilterSetValue, isPrint, user } = store
   const { token } = user
   const role = token ? jwtDecode(token).role : null
 
@@ -450,13 +450,11 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
           <EkfRemarks saveToDb={saveToDb} row={row} errors={errors} />
         )}
         {!isPrint && <Files row={row} />}
-        {!isPrint && !isFreiwillig && !(view === 'ekf') && (
+        {!isPrint && !isFreiwillig && (
           <Verification saveToDb={saveToDb} row={row} errors={errors} />
         )}
       </GridContainer>
-      {!isPrint && !isFreiwillig && !(view === 'ekf') && (
-        <StringToCopy text={row.id} label="GUID" />
-      )}
+      {!isPrint && !isFreiwillig && <StringToCopy text={row.id} label="GUID" />}
       {!isPrint && <div style={{ height: '64px' }} />}
     </FormContainer>
   )

@@ -1,31 +1,30 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 
 import Select from '../../../../../shared/Select'
 import Error from '../../../../../shared/Error'
 import queryAdresses from './queryAdresses'
-import storeContext from '../../../../../../storeContext'
 
 const Container = styled.div`
   padding: 0 16px;
 `
 
 const EkfAdresse = ({ closeMenu }) => {
+  const navigate = useNavigate()
+
   const { data, error, loading } = useQuery(queryAdresses)
-  const store = useContext(storeContext)
-  const { setView, setEkfAdresseId } = store
+
   const choose = useCallback(
     async (event) => {
       closeMenu()
       // prevent this happening before seAnchor happened
-      setTimeout(() => {
-        setEkfAdresseId(event.target.value)
-        setView('ekf')
-      })
+      setTimeout(() =>
+        navigate(`/Daten/Benutzer/${event.target.users?.[0]?.id}/EKF`),
+      )
     },
-    [closeMenu, setEkfAdresseId, setView],
+    [closeMenu, navigate],
   )
 
   if (loading) return '...'
@@ -45,4 +44,4 @@ const EkfAdresse = ({ closeMenu }) => {
   )
 }
 
-export default observer(EkfAdresse)
+export default EkfAdresse

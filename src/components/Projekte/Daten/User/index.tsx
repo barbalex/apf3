@@ -11,6 +11,7 @@ import Button from '@mui/material/Button'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useNavigate } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField2'
@@ -91,9 +92,11 @@ const fieldTypes = {
 }
 
 const User = ({ treeName }) => {
+  const navigate = useNavigate()
+
   const store = useContext(storeContext)
-  const { setEkfAdresseId, setView } = store
   const { activeNodeArray } = store[treeName]
+
   const client = useApolloClient()
 
   const [errors, setErrors] = useState({})
@@ -239,7 +242,7 @@ const User = ({ treeName }) => {
     [password, saveToDb],
   )
   const onClickCreateEkfForms = useCallback(async () => {
-    let errors = []
+    const errors = []
     for (const tpopId of ekfTpopsWithoutEkfThisYear) {
       try {
         await client.mutate({
@@ -349,8 +352,8 @@ const User = ({ treeName }) => {
                 <StyledButton
                   variant="outlined"
                   onClick={() => {
-                    setEkfAdresseId(row.adresseId)
-                    setView('ekf')
+                    // TODO: check thisYear
+                    navigate(`/Daten/Benutzer/${row.id}/EKF`)
                   }}
                 >
                   {`EKF-Formulare für ${thisYear} öffnen`}

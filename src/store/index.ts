@@ -67,9 +67,7 @@ const myTypes = types
     user: types.optional(User, defaultUser),
     isPrint: types.optional(types.boolean, false),
     printingJberYear: types.optional(types.number, 0),
-    view: types.optional(types.string, 'normal'),
     ekfYear: types.optional(types.number, ekfYear),
-    ekfAdresseId: types.optional(types.maybeNull(types.string), null),
     ekfIds: types.array(types.string),
     ekfMultiPrint: types.optional(types.boolean, false),
     copying: types.optional(Copying, defaultCopying),
@@ -249,14 +247,8 @@ const myTypes = types
     setIsPrint(val) {
       self.isPrint = val
     },
-    setView(val) {
-      self.view = val
-    },
     setEkfYear(val) {
       self.ekfYear = val
-    },
-    setEkfAdresseId(val) {
-      self.ekfAdresseId = val
     },
     setCopying({ table, id, label, withNextLevel }) {
       self.copying = { table, id, label, withNextLevel }

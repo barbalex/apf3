@@ -55,7 +55,7 @@ const DokuAppBar = () => {
           component={Link}
           to="/Daten/Projekte/e57f56f4-4376-11e8-ab21-4314b6749d13"
         >
-          Arten bearbeiten
+          Arten bearbeiten 
         </StyledButton>
       </MenuDiv>
     </>

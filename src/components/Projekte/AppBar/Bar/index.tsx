@@ -58,19 +58,12 @@ const DokuButton = styled(Button)`
   color: white !important;
   text-transform: none !important;
 `
-const NormalViewButton = styled(Button)`
-  color: white !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-  text-transform: none !important;
-`
 
 const ProjekteAppBar = () => {
   const store = useContext(storeContext)
   const {
     dataFilterClone1To2,
     user,
-    view,
-    setView,
     urlQuery,
     setUrlQuery,
     cloneTree2From1,
@@ -91,7 +84,6 @@ const ProjekteAppBar = () => {
   const token = user?.token
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
-  const isFreiwillig = role === 'apflora_freiwillig'
 
   const isProjekt = tree.activeNodeArray[0] === 'Projekte'
 
@@ -157,7 +149,6 @@ const ProjekteAppBar = () => {
     () => onClickButton('tree2'),
     [onClickButton],
   )
-  const setViewEkf = useCallback(() => setView('ekf'), [setView])
   const onClickEkPlanung = useCallback(() => {
     // eslint-disable-next-line no-unused-vars
     const [projectTitle, projectId, ...rest] = tree.activeNodeArray
@@ -174,106 +165,89 @@ const ProjekteAppBar = () => {
       )}
       <MenuDiv>
         <>
-          {view === 'normal' && (
-            <>
-              {isFreiwillig && (
-                <NormalViewButton onClick={setViewEkf}>
-                  EKF-Ansicht
-                </NormalViewButton>
-              )}
-              <StyledButton
-                name="tree"
-                variant={projekteTabs.includes('tree') ? 'outlined' : 'text'}
-                followed={projekteTabs.includes('daten')?.toString()}
-                onClick={onClickTree}
-                data-id="nav-tree1"
-              >
-                Strukturbaum
-              </StyledButton>
-              <Daten />
-              <StyledButton
-                variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
-                preceded={projekteTabs.includes('daten')?.toString()}
-                followed={projekteTabs.includes('karte')?.toString()}
-                onClick={onClickFilter}
-                data-id="nav-filter1"
-                title="Daten filtern"
-              >
-                Filter
-              </StyledButton>
-              <StyledButton
-                variant={projekteTabs.includes('karte') ? 'outlined' : 'text'}
-                preceded={projekteTabs.includes('filter')?.toString()}
-                followed={(
-                  (!isMobile &&
-                    exporteIsActive &&
-                    projekteTabs.includes('exporte')) ||
-                  (!isMobile &&
-                    !exporteIsActive &&
-                    projekteTabs.includes('tree2'))
-                )?.toString()}
-                onClick={onClickKarte}
-                data-id="nav-karte1"
-              >
-                Karte
-              </StyledButton>
-              {!isMobile && exporteIsActive && (
-                <StyledButton
-                  variant={
-                    projekteTabs.includes('exporte') ? 'outlined' : 'text'
-                  }
-                  preceded={projekteTabs.includes('karte')?.toString()}
-                  followed={projekteTabs.includes('tree2')?.toString()}
-                  onClick={onClickExporte}
-                  data-id="nav-exporte"
-                >
-                  Exporte
-                </StyledButton>
-              )}
-              {!isMobile && (
-                <StyledButton
-                  variant={projekteTabs.includes('tree2') ? 'outlined' : 'text'}
-                  preceded={(
-                    (exporteIsActive && projekteTabs.includes('exporte')) ||
-                    (!exporteIsActive && projekteTabs.includes('karte'))
-                  )?.toString()}
-                  followed={projekteTabs.includes('daten2')?.toString()}
-                  onClick={onClickTree2}
-                  data-id="nav-tree2"
-                >
-                  Strukturbaum 2
-                </StyledButton>
-              )}
-              {!isMobile && projekteTabs.includes('tree2') && (
-                <Daten treeNr="2" />
-              )}
-              {!isMobile && projekteTabs.includes('tree2') && (
-                <StyledButton
-                  variant={
-                    projekteTabs.includes('filter2') ? 'outlined' : 'text'
-                  }
-                  preceded={projekteTabs.includes('daten2')?.toString()}
-                  followed={projekteTabs.includes('karte2')?.toString()}
-                  onClick={onClickFilter2}
-                  data-id="nav-filter2"
-                  title="Daten filtern"
-                >
-                  Filter 2
-                </StyledButton>
-              )}
-              {!isMobile && isProjekt && (
-                <StyledButton
-                  variant="text"
-                  preceded={false?.toString()}
-                  followed={false.toString()}
-                  onClick={onClickEkPlanung}
-                  data-id="ek-planung"
-                  title="EK und EKF planen"
-                >
-                  EK-Planung
-                </StyledButton>
-              )}
-            </>
+          <StyledButton
+            name="tree"
+            variant={projekteTabs.includes('tree') ? 'outlined' : 'text'}
+            followed={projekteTabs.includes('daten')?.toString()}
+            onClick={onClickTree}
+            data-id="nav-tree1"
+          >
+            Strukturbaum
+          </StyledButton>
+          <Daten />
+          <StyledButton
+            variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
+            preceded={projekteTabs.includes('daten')?.toString()}
+            followed={projekteTabs.includes('karte')?.toString()}
+            onClick={onClickFilter}
+            data-id="nav-filter1"
+            title="Daten filtern"
+          >
+            Filter
+          </StyledButton>
+          <StyledButton
+            variant={projekteTabs.includes('karte') ? 'outlined' : 'text'}
+            preceded={projekteTabs.includes('filter')?.toString()}
+            followed={(
+              (!isMobile &&
+                exporteIsActive &&
+                projekteTabs.includes('exporte')) ||
+              (!isMobile && !exporteIsActive && projekteTabs.includes('tree2'))
+            )?.toString()}
+            onClick={onClickKarte}
+            data-id="nav-karte1"
+          >
+            Karte
+          </StyledButton>
+          {!isMobile && exporteIsActive && (
+            <StyledButton
+              variant={projekteTabs.includes('exporte') ? 'outlined' : 'text'}
+              preceded={projekteTabs.includes('karte')?.toString()}
+              followed={projekteTabs.includes('tree2')?.toString()}
+              onClick={onClickExporte}
+              data-id="nav-exporte"
+            >
+              Exporte
+            </StyledButton>
+          )}
+          {!isMobile && (
+            <StyledButton
+              variant={projekteTabs.includes('tree2') ? 'outlined' : 'text'}
+              preceded={(
+                (exporteIsActive && projekteTabs.includes('exporte')) ||
+                (!exporteIsActive && projekteTabs.includes('karte'))
+              )?.toString()}
+              followed={projekteTabs.includes('daten2')?.toString()}
+              onClick={onClickTree2}
+              data-id="nav-tree2"
+            >
+              Strukturbaum 2
+            </StyledButton>
+          )}
+          {!isMobile && projekteTabs.includes('tree2') && <Daten treeNr="2" />}
+          {!isMobile && projekteTabs.includes('tree2') && (
+            <StyledButton
+              variant={projekteTabs.includes('filter2') ? 'outlined' : 'text'}
+              preceded={projekteTabs.includes('daten2')?.toString()}
+              followed={projekteTabs.includes('karte2')?.toString()}
+              onClick={onClickFilter2}
+              data-id="nav-filter2"
+              title="Daten filtern"
+            >
+              Filter 2
+            </StyledButton>
+          )}
+          {!isMobile && isProjekt && (
+            <StyledButton
+              variant="text"
+              preceded={false?.toString()}
+              followed={false.toString()}
+              onClick={onClickEkPlanung}
+              data-id="ek-planung"
+              title="EK und EKF planen"
+            >
+              EK-Planung
+            </StyledButton>
           )}
           <DokuButton variant="text" component={Link} to="/Dokumentation/">
             Dokumentation

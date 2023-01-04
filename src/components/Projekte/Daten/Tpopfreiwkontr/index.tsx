@@ -5,6 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { MdPrint } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import SimpleBar from 'simplebar-react'
+import { useLocation } from 'react-router-dom'
 
 import query from './query'
 import createTpopkontrzaehl from './createTpopkontrzaehl'
@@ -37,10 +38,11 @@ const StyledIconButton = styled(IconButton)`
   margin-right: 10px !important;
 `
 
-const Tpopfreiwkontr = ({ treeName, id: idPassed }) => { 
+const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
+  const { pathname } = useLocation()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { enqueNotification, isPrint, setIsPrint, view, user } = store
+  const { enqueNotification, isPrint, setIsPrint, user } = store
   const tree = store[treeName]
   const { activeNodeArray } = tree
 
@@ -140,7 +142,7 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
 
   return (
     <Container>
-      {!(view === 'ekf') && (
+      {!pathname.includes('EKF') && (
         <FormTitle
           apId={apId}
           title="Freiwilligen-Kontrolle"
