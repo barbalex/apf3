@@ -2,6 +2,9 @@ import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { Outlet } from 'react-router-dom'
+// import { getSnapshot } from 'mobx-state-tree'
+import jwtDecode from 'jwt-decode'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 import storeContext from '../../storeContext'
 import User from '../User'
@@ -21,18 +24,43 @@ const Container = styled.div`
 `
 
 const ProtectedRoute = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const pathname = location.pathname
+  const { userId } = useParams()
+
   const store = useContext(storeContext)
   const { showDeletions, user } = store
 
-  // console.log('DatenPageComponent rendering')
+  const token = user?.token
+  const tokenDecoded = token ? jwtDecode(token) : null
+  const role = tokenDecoded ? tokenDecoded.role : null
+  const isFreiwillig = role === 'apflora_freiwillig'
+
+  // TODO:
+  // if user is freiwillig
+  // and path is not in /Benutzer/:userId
+  // then redirect to /Benutzer/:userId/EKF
+  const shouldNavigate =
+    isFreiwillig && userId && !pathname.includes(`Daten/Benutzer/${userId}`)
+  // console.log('ProtectedRoute', {
+  //   user: getSnapshot(user),
+  //   isFreiwillig,
+  //   role,
+  //   pathname,
+  //   shouldNavigate,
+  // })
+  if (shouldNavigate) {
+    navigate(`/Daten/Benutzer/${userId}/EKF`)
+  }
 
   return (
     <Container>
       {!!user.token && (
         <>
           <Outlet />
-          <Messages />
-          {showDeletions && <Deletions />}
+          {!isFreiwillig && <Messages />}
+          {!isFreiwillig && showDeletions && <Deletions />}
         </>
       )}
       <User />
