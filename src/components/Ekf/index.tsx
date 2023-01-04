@@ -32,7 +32,7 @@ const Ekf = () => {
     ekfIds: ekfIdsRaw,
     ekfMultiPrint,
   } = useContext(storeContext)
-  const { token } = user
+  const token = user?.token
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
 
