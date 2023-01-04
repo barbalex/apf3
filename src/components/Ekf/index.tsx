@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
@@ -24,6 +25,8 @@ const InnerContainer = styled.div`
 `
 
 const Ekf = () => {
+  const { userId } = useParams()
+  console.log('EKF', { userId })
   const {
     isPrint,
     tree,
@@ -49,10 +52,6 @@ const Ekf = () => {
         ))}
       </>
     )
-  }
-
-  if (isPrint && tpopkontrIdExists) {
-    return <Tpopfreiwkontr treeName={treeName} />
   }
 
   return (

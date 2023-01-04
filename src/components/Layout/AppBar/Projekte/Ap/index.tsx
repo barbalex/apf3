@@ -91,7 +91,7 @@ const ProjekteAppBar = () => {
   const { token } = user
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
-  const isFreiwillig = role === 'apflora_freiwillig'
+  const isFreiwillig = role === 'apflora_freiwillig' 
 
   const isProjekt = tree.activeNodeArray[0] === 'Projekte'
 

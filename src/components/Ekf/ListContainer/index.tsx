@@ -71,7 +71,7 @@ const EkfListContainer = () => {
 
   const ekf = getEkfFromData({ data, ekfAdresseId })
   setEkfIds(ekf.map((e) => e.id))
-
+ 
   const { activeNodeArray } = store.tree
   const activeTpopkontrId =
     activeNodeArray.length > 9

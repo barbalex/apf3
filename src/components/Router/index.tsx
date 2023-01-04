@@ -9,6 +9,7 @@ import DocRoutes from './DocRoutes'
 import Docs from '../Docs'
 import ProtectedRoute from './ProtectedRoute'
 import Ekf from '../Ekf'
+import EkfSingle from '../EkfSingle'
 import Projekte from '../Projekte'
 import storeContext from '../../storeContext'
 // import Unterhalt from './components/Unterhalt'
@@ -23,6 +24,8 @@ const RouterComponent = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Daten/*" element={<ProtectedRoute />}>
         {/* <Route path="*" element={<Unterhalt />}></Route> */}
+        <Route path="Benutzer/:userId/EKF/" element={<Ekf />} />
+        <Route path="Benutzer/:userId/EKF/:ekfId" element={<EkfSingle />} />
         <Route path="*" element={view === 'ekf' ? <Ekf /> : <Projekte />} />
         <Route
           path="projekte/:projId/*"
