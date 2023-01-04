@@ -8,7 +8,7 @@ import { observer } from 'mobx-react-lite'
 import EkfList from './ListContainer'
 import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
 import storeContext from '../../storeContext'
-import StyledSplitPane from '../shared/StyledSplitPane'
+import StyledSplitPane from '../shared/StyledSplitPane' 
 
 const Container = styled.div`
   height: 100%;

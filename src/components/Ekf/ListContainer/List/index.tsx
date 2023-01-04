@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { FixedSizeList as List } from 'react-window'
 import uniq from 'lodash/uniq'
-import sortBy from 'lodash/sortBy'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import SimpleBar from 'simplebar-react'
@@ -21,40 +20,10 @@ const Scrollcontainer = styled.div`
   overflow-y: auto;
   height: 100%;
 `
-const NoDataContainer = styled.div`
-  padding 15px;
-`
 
-const getEkfFromData = ({ data, ekfAdresseId }) => {
-  const ekfNodes = ekfAdresseId
-    ? data?.adresseById?.tpopkontrsByBearbeiter?.nodes ?? []
-    : data?.userByName?.adresseByAdresseId?.tpopkontrsByBearbeiter?.nodes ?? []
-  const ekf = ekfNodes.map((e) => ({
-    projekt: e?.tpopByTpopId?.popByPopId?.apByApId?.projektByProjId?.name ?? '',
-    projId: e?.tpopByTpopId?.popByPopId?.apByApId?.projektByProjId?.id,
-    art:
-      e?.tpopByTpopId?.popByPopId?.apByApId?.aeTaxonomyByArtId?.artname ?? '',
-    apId: e?.tpopByTpopId?.popByPopId?.apByApId?.id,
-    pop: `${e?.tpopByTpopId?.popByPopId?.nr ?? '(keine Nr)'}: ${
-      e?.tpopByTpopId?.popByPopId?.name ?? '(kein Name)'
-    }`,
-    popId: e?.tpopByTpopId?.popByPopId?.id,
-    popSort: e?.tpopByTpopId?.popByPopId?.nr ?? '(keine Nr)',
-    tpop: `${e?.tpopByTpopId?.nr ?? '(keine Nr)'}: ${
-      e?.tpopByTpopId?.flurname ?? '(kein Flurname)'
-    }`,
-    tpopId: e?.tpopByTpopId?.id,
-    tpopSort: e?.tpopByTpopId?.nr ?? '(keine Nr)',
-    id: e.id,
-  }))
-  return sortBy(ekf, ['projekt', 'art', 'popSort', 'tpopSort'])
-}
-
-const EkfList = ({ data, loading }) => {
+const EkfList = ({ ekf }) => {
   const store = useContext(storeContext)
-  const { ekfYear, ekfAdresseId, tree, setEkfIds } = store
-  const ekf = getEkfFromData({ data, ekfAdresseId })
-  setEkfIds(ekf.map((e) => e.id))
+  const { ekfYear, tree } = store
 
   const { activeNodeArray } = tree
   const activeTpopkontrId =
@@ -88,14 +57,6 @@ const EkfList = ({ data, loading }) => {
       })
     }
   }, [ekfYear, ekf.length, ekf, activeTpopkontrId, store])
-
-  if (!loading && ekf.length === 0) {
-    return (
-      <NoDataContainer>
-        {`Für das Jahr ${ekfYear} existieren offenbar keine Erfolgskontrollen mit Ihnen als BearbeiterIn`}
-      </NoDataContainer>
-    )
-  }
 
   return (
     <Container>
