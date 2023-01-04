@@ -13,6 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   overflow: hidden;
   border-right: 1px solid rgb(46, 125, 50);
+  box-sizing: border-box !important;
   .simplebar-content {
     height: 100%;
   }
