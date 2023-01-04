@@ -23,7 +23,10 @@ const RouterComponent = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Daten/*" element={<ProtectedRoute />}>
         {/* <Route path="*" element={<Unterhalt />}></Route> */}
-        <Route path="*" element={view === 'ekf' ? <Ekf /> : <Projekte />} />
+        <Route
+          path="projekte/:projektId/*"
+          element={view === 'ekf' ? <Ekf /> : <Projekte />}
+        />
         <Route path="Projekte/:projektId/EK-Planung" element={<EkPlan />} />
       </Route>
       <Route path="/Dokumentation/*" element={<Docs />}>
