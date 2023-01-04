@@ -6,8 +6,8 @@ import storeContext from '../../../storeContext'
 
 const Div = styled.div`
   color: #c8e6c9;
-  padding: 0 10px;
-  margin-top: -10px;
+  padding: 0 10px 10px 10px;
+  margin-top: -5px;
 `
 
 const TestdataMessage = ({ treeName, apId }) => {

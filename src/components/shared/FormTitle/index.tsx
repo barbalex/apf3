@@ -23,7 +23,7 @@ const Title = styled.div`
   padding: 10px;
   color: white;
   font-weight: bold;
-  height: 43px;
+  /* height: 43px; */
 `
 const Buttons = styled.div`
   display: flex;
