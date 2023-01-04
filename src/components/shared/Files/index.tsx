@@ -85,7 +85,7 @@ const Files = ({
   const files = data?.[`all${upperFirst(parent)}Files`].nodes ?? []
 
   const [uploaderId, setUploaderId] = useState(0)
-  console.log('Files, uploaderId:', uploaderId)
+  // console.log('Files, uploaderId:', uploaderId)
   const onChangeUploader = useCallback(
     async (info) => {
       if (info) {
