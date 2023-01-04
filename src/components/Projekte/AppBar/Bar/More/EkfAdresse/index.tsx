@@ -18,16 +18,15 @@ const EkfAdresse = ({ closeMenu }) => {
 
   const choose = useCallback(
     async (event) => {
+      const value = event.target.value
       closeMenu()
       // prevent this happening before seAnchor happened
-      setTimeout(() =>
-        navigate(`/Daten/Benutzer/${event.target.users?.[0]?.id}/EKF`),
-      )
+      setTimeout(() => navigate(`/Daten/Benutzer/${value}/EKF`))
     },
     [closeMenu, navigate],
   )
 
-  if (loading) return '...'
+  // if (loading) return '...'
   if (error) return <Error error={error} />
 
   return (
@@ -35,7 +34,7 @@ const EkfAdresse = ({ closeMenu }) => {
       <Select
         value={''}
         label="EKF sehen als"
-        options={data?.allAdresses?.nodes ?? []}
+        options={data?.allUsers?.nodes ?? []}
         loading={loading}
         saveToDb={choose}
         maxHeight={120}
