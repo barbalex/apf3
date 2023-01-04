@@ -10,7 +10,6 @@ import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
 import AppBar from './AppBar'
-import App from '../../App'
 
 const Container = styled.div`
   height: 100%;
@@ -27,23 +26,8 @@ const InnerContainer = styled.div`
 `
 
 const Ekf = () => {
-  const { userId } = useParams()
-  console.log('EKF', { userId })
-  const {
-    isPrint,
-    tree,
-    ekfIds: ekfIdsRaw,
-    ekfMultiPrint,
-  } = useContext(storeContext)
-
-  const { activeNodeArray } = tree
-  const tpopkontrId =
-    activeNodeArray.length > 9
-      ? activeNodeArray[9]
-      : '99999999-9999-9999-9999-999999999999'
-  const tpopkontrIdExists =
-    tpopkontrId !== '99999999-9999-9999-9999-999999999999'
-  const treeName = 'tree'
+  const { userId, ekfId } = useParams()
+  const { isPrint, ekfIds: ekfIdsRaw, ekfMultiPrint } = useContext(storeContext)
 
   const ekfIds = ekfIdsRaw?.toJSON()
   if (isPrint && ekfIds.length > 0 && ekfMultiPrint) {
@@ -51,7 +35,7 @@ const Ekf = () => {
       <AppBar>
         <>
           {ekfIds.map((id) => (
-            <Tpopfreiwkontr treeName={treeName} id={id} key={id} />
+            <Tpopfreiwkontr treeName="tree" id={id} key={id} />
           ))}
         </>
       </AppBar>
@@ -66,11 +50,7 @@ const Ekf = () => {
             <EkfList />
           </InnerContainer>
           <InnerContainer>
-            {tpopkontrIdExists ? (
-              <Tpopfreiwkontr treeName={treeName} />
-            ) : (
-              <InnerContainer />
-            )}
+            {ekfId ? <Tpopfreiwkontr treeName="tree" /> : <InnerContainer />}
           </InnerContainer>
         </StyledSplitPane>
       </Container>
