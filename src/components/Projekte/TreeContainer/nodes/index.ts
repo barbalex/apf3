@@ -86,15 +86,18 @@ const nodes = ({ data, loading, store, role, treeName }) => {
   //console.log('nodes', { data, openNodes })
   const projektNodes = buildProjektNodes({ data })
 
+  // remember not to render nodes navigated via routing in tree2
   let nodes = [
     ...projektNodes,
-    ...buildUserFolderNodes({
-      data,
-      treeName,
-      projektNodes,
-      loading,
-      store,
-    }),
+    ...(treeName === 'tree'
+      ? buildUserFolderNodes({
+          data,
+          treeName,
+          projektNodes,
+          loading,
+          store,
+        })
+      : []),
     ...buildCurrentIssuesFolderNodes({
       data,
       projektNodes,
@@ -957,7 +960,11 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ]
       }
     }
-    if (nodeUrl.length === 1 && nodeUrl[0] === 'Benutzer') {
+    if (
+      nodeUrl.length === 1 &&
+      nodeUrl[0] === 'Benutzer' &&
+      treeName === 'tree'
+    ) {
       nodes = [
         ...nodes,
         ...buildUserNodes({

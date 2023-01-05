@@ -64,6 +64,7 @@ export default gql`
     $isTpopkontr: Boolean!
     $isWerteListen: Boolean!
     $isZiel: Boolean!
+    $isTree1: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -260,7 +261,7 @@ export default gql`
         ...TpopFields
       }
     }
-    allUsers(filter: $usersFilter, orderBy: LABEL_ASC) {
+    allUsers(filter: $usersFilter, orderBy: LABEL_ASC) @include(if: $isTree1) {
       nodes {
         ...UserFields
       }

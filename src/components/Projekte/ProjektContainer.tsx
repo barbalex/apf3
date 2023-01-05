@@ -50,7 +50,11 @@ const ProjektContainer = ({ treeName }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { isPrint, urlQuery, user } = store
-  const { activeNodeArray, apIdInActiveNodeArray: artId, projIdInActiveNodeArray: projId } = store[treeName]
+  const {
+    activeNodeArray,
+    apIdInActiveNodeArray: artId,
+    projIdInActiveNodeArray: projId,
+  } = store[treeName]
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -135,6 +139,7 @@ const ProjektContainer = ({ treeName }) => {
               ekfGqlFilter: ekfGqlFilterTree,
               apGqlFilter: apGqlFilterTree,
               beobGqlFilter: beobGqlFilterTree,
+              treeName,
             }),
           })
         : {},
@@ -179,6 +184,7 @@ const ProjektContainer = ({ treeName }) => {
               ekfGqlFilter: ekfGqlFilterTree2,
               apGqlFilter: apGqlFilterTree2,
               beobGqlFilter: beobGqlFilterTree2,
+              treeName,
             }),
           })
         : {},
