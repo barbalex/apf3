@@ -11,8 +11,8 @@ import Projekte from '../Projekte'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
 
-// uncommeent unterhalt route for Unterhalt
-// Remember: Anything using path variables does not work in tree2!
+// uncomment unterhalt route for Unterhalt
+// REMEMBER: Anything using path variables does not work in tree2!
 // Thus Benutzer were removed from tree2
 const RouterComponent = () => (
   <Routes>
