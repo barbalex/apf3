@@ -11,7 +11,6 @@ import { observer } from 'mobx-react-lite'
 import { getSnapshot } from 'mobx-state-tree'
 import { useApolloClient } from '@apollo/client'
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
 import intersection from 'lodash/intersection'
 import jwtDecode from 'jwt-decode'
 
@@ -51,8 +50,7 @@ const ProjektContainer = ({ treeName }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { isPrint, urlQuery, user } = store
-  const { activeNodeArray } = store[treeName]
-  const { projId, artId } = useParams()
+  const { activeNodeArray, apIdInActiveNodeArray: artId, projIdInActiveNodeArray: projId } = store[treeName]
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
