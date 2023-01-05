@@ -39,6 +39,7 @@ const Werte = ({ treeName, table }) => {
     activeNodeArray.length > 2
       ? activeNodeArray[2]
       : '99999999-9999-9999-9999-999999999999'
+
   const query = gql`
     query werteByIdQuery($id: UUID!) {
       ${tableCamelCased}ById(id: $id) {
