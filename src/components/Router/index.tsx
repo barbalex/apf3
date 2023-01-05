@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 // import { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 
@@ -12,6 +12,7 @@ import Ekf from '../Ekf'
 import Projekte from '../Projekte'
 // import storeContext from '../../storeContext'
 // import Unterhalt from './components/Unterhalt'
+const ekfRefYear = new Date().getFullYear()
 
 // uncommeent unterhalt route for Unterhalt
 const RouterComponent = () => {
@@ -22,12 +23,17 @@ const RouterComponent = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Daten/*" element={<ProtectedRoute />}>
         {/* <Route path="*" element={<Unterhalt />}></Route> */}
-        <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
-        <Route path="Benutzer/:userId/EKF/:ekfYear/:ekfId" element={<Ekf />} />
         <Route path="*" element={<Projekte />} />
         <Route path="projekte/:projId/*" element={<Projekte />} />
         <Route path="projekte/:projId/Arten/:artId/*" element={<Projekte />} />
         <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
+        <Route path="Benutzer/:userId/*" element={<Projekte />} />
+        <Route
+          path="Benutzer/:userId/EKF/*"
+          element={<Navigate to={ekfRefYear.toString()} />}
+        />
+        <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
+        <Route path="Benutzer/:userId/EKF/:ekfYear/:ekfId" element={<Ekf />} />
       </Route>
       <Route path="/Dokumentation/*" element={<Docs />}>
         {DocRoutes()}
