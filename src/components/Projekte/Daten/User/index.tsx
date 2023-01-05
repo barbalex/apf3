@@ -353,7 +353,8 @@ const User = ({ treeName }) => {
                   variant="outlined"
                   onClick={() => {
                     // TODO: check thisYear
-                    navigate(`/Daten/Benutzer/${row.id}/EKF`)
+                    console.log('User, thisYear:', thisYear)
+                    navigate(`/Daten/Benutzer/${row.id}/EKF/${thisYear}`)
                   }}
                 >
                   {`EKF-Formulare für ${thisYear} öffnen`}

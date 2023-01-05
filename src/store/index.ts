@@ -37,10 +37,6 @@ const dataFilterInitialValues = {
   tpopfreiwkontr: tpopfreiwkontrInitial,
 }
 
-// substract 3 Months to now so user sees previous year in February
-const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
-const ekfYear = new Date(ekfRefDate).getFullYear()
-
 const myTypes = types
   .model({
     apfloraLayers: types.optional(
@@ -67,7 +63,6 @@ const myTypes = types
     user: types.optional(User, defaultUser),
     isPrint: types.optional(types.boolean, false),
     printingJberYear: types.optional(types.number, 0),
-    ekfYear: types.optional(types.number, ekfYear),
     ekfMultiPrint: types.optional(types.boolean, false),
     copying: types.optional(Copying, defaultCopying),
     copyingBiotop: types.optional(CopyingBiotop, defaultCopyingBiotop),
@@ -242,9 +237,6 @@ const myTypes = types
     },
     setIsPrint(val) {
       self.isPrint = val
-    },
-    setEkfYear(val) {
-      self.ekfYear = val
     },
     setCopying({ table, id, label, withNextLevel }) {
       self.copying = { table, id, label, withNextLevel }

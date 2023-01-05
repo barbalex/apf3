@@ -1,9 +1,7 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Input from '@mui/material/Input'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
-
-import storeContext from '../../../../storeContext'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const StyledInput = styled(Input)`
   width: 60px;
@@ -26,12 +24,10 @@ const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
 const ekfRefYear = new Date(ekfRefDate).getFullYear()
 
 const EkfYear = () => {
-  const store = useContext(storeContext)
-  const { ekfYear, setEkfYear } = store
+  const { ekfYear, userId } = useParams()
+  const navigate = useNavigate()
 
-  const [stateValue, setStateValue] = useState(
-    ekfYear || ekfYear === 0 ? ekfYear : '',
-  )
+  const [stateValue, setStateValue] = useState(ekfYear ?? '')
 
   useEffect(() => setStateValue(ekfYear), [ekfYear])
 
@@ -42,9 +38,9 @@ const EkfYear = () => {
   const onBlur = useCallback(
     (event) => {
       const newValue = event.target.value ? +event.target.value : ekfRefYear
-      setEkfYear(newValue)
+      navigate(`/Daten/Benutzer/${userId}/EKF/${newValue}`)
     },
-    [setEkfYear],
+    [navigate, userId],
   )
 
   return (
@@ -61,4 +57,4 @@ const EkfYear = () => {
   )
 }
 
-export default observer(EkfYear)
+export default EkfYear

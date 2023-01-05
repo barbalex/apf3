@@ -11,6 +11,9 @@ const Container = styled.div`
   padding: 0 16px;
 `
 
+const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
+const ekfRefYear = new Date(ekfRefDate).getFullYear()
+
 const EkfAdresse = ({ closeMenu }) => {
   const navigate = useNavigate()
 
@@ -21,7 +24,7 @@ const EkfAdresse = ({ closeMenu }) => {
       const value = event.target.value
       closeMenu()
       // prevent this happening before seAnchor happened
-      setTimeout(() => navigate(`/Daten/Benutzer/${value}/EKF`))
+      setTimeout(() => navigate(`/Daten/Benutzer/${value}/EKF/${ekfRefYear}`))
     },
     [closeMenu, navigate],
   )

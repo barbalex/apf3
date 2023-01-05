@@ -22,8 +22,8 @@ const RouterComponent = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Daten/*" element={<ProtectedRoute />}>
         {/* <Route path="*" element={<Unterhalt />}></Route> */}
-        <Route path="Benutzer/:userId/EKF/*" element={<Ekf />} />
-        <Route path="Benutzer/:userId/EKF/:ekfId" element={<Ekf />} />
+        <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
+        <Route path="Benutzer/:userId/EKF/:ekfYear/:ekfId" element={<Ekf />} />
         <Route path="*" element={<Projekte />} />
         <Route path="projekte/:projId/*" element={<Projekte />} />
         <Route path="projekte/:projId/Arten/:artId/*" element={<Projekte />} />

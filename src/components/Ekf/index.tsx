@@ -64,8 +64,8 @@ const getEkfFromData = ({ data }) => {
 
 const Ekf = () => {
   const navigate = useNavigate()
-  const { userId, ekfId } = useParams()
-  const { isPrint, ekfMultiPrint, ekfYear } = useContext(storeContext)
+  const { userId, ekfId, ekfYear } = useParams()
+  const { isPrint } = useContext(storeContext)
 
   const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
   const ekfRefYear = new Date(ekfRefDate).getFullYear()
@@ -74,7 +74,7 @@ const Ekf = () => {
     ekfRefYear === ekfYear ? dataByUserIdGql : dataWithDateByUserIdGql
 
   const { data, loading, error } = useQuery(query, {
-    variables: { id: userId, jahr: ekfYear },
+    variables: { id: userId, jahr: +ekfYear },
   })
 
   const ekf = getEkfFromData({ data })
@@ -83,7 +83,7 @@ const Ekf = () => {
     // navigate to first kontrId so form is shown for first ekf
     // IF none is choosen yet
     if (ekf.length > 0 && !ekfId) {
-      navigate(`/Daten/Benutzer/${userId}/EKF/${ekf[0].id}`)
+      navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${ekf[0].id}`)
     }
   }, [ekfYear, ekf.length, ekfId, ekf, navigate, userId])
 
