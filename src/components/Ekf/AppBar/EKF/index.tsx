@@ -68,7 +68,7 @@ const ProjekteAppBar = ({ ekf }) => {
   const { userId, ekfId } = useParams()
 
   const store = useContext(storeContext)
-  const { user, setIsPrint, setEkfMultiPrint } = store
+  const { user, setIsPrint } = store
   const ekfIsActive = !!ekfId
 
   const isMobile = isMobilePhone()
@@ -94,17 +94,15 @@ const ProjekteAppBar = ({ ekf }) => {
   const toggleUserOpen = useCallback(() => setUserOpen(!userOpen), [userOpen])
 
   const onClickPrintSingle = useCallback(() => {
-    setEkfMultiPrint(false)
     setIsPrint(true)
     setTimeout(() => {
       window.print()
       setIsPrint(false)
     })
-  }, [setEkfMultiPrint, setIsPrint])
+  }, [setIsPrint])
 
   const onClickPrintAll = useCallback(() => {
     setPreparingEkfMultiprint(true)
-    setEkfMultiPrint(true)
     setIsPrint(true)
     // TODO: need to know when all tpopfreiwkontr forms have finisched rendering
     // idea for hack: use ekfCount to set timeout value?
@@ -114,7 +112,7 @@ const ProjekteAppBar = ({ ekf }) => {
       setPreparingEkfMultiprint(false)
       setPreparingEkfMultiprint(false)
     }, 3000 + ekfCount * 300)
-  }, [ekfCount, setEkfMultiPrint, setIsPrint])
+  }, [ekfCount, setIsPrint])
 
   return (
     <>
