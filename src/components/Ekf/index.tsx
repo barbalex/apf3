@@ -75,6 +75,7 @@ const Ekf = () => {
 
   const { data, loading, error } = useQuery(query, {
     variables: { id: userId, jahr: +ekfYear },
+    fetchPolicy: 'network-only',
   })
 
   const ekf = getEkfFromData({ data })
