@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import logout from '../../../../../modules/logout'
-import EkfAdresse from './EkfAdresse'
+import EkfUser from './EkfUser'
 import storeContext from '../../../../../storeContext'
 import idbContext from '../../../../../idbContext'
 
@@ -98,7 +98,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
           gelöschte Datensätze wiederherstellen
         </MenuItem>
         {['apflora_manager', 'apflora_ap_writer'].includes(role) && (
-          <EkfAdresse closeMenu={closeMenu} />
+          <EkfUser closeMenu={closeMenu} />
         )}
         <MenuItem
           onClick={onClickLogout}
