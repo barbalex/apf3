@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-/**
- * ReactDOMServer does not yet support Suspense
- */
 import Adresse from './Adresse'
 import Ap from './Ap'
 import Apart from './Apart'
