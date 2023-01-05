@@ -14,7 +14,7 @@ const Container = styled.div`
 const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
 const ekfRefYear = new Date(ekfRefDate).getFullYear()
 
-const EkfAdresse = ({ closeMenu }) => {
+const EkfUser = ({ closeMenu }) => {
   const navigate = useNavigate()
 
   const { data, error, loading } = useQuery(queryAdresses)
@@ -47,4 +47,4 @@ const EkfAdresse = ({ closeMenu }) => {
   )
 }
 
-export default EkfAdresse
+export default EkfUser
