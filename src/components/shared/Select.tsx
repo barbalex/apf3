@@ -113,6 +113,11 @@ const SharedSelect = ({
         value={selectValue}
         options={optionsToUse}
         onChange={onChange}
+        onKeyDown={(e) => {
+          // without stopping propagation, the event will bubble up to the parent
+          // in the more menu typing a will shift focus to a menu starting with a
+          e.stopPropagation()
+        }}
         hideSelectedOptions
         placeholder=""
         isClearable
