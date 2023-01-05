@@ -351,11 +351,9 @@ const User = ({ treeName }) => {
               {hasEkfTpops && (
                 <StyledButton
                   variant="outlined"
-                  onClick={() => {
-                    // TODO: check thisYear
-                    console.log('User, thisYear:', thisYear)
+                  onClick={() =>
                     navigate(`/Daten/Benutzer/${row.id}/EKF/${thisYear}`)
-                  }}
+                  }
                 >
                   {`EKF-Formulare für ${thisYear} öffnen`}
                 </StyledButton>
