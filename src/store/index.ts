@@ -249,6 +249,7 @@ const myTypes = types
       feldkontrTab,
       idealbiotopTab,
       qkTab,
+      hideAppBar,
     }) {
       const newUrlQuery = {
         projekteTabs,
@@ -259,6 +260,7 @@ const myTypes = types
         feldkontrTab,
         idealbiotopTab,
         qkTab,
+        hideAppBar,
       }
       // only write if changed
       if (!isEqual(self.urlQuery, newUrlQuery)) {

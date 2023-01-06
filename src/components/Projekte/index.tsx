@@ -26,6 +26,10 @@ const Container = styled.div`
     display: block;
   }
 `
+const StyledIframe = styled.iframe`
+  border: none;
+`
+
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
 
 const Projekte = () => {
@@ -37,6 +41,7 @@ const Projekte = () => {
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   if (tree2Tabs.length === 0 || isPrint) {
+    // inside iframe app bar should be hidden
     if (hideAppBar) {
       return (
         <Container>
@@ -66,30 +71,17 @@ const Projekte = () => {
   const search = queryString.stringify(iFrameUrlQuery)
   const iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
 
-  console.log('Projekte', {
-    projekteTabs: iFrameUrlQuery.projekteTabs,
-    iFrameUrlQuery,
-    search,
-    hideAppBar,
-  })
-
-  if (hideAppBar) {
-    return (
-      <Container>
-        <StyledSplitPane split="vertical" defaultSize="50%">
-          <ProjektContainer treeName="tree" />
-          <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
-        </StyledSplitPane>
-      </Container>
-    )
-  }
-
   return (
     <AppBar>
       <Container>
         <StyledSplitPane split="vertical" defaultSize="50%">
           <ProjektContainer treeName="tree" />
-          <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
+          <StyledIframe
+            src={iFrameSrc}
+            title="tree2"
+            width="100%"
+            height="100%"
+          />
         </StyledSplitPane>
       </Container>
     </AppBar>
