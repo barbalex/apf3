@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { registerSW } from 'virtual:pwa-register'
-import { BrowserRouter } from 'react-router-dom'
 
-import App from './App'
+import AppRenderer from './AppRenderer'
 
 // https://vite-plugin-pwa.netlify.app/guide/prompt-for-update.html#runtime
 registerSW({
@@ -29,13 +28,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
   // todo: causes mstPersist to run twice
   // .render(
   //   <React.StrictMode>
-  //     <BrowserRouter>
-  //       <App />
-  //     </BrowserRouter>
+  //     <AppRenderer />
   //   </React.StrictMode>,
   // )
-  .render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  )
+  .render(<AppRenderer />)

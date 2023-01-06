@@ -2,6 +2,10 @@ import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import intersection from 'lodash/intersection'
 import { observer } from 'mobx-react-lite'
+import { useLocation } from 'react-router-dom'
+import { getSnapshot } from 'mobx-state-tree'
+
+import queryString from 'query-string'
 
 // when Karte was loaded async, it did not load,
 // but only in production!
@@ -9,6 +13,8 @@ import ProjektContainer from './ProjektContainer'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
 import AppBar from './AppBar'
+// import AppRenderer from '../../AppRenderer'
+import appBaseUrl from '../../modules/appBaseUrl'
 
 const Container = styled.div`
   height: 100%;
@@ -23,16 +29,19 @@ const Container = styled.div`
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
 
 const Projekte = () => {
+  const { pathname } = useLocation()
   const store = useContext(storeContext)
   const { isPrint, urlQuery } = store
 
-  const { projekteTabs } = urlQuery
+  const { projekteTabs, hideAppBar } = urlQuery
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
-  console.log('Projekte rendering')
-
   if (tree2Tabs.length === 0 || isPrint) {
-    return (
+    return hideAppBar ? (
+      <Container>
+        <ProjektContainer treeName="tree" />
+      </Container>
+    ) : (
       <AppBar>
         <Container>
           <ProjektContainer treeName="tree" />
@@ -41,13 +50,39 @@ const Projekte = () => {
     )
   }
 
-  // TODO: use iframe for tree2
-  return (
+  // build search string for iframe
+  const iFrameUrlQuery = { ...getSnapshot(urlQuery) }
+  // need to alter projekteTabs:
+  // - remove non-tree2 values
+  // - rewrite tree2 values to tree values
+  iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
+    .filter((t) => t.includes('2'))
+    .map((t) => t.replace('2', ''))
+  // add a variable to hide app bar
+  iFrameUrlQuery.hideAppBar = true
+  const search = queryString.stringify(iFrameUrlQuery)
+  const iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
+
+  console.log('Projekte', {
+    projekteTabs: iFrameUrlQuery.projekteTabs,
+    iFrameUrlQuery,
+    search,
+    hideAppBar,
+  })
+
+  return hideAppBar ? (
+    <Container>
+      <StyledSplitPane split="vertical" defaultSize="50%">
+        <ProjektContainer treeName="tree" />
+        <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
+      </StyledSplitPane>
+    </Container>
+  ) : (
     <AppBar>
       <Container>
         <StyledSplitPane split="vertical" defaultSize="50%">
           <ProjektContainer treeName="tree" />
-          <ProjektContainer treeName="tree2" />
+          <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
         </StyledSplitPane>
       </Container>
     </AppBar>
