@@ -6,7 +6,7 @@ const appBaseUrl = () => {
   const hostname = isLocalhost ? 'localhost' : window.location.hostname
 
   const appHost = isLocalhost
-    ? `http://${hostname}:8000/`
+    ? `http://${hostname}:5173/`
     : 'https://apflora.ch/'
   //: `https://${hostname}/`
 
