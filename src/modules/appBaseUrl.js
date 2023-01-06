@@ -8,6 +8,7 @@ const appBaseUrl = () => {
   const appHost = isLocalhost
     ? `http://${hostname}:5173/`
     : // : 'https://apflora.ch/'
+      // also works on apf3.vercel.app with this:
       `https://${hostname}/`
 
   return appHost
