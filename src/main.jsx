@@ -24,7 +24,7 @@ registerSW({
 
 console.log('main rendering')
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+ReactDOM.createRoot(document.getElementById('root'))
   // todo: causes mstPersist to run twice
   // .render(
   //   <React.StrictMode>
