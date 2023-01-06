@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import svgrPlugin from 'vite-plugin-svgr'
+import { splitVendorChunkPlugin } from 'vite'
 // import emotionSwcPlugin from 'emotion-swc-plugin'
 
 // https://vitejs.dev/config/
@@ -30,6 +31,7 @@ export default defineConfig({
   //   },
   // },
   plugins: [
+    splitVendorChunkPlugin(),
     svgrPlugin({
       svgrOptions: {
         icon: true,
@@ -77,9 +79,9 @@ export default defineConfig({
       },
     }),
     react({
-      jsxImportSource: "@emotion/react",
+      jsxImportSource: '@emotion/react',
       babel: {
-        plugins: ["@emotion/babel-plugin"],
+        plugins: ['@emotion/babel-plugin'],
       },
     }),
   ],
