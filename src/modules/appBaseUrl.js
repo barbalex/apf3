@@ -7,8 +7,8 @@ const appBaseUrl = () => {
 
   const appHost = isLocalhost
     ? `http://${hostname}:5173/`
-    : 'https://apflora.ch/'
-  //: `https://${hostname}/`
+    : // : 'https://apflora.ch/'
+      `https://${hostname}/`
 
   return appHost
 }
