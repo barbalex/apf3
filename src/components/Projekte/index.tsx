@@ -37,11 +37,14 @@ const Projekte = () => {
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   if (tree2Tabs.length === 0 || isPrint) {
-    return hideAppBar ? (
-      <Container>
-        <ProjektContainer treeName="tree" />
-      </Container>
-    ) : (
+    if (hideAppBar) {
+      return (
+        <Container>
+          <ProjektContainer treeName="tree" />
+        </Container>
+      )
+    }
+    return (
       <AppBar>
         <Container>
           <ProjektContainer treeName="tree" />
@@ -70,14 +73,18 @@ const Projekte = () => {
     hideAppBar,
   })
 
-  return hideAppBar ? (
-    <Container>
-      <StyledSplitPane split="vertical" defaultSize="50%">
-        <ProjektContainer treeName="tree" />
-        <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
-      </StyledSplitPane>
-    </Container>
-  ) : (
+  if (hideAppBar) {
+    return (
+      <Container>
+        <StyledSplitPane split="vertical" defaultSize="50%">
+          <ProjektContainer treeName="tree" />
+          <iframe src={iFrameSrc} title="tree2" width="100%" height="100%" />
+        </StyledSplitPane>
+      </Container>
+    )
+  }
+
+  return (
     <AppBar>
       <Container>
         <StyledSplitPane split="vertical" defaultSize="50%">

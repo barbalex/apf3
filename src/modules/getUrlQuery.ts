@@ -3,7 +3,7 @@ import queryString from 'query-string'
 
 const getUrlQuery = () => {
   const query = queryString.parse(window.location.search)
-  console.log('getUrlQuery: query:', query)
+  // console.log('getUrlQuery: query:', query)
   // on initial load an empty object can be returned
   // set initial values
   if (!query.projekteTabs) query.projekteTabs = ['tree', 'daten']
