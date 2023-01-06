@@ -39,6 +39,7 @@ const ChooseContainer = styled.div`
 const Title = styled.h5`
   top: 3px;
   margin: 0 8px 0 0;
+  hyphens: none;
 `
 const Label = styled(FormControlLabel)`
   float: right;
