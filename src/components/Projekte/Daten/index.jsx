@@ -148,23 +148,23 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'tpopfreiwkontr': {
-      form = <Tpopfreiwkontr treeName={treeName} />
+      form = <Tpopfreiwkontr />
       break
     }
     case 'tpopkontrzaehl': {
-      form = <Tpopkontrzaehl treeName={treeName} />
+      form = <Tpopkontrzaehl />
       break
     }
     case 'tpopkontrzaehlEinheitWerte': {
-      form = <TpopkontrzaehlEinheitWerte treeName={treeName} />
+      form = <TpopkontrzaehlEinheitWerte />
       break
     }
     case 'tpopmassn': {
-      form = <Tpopmassn treeName={treeName} />
+      form = <Tpopmassn />
       break
     }
     case 'tpopmassnber': {
-      form = <Tpopmassnber treeName={treeName} />
+      form = <Tpopmassnber />
       break
     }
     case 'user': {

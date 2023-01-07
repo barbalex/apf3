@@ -26,11 +26,11 @@ const FormContainer = styled.div`
   padding: 10px;
 `
 
-const TpopkontrzaehlEinheitWerte = ({ treeName, table }) => {
+const TpopkontrzaehlEinheitWerte = ({ table }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { refetch: refetchTree } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -75,11 +75,11 @@ const fieldTypes = {
   planVorhanden: 'Boolean',
 }
 
-const Tpopmassn = ({ treeName, showFilter = false }) => {
+const Tpopmassn = ({ showFilter = false }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const apId = activeNodeArray[3]
 
   const [fieldErrors, setFieldErrors] = useState({})

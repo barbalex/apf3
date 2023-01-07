@@ -36,10 +36,10 @@ const fieldTypes = {
   methode: 'Int',
 }
 
-const Tpopkontrzaehl = ({ treeName }) => {
+const Tpopkontrzaehl = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
