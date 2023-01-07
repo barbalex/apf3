@@ -80,10 +80,6 @@ export default types
         0,
         -1,
       )}${`/Daten/${activeNodeArray.join('/')}`}?${search}`
-      console.log(
-        'store.Tree.setTree2SrcByActiveNodeArray setting iFrameSrc:',
-        iFrameSrc,
-      )
       self.tree2Src = iFrameSrc
     },
     setMapFilter(val) {
