@@ -15,12 +15,12 @@ const insertData = {
   table: 'ap',
 }
 
-const Apfolder = ({ onClick, treeName }) => {
+const Apfolder = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}apFolder`} hideOnLeave={true}>
+      <ContextMenu id={`treeapFolder`} hideOnLeave={true}>
         <div className="react-contextmenu-title">Art</div>
         <MenuItem onClick={onClick} data={closeLowerNodesData}>
           alle schliessen

@@ -188,7 +188,7 @@ const PrintIconContainer = styled.div`
   }
 `
 
-const Row = ({ node, treeName }) => {
+const Row = ({ node }) => {
   const store = useContext(storeContext)
   const {
     activeApfloraLayers,
@@ -260,8 +260,8 @@ const Row = ({ node, treeName }) => {
     })
   }, [node, store])
   const onClickNodeSymbol = useCallback(() => {
-    toggleNodeSymbol({ treeName, node, store })
-  }, [treeName, node, store])
+    toggleNodeSymbol({ node, store })
+  }, [node, store])
   const onClickPrint = useCallback(() => {
     setPrintingJberYear(+node.label)
     setActiveNodeArray([...node.url, 'print'])
@@ -271,7 +271,7 @@ const Row = ({ node, treeName }) => {
 
   return (
     <ContextMenuTrigger
-      id={`${treeName}${node.menuType}`}
+      id={`tree${node.menuType}`}
       //collect={(props) => ({ key: index })}
       collect={(props) => props}
       nodeId={node.id}

@@ -23,9 +23,9 @@ const Container = styled.div`
   }
 `
 
-const Tree = ({ treeName, nodes }) => {
+const Tree = ({ nodes }) => {
   const store = useContext(storeContext)
-  const tree = store[treeName]
+  const tree = store.tree
   const { activeNodeArray, lastTouchedNode: lastTouchedNodeProxy } = tree
 
   const { height = 500, ref: resizeRef } = useResizeDetector({
@@ -59,9 +59,7 @@ const Tree = ({ treeName, nodes }) => {
         initialTopMostItemIndex={initialTopMostIndex}
         height={height}
         totalCount={nodes.length}
-        itemContent={(index) => (
-          <Row key={index} node={nodes[index]} treeName={treeName} />
-        )}
+        itemContent={(index) => <Row key={index} node={nodes[index]} />}
       />
     </Container>
   )

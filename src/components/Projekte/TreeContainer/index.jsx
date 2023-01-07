@@ -634,9 +634,9 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           <LabelFilter nodes={nodes} />
           {!!projIdInActiveNodeArray && <ApFilter />}
         </LabelFilterContainer>
-        <Tree treeName={treeName} nodes={nodes} />
-        <CmApFolder onClick={handleClick} treeName={treeName} />
-        <CmAp onClick={handleClick} treeName={treeName} />
+        <Tree nodes={nodes} />
+        <CmApFolder onClick={handleClick} />
+        <CmAp onClick={handleClick} />
         <CmApberuebersichtFolder onClick={handleClick} treeName={treeName} />
         <CmApberuebersicht onClick={handleClick} treeName={treeName} />
         <CmAssozartFolder onClick={handleClick} treeName={treeName} />

@@ -22,7 +22,7 @@ const moveData = {
   action: 'move',
 }
 
-const Ap = ({ onClick, treeName }) => {
+const Ap = ({ onClick }) => {
   const store = useContext(storeContext)
   const { user, moving } = store
 
@@ -31,7 +31,7 @@ const Ap = ({ onClick, treeName }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}ap`} hideOnLeave={true}>
+      <ContextMenu id={`treeap`} hideOnLeave={true}>
         <div className="react-contextmenu-title">Art</div>
         <MenuItem onClick={onClick} data={closeLowerNodesData}>
           alle schliessen
