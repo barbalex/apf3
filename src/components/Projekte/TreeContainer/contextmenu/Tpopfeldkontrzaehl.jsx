@@ -16,12 +16,12 @@ const deleteData = {
   table: 'tpopfeldkontrzaehl',
 }
 
-const Tpopfeldkontrzaehl = ({ treeName, onClick }) => {
+const Tpopfeldkontrzaehl = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpopfeldkontrzaehl`} hideOnLeave={true}>
+      <ContextMenu id="treeTpopfeldkontrzaehl" hideOnLeave={true}>
         <div className="react-contextmenu-title">Zählung</div>
         {!userIsReadOnly(user.token) && (
           <>
