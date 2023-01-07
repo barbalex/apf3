@@ -44,8 +44,6 @@ const InnerContainer = styled.div`
   height: 100%;
 `
 
-const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
-
 const ProjektContainer = ({ treeName }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -72,7 +70,6 @@ const ProjektContainer = ({ treeName }) => {
     () => intersection(treeTabValues, projekteTabs),
     [projekteTabs, treeTabValues],
   )
-  const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
@@ -81,30 +78,15 @@ const ProjektContainer = ({ treeName }) => {
   const treeNodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
   const treeOpenNodes = getSnapshot(store.tree.openNodes)
   const treeApFilter = store.tree.apFilter
-  const tree2DataFilter = getSnapshot(store.tree2.dataFilter)
-  const tree2NodeLabelFilter = getSnapshot(store.tree2.nodeLabelFilter)
-  const tree2OpenNodes = getSnapshot(store.tree2.openNodes)
-  const tree2ApFilter = store.tree2.apFilter
   const popGqlFilterTree = store.tree.popGqlFilter
-  const popGqlFilterTree2 = store.tree2.popGqlFilter
   const apGqlFilterTree = store.tree.apGqlFilter
-  const apGqlFilterTree2 = store.tree2.apGqlFilter
   const tpopGqlFilterTree = store.tree.tpopGqlFilter
-  const tpopGqlFilterTree2 = store.tree2.tpopGqlFilter
   const tpopmassnGqlFilterTree = store.tree.tpopmassnGqlFilter
-  const tpopmassnGqlFilterTree2 = store.tree2.tpopmassnGqlFilter
   const ekGqlFilterTree = store.tree.ekGqlFilter
-  const ekGqlFilterTree2 = store.tree2.ekGqlFilter
   const ekfGqlFilterTree = store.tree.ekfGqlFilter
-  const ekfGqlFilterTree2 = store.tree2.ekfGqlFilter
   const beobGqlFilterTree = store.tree.beobGqlFilter
-  const beobGqlFilterTree2 = store.tree2.beobGqlFilter
 
-  const {
-    data: data1,
-    error: error1,
-    isLoading: isLoading1,
-  } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: [
       'treeQuery',
       treeDataFilter,
@@ -145,103 +127,31 @@ const ProjektContainer = ({ treeName }) => {
         : {},
   })
 
-  const {
-    data: data2,
-    error: error2,
-    isLoading: isLoading2,
-  } = useQuery({
-    queryKey: [
-      'tree2Query',
-      tree2DataFilter,
-      tree2OpenNodes,
-      tree2ApFilter,
-      tree2NodeLabelFilter,
-      artId,
-      popGqlFilterTree2,
-      tpopGqlFilterTree2,
-      tpopmassnGqlFilterTree2,
-      ekGqlFilterTree2,
-      ekfGqlFilterTree2,
-      apGqlFilterTree2,
-      beobGqlFilterTree2,
-      role,
-      treeName,
-    ],
-    queryFn: async () =>
-      treeName === 'tree2'
-        ? client.query({
-            query: queryTree,
-            variables: buildTreeQueryVariables({
-              dataFilter: tree2DataFilter,
-              openNodes: tree2OpenNodes,
-              apFilter: tree2ApFilter,
-              nodeLabelFilter: tree2NodeLabelFilter,
-              artId,
-              popGqlFilter: popGqlFilterTree2,
-              tpopGqlFilter: tpopGqlFilterTree2,
-              tpopmassnGqlFilter: tpopmassnGqlFilterTree2,
-              ekGqlFilter: ekGqlFilterTree2,
-              ekfGqlFilter: ekfGqlFilterTree2,
-              apGqlFilter: apGqlFilterTree2,
-              beobGqlFilter: beobGqlFilterTree2,
-              treeName,
-            }),
-          })
-        : {},
-  })
-  const tree1Data = data1?.data
-  const tree2Data = data2?.data
+  const treeData = data?.data
 
   const [treeNodes, setTreeNodes] = useState([])
-  const [tree2Nodes, setTree2Nodes] = useState([])
 
   useEffect(() => {
     //console.log('Projekte, building treeNodes')
-    if (!isLoading1) {
+    if (!isLoading) {
       setTreeNodes(
         buildNodes({
           treeName: 'tree',
           role,
-          data: tree1Data,
-          loading: isLoading1,
+          data: treeData,
+          loading: isLoading,
           store,
         }),
       )
     }
   }, [
-    isLoading1,
+    isLoading,
     store.tree.openNodes,
     store.tree.openNodes.length,
-    tree1Data,
+    treeData,
     treeDataFilter,
     role,
     store,
-  ])
-  useEffect(() => {
-    if (!(tree2Tabs.length === 0 || isPrint)) {
-      //console.log('Projekte, building tree2Nodes')
-      if (!isLoading2) {
-        setTree2Nodes(
-          buildNodes({
-            treeName: 'tree2',
-            role,
-            data: tree2Data,
-            loading: isLoading2,
-            store,
-          }),
-        )
-      }
-    }
-  }, [
-    store.tree2.openNodes,
-    store.tree2.openNodes.length,
-    tree2Data,
-    tree2DataFilter,
-    role,
-    store,
-    tree2Tabs.length,
-    isPrint,
-    isLoading2,
   ])
 
   const showApberForArt =
@@ -253,19 +163,13 @@ const ProjektContainer = ({ treeName }) => {
     activeNodeArray[2] === 'AP-Berichte' &&
     activeNodeArray[4] === 'print'
 
-  // remove 2 to treat all same
-  let tabs = treeName === 'tree' ? treeTabs : tree2Tabs
-  tabs = [...tabs].map((t) => t.replace('2', ''))
-  const nodes = treeName === 'tree' ? treeNodes : tree2Nodes
-  const treeLoading = treeName === 'tree' ? isLoading1 : isLoading2
-
   const elObj = {
     tree: (
       <InnerContainer>
         <TreeContainer
           treeName={treeName}
-          nodes={nodes}
-          treeLoading={treeLoading}
+          nodes={treeNodes}
+          treeLoading={isLoading}
         />
       </InnerContainer>
     ),
@@ -276,7 +180,7 @@ const ProjektContainer = ({ treeName }) => {
           activeForm={getActiveForm({
             store,
             treeName,
-            nodes: nodes,
+            nodes: treeNodes,
           })}
         />
       </InnerContainer>
@@ -298,11 +202,10 @@ const ProjektContainer = ({ treeName }) => {
     ),
   }
 
-  const paneSize = tabs[0] === 'tree' ? '33%' : '50%'
+  const paneSize = treeTabs[0] === 'tree' ? '33%' : '50%'
 
   // console.log('ProjektContainer', {
-  //   showApberForAll,
-  //   showApberForArt,
+  //   treeTabs,
   // })
 
   if (showApberForAll) {
@@ -348,13 +251,13 @@ const ProjektContainer = ({ treeName }) => {
         activeForm={getActiveForm({
           store,
           treeName,
-          nodes: nodes,
+          nodes: treeNodes,
         })}
       />
     )
   }
 
-  if (tabs.length < 2) {
+  if (treeTabs.length < 2) {
     // return WITH split pane
     // otherwise height is wrong
     // and opening / closing tabs is slow
@@ -363,48 +266,48 @@ const ProjektContainer = ({ treeName }) => {
     return (
       <Container>
         <StyledSplitPane split="vertical" size="100%" maxSize={-10}>
-          {elObj[tabs[0]]}
+          {elObj[treeTabs[0]]}
           <></>
         </StyledSplitPane>
       </Container>
     )
   }
 
-  if (tabs.length === 2) {
+  if (treeTabs.length === 2) {
     return (
       <Container>
         <StyledSplitPane split="vertical" size={paneSize} maxSize={-10}>
-          {elObj[tabs[0]]}
-          {elObj[tabs[1]]}
+          {elObj[treeTabs[0]]}
+          {elObj[treeTabs[1]]}
         </StyledSplitPane>
       </Container>
     )
   }
 
-  if (tabs.length === 3) {
+  if (treeTabs.length === 3) {
     return (
       <Container>
         <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
-          {elObj[tabs[0]]}
+          {elObj[treeTabs[0]]}
           <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
-            {elObj[tabs[1]]}
-            {elObj[tabs[2]]}
+            {elObj[treeTabs[1]]}
+            {elObj[treeTabs[2]]}
           </StyledSplitPane>
         </StyledSplitPane>
       </Container>
     )
   }
 
-  if (tabs.length === 4) {
+  if (treeTabs.length === 4) {
     return (
       <Container>
         <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
-          {elObj[tabs[0]]}
+          {elObj[treeTabs[0]]}
           <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
-            {elObj[tabs[1]]}
+            {elObj[treeTabs[1]]}
             <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
-              {elObj[tabs[2]]}
-              {elObj[tabs[3]]}
+              {elObj[treeTabs[2]]}
+              {elObj[treeTabs[3]]}
             </StyledSplitPane>
           </StyledSplitPane>
         </StyledSplitPane>
@@ -412,18 +315,18 @@ const ProjektContainer = ({ treeName }) => {
     )
   }
 
-  if (tabs.length === 5) {
+  if (treeTabs.length === 5) {
     return (
       <Container>
         <StyledSplitPane split="vertical" size="20%" maxSize={-10}>
-          {elObj[tabs[0]]}
+          {elObj[treeTabs[0]]}
           <StyledSplitPane split="vertical" size="25%" maxSize={-10}>
-            {elObj[tabs[1]]}
+            {elObj[treeTabs[1]]}
             <StyledSplitPane split="vertical" size="33%" maxSize={-10}>
-              {elObj[tabs[2]]}
+              {elObj[treeTabs[2]]}
               <StyledSplitPane split="vertical" size="50%" maxSize={-10}>
-                {elObj[tabs[3]]}
-                {elObj[tabs[4]]}
+                {elObj[treeTabs[3]]}
+                {elObj[treeTabs[4]]}
               </StyledSplitPane>
             </StyledSplitPane>
           </StyledSplitPane>

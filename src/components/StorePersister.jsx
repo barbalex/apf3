@@ -54,18 +54,6 @@ const StorePersister = () => {
         const dataFilterTreeTpopfreiwkontr = getSnapshot(
           store.tree.dataFilter.tpopfreiwkontr,
         )
-        const dataFilterTree2Ap = getSnapshot(store.tree2.dataFilter.ap)
-        const dataFilterTree2Pop = getSnapshot(store.tree2.dataFilter.pop)
-        const dataFilterTree2Tpop = getSnapshot(store.tree2.dataFilter.tpop)
-        const dataFilterTree2Tpopmassn = getSnapshot(
-          store.tree2.dataFilter.tpopmassn,
-        )
-        const dataFilterTree2Tpopfeldkontr = getSnapshot(
-          store.tree2.dataFilter.tpopfeldkontr,
-        )
-        const dataFilterTree2Tpopfreiwkontr = getSnapshot(
-          store.tree2.dataFilter.tpopfreiwkontr,
-        )
         if (
           isObject(dataFilterTreeAp) ||
           isObject(dataFilterTreePop) ||
@@ -75,16 +63,6 @@ const StorePersister = () => {
           isObject(dataFilterTreeTpopfreiwkontr)
         ) {
           [store.dataFilterEmptyTree('tree')]
-        }
-        if (
-          isObject(dataFilterTree2Ap) ||
-          isObject(dataFilterTree2Pop) ||
-          isObject(dataFilterTree2Tpop) ||
-          isObject(dataFilterTree2Tpopmassn) ||
-          isObject(dataFilterTree2Tpopfeldkontr) ||
-          isObject(dataFilterTree2Tpopfreiwkontr)
-        ) {
-          store.dataFilterEmptyTree('tree2')
         }
 
         const username = await setUserFromIdb({ idb, store })
