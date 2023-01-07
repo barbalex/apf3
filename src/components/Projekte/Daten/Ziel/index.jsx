@@ -36,11 +36,11 @@ const fieldTypes = {
   bezeichnung: 'String',
 }
 
-const Ziel = ({ treeName }) => {
+const Ziel = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { activeNodeArray, setActiveNodeArray, openNodes, setOpenNodes } =
-    store[treeName]
+    store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

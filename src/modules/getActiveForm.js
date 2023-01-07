@@ -2,8 +2,8 @@ import isEqual from 'lodash/isEqual'
 
 import getTableNameFromActiveNode from './getTableNameFromActiveNode'
 
-const getActiveForm = ({ store, treeName, nodes }) => {
-  const { activeNodeArray } = store[treeName]
+const getActiveForm = ({ store, nodes }) => {
+  const { activeNodeArray } = store.tree
 
   let key
   if (activeNodeArray.length > 2 && activeNodeArray[2] === 'Exporte') {

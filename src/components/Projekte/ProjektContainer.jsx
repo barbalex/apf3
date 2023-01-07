@@ -167,10 +167,8 @@ const ProjektContainer = ({ treeName }) => {
     daten: (
       <InnerContainer>
         <Daten
-          treeName={treeName}
           activeForm={getActiveForm({
             store,
-            treeName,
             nodes: treeNodes,
           })}
         />

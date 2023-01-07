@@ -91,11 +91,11 @@ const fieldTypes = {
   adresseId: 'UUID',
 }
 
-const User = ({ treeName }) => {
+const User = () => {
   const navigate = useNavigate()
 
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const client = useApolloClient()
 

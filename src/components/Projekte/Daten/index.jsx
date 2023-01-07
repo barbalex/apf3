@@ -52,7 +52,7 @@ const Container = styled.div`
 // => only tree1 could be navigated using url path
 // Only possible alternative: opening in new window/browser-tab instead of new app-tab
 
-const Daten = ({ treeName, activeForm }) => {
+const Daten = ({ activeForm }) => {
   let form
   switch (activeForm.form) {
     case 'adresse': {
@@ -168,15 +168,15 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'user': {
-      form = <User treeName={treeName} />
+      form = <User />
       break
     }
     case 'ziel': {
-      form = <Ziel treeName={treeName} />
+      form = <Ziel />
       break
     }
     case 'zielber': {
-      form = <Zielber treeName={treeName} />
+      form = <Zielber />
       break
     }
     default:
@@ -185,11 +185,7 @@ const Daten = ({ treeName, activeForm }) => {
 
   if (!form) return null
 
-  return (
-    <Container data-id={`daten-container${treeName === 'tree' ? 1 : 2}`}>
-      {form}
-    </Container>
-  )
+  return <Container data-id="daten-container1">{form}</Container>
 }
 
 export default Daten
