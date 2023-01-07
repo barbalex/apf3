@@ -292,7 +292,7 @@ const ErfkritFolder = ({ onClick }) => {
   return (
     <ErrorBoundary>
       <ContextMenu
-        id="treeerfkritFolder"
+        id="treeErfkritFolder"
         collect={(props) => props}
         onShow={onShow}
         hideOnLeave={true}
