@@ -23,11 +23,11 @@ const iconCreateFunction = function (cluster) {
   })
 }
 
-const Pop = ({ treeName }) => {
+const Pop = () => {
   const leafletMap = useMap()
   const store = useContext(storeContext)
   const { enqueNotification } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const { popGqlFilter } = tree
 
   const popFilter = cloneDeep(popGqlFilter.filtered)
@@ -73,7 +73,7 @@ const Pop = ({ treeName }) => {
       iconCreateFunction={iconCreateFunction}
     >
       {(data?.allPops?.nodes ?? []).map((pop) => (
-        <Marker key={pop.id} treeName={treeName} pop={pop} />
+        <Marker key={pop.id} pop={pop} />
       ))}
     </MarkerClusterGroup>
   )

@@ -25,7 +25,7 @@ const iconCreateFunction = (cluster) => {
   })
 }
 
-const Tpop = ({ treeName, clustered }) => {
+const Tpop = ({ clustered }) => {
   const client = useApolloClient()
 
   const store = useContext(storeContext)
@@ -34,7 +34,7 @@ const Tpop = ({ treeName, clustered }) => {
     setIdOfTpopBeingLocalized,
     idOfTpopBeingLocalized,
   } = store
-  const { tpopGqlFilter } = store[treeName]
+  const { tpopGqlFilter } = store.tree
 
   const tpopFilter = cloneDeep(tpopGqlFilter.filtered)
   tpopFilter.or.forEach((f) => (f.wgs84Lat = { isNull: false }))
@@ -146,7 +146,7 @@ const Tpop = ({ treeName, clustered }) => {
   }, [fetchTpopDataForMap])
 
   const tpopMarkers = (data?.allTpops?.nodes ?? []).map((tpop) => (
-    <Marker key={tpop.id} treeName={treeName} tpop={tpop} />
+    <Marker key={tpop.id} tpop={tpop} />
   ))
 
   if (clustered) {

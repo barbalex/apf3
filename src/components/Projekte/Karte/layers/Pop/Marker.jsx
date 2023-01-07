@@ -29,7 +29,7 @@ const StyledButton = styled(Button)`
   margin-top: 5px !important;
 `
 
-const PopMarker = ({ treeName, pop }) => {
+const PopMarker = ({ pop }) => {
   const store = useContext(storeContext)
   const { apfloraLayers, openTree2WithActiveNodeArray } = store
   const {
@@ -37,7 +37,7 @@ const PopMarker = ({ treeName, pop }) => {
     apIdInActiveNodeArray,
     map,
     activeNodeArray,
-  } = store[treeName]
+  } = store.tree
   const { popIcon: popIconName, popLabel: popLabelName } = map
   const projId =
     projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'

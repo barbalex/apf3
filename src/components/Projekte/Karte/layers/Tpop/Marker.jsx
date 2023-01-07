@@ -41,7 +41,7 @@ const StyledButton = styled(Button)`
   margin-top: 5px !important;
 `
 
-const TpopMarker = ({ treeName, tpop }) => {
+const TpopMarker = ({ tpop }) => {
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
   const {
@@ -49,7 +49,7 @@ const TpopMarker = ({ treeName, tpop }) => {
     projIdInActiveNodeArray,
     apIdInActiveNodeArray,
     activeNodeArray,
-  } = store[treeName]
+  } = store.tree
   const projId =
     projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
   const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'

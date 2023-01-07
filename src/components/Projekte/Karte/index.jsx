@@ -453,7 +453,7 @@ const Karte = ({ treeName }) => {
     hideMapControls,
     idOfTpopBeingLocalized,
   } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const { apIdInActiveNodeArray, mapFilter } = tree
   const bounds = getSnapshot(boundsRaw)
   const activeApfloraLayers = getSnapshot(activeApfloraLayersRaw)
@@ -542,10 +542,7 @@ const Karte = ({ treeName }) => {
   // see: https://github.com/barbalex/apf2/issues/467
 
   return (
-    <Container
-      data-id={`karten-container${treeName === 'tree' ? 1 : 2}`}
-      data-control-height={controlHeight}
-    >
+    <Container data-id="karten-container1" data-control-height={controlHeight}>
       <ErrorBoundary>
         <StyledMapContainer
           // bounds need to be set using ma.fitBounds sice v3
@@ -589,7 +586,6 @@ const Karte = ({ treeName }) => {
               key={`${apId}/pop/${activeApfloraLayers.join()}/${
                 mapFilter?.coordinates ?? 99
               }`}
-              treeName={treeName}
             />
           )}
           {activeApfloraLayers.includes('tpop') && (
@@ -597,7 +593,6 @@ const Karte = ({ treeName }) => {
               key={`${apId}/tpop/${activeApfloraLayers.join()}/${
                 mapFilter?.coordinates ?? 99
               }`}
-              treeName={treeName}
               clustered={clustered}
             />
           )}
