@@ -35,7 +35,7 @@ const PopFolder = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treepopFolder" hideOnLeave={true}>
+      <ContextMenu id="treePopFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Populationen</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen

@@ -17,7 +17,7 @@ const PopmassnberFolder = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treepopmassnberFolder" hideOnLeave={true}>
+      <ContextMenu id="treePopmassnberFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Massnahmen-Berichte</div>
         {!userIsReadOnly(user.token) && (
           <MenuItem onClick={onClick} data={insertData}>
