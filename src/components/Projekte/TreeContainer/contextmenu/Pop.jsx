@@ -43,7 +43,7 @@ const resetCopyingData = {
   action: 'resetCopying',
 }
 
-const Pop = ({ onClick, treeName }) => {
+const Pop = ({ onClick }) => {
   const { copying, user, moving } = useContext(storeContext)
 
   const isMoving = moving.table && moving.table === 'tpop'
@@ -51,7 +51,7 @@ const Pop = ({ onClick, treeName }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}pop`} hideOnLeave={true}>
+      <ContextMenu id="treepop" hideOnLeave={true}>
         <div className="react-contextmenu-title">Population</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen
