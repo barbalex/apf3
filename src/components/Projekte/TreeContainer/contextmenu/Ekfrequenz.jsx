@@ -21,7 +21,7 @@ const Ekfrequenz = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treeekfrequenz" hideOnLeave={true}>
+      <ContextMenu id="treeEkfrequenz" hideOnLeave={true}>
         <div className="react-contextmenu-title">EK-Frequenz</div>
         {!userIsReadOnly(user.token) && (
           <>

@@ -21,7 +21,7 @@ const Ekzaehleinheit = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treeekzaehleinheit" hideOnLeave={true}>
+      <ContextMenu id="treeEkzaehleinheit" hideOnLeave={true}>
         <div className="react-contextmenu-title">EK-Zähleinheit</div>
         {!userIsReadOnly(user.token) && (
           <>

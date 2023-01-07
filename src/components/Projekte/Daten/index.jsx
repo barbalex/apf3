@@ -44,13 +44,9 @@ const Container = styled.div`
   }
 `
 
-// Explainer:
+// TODO:
 // Would be great to use subrouter: https://reactrouter.com/en/main/components/routes
 // instead of activeNodeArray together with activeForm
-// But is NOT POSSIBLE: because url/activeNodeArray is needed for BOTH trees
-// and only one url/pathname exists
-// => only tree1 could be navigated using url path
-// Only possible alternative: opening in new window/browser-tab instead of new app-tab
 
 const Daten = ({ activeForm }) => {
   let form
