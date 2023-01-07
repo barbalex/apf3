@@ -33,7 +33,6 @@ import appBaseUrl from '../../modules/appBaseUrl'
 
 export default types
   .model('Tree', {
-    name: types.optional(types.string, 'tree'),
     // used to open tree2 on a specific activeNodeArray
     tree2Src: types.optional(types.string, ''),
     activeNodeArray: types.array(types.union(types.string, types.number)),
@@ -115,7 +114,7 @@ export default types
         // trying to stop vicious cycle of reloading in first start after update
         return
       }
-      if (self.name === 'tree' && !nonavigate) {
+      if (!nonavigate) {
         const store = getParent(self)
         const { urlQuery, navigate } = store
         const search = queryString.stringify(urlQuery)
@@ -1038,7 +1037,6 @@ export default types
   }))
 
 export const defaultValue = {
-  name: 'tree',
   activeNodeArray: [],
   lastTouchedNode: [],
   openNodes: [],
