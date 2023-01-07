@@ -35,10 +35,10 @@ const fieldTypes = {
   apId: 'UUID',
 }
 
-const Assozart = ({ treeName }) => {
+const Assozart = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

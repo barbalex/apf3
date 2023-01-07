@@ -6,7 +6,6 @@ import updateBeobByIdGql from './updateBeobById'
 const saveTpopIdToDb = async ({
   value,
   id,
-  treeName,
   type,
   client,
   store,
@@ -30,7 +29,7 @@ const saveTpopIdToDb = async ({
     setActiveNodeArray,
     openNodes,
     setOpenNodes,
-  } = store[treeName]
+  } = store.tree
   let newANA
   let newOpenNodes
 
@@ -232,7 +231,7 @@ const saveTpopIdToDb = async ({
       'BeobAssignLinesQuery',
     ],
   })
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default saveTpopIdToDb

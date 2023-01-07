@@ -128,7 +128,7 @@ const Beobzuordnung = ({ type, treeName }) => {
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const tree = store[treeName]
+  const tree = store.tree
   const { activeNodeArray } = tree
   const id = activeNodeArray[activeNodeArray.length - 1]
   const apId =
@@ -161,30 +161,29 @@ const Beobzuordnung = ({ type, treeName }) => {
   const onSaveArtIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveArtIdToDb({ value, row, treeName, client, store, queryClient })
+      saveArtIdToDb({ value, row, client, store, queryClient })
     },
-    [client, queryClient, row, store, treeName],
+    [client, queryClient, row, store],
   )
   const onSaveNichtZuordnenToDb = useCallback(
     (value) => {
       saveNichtZuordnenToDb({
         value,
         id,
-        treeName,
         refetch,
         client,
         store,
         queryClient,
       })
     },
-    [client, id, queryClient, refetch, store, treeName],
+    [client, id, queryClient, refetch, store],
   )
   const onSaveTpopIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveTpopIdToDb({ value, id, treeName, type, client, store })
+      saveTpopIdToDb({ value, id, type, client, store })
     },
-    [client, id, store, treeName, type],
+    [client, id, store, type],
   )
   const onUpdateField = useCallback(
     (event) => {

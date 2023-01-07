@@ -60,27 +60,27 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'werte': {
-      form = <Werte treeName={treeName} table={activeForm.type} />
+      form = <Werte table={activeForm.type} />
       break
     }
     case 'ap': {
-      form = <Ap treeName={treeName} />
+      form = <Ap />
       break
     }
     case 'apberuebersicht': {
-      form = <Apberuebersicht treeName={treeName} />
+      form = <Apberuebersicht />
       break
     }
     case 'apart': {
-      form = <Apart treeName={treeName} />
+      form = <Apart />
       break
     }
     case 'apber': {
-      form = <Apber treeName={treeName} />
+      form = <Apber />
       break
     }
     case 'assozart': {
-      form = <Assozart treeName={treeName} />
+      form = <Assozart />
       break
     }
     case 'beobzuordnung': {

@@ -26,10 +26,10 @@ const TabContent = styled.div`
   overflow-y: auto;
 `
 
-const ApTabs = ({ treeName }) => {
+const ApTabs = () => {
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const id =
     activeNodeArray.length > 3

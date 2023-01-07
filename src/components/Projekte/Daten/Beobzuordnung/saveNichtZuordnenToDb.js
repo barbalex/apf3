@@ -5,7 +5,6 @@ import updateBeobByIdGql from './updateBeobById'
 const saveNichtZuordnenToDb = async ({
   value,
   id,
-  treeName,
   refetch: refetchPassed,
   client,
   store,
@@ -21,10 +20,10 @@ const saveNichtZuordnenToDb = async ({
     mutation: updateBeobByIdGql,
     variables,
   })
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
   // need to update activeNodeArray and openNodes
   const { activeNodeArray, setActiveNodeArray, openNodes, addOpenNodes } =
-    store[treeName]
+    store.tree
   let newActiveNodeArray = [...activeNodeArray]
   newActiveNodeArray[4] = value
     ? 'nicht-zuzuordnende-Beobachtungen'

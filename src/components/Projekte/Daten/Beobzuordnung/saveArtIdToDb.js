@@ -3,20 +3,13 @@ import { gql } from '@apollo/client'
 
 import updateBeobByIdGql from './updateBeobById'
 
-const saveArtIdToDb = async ({
-  value,
-  row,
-  treeName,
-  client,
-  queryClient,
-  store,
-}) => {
+const saveArtIdToDb = async ({ value, row, client, queryClient, store }) => {
   const {
     activeNodeArray: aNA,
     openNodes,
     setActiveNodeArray,
     setOpenNodes,
-  } = store[treeName]
+  } = store.tree
   const variables = {
     id: row.id,
     artId: value,
@@ -74,7 +67,7 @@ const saveArtIdToDb = async ({
     client.refetchQueries({
       include: ['KarteBeobNichtZuzuordnenQuery'],
     })
-    queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+    queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
   }
 }
 

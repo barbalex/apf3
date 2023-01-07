@@ -61,10 +61,10 @@ const fieldTypes = {
   bearbeiter: 'UUID',
 }
 
-const Apber = ({ treeName }) => {
+const Apber = () => {
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

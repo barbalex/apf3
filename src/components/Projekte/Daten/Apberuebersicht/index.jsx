@@ -48,14 +48,14 @@ const fieldTypes = {
   bemerkungen: 'String',
 }
 
-const Apberuebersicht = ({ treeName }) => {
+const Apberuebersicht = () => {
   const store = useContext(storeContext)
   const client = useApolloClient()
   const { user, enqueNotification } = store
   const { token } = user
   const role = token ? jwtDecode(token).role : null
   const userIsManager = role === 'apflora_manager'
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

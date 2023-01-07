@@ -20,9 +20,9 @@ const Container = styled.div`
     `column-width: ${props['data-column-width']}px;`}
 `
 
-const Beob = ({ treeName }) => {
+const Beob = () => {
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const { data, loading, error } = useQuery(query, {
     variables: {

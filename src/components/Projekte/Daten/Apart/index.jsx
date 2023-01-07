@@ -36,10 +36,10 @@ const fieldTypes = {
   artId: 'UUID',
 }
 
-const ApArt = ({ treeName }) => {
+const ApArt = () => {
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
