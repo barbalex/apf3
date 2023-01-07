@@ -3,7 +3,6 @@ import findIndex from 'lodash/findIndex'
 const apberFolderNode = ({
   nodes: nodesPassed,
   data,
-  treeName,
   loading,
   projektNodes,
   projId,
@@ -19,7 +18,7 @@ const apberFolderNode = ({
   const apIndex = findIndex(apNodes, {
     id: apId,
   })
-  const nodeLabelFilterString = store?.[treeName]?.nodeLabelFilter?.apber ?? ''
+  const nodeLabelFilterString = store.tree?.nodeLabelFilter?.apber ?? ''
 
   const apberNodesLength = data.filter((el) => el.apId === apId).length
 

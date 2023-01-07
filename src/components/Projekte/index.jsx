@@ -76,7 +76,6 @@ const Projekte = () => {
     // pass this via src to iframe
     iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
   }
-  console.log('Projekte, tree2Src:', tree2Src)
 
   return (
     <AppBar>

@@ -198,7 +198,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildApzielFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -209,7 +208,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildAperfkritFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -220,7 +218,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildApberFolderNodes({
             nodes,
             data: data?.allApbers?.nodes ?? [],
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -230,7 +227,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           }),
           ...buildIdealbiotopFolderNodes({
             nodes,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -241,7 +237,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildAssozartFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -252,7 +247,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildEkzaehleinheitFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -263,7 +257,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildEkfrequenzFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
