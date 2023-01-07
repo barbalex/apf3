@@ -83,7 +83,7 @@ const fieldTypes = {
   bemerkungen: 'String',
 }
 
-const Idealbiotop = ({ treeName }) => {
+const Idealbiotop = () => {
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
   const client = useApolloClient()
@@ -91,7 +91,7 @@ const Idealbiotop = ({ treeName }) => {
   const [fieldErrors, setFieldErrors] = useState({})
 
   const [tab, setTab] = useState(urlQuery?.idealbiotopTab ?? 'idealbiotop')
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const { data, loading, error } = useQuery(query, {
     variables: {

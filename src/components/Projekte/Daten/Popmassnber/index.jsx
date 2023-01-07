@@ -39,10 +39,10 @@ const fieldTypes = {
   bemerkungen: 'String',
 }
 
-const Popmassnber = ({ treeName }) => {
+const Popmassnber = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

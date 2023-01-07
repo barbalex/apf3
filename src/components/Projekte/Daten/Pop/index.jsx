@@ -53,11 +53,11 @@ const fieldTypes = {
   bekanntSeit: 'Int',
 }
 
-const Pop = ({ treeName }) => {
+const Pop = () => {
   const store = useContext(storeContext)
   const client = useApolloClient()
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -112,19 +112,19 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'idealbiotop': {
-      form = <Idealbiotop treeName={treeName} />
+      form = <Idealbiotop />
       break
     }
     case 'pop': {
-      form = <Pop treeName={treeName} />
+      form = <Pop />
       break
     }
     case 'popber': {
-      form = <Popber treeName={treeName} />
+      form = <Popber />
       break
     }
     case 'popmassnber': {
-      form = <Popmassnber treeName={treeName} />
+      form = <Popmassnber />
       break
     }
     case 'projekt': {
