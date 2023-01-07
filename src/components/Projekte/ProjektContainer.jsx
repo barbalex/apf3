@@ -52,7 +52,7 @@ const ProjektContainer = ({ treeName }) => {
     activeNodeArray,
     apIdInActiveNodeArray: artId,
     projIdInActiveNodeArray: projId,
-  } = store[treeName]
+  } = store.tree
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -132,7 +132,6 @@ const ProjektContainer = ({ treeName }) => {
     if (!isLoading) {
       setTreeNodes(
         buildNodes({
-          treeName: 'tree',
           role,
           data: treeData,
           loading: isLoading,

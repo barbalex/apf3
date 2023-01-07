@@ -77,7 +77,7 @@ const compare = (a, b) => {
   return a - b
 }
 
-const nodes = ({ data, loading, store, role, treeName }) => {
+const nodes = ({ data, loading, store, role }) => {
   const openNodes = store.tree.openNodes
     .toJSON()
     // need to sort so folders are added in correct order
@@ -866,7 +866,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopfreiwkontrzaehlFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -931,11 +930,7 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ]
       }
     }
-    if (
-      nodeUrl.length === 1 &&
-      nodeUrl[0] === 'Benutzer' &&
-      treeName === 'tree'
-    ) {
+    if (nodeUrl.length === 1 && nodeUrl[0] === 'Benutzer') {
       nodes = [
         ...nodes,
         ...buildUserNodes({
@@ -963,7 +958,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ...buildAdresseFolderNodes({
           nodes,
           data,
-          treeName,
           loading,
           projektNodes,
           store,
@@ -971,7 +965,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ...buildApberrelevantGrundWerteFolderNodes({
           nodes,
           data,
-          treeName,
           loading,
           projektNodes,
           store,
@@ -979,7 +972,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ...buildEkAbrechnungstypWerteFolderNodes({
           nodes,
           data,
-          treeName,
           loading,
           projektNodes,
           store,
@@ -987,7 +979,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         ...buildTpopkontrzaehlEinheitWerteFolderNodes({
           nodes,
           data,
-          treeName,
           loading,
           projektNodes,
           store,
