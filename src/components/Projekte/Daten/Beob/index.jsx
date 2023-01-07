@@ -31,7 +31,7 @@ const Beob = () => {
   })
   const row = data?.beobById ?? {}
   const beobFields = row.data
-    ? // eslint-disable-next-line no-unused-vars
+    ? // eslint-disable-next-line @typescript-eslint/no-unused-vars
       Object.entries(JSON.parse(row.data)).filter(([key, value]) =>
         exists(value),
       )

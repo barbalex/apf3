@@ -84,7 +84,7 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'beobzuordnung': {
-      form = <Beobzuordnung treeName={treeName} type={activeForm.type} />
+      form = <Beobzuordnung type={activeForm.type} />
       break
     }
     case 'currentIssue': {

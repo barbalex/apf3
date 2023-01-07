@@ -132,7 +132,7 @@ const ProjekteAppBar = () => {
     onClickButton('tree2')
   }, [onClickButton, resetTree2Src])
   const onClickEkPlanung = useCallback(() => {
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [projectTitle, projectId, ...rest] = tree.activeNodeArray
     tree.setActiveNodeArray([projectTitle, projectId, 'EK-Planung'])
     navigate(`/Daten/Projekte/${projectId}/EK-Planung`)

@@ -6,11 +6,11 @@ import tables from '../../../modules/tables'
 import {
   adresse as adresseFragment,
   user as userFragment,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   tpopApberrelevantGrundWerte as tpopApberrelevantGrundWerteFragment,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   tpopkontrzaehlEinheitWerte as tpopkontrzaehlEinheitWerteFragment,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ekAbrechnungstypWerte as ekAbrechnungstypWerteFragment,
 } from '../../shared/fragments'
 

@@ -124,7 +124,7 @@ const nichtZuordnenPopover = (
   </PopoverContainer>
 )
 
-const Beobzuordnung = ({ type, treeName }) => {
+const Beobzuordnung = ({ type }) => {
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -402,7 +402,7 @@ const Beobzuordnung = ({ type, treeName }) => {
             <Title>{`Informationen aus ${
               row?.quelle ?? '?'
             } (nicht veränderbar)`}</Title>
-            <Beob treeName={treeName} />
+            <Beob />
           </SimpleBar>
         </DataContainer>
       </FormContainer>

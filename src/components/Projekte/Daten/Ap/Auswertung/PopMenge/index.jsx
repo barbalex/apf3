@@ -99,11 +99,11 @@ const ApAuswertungPopMenge = ({
   }))
   const nonUniquePopIdsWithData = popMengeData.flatMap((d) =>
     Object.entries(d)
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .filter(([key, value]) => key !== 'jahr')
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .filter(([key, value]) => exists(value))
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .map(([key, value]) => key),
   )
   const popIdsWithData = [...new Set(nonUniquePopIdsWithData)]
