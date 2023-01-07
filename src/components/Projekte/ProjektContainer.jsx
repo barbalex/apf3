@@ -161,11 +161,7 @@ const ProjektContainer = ({ treeName }) => {
   const elObj = {
     tree: (
       <InnerContainer>
-        <TreeContainer
-          treeName={treeName}
-          nodes={treeNodes}
-          treeLoading={isLoading}
-        />
+        <TreeContainer nodes={treeNodes} treeLoading={isLoading} />
       </InnerContainer>
     ),
     daten: (

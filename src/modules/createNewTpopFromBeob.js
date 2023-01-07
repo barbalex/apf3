@@ -79,7 +79,6 @@ const updateBeobById = gql`
 `
 
 const createNewTpopFromBeob = async ({
-  treeName,
   pop,
   beobId,
   client,
@@ -87,7 +86,7 @@ const createNewTpopFromBeob = async ({
   queryClient,
 }) => {
   const { enqueNotification } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     setActiveNodeArray,
     addOpenNodes,
@@ -251,7 +250,7 @@ const createNewTpopFromBeob = async ({
       'BeobAssignLinesQuery',
     ],
   })
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default createNewTpopFromBeob

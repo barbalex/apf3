@@ -273,7 +273,7 @@ const getAndValidateCoordinatesOfBeob = async ({
   return { lv95X, lv95Y }
 }
 
-const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
+const TreeContainer = ({ nodes, treeLoading, treeError }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
@@ -689,15 +689,9 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         <CmEkAbrechnungstypWerteFolder onClick={handleClick} />
         <CmEkAbrechnungstypWerte onClick={handleClick} />
         <CmTpopkontrzaehlEinheitWerteFolder onClick={handleClick} />
-        <CmTpopkontrzaehlEinheitWerte
-          onClick={handleClick}
-          treeName={treeName}
-        />
-        <CmAdresse onClick={handleClick} treeName={treeName} />
-        <CmTpopApberrelevantGrundWerte
-          onClick={handleClick}
-          treeName={treeName}
-        />
+        <CmTpopkontrzaehlEinheitWerte onClick={handleClick} />
+        <CmAdresse onClick={handleClick} />
+        <CmTpopApberrelevantGrundWerte onClick={handleClick} />
         <StyledDialog
           open={newTpopFromBeobDialogOpen}
           onClose={closeNewTpopFromBeobDialog}
@@ -710,7 +704,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           </DialogTitle>
           <DialogContent dividers={false}>
             <TpopFromBeobPopList
-              treeName={treeName}
               beobId={newTpopFromBeobBeobId}
               closeNewTpopFromBeobDialog={closeNewTpopFromBeobDialog}
             />

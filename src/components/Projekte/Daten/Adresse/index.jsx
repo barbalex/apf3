@@ -36,9 +36,9 @@ const fieldTypes = {
   freiwErfko: 'Boolean',
 }
 
-const Adresse = ({ treeName }) => {
+const Adresse = () => {
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const id =
     activeNodeArray.length > 2
       ? activeNodeArray[2]

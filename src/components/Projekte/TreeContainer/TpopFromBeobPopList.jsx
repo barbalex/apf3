@@ -21,14 +21,10 @@ const StyledListItem = styled(ListItem)`
   text-overflow: ellipsis;
 `
 
-const TpopFromBeobPopList = ({
-  treeName,
-  closeNewTpopFromBeobDialog,
-  beobId,
-}) => {
+const TpopFromBeobPopList = ({ closeNewTpopFromBeobDialog, beobId }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const tree = store[treeName]
+  const tree = store.tree
   const { activeNodeArray } = tree
   const apId = activeNodeArray[3]
 
@@ -66,7 +62,6 @@ const TpopFromBeobPopList = ({
             button
             onClick={() => {
               createNewTpopFromBeob({
-                treeName,
                 pop,
                 beobId,
                 client,

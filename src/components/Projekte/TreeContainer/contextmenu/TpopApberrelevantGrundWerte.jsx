@@ -13,12 +13,9 @@ const deleteData = {
   table: 'tpop_apberrelevant_grund_werte',
 }
 
-const TpopApberrelevantGrundWerte = ({ onClick, treeName }) => (
+const TpopApberrelevantGrundWerte = ({ onClick }) => (
   <ErrorBoundary>
-    <ContextMenu
-      id={`${treeName}tpopApberrelevantGrundWerte`}
-      hideOnLeave={true}
-    >
+    <ContextMenu id="treeTpopApberrelevantGrundWerte" hideOnLeave={true}>
       <div className="react-contextmenu-title">Grund</div>
       <MenuItem onClick={onClick} data={insertData}>
         erstelle neuen
