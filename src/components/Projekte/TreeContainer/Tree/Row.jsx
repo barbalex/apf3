@@ -230,8 +230,7 @@ const Row = ({ node }) => {
     useSymbolIcon = false
   }
   if (
-    (node.menuType === 'apber' || node.menuType === 'apberuebersicht') &&
-    tree.name === 'tree'
+    (node.menuType === 'apber' || node.menuType === 'apberuebersicht')
   ) {
     showPrintIcon = true
   }
