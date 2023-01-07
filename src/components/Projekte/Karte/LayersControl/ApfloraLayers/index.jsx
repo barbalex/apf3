@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import styled from '@emotion/styled'
 
-import storeContext from '../../../../../storeContext' 
+import storeContext from '../../../../../storeContext'
 import Layer from './Layer'
 
 const CardContent = styled.div`
@@ -13,14 +13,14 @@ const CardContent = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `
 
-const ApfloraLayers = ({ treeName }) => {
+const ApfloraLayers = () => {
   const store = useContext(storeContext)
   const { apfloraLayers } = store
 
   return (
     <CardContent>
       {apfloraLayers.map((apfloraLayer, index) => (
-        <Layer key={index} apfloraLayer={apfloraLayer} treeName={treeName} />
+        <Layer key={index} apfloraLayer={apfloraLayer} />
       ))}
     </CardContent>
   )

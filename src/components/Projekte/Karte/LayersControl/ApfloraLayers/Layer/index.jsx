@@ -111,7 +111,7 @@ const BeobZugeordnetAssignPolylinesIcon = styled(RemoveIcon)`
 `
 const MapIconDiv = styled.div``
 
-const MySortableItem = ({ treeName, apfloraLayer }) => {
+const LayerComponent = ({ apfloraLayer }) => {
   const map = useMap()
   const store = useContext(storeContext)
   const {
@@ -296,9 +296,7 @@ const MySortableItem = ({ treeName, apfloraLayer }) => {
         {apfloraLayer.value === 'pop' &&
           activeApfloraLayers.includes('pop') && <PopIcon />}
         {apfloraLayer.value === 'tpop' &&
-          activeApfloraLayers.includes('tpop') && (
-            <TpopIcon treeName={treeName} />
-          )}
+          activeApfloraLayers.includes('tpop') && <TpopIcon />}
         {apfloraLayer.value === 'beobNichtBeurteilt' &&
           activeApfloraLayers.includes('beobNichtBeurteilt') && (
             <MapIconDiv>
@@ -355,4 +353,4 @@ const MySortableItem = ({ treeName, apfloraLayer }) => {
   )
 }
 
-export default observer(MySortableItem)
+export default observer(LayerComponent)

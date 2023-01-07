@@ -60,7 +60,7 @@ const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
   height: 18px !important;
 `
 
-const LayersControl = ({ treeName }) => {
+const LayersControl = () => {
   const store = useContext(storeContext)
   const { apfloraLayers, overlays } = store
 
@@ -135,7 +135,6 @@ const LayersControl = ({ treeName }) => {
         </CardHeader>
         {apfloraLayersExpanded && (
           <ApfloraLayers
-            treeName={treeName}
             /**
              * overlaysString enforces rererender
              * even when only the sorting changes

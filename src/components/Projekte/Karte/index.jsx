@@ -626,7 +626,6 @@ const Karte = ({ treeName }) => {
           <ScaleControl imperial={false} />
           <Control position="topright" visible={!hideMapControls}>
             <OwnControls
-              treeName={treeName}
               setControlHeight={setControlHeight}
               // this enforces rerendering when sorting changes
               activeOverlaysString={activeOverlays.join()}

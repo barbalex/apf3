@@ -6,13 +6,13 @@ import { useDebouncedCallback } from 'use-debounce'
 import LayersControl from './LayersControl'
 import PngControl from './PngControl'
 
-const Container = styled.div` 
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `
 
-const OwnControls = ({ treeName, setControlHeight }) => {
+const OwnControls = ({ setControlHeight }) => {
   const onResize = useCallback(
     (width, height) => {
       //console.log('height:', height)
@@ -27,7 +27,7 @@ const OwnControls = ({ treeName, setControlHeight }) => {
 
   return (
     <Container ref={resizeRef}>
-      <LayersControl treeName={treeName} />
+      <LayersControl />
       <PngControl />
     </Container>
   )

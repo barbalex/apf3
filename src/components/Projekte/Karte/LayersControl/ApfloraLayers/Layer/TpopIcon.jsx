@@ -36,9 +36,9 @@ const CheckIcon = styled(FaCheck)`
   padding-right: 5px;
 `
 
-const TpopIcon = ({ treeName }) => {
+const TpopIcon = () => {
   const store = useContext(storeContext)
-  const { map } = store[treeName]
+  const { map } = store.tree
   const { tpopIcon, setTpopIcon, tpopLabel, setTpopLabel } = map
   const [anchorEl, setAnchorEl] = useState(null)
   const onClickIconContainer = useCallback(
@@ -46,48 +46,30 @@ const TpopIcon = ({ treeName }) => {
     [],
   )
   const onClose = useCallback(() => setAnchorEl(null), [])
-  const onClickAllSame = useCallback(
-    (e) => {
-      setTpopIcon('normal')
-      onClose()
-    },
-    [onClose, setTpopIcon],
-  )
-  const onClickByStatusGroup = useCallback(
-    (e) => {
-      setTpopIcon('statusGroup')
-      onClose()
-    },
-    [onClose, setTpopIcon],
-  )
-  const onClickByStatusGroupSymbols = useCallback(
-    (e) => {
-      setTpopIcon('statusGroupSymbols')
-      onClose()
-    },
-    [onClose, setTpopIcon],
-  )
-  const onClickPopTpopNr = useCallback(
-    (e) => {
-      setTpopLabel('nr')
-      onClose()
-    },
-    [onClose, setTpopLabel],
-  )
-  const onClickFlurname = useCallback(
-    (e) => {
-      setTpopLabel('name')
-      onClose()
-    },
-    [onClose, setTpopLabel],
-  )
-  const onClickNoLabel = useCallback(
-    (e) => {
-      setTpopLabel('none')
-      onClose()
-    },
-    [onClose, setTpopLabel],
-  )
+  const onClickAllSame = useCallback(() => {
+    setTpopIcon('normal')
+    onClose()
+  }, [onClose, setTpopIcon])
+  const onClickByStatusGroup = useCallback(() => {
+    setTpopIcon('statusGroup')
+    onClose()
+  }, [onClose, setTpopIcon])
+  const onClickByStatusGroupSymbols = useCallback(() => {
+    setTpopIcon('statusGroupSymbols')
+    onClose()
+  }, [onClose, setTpopIcon])
+  const onClickPopTpopNr = useCallback(() => {
+    setTpopLabel('nr')
+    onClose()
+  }, [onClose, setTpopLabel])
+  const onClickFlurname = useCallback(() => {
+    setTpopLabel('name')
+    onClose()
+  }, [onClose, setTpopLabel])
+  const onClickNoLabel = useCallback(() => {
+    setTpopLabel('none')
+    onClose()
+  }, [onClose, setTpopLabel])
 
   return (
     <>
