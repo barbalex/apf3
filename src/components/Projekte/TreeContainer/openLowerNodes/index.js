@@ -26,13 +26,13 @@ const openLowerNodes = ({
    */
   switch (menuType) {
     case 'popFolder':
-      popFolder({ treeName, id, client, store, queryClient })
+      popFolder({ id, client, store, queryClient })
       break
     case 'pop':
-      pop({ treeName, id, client, store, queryClient })
+      pop({ id, client, store, queryClient })
       break
     case 'tpopFolder':
-      tpopFolder({ treeName, id, client, store, queryClient })
+      tpopFolder({ id, client, store, queryClient })
       break
     case 'tpop':
       tpop({ treeName, id, client, store, queryClient })

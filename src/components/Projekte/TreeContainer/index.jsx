@@ -293,7 +293,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
     urlQuery,
     setUrlQuery,
   } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     setActiveNodeArray,
     openNodes,
@@ -397,7 +397,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             url.push(1)
           }
           insertDataset({
-            treeName,
             tablePassed: table,
             parentId: parentId || id,
             url,

@@ -6,14 +6,8 @@
  */
 import dataGql from './data'
 
-const openLowerNodesTpopFolder = async ({
-  treeName,
-  id,
-  client,
-  store,
-  queryClient,
-}) => {
-  const tree = store[treeName]
+const openLowerNodesTpopFolder = async ({ id, client, store, queryClient }) => {
+  const tree = store.tree
   const { addOpenNodes, projIdInActiveNodeArray, apIdInActiveNodeArray } = tree
   const projId =
     projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
@@ -311,7 +305,7 @@ const openLowerNodesTpopFolder = async ({
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default openLowerNodesTpopFolder

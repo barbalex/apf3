@@ -21,7 +21,6 @@ const fragments = {
 }
 
 const insertDataset = async ({
-  treeName,
   tablePassed,
   parentId,
   id,
@@ -29,10 +28,10 @@ const insertDataset = async ({
   url,
   client,
   store,
-  queryClient
+  queryClient,
 }) => {
   const { enqueNotification } = store
-  const { setActiveNodeArray, openNodes, setOpenNodes } = store[treeName]
+  const { setActiveNodeArray, openNodes, setOpenNodes } = store.tree
   let table = tablePassed
   // insert new dataset in db and fetch id
   const tableMetadata = tables.find((t) => t.table === table)
@@ -219,7 +218,7 @@ const insertDataset = async ({
     newOpenNodes = [...newOpenNodes, newOpenFolder, newOpenNode]
   }
   setOpenNodes(newOpenNodes)
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default insertDataset
