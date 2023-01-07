@@ -197,7 +197,7 @@ const Row = ({ node, treeName }) => {
     copyingBiotop,
     setPrintingJberYear,
   } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     openNodes,
     setActiveNodeArray,
@@ -255,11 +255,10 @@ const Row = ({ node, treeName }) => {
 
   const onClickNode = useCallback(() => {
     toggleNode({
-      treeName,
       node,
       store,
     })
-  }, [treeName, node, store])
+  }, [node, store])
   const onClickNodeSymbol = useCallback(() => {
     toggleNodeSymbol({ treeName, node, store })
   }, [treeName, node, store])

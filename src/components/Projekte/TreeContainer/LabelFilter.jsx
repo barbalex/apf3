@@ -37,10 +37,10 @@ const StyledDeleteFilterIcon = styled(MdDeleteSweep)`
   font-size: 1.5rem;
 `
 
-const LabelFilter = ({ treeName, nodes }) => {
+const LabelFilter = ({  nodes }) => {
   const store = useContext(storeContext)
   const { nodeLabelFilter, activeNodeArray, setActiveNodeArray, setOpenNodes } =
-    store[treeName]
+    store.tree
   const {
     setKey: setNodeLabelFilterKey,
     isFiltered: runIsFiltered,
@@ -66,16 +66,13 @@ const LabelFilter = ({ treeName, nodes }) => {
       labelText = `${tableLabel} filtern`
     }
   }
-  const openNodes = useMemo(
-    () => store?.[treeName]?.openNodes ?? [],
-    [store, treeName],
-  )
+  const openNodes = useMemo(() => store.tree?.openNodes ?? [], [store])
 
   const [value, setValue] = useState('')
 
   useEffect(() => {
     setValue(filterValue)
-  }, [filterValue, tableName, treeName])
+  }, [filterValue, tableName])
 
   const setValuesAfterChange = useCallback(
     (val) => {
@@ -94,7 +91,6 @@ const LabelFilter = ({ treeName, nodes }) => {
       }
       setNodeLabelFilterKey({
         value: val,
-        tree: treeName,
         key: filterTable,
       })
     },
@@ -104,7 +100,6 @@ const LabelFilter = ({ treeName, nodes }) => {
       setActiveNodeArray,
       setNodeLabelFilterKey,
       setOpenNodes,
-      treeName,
     ],
   )
   const changeDebounced = useDebouncedCallback(setValuesAfterChange, 600)

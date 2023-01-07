@@ -7,9 +7,9 @@ import createPop from './createPop'
 import createTpop from './createTpop'
 import updateBeobById from './updateBeobById'
 
-const createNewPopFromBeob = async ({ treeName, id, client, store, queryClient }) => {
+const createNewPopFromBeob = async ({ id, client, store, queryClient }) => {
   const { enqueNotification } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     setActiveNodeArray,
     addOpenNodes,
@@ -182,7 +182,7 @@ const createNewPopFromBeob = async ({ treeName, id, client, store, queryClient }
       'BeobAssignLinesQuery',
     ],
   })
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default createNewPopFromBeob

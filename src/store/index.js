@@ -281,9 +281,9 @@ const myTypes = types
       self.tree.setTree2SrcByActiveNodeArray(activeNodeArray)
       self.urlQuery.addProjekteTabs(['tree2', 'daten2'])
     },
-    treeNodeLabelFilterResetExceptAp({ tree }) {
-      self[tree].nodeLabelFilter = {
-        ap: self[tree].nodeLabelFilter.ap,
+    treeNodeLabelFilterResetExceptAp() {
+      self.tree.nodeLabelFilter = {
+        ap: self.tree.nodeLabelFilter.ap,
         pop: null,
         tpop: null,
         tpopkontr: null,

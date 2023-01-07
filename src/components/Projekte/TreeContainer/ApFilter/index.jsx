@@ -22,7 +22,7 @@ const StyledSwitch = styled(Switch)`
   margin-top: -18px;
 `
 
-const ApFilter = ({ treeName }) => {
+const ApFilter = () => {
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -34,7 +34,7 @@ const ApFilter = ({ treeName }) => {
     openNodes,
     setOpenNodes,
     apIdInActiveNodeArray,
-  } = store[treeName]
+  } = store.tree
   const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
   // console.log('ApFilter, render', { apFilter, apId })
@@ -45,7 +45,7 @@ const ApFilter = ({ treeName }) => {
     // console.log('ApFilter, onChange', { apFilter, previousApFilter })
     if (!previousApFilter) {
       // need to fetch previously not had aps
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       // apFilter was set to true
       let result
       if (apId) {
@@ -89,7 +89,6 @@ const ApFilter = ({ treeName }) => {
     setActiveNodeArray,
     setApFilter,
     setOpenNodes,
-    treeName,
   ])
 
   return (

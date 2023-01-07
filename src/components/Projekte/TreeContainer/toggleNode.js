@@ -1,15 +1,15 @@
 import isNodeOpen from './isNodeOpen'
 import openNode from './openNode'
 
-const toggleNode = ({ treeName, node, store }) => {
+const toggleNode = ({ node, store }) => {
   if (!node.url) throw new Error('passed node has no url')
   const { openNodes, setActiveNodeArray, activeNodeArray, setLastTouchedNode } =
-    store[treeName]
+    store.tree
 
   if (!isNodeOpen({ openNodes, url: node.url })) {
     // node is closed
     // open it and make it the active node
-    openNode({ treeName, node, openNodes, store })
+    openNode({ node, openNodes, store })
     const newActiveNodeArray = [...node.url]
     setActiveNodeArray(newActiveNodeArray)
     setLastTouchedNode(node.url)

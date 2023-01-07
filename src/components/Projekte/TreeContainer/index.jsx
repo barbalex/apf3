@@ -497,7 +497,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         },
         createNewPopFromBeob() {
           createNewPopFromBeob({
-            treeName,
             id,
             client,
             store,
@@ -577,7 +576,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
     },
     [
       enqueNotification,
-      treeName,
       client,
       store,
       setToDelete,
@@ -630,11 +628,11 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
 
   return (
     <ErrorBoundary>
-      <Container data-id={`tree-container${treeName === 'tree' ? 1 : 2}`}>
-        {!!toDeleteId && <DeleteDatasetModal treeName={treeName} />}
+      <Container data-id={`tree-container1`}>
+        {!!toDeleteId && <DeleteDatasetModal />}
         <LabelFilterContainer>
-          <LabelFilter treeName={treeName} nodes={nodes} />
-          {!!projIdInActiveNodeArray && <ApFilter treeName={treeName} />}
+          <LabelFilter nodes={nodes} />
+          {!!projIdInActiveNodeArray && <ApFilter />}
         </LabelFilterContainer>
         <Tree treeName={treeName} nodes={nodes} />
         <CmApFolder onClick={handleClick} treeName={treeName} />
