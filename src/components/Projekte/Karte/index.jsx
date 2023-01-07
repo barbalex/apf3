@@ -617,12 +617,11 @@ const Karte = ({ treeName }) => {
               key={`${apId}/beobZugeordnet/${activeApfloraLayers.join()}/${
                 mapFilter?.coordinates ?? 99
               }`}
-              treeName={treeName}
               clustered={clustered}
             />
           )}
           {activeApfloraLayers.includes('beobZugeordnetAssignPolylines') && (
-            <BeobZugeordnetAssignPolylines treeName={treeName} />
+            <BeobZugeordnetAssignPolylines />
           )}
           <ScaleControl imperial={false} />
           <Control position="topright" visible={!hideMapControls}>

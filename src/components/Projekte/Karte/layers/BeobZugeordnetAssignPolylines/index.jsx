@@ -6,10 +6,10 @@ import Polyline from './Polyline'
 import storeContext from '../../../../../storeContext'
 import query from './query'
 
-const BeobZugeordnetAssignPolylines = ({ treeName }) => {
+const BeobZugeordnetAssignPolylines = () => {
   const store = useContext(storeContext)
   const { enqueNotification } = store
-  const { beobGqlFilter } = store[treeName]
+  const { beobGqlFilter } = store.tree
 
   var { data, error } = useQuery(query, {
     variables: { beobFilter: beobGqlFilter('zugeordnet').filtered },
@@ -25,7 +25,7 @@ const BeobZugeordnetAssignPolylines = ({ treeName }) => {
   }
 
   return (data?.allBeobs?.nodes ?? []).map((beob) => (
-    <Polyline key={beob.id} beob={beob} treeName={treeName} />
+    <Polyline key={beob.id} beob={beob} />
   ))
 }
 

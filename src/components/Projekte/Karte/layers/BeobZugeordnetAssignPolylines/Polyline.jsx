@@ -16,11 +16,11 @@ const StyledButton = styled(Button)`
   margin-top: 5px !important;
 `
 
-const PolylineComponent = ({ treeName, beob }) => {
+const PolylineComponent = ({ beob }) => {
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
   const { projIdInActiveNodeArray, apIdInActiveNodeArray, activeNodeArray } =
-    store[treeName]
+    store.tree
   const projId =
     projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
   const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'

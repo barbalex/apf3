@@ -24,11 +24,11 @@ const iconCreateFunction = function (cluster) {
   })
 }
 
-const BeobZugeordnetMarker = ({ treeName, clustered }) => {
+const BeobZugeordnetMarker = ({ clustered }) => {
   // const leafletMap = useMap()
   const store = useContext(storeContext)
   const { enqueNotification } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const { beobGqlFilter } = tree
 
   const { data, error } = useQuery(query, {
@@ -59,7 +59,7 @@ const BeobZugeordnetMarker = ({ treeName, clustered }) => {
   }
 
   const beobMarkers = (data?.allBeobs?.nodes ?? []).map((beob) => (
-    <Marker key={beob.id} treeName={treeName} beob={beob} />
+    <Marker key={beob.id} beob={beob} />
   ))
 
   if (clustered) {

@@ -32,9 +32,9 @@ const StyledMenuItem = styled(MenuItem)`
   padding: 5px 14px !important;
 `
 
-const PopIcon = ({ treeName }) => {
+const PopIcon = () => {
   const store = useContext(storeContext)
-  const { map } = store[treeName]
+  const { map } = store.tree
   const { setPopIcon, setPopLabel } = map
   const [anchorEl, setAnchorEl] = useState(null)
   const onClickIconContainer = useCallback(

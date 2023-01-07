@@ -121,7 +121,7 @@ const MySortableItem = ({ treeName, apfloraLayer }) => {
     setAssigningBeob,
     setBounds,
   } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const { apIdInActiveNodeArray, activeNodeArray, beobGqlFilter } = tree
   const activeApfloraLayers = getSnapshot(activeApfloraLayersRaw)
   const layer = apfloraLayer.value
@@ -294,9 +294,7 @@ const MySortableItem = ({ treeName, apfloraLayer }) => {
           </ZuordnenDiv>
         )}
         {apfloraLayer.value === 'pop' &&
-          activeApfloraLayers.includes('pop') && (
-            <PopIcon treeName={treeName} />
-          )}
+          activeApfloraLayers.includes('pop') && <PopIcon />}
         {apfloraLayer.value === 'tpop' &&
           activeApfloraLayers.includes('tpop') && (
             <TpopIcon treeName={treeName} />
