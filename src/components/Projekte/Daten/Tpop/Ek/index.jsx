@@ -61,10 +61,10 @@ const EkplanTitle = styled.h5`
   margin-bottom: 10px;
 `
 
-const Ek = ({ treeName, saveToDb, row, fieldErrors, loadingParent }) => {
+const Ek = ({ saveToDb, row, fieldErrors, loadingParent }) => {
   const store = useContext(storeContext)
 
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const apId = activeNodeArray[3]
 

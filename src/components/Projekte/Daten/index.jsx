@@ -136,15 +136,15 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'tpop': {
-      form = <Tpop treeName={treeName} />
+      form = <Tpop />
       break
     }
     case 'tpopber': {
-      form = <Tpopber treeName={treeName} />
+      form = <Tpopber />
       break
     }
     case 'tpopfeldkontr': {
-      form = <Tpopfeldkontr treeName={treeName} />
+      form = <Tpopfeldkontr />
       break
     }
     case 'tpopfreiwkontr': {

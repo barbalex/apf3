@@ -81,12 +81,12 @@ const fieldTypes = {
   statusUnklar: 'Boolean',
 }
 
-const TpopForm = ({ treeName }) => {
+const TpopForm = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
 
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
   const onChangeTab = useCallback(
     (event, value) => {
@@ -225,7 +225,6 @@ const TpopForm = ({ treeName }) => {
               />
             ) : tab === 'ek' ? (
               <Ek
-                treeName={treeName}
                 saveToDb={saveToDb}
                 fieldErrors={fieldErrors}
                 row={row}

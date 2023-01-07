@@ -123,11 +123,11 @@ const tpopkontrTypWerte = [
   },
 ]
 
-const Tpopfeldkontr = ({ treeName }) => {
+const Tpopfeldkontr = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
