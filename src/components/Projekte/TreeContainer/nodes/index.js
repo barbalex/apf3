@@ -539,7 +539,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildPopmassnberFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projektNodes,
             projId,
@@ -619,7 +618,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...tpopmassnFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -634,7 +632,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopmassnberFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -649,7 +646,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopfeldkontrFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -664,7 +660,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopfreiwkontrFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -679,7 +674,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopberFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -694,7 +688,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildBeobZugeordnetFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
@@ -847,7 +840,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopfeldkontrzaehlFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projId,
             projektNodes,
