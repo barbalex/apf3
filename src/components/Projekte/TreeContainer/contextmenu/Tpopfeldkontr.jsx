@@ -37,12 +37,12 @@ const resetCopyingBiotopData = {
   action: 'resetCopyingBiotop',
 }
 
-const Tpopfeldkontr = ({ treeName, onClick }) => {
+const Tpopfeldkontr = ({ onClick }) => {
   const { copying, user, copyingBiotop } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpopfeldkontr`} hideOnLeave={true}>
+      <ContextMenu id="treeTpopfeldkontr" hideOnLeave={true}>
         <div className="react-contextmenu-title">Feld-Kontrolle</div>
         {!userIsReadOnly(user.token) && (
           <>

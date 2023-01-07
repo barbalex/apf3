@@ -17,12 +17,12 @@ const showCoordOfBeobOnMapGeoAdminChData = {
   action: 'showCoordOfBeobOnMapGeoAdminCh',
 }
 
-const BeobZugeordnet = ({ treeName, onClick }) => {
+const BeobZugeordnet = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}beobZugeordnet`} hideOnLeave={true}>
+      <ContextMenu id="treebeobZugeordnet" hideOnLeave={true}>
         <div className="react-contextmenu-title">Beobachtung</div>
         {!userIsReadOnly(user.token) && (
           <MenuItem onClick={onClick} data={copyBeobZugeordnetKoordToTpopData}>

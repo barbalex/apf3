@@ -25,12 +25,12 @@ const showCoordOfBeobOnMapGeoAdminChData = {
   action: 'showCoordOfBeobOnMapGeoAdminCh',
 }
 
-const BeobNichtZuzuordnen = ({ treeName, onClick }) => {
+const BeobNichtZuzuordnen = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}beobNichtZuzuordnen`} hideOnLeave={true}>
+      <ContextMenu id="treebeobNichtZuzuordnen" hideOnLeave={true}>
         <div className="react-contextmenu-title">Beobachtung</div>
         {!userIsReadOnly(user.token) && (
           <>

@@ -27,12 +27,12 @@ const resetCopyingData = {
   action: 'resetCopying',
 }
 
-const Tpopfreiwkontr = ({ treeName, onClick }) => {
+const Tpopfreiwkontr = ({ onClick }) => {
   const { copying, user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpopfreiwkontr`} hideOnLeave={true}>
+      <ContextMenu id="treetpopfreiwkontr" hideOnLeave={true}>
         <div className="react-contextmenu-title">Freiwilligen-Kontrolle</div>
         {!userIsReadOnly(user.token, 'freiw') && (
           <>

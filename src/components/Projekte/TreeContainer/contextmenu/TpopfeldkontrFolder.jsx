@@ -27,7 +27,7 @@ const resetCopyingData = {
   action: 'resetCopying',
 }
 
-const TpopfeldkontrFolder = ({ onClick, treeName }) => {
+const TpopfeldkontrFolder = ({ onClick }) => {
   const { copying, user, moving } = useContext(storeContext)
 
   const isMoving = moving.table && moving.table === 'tpopfeldkontr'
@@ -35,7 +35,7 @@ const TpopfeldkontrFolder = ({ onClick, treeName }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpopfeldkontrFolder`} hideOnLeave={true}>
+      <ContextMenu id="treetpopfeldkontrFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Feld-Kontrollen</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen

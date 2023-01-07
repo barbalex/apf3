@@ -668,14 +668,14 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         <CmTpopFolder onClick={handleClick} />
         <CmTpop onClick={handleClick} />
         <CmTpopberFolder onClick={handleClick} />
-        <CmTpopber onClick={handleClick} treeName={treeName} />
-        <CmBeobZugeordnet onClick={handleClick} treeName={treeName} />
-        <CmBeobnichtbeurteilt onClick={handleClick} treeName={treeName} />
-        <CmBeobNichtZuzuordnen onClick={handleClick} treeName={treeName} />
-        <CmTpopfreiwkontrFolder onClick={handleClick} treeName={treeName} />
-        <CmTpopfreiwkontr onClick={handleClick} treeName={treeName} />
-        <CmTpopfeldkontrFolder onClick={handleClick} treeName={treeName} />
-        <CmTpopfeldkontr onClick={handleClick} treeName={treeName} />
+        <CmTpopber onClick={handleClick} />
+        <CmBeobZugeordnet onClick={handleClick} />
+        <CmBeobnichtbeurteilt onClick={handleClick} />
+        <CmBeobNichtZuzuordnen onClick={handleClick} />
+        <CmTpopfreiwkontrFolder onClick={handleClick} />
+        <CmTpopfreiwkontr onClick={handleClick} />
+        <CmTpopfeldkontrFolder onClick={handleClick} />
+        <CmTpopfeldkontr onClick={handleClick} />
         <CmTpopfeldkontrzaehlFolder onClick={handleClick} treeName={treeName} />
         <CmTpopfeldkontrzaehl onClick={handleClick} treeName={treeName} />
         <CmTpopmassnberFolder onClick={handleClick} treeName={treeName} />
