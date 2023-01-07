@@ -8,7 +8,7 @@ const initiateDataFromUrl = ({
   activeNodeArray: activeNodeArrayPassed,  
   store,
 }) => {
-  const { setUrlQuery, cloneTree2From1 } = store
+  const { setUrlQuery,  } = store
   const activeNodeArrayFromPathname =
     activeNodeArrayPassed || getActiveNodeArrayFromPathname()
   const initialActiveNodeArray = [...activeNodeArrayFromPathname]

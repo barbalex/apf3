@@ -29,10 +29,13 @@ import {
   initial as initialTpopfreiwkontr,
 } from './DataFilter/tpopfreiwkontr'
 import { simpleTypes as apType } from './DataFilter/ap'
+import appBaseUrl from '../../modules/appBaseUrl'
 
 export default types
   .model('Tree', {
     name: types.optional(types.string, 'tree'),
+    // used to open tree2 on a specific activeNodeArray
+    tree2Src: types.optional(types.string, ''),
     activeNodeArray: types.array(types.union(types.string, types.number)),
     // lastTouchedNode is needed to keep the last clicked arrow known
     // so it does not jump
@@ -57,6 +60,33 @@ export default types
     // ),
   })
   .actions((self) => ({
+    resetTree2Src() {
+      self.tree2Src = ''
+    },
+    setTree2SrcByActiveNodeArray(activeNodeArray) {
+      const store = getParent(self)
+      // build search string for iframe
+      const iFrameUrlQuery = { ...getSnapshot(store.urlQuery) }
+      // need to alter projekteTabs:
+      iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
+        // - remove non-tree2 values
+        .filter((t) => t.includes('2'))
+        // - rewrite tree2 values to tree values
+        .map((t) => t.replace('2', ''))
+      // add a variable to hide app bar
+      iFrameUrlQuery.hideAppBar = true
+      const search = queryString.stringify(iFrameUrlQuery)
+      // pass this via src to iframe
+      const iFrameSrc = `${appBaseUrl().slice(
+        0,
+        -1,
+      )}${`/Daten/${activeNodeArray.join('/')}`}?${search}`
+      console.log(
+        'store.Tree.setTree2SrcByActiveNodeArray setting iFrameSrc:',
+        iFrameSrc,
+      )
+      self.tree2Src = iFrameSrc
+    },
     setMapFilter(val) {
       self.mapFilter = val
     },

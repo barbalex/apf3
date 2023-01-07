@@ -216,8 +216,8 @@ const myTypes = types
       const isGqlFilter = Object.keys(gqlFilter).length > 0
       return isGqlFilter
     },
-    dataFilterTreeIsFiltered(treeName) {
-      const tables = Object.keys(self[treeName].dataFilter)
+    dataFilterTreeIsFiltered() {
+      const tables = Object.keys(self.tree.dataFilter)
       return tables.some((table) => self.tableIsFiltered(table))
     },
     setUser(val) {
@@ -277,14 +277,9 @@ const myTypes = types
     setAssigningBeob(val) {
       self.assigningBeob = val
     },
-    cloneTree2From1() {
-      self.tree2 = cloneDeep(self.tree)
-    },
     openTree2WithActiveNodeArray(activeNodeArray) {
-      const openNodes = getOpenNodesFromActiveNodeArray(activeNodeArray)
-      self.tree2 = { ...defaultTree, activeNodeArray, openNodes }
-      self.urlQuery.addProjekteTab('tree2')
-      self.urlQuery.addProjekteTab('daten2')
+      self.tree.setTree2SrcByActiveNodeArray(activeNodeArray)
+      self.urlQuery.addProjekteTabs(['tree2', 'daten2'])
     },
     treeNodeLabelFilterResetExceptAp({ tree }) {
       self[tree].nodeLabelFilter = {

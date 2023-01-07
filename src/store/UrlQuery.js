@@ -17,8 +17,8 @@ export default types
     hideAppBar: types.optional(types.maybeNull(types.boolean), false),
   })
   .actions((self) => ({
-    addProjekteTab(tab) {
-      self.projekteTabs = uniq([...self.projekteTabs, tab])
+    addProjekteTabs(tabs) {
+      self.projekteTabs = uniq([...self.projekteTabs, ...tabs])
     },
   }))
 

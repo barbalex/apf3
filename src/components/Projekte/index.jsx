@@ -36,6 +36,7 @@ const Projekte = () => {
   const { pathname } = useLocation()
   const store = useContext(storeContext)
   const { isPrint, urlQuery } = store
+  const { tree2Src } = store.tree
 
   const { projekteTabs, hideAppBar } = urlQuery
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
@@ -58,19 +59,24 @@ const Projekte = () => {
     )
   }
 
-  // build search string for iframe
-  const iFrameUrlQuery = { ...getSnapshot(urlQuery) }
-  // need to alter projekteTabs:
-  iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
-    // - remove non-tree2 values
-    .filter((t) => t.includes('2'))
-    // - rewrite tree2 values to tree values
-    .map((t) => t.replace('2', ''))
-  // add a variable to hide app bar
-  iFrameUrlQuery.hideAppBar = true
-  const search = queryString.stringify(iFrameUrlQuery)
-  // pass this via src to iframe
-  const iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
+  // use
+  let iFrameSrc = tree2Src
+  if (!tree2Src) {
+    // build search string for iframe
+    const iFrameUrlQuery = { ...getSnapshot(urlQuery) }
+    // need to alter projekteTabs:
+    iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
+      // - remove non-tree2 values
+      .filter((t) => t.includes('2'))
+      // - rewrite tree2 values to tree values
+      .map((t) => t.replace('2', ''))
+    // add a variable to hide app bar
+    iFrameUrlQuery.hideAppBar = true
+    const search = queryString.stringify(iFrameUrlQuery)
+    // pass this via src to iframe
+    iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
+  }
+  console.log('Projekte, tree2Src:', tree2Src)
 
   return (
     <AppBar>

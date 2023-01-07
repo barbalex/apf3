@@ -62,7 +62,7 @@ const DokuButton = styled(Button)`
 const ProjekteAppBar = () => {
   const store = useContext(storeContext)
   const { user, urlQuery, setUrlQuery, tree } = store
-  const { projIdInActiveNodeArray } = store.tree
+  const { projIdInActiveNodeArray, resetTree2Src } = store.tree
 
   const navigate = useNavigate()
 
@@ -127,10 +127,10 @@ const ProjekteAppBar = () => {
     () => onClickButton('exporte'),
     [onClickButton],
   )
-  const onClickTree2 = useCallback(
-    () => onClickButton('tree2'),
-    [onClickButton],
-  )
+  const onClickTree2 = useCallback(() => {
+    resetTree2Src()
+    onClickButton('tree2')
+  }, [onClickButton, resetTree2Src])
   const onClickEkPlanung = useCallback(() => {
     // eslint-disable-next-line no-unused-vars
     const [projectTitle, projectId, ...rest] = tree.activeNodeArray

@@ -1,5 +1,5 @@
 import isString from 'lodash/isString'
-import queryString from 'query-string'
+import queryString from 'query-string' 
 
 const getUrlQuery = () => {
   const query = queryString.parse(window.location.search)
