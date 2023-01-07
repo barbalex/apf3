@@ -52,7 +52,7 @@ const FilterComment = styled.li`
   font-size: 0.75em;
 `
 
-const TpopFilter = ({ treeName }) => {
+const TpopFilter = () => {
   const store = useContext(storeContext)
   const { dataFilterSetValue, urlQuery } = store
 
@@ -65,7 +65,7 @@ const TpopFilter = ({ treeName }) => {
     apFilter,
     artIsFiltered,
     popIsFiltered,
-  } = store[treeName]
+  } = store.tree
   const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
   const onChangeTab = useCallback((event, value) => setTab(value), [])
 
@@ -146,7 +146,6 @@ const TpopFilter = ({ treeName }) => {
       <Container>
         <FilterTitle
           title="Teil-Population"
-          treeName={treeName}
           table="tpop"
           totalNr={dataTpops?.allTpops?.totalCount ?? '...'}
           filteredNr={dataTpops?.allTpopsFiltered?.totalCount ?? '...'}
@@ -181,7 +180,6 @@ const TpopFilter = ({ treeName }) => {
           dataFilter={dataFilter.tpop}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          treeName={treeName}
         />
         <FieldsContainer>
           <Tabs
@@ -204,12 +202,7 @@ const TpopFilter = ({ treeName }) => {
                 rowStringified={JSON.stringify(row)}
               />
             ) : (
-              <Ek
-                treeName={treeName}
-                saveToDb={saveToDb}
-                fieldErrors={fieldErrors}
-                row={row}
-              />
+              <Ek saveToDb={saveToDb} fieldErrors={fieldErrors} row={row} />
             )}
           </TabContent>
         </FieldsContainer>

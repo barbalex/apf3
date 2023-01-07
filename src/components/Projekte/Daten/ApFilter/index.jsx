@@ -79,7 +79,7 @@ const FilterComment = styled.li`
   font-size: 0.75em;
 `
 
-const ApFilter = ({ treeName }) => {
+const ApFilter = () => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
   const {
@@ -87,7 +87,7 @@ const ApFilter = ({ treeName }) => {
     apFilter: nurApFilter,
     nodeLabelFilter,
     apGqlFilter,
-  } = store[treeName]
+  } = store.tree
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {
@@ -185,7 +185,6 @@ const ApFilter = ({ treeName }) => {
       <Container>
         <FilterTitle
           title="Art"
-          treeName={treeName}
           table="ap"
           totalNr={apsData?.allAps?.totalCount ?? '...'}
           filteredNr={apsData?.filteredAps?.totalCount ?? '...'}
@@ -211,7 +210,6 @@ const ApFilter = ({ treeName }) => {
           dataFilter={dataFilter.ap}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          treeName={treeName}
         />
         <FieldsContainer>
           <SimpleBar

@@ -176,7 +176,7 @@ const ProjektContainer = ({ treeName }) => {
     ),
     filter: (
       <InnerContainer>
-        <Filter treeName={treeName} />
+        <Filter />
       </InnerContainer>
     ),
     karte: (

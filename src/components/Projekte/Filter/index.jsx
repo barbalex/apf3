@@ -18,16 +18,16 @@ const Container = styled.div`
   background-color: #ffd3a7;
 `
 
-const Filter = ({ treeName }) => {
+const Filter = () => {
   const [activeTab, setActiveTab] = useState('ap')
 
   return (
     <ErrorBoundary>
       <Container>
         <Title activeTab={activeTab} setActiveTab={setActiveTab} />
-        {activeTab === 'ap' && <ApFilter treeName={treeName} />}
-        {activeTab === 'pop' && <PopFilter treeName={treeName} />}
-        {activeTab === 'tpop' && <TpopFilter treeName={treeName} />}
+        {activeTab === 'ap' && <ApFilter />}
+        {activeTab === 'pop' && <PopFilter />}
+        {activeTab === 'tpop' && <TpopFilter />}
         {activeTab === 'tpopmassn' && <TpopmassnFilter />}
         {activeTab === 'tpopfeldkontr' && <TpopfeldkontrFilter />}
         {activeTab === 'tpopfreiwkontr' && <TpopfreiwkontrFilter />}

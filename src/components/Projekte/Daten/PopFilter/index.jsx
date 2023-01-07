@@ -43,7 +43,7 @@ const FilterComment = styled.li`
   font-size: 0.75em;
 `
 
-const PopFilter = ({ treeName }) => {
+const PopFilter = () => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
   const {
@@ -54,7 +54,7 @@ const PopFilter = ({ treeName }) => {
     mapFilter,
     artIsFiltered,
     apFilter,
-  } = store[treeName]
+  } = store.tree
 
   // need to slice to rerender on change
   const aNA = activeNodeArray.slice()
@@ -118,7 +118,6 @@ const PopFilter = ({ treeName }) => {
       <Container>
         <FilterTitle
           title="Population"
-          treeName={treeName}
           table="pop"
           totalNr={dataPops?.pops?.totalCount ?? '...'}
           filteredNr={dataPops?.popsFiltered?.totalCount ?? '...'}
@@ -150,7 +149,6 @@ const PopFilter = ({ treeName }) => {
           dataFilter={dataFilter.pop}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          treeName={treeName}
         />
         <FormContainer>
           <SimpleBar

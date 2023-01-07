@@ -31,10 +31,10 @@ const EkfrequenzOptionsContainer = styled.div`
   }
 `
 
-const Ek = ({ treeName, saveToDb, row, fieldErrors }) => {
+const Ek = ({ saveToDb, row, fieldErrors }) => {
   const store = useContext(storeContext)
 
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const apId = activeNodeArray[3]
 
