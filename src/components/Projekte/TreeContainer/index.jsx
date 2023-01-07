@@ -637,12 +637,12 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         <Tree nodes={nodes} />
         <CmApFolder onClick={handleClick} />
         <CmAp onClick={handleClick} />
-        <CmApberuebersichtFolder onClick={handleClick} treeName={treeName} />
-        <CmApberuebersicht onClick={handleClick} treeName={treeName} />
-        <CmAssozartFolder onClick={handleClick} treeName={treeName} />
-        <CmAssozart onClick={handleClick} treeName={treeName} />
-        <CmEkzaehleinheitFolder onClick={handleClick} treeName={treeName} />
-        <CmEkzaehleinheit onClick={handleClick} treeName={treeName} />
+        <CmApberuebersichtFolder onClick={handleClick} />
+        <CmApberuebersicht onClick={handleClick} />
+        <CmAssozartFolder onClick={handleClick} />
+        <CmAssozart onClick={handleClick} />
+        <CmEkzaehleinheitFolder onClick={handleClick} />
+        <CmEkzaehleinheit onClick={handleClick} />
         <CmEkfrequenzFolder onClick={handleClick} treeName={treeName} />
         <CmEkfrequenz onClick={handleClick} treeName={treeName} />
         <CmApartFolder onClick={handleClick} treeName={treeName} />
