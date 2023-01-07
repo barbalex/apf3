@@ -46,14 +46,14 @@ const Projekte = () => {
     if (hideAppBar) {
       return (
         <Container>
-          <ProjektContainer treeName="tree" />
+          <ProjektContainer />
         </Container>
       )
     }
     return (
       <AppBar>
         <Container>
-          <ProjektContainer treeName="tree" />
+          <ProjektContainer />
         </Container>
       </AppBar>
     )
@@ -81,7 +81,7 @@ const Projekte = () => {
     <AppBar>
       <Container>
         <StyledSplitPane split="vertical" defaultSize="50%">
-          <ProjektContainer treeName="tree" />
+          <ProjektContainer />
           <StyledIframe
             src={iFrameSrc}
             title="tree2"

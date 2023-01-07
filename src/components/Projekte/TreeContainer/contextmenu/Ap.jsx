@@ -31,7 +31,7 @@ const Ap = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`treeap`} hideOnLeave={true}>
+      <ContextMenu id="treeAp" hideOnLeave={true}>
         <div className="react-contextmenu-title">Art</div>
         <MenuItem onClick={onClick} data={closeLowerNodesData}>
           alle schliessen

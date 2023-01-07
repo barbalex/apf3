@@ -95,7 +95,7 @@ export const CardActionIconButton = styled(IconButton)`
 
 const Exporte = () => {
   return (
-    <ExporteContainer data-id={`exporte-container`}>
+    <ExporteContainer data-id="exporte-container">
       <ErrorBoundary>
         <Container>
           <FormTitle title="Exporte" noTestDataMessage={true} />
