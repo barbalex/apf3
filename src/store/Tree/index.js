@@ -238,9 +238,6 @@ export default types
         if (conflictingFilterExists) {
           setApFilter = false
           self.setApFilter(false)
-          console.log(
-            'Der "nur AP"-Filter wurde ausgeschaltet. Er verträgt sich nicht mit dem Formular-Filter',
-          )
           // need timeout or notification will not appear
           setTimeout(() =>
             store.enqueNotification({
