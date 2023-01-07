@@ -20,7 +20,7 @@ const Apfolder = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`treeapFolder`} hideOnLeave={true}>
+      <ContextMenu id="treeApFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Art</div>
         <MenuItem onClick={onClick} data={closeLowerNodesData}>
           alle schliessen

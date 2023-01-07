@@ -12,15 +12,12 @@ const insertData = {
   table: 'tpopfreiwkontrzaehl',
 }
 
-const TpopfreiwkontrzaehlFolder = ({ onClick, treeName }) => {
+const TpopfreiwkontrzaehlFolder = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu
-        id={`${treeName}tpopfreiwkontrzaehlFolder`}
-        hideOnLeave={true}
-      >
+      <ContextMenu id="treeTpopfreiwkontrzaehlFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Zählungen</div>
         {!userIsReadOnly(user.token, 'freiw') && (
           <MenuItem onClick={onClick} data={insertData}>
