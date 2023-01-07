@@ -39,9 +39,9 @@ const StyledFormControl = styled(FormControl)`
   }
 `
 
-const ChooseQk = ({ treeName, refetchTab }) => {
+const ChooseQk = ({ refetchTab }) => {
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const apId = activeNodeArray[3]
 
   const { data, error, loading } = useQuery(query)

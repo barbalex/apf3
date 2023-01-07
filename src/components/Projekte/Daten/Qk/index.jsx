@@ -33,10 +33,10 @@ const TabContent = styled.div`
   }
 `
 
-const QkForm = ({ treeName }) => {
+const QkForm = () => {
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const apId = activeNodeArray[3]
 
   const { data, loading, error, refetch } = useQuery(queryQk, {
@@ -108,16 +108,11 @@ const QkForm = ({ treeName }) => {
                   {loading ? (
                     <Spinner />
                   ) : (
-                    <Qk
-                      key={qkCount}
-                      treeName={treeName}
-                      qkNameQueries={qkNameQueries}
-                      qks={qks}
-                    />
+                    <Qk key={qkCount} qkNameQueries={qkNameQueries} qks={qks} />
                   )}
                 </>
               ) : (
-                <Choose treeName={treeName} refetchTab={refetch} />
+                <Choose refetchTab={refetch} />
               )}
             </SimpleBar>
           </TabContent>

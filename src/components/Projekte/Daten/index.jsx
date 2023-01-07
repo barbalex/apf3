@@ -128,11 +128,11 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'projekt': {
-      form = <Projekt treeName={treeName} />
+      form = <Projekt />
       break
     }
     case 'qk': {
-      form = <Qk treeName={treeName} />
+      form = <Qk />
       break
     }
     case 'tpop': {

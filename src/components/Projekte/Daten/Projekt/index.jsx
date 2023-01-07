@@ -30,10 +30,10 @@ const fieldTypes = {
   name: 'String',
 }
 
-const Projekt = ({ treeName }) => {
+const Projekt = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray, projIdInActiveNodeArray: projId } = store[treeName]
+  const { activeNodeArray, projIdInActiveNodeArray: projId } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

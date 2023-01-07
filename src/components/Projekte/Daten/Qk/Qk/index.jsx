@@ -70,10 +70,10 @@ const AnalyzingSpan = styled.span`
   padding-right: 13px;
 `
 
-const Qk = ({ treeName, qkNameQueries, qks }) => {
+const Qk = ({ qkNameQueries, qks }) => {
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
   const apId = activeNodeArray[3]
   const projId = activeNodeArray[1]
 
