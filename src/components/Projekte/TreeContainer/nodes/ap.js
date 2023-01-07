@@ -2,14 +2,7 @@ import findIndex from 'lodash/findIndex'
 
 import allParentNodesAreOpen from '../allParentNodesAreOpen'
 
-const ap = ({
-  nodes: nodesPassed,
-  data,
-  treeName,
-  projektNodes,
-  projId,
-  store,
-}) => {
+const ap = ({ nodes: nodesPassed, data, projektNodes, projId, store }) => {
   // fetch sorting indexes of parents
   const projIndex = findIndex(projektNodes, {
     id: projId,
@@ -33,7 +26,7 @@ const ap = ({
       url: ['Projekte', el.projId, 'Arten', el.id],
       hasChildren: true,
     }))
-    .filter((el) => allParentNodesAreOpen(store[treeName].openNodes, el.url))
+    .filter((el) => allParentNodesAreOpen(store.tree.openNodes, el.url))
     .map((el, index) => {
       el.sort = [projIndex, 1, index]
       return el

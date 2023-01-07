@@ -1,7 +1,7 @@
-const userFolderNode = ({ data, treeName, loading, projektNodes, store }) => {
+const userFolderNode = ({ data, loading, projektNodes, store }) => {
   // fetch sorting indexes of parents
   const userIndex = projektNodes.length + 1
-  const nodeLabelFilterString = store?.[treeName]?.nodeLabelFilter?.user ?? ''
+  const nodeLabelFilterString = store.tree?.nodeLabelFilter?.user ?? ''
 
   const userNodesLength = (data?.allUsers?.nodes ?? []).length
   const message = loading

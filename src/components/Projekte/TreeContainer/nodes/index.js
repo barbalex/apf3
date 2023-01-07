@@ -78,7 +78,7 @@ const compare = (a, b) => {
 }
 
 const nodes = ({ data, loading, store, role, treeName }) => {
-  const openNodes = store[treeName].openNodes
+  const openNodes = store.tree.openNodes
     .toJSON()
     // need to sort so folders are added in correct order
     // because every lower folder gets previous nodes passed
@@ -90,7 +90,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
     ...projektNodes,
     ...buildUserFolderNodes({
       data,
-      treeName,
       projektNodes,
       loading,
       store,
@@ -142,7 +141,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...nodes,
           ...buildApFolderNodes({
             data,
-            treeName,
             loading,
             projektNodes,
             projId,
@@ -150,7 +148,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           }),
           ...buildApberuebersichtFolderNodes({
             data,
-            treeName,
             loading,
             projektNodes,
             projId,
@@ -177,7 +174,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
         apNodes = buildApNodes({
           nodes,
           data,
-          treeName,
           loading,
           projektNodes,
           projId,
@@ -192,7 +188,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildPopFolderNode({
             nodes,
             data,
-            treeName,
             loading,
             projektNodes,
             projId,

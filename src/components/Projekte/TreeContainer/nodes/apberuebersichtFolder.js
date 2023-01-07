@@ -2,7 +2,6 @@ import findIndex from 'lodash/findIndex'
 
 const apberuebersichtFolderNode = ({
   data,
-  treeName,
   loading,
   projektNodes,
   projId,
@@ -14,7 +13,7 @@ const apberuebersichtFolderNode = ({
     id: projId,
   })
   const nodeLabelFilterString =
-    store?.[treeName]?.nodeLabelFilter?.apberuebersicht ?? ''
+    store.tree?.nodeLabelFilter?.apberuebersicht ?? ''
 
   const apberuebersichtNodesLength = (
     data?.allApberuebersichts?.nodes ?? []

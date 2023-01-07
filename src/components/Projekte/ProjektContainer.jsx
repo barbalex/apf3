@@ -102,29 +102,25 @@ const ProjektContainer = ({ treeName }) => {
       apGqlFilterTree,
       beobGqlFilterTree,
       role,
-      treeName,
     ],
     queryFn: () =>
-      treeName === 'tree'
-        ? client.query({
-            query: queryTree,
-            variables: buildTreeQueryVariables({
-              dataFilter: treeDataFilter,
-              openNodes: treeOpenNodes,
-              apFilter: treeApFilter,
-              nodeLabelFilter: treeNodeLabelFilter,
-              artId,
-              popGqlFilter: popGqlFilterTree,
-              tpopGqlFilter: tpopGqlFilterTree,
-              tpopmassnGqlFilter: tpopmassnGqlFilterTree,
-              ekGqlFilter: ekGqlFilterTree,
-              ekfGqlFilter: ekfGqlFilterTree,
-              apGqlFilter: apGqlFilterTree,
-              beobGqlFilter: beobGqlFilterTree,
-              treeName,
-            }),
-          })
-        : {},
+      client.query({
+        query: queryTree,
+        variables: buildTreeQueryVariables({
+          dataFilter: treeDataFilter,
+          openNodes: treeOpenNodes,
+          apFilter: treeApFilter,
+          nodeLabelFilter: treeNodeLabelFilter,
+          artId,
+          popGqlFilter: popGqlFilterTree,
+          tpopGqlFilter: tpopGqlFilterTree,
+          tpopmassnGqlFilter: tpopmassnGqlFilterTree,
+          ekGqlFilter: ekGqlFilterTree,
+          ekfGqlFilter: ekfGqlFilterTree,
+          apGqlFilter: apGqlFilterTree,
+          beobGqlFilter: beobGqlFilterTree,
+        }),
+      }),
   })
 
   const treeData = data?.data

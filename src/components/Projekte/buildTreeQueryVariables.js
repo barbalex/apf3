@@ -31,7 +31,6 @@ const buildTreeQueryVariables = ({
   ekfGqlFilter,
   apGqlFilter,
   beobGqlFilter,
-  treeName,
 }) => {
   // apFilter is used for form nodeLabelFilter AND apFilter of tree :-(
   const isWerteListen = openNodes.some(
@@ -304,7 +303,6 @@ const buildTreeQueryVariables = ({
     ekAbrechnungstypWertesFilter,
     zielbersFilter,
     zielsFilter,
-    isTree1: treeName === 'tree',
   }
 }
 

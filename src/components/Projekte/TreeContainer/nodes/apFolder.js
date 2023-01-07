@@ -1,19 +1,12 @@
 import findIndex from 'lodash/findIndex'
 
-const apFolderNode = ({
-  data,
-  treeName,
-  loading,
-  projektNodes,
-  projId,
-  store,
-}) => {
+const apFolderNode = ({ data, loading, projektNodes, projId, store }) => {
   // fetch sorting indexes of parents
   const projNodeIds = projektNodes.map((n) => n.id)
   const projIndex = findIndex(projektNodes, {
     id: projId,
   })
-  const nodeLabelFilterString = store?.[treeName]?.nodeLabelFilter?.ap ?? ''
+  const nodeLabelFilterString = store.tree?.nodeLabelFilter?.ap ?? ''
 
   const apNodes = (data?.allAps?.nodes ?? [])
     // only show if parent node exists
