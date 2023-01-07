@@ -21,7 +21,7 @@ const StyledButton = styled(Button)`
   margin-top: 5px !important;
 `
 
-const BeobNichtBeurteiltMarker = ({ treeName, beob }) => {
+const BeobNichtBeurteiltMarker = ({ beob }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { assigningBeob, openTree2WithActiveNodeArray } = store
@@ -30,7 +30,7 @@ const BeobNichtBeurteiltMarker = ({ treeName, beob }) => {
     apIdInActiveNodeArray,
     projIdInActiveNodeArray,
     activeNodeArray,
-  } = store[treeName]
+  } = store.tree
   const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
   const projId =
     projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'

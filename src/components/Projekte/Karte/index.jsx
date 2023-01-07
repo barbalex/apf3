@@ -601,7 +601,6 @@ const Karte = ({ treeName }) => {
               key={`${apId}/beobNichtBeurteilt/${activeApfloraLayers.join()}/${
                 mapFilter?.coordinates ?? 99
               }`}
-              treeName={treeName}
               clustered={clustered}
             />
           )}
@@ -610,7 +609,6 @@ const Karte = ({ treeName }) => {
               key={`${apId}/beobNichtZuzuordnen/${activeApfloraLayers.join()}/${
                 mapFilter?.coordinates ?? 99
               }`}
-              treeName={treeName}
               clustered={clustered}
             />
           )}
