@@ -8,13 +8,7 @@ import updateTpopmassnById from './updateTpopmassnById'
 import updateTpopById from './updateTpopById'
 import updatePopById from './updatePopById'
 
-const moveTo = async ({
-  id: newParentId,
-  store,
-  client,
-  queryClient,
-  treeName,
-}) => {
+const moveTo = async ({ id: newParentId, store, client, queryClient }) => {
   const { enqueNotification, moving, setMoving } = store
   let { table } = moving
   const { id } = moving
@@ -51,21 +45,21 @@ const moveTo = async ({
         mutation: updateTpopkontrById,
         variables: { id, tpopId: newParentId },
       })
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       break
     case 'tpopmassn':
       client.mutate({
         mutation: updateTpopmassnById,
         variables: { id, tpopId: newParentId },
       })
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       break
     case 'tpop':
       client.mutate({
         mutation: updateTpopById,
         variables: { id, popId: newParentId },
       })
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       break
     case 'pop':
       console.log('will move pop', { id, newParentId })
@@ -73,7 +67,7 @@ const moveTo = async ({
         mutation: updatePopById,
         variables: { id, apId: newParentId },
       })
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       break
     default:
       // do nothing

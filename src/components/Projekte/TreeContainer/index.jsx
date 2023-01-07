@@ -419,7 +419,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         },
         closeLowerNodes() {
           closeLowerNodes({
-            treeName,
             url,
             store,
           })
@@ -433,7 +432,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             afterDeletionHook: () => {
               const newOpenNodes = openNodes.filter((n) => !isEqual(n, url))
               setOpenNodes(newOpenNodes)
-              queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+              queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
             },
           })
         },
@@ -460,7 +459,7 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
           setMoving({ table, id, label })
         },
         move() {
-          moveTo({ id, store, client, treeName, queryClient })
+          moveTo({ id, store, client, queryClient })
         },
         markForCopying() {
           setCopying({ table, id, label, withNextLevel: false })
@@ -481,7 +480,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
             parentId: id,
             client,
             store,
-            treeName,
             queryClient,
           })
         },

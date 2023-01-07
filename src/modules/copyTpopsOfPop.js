@@ -7,7 +7,6 @@ const copyTpopsOfPop = async ({
   popIdTo,
   client,
   store,
-  treeName,
   queryClient,
 }) => {
   // 1. fetch all tpops
@@ -33,7 +32,6 @@ const copyTpopsOfPop = async ({
       id: tpop.id,
       client,
       store,
-      treeName,
       queryClient,
     }),
   )
