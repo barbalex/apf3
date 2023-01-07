@@ -6,10 +6,10 @@ import { observer } from 'mobx-react-lite'
 
 import storeContext from '../../../storeContext'
 
-const DrawControl = ({ treeName }) => {
+const DrawControl = () => {
   const map = useMap()
   const store = useContext(storeContext)
-  const { setMapFilter, mapFilter } = store[treeName]
+  const { setMapFilter, mapFilter } = store.tree
 
   useEffect(() => {
     window.L.drawLocal.draw.toolbar.buttons.polygon =

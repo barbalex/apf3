@@ -44,7 +44,7 @@ const InnerContainer = styled.div`
   height: 100%;
 `
 
-const ProjektContainer = ({ treeName }) => {
+const ProjektContainer = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { isPrint, urlQuery, user } = store
@@ -181,12 +181,12 @@ const ProjektContainer = ({ treeName }) => {
     ),
     karte: (
       <InnerContainer>
-        <Karte treeName={treeName} />
+        <Karte />
       </InnerContainer>
     ),
     exporte: (
       <InnerContainer>
-        <Exporte treeName={treeName} />
+        <Exporte />
       </InnerContainer>
     ),
   }
@@ -236,10 +236,8 @@ const ProjektContainer = ({ treeName }) => {
   if (isPrint) {
     return (
       <Daten
-        treeName={treeName}
         activeForm={getActiveForm({
           store,
-          treeName,
           nodes: treeNodes,
         })}
       />

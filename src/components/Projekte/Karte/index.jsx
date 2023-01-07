@@ -441,7 +441,7 @@ const fullscreenOptions = {
  * So: need to use app level store state
  */
 
-const Karte = ({ treeName }) => {
+const Karte = () => {
   const store = useContext(storeContext)
   const {
     activeApfloraLayers: activeApfloraLayersRaw,
@@ -636,11 +636,11 @@ const Karte = ({ treeName }) => {
           <ZoomControl position="topright" />
           {/* <Fullscreen {...fullscreenOptions} /> */}
           <MeasureControl />
-          {showMapFilter && <DrawControl treeName={treeName} />}
+          {showMapFilter && <DrawControl />}
           <Control position="bottomright">
             <CoordinatesControl />
           </Control>
-          <MapFilterListener treeName={treeName} />
+          <MapFilterListener />
         </StyledMapContainer>
       </ErrorBoundary>
     </Container>
