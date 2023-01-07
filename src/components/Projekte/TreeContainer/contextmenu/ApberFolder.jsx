@@ -12,12 +12,12 @@ const insertData = {
   table: 'apber',
 }
 
-const ApberFolder = ({ onClick, treeName }) => {
+const ApberFolder = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}apberFolder`} hideOnLeave={true}>
+      <ContextMenu id="treeapberFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">AP-Bericht</div>
         {!userIsReadOnly(user.token) && (
           <MenuItem onClick={onClick} data={insertData}>

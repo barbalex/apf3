@@ -71,7 +71,7 @@ const Error = styled.div`
   color: red;
 `
 
-const EkfrequenzFolder = ({ onClick, treeName }) => {
+const EkfrequenzFolder = ({ onClick }) => {
   const client = useApolloClient()
   const { user, enqueNotification } = useContext(storeContext)
 
@@ -258,7 +258,7 @@ const EkfrequenzFolder = ({ onClick, treeName }) => {
               },
             })
           }),
-          queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] }),
+          queryClient.invalidateQueries({ queryKey: [`treeQuery`] }),
         )
       } catch (error) {
         console.log({ error })
@@ -276,7 +276,7 @@ const EkfrequenzFolder = ({ onClick, treeName }) => {
         },
       })
     },
-    [apId, client, enqueNotification, queryClient, treeName, user.name],
+    [apId, client, enqueNotification, queryClient, user.name],
   )
 
   const [apOptionsError, setApOptionsError] = useState(undefined)
@@ -328,7 +328,7 @@ const EkfrequenzFolder = ({ onClick, treeName }) => {
   return (
     <ErrorBoundary>
       <ContextMenu
-        id={`${treeName}ekfrequenzFolder`}
+        id="treeekfrequenzFolder"
         collect={(props) => props}
         onShow={onShow}
         hideOnLeave={true}

@@ -11,13 +11,13 @@ const showBeobOnMapData = {
   idTable: 'ap',
 }
 
-const BeobZugeordnetFolder = ({ treeName, onClick }) => {
+const BeobZugeordnetFolder = ({ onClick }) => {
   const store = useContext(storeContext)
   const { activeApfloraLayers } = store
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}beobZugeordnetFolder`} hideOnLeave={true}>
+      <ContextMenu id="treebeobZugeordnetFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Beobachtungen</div>
         <MenuItem onClick={onClick} data={showBeobOnMapData}>
           {`blende auf Karte ${
