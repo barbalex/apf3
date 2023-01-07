@@ -14,9 +14,7 @@ const Pops = ({ filtered = false }) => {
 
   const [queryState, setQueryState] = useState()
 
-  const popIsFiltered = tableIsFiltered({
-    table: 'pop',
-  })
+  const popIsFiltered = tableIsFiltered('pop')
 
   return (
     <DownloadCardButton

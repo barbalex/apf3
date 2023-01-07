@@ -87,9 +87,7 @@ const Ap = ({ filtered = false }) => {
     setQueryState(undefined)
   }, [apGqlFilter, client, enqueNotification, filtered, store])
 
-  const apIsFiltered = tableIsFiltered({
-    table: 'ap',
-  })
+  const apIsFiltered = tableIsFiltered('ap')
 
   return (
     <DownloadCardButton

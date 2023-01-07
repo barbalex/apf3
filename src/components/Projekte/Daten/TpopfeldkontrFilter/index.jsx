@@ -149,13 +149,12 @@ const TpopfeldkontrFilter = ({ treeName }) => {
   const saveToDb = useCallback(
     async (event) =>
       dataFilterSetValue({
-        treeName,
         table: 'tpopfeldkontr',
         key: event.target.name,
         value: ifIsNumericAsNumber(event.target.value),
         index: activeTab,
       }),
-    [activeTab, dataFilterSetValue, treeName],
+    [activeTab, dataFilterSetValue],
   )
 
   const aeLrWerte = (data?.allAeLrDelarzes?.nodes ?? [])

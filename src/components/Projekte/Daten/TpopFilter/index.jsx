@@ -100,13 +100,12 @@ const TpopFilter = ({ treeName }) => {
   const saveToDb = useCallback(
     async (event) =>
       dataFilterSetValue({
-        treeName,
         table: 'tpop',
         key: event.target.name,
         value: ifIsNumericAsNumber(event.target.value),
         index: activeTab,
       }),
-    [activeTab, dataFilterSetValue, treeName],
+    [activeTab, dataFilterSetValue],
   )
 
   const navApFilterComment = apFilter

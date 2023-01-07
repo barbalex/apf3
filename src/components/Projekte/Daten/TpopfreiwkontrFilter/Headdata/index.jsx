@@ -44,7 +44,7 @@ const BearbVal = styled.div`
   }
 `
 
-const Headdata = ({ row, treeName, activeTab }) => {
+const Headdata = ({ row, activeTab }) => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
   const { data, loading, error } = useQuery(queryAdresses)
@@ -53,14 +53,13 @@ const Headdata = ({ row, treeName, activeTab }) => {
     async (event) => {
       console.log('Headdata setting:', { value: event.target.value })
       dataFilterSetValue({
-        treeName,
         table: 'tpopfreiwkontr',
         key: 'bearbeiter',
         value: event.target.value,
         index: activeTab,
       })
     },
-    [activeTab, dataFilterSetValue, treeName],
+    [activeTab, dataFilterSetValue],
   )
 
   if (error) return <Error error={error} />

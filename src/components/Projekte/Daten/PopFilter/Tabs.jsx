@@ -23,7 +23,7 @@ const StyledTab = styled(Tab)`
   text-transform: none !important;
 `
 
-const PopOrTabs = ({ activeTab, setActiveTab, dataFilter, treeName }) => {
+const PopOrTabs = ({ activeTab, setActiveTab, dataFilter }) => {
   const store = useContext(storeContext)
   const { dataFilterAddOr } = store
 
@@ -35,13 +35,13 @@ const PopOrTabs = ({ activeTab, setActiveTab, dataFilter, treeName }) => {
   const onChangeTab = useCallback(
     (event, value) => {
       if (value > dataFilter.length - 1) {
-        dataFilterAddOr({ treeName, table: 'pop', val: pop })
+        dataFilterAddOr({ table: 'pop', val: pop })
         setTimeout(() => setActiveTab(value), 0)
         return
       }
       setActiveTab(value)
     },
-    [dataFilter.length, dataFilterAddOr, setActiveTab, treeName],
+    [dataFilter.length, dataFilterAddOr, setActiveTab],
   )
 
   return (

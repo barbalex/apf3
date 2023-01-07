@@ -203,9 +203,7 @@ const Teilpopulationen = ({ filtered = false }) => {
     //console.timeEnd('exporting')
   }, [client, enqueNotification, filtered, store, tpopGqlFilter.filtered])
 
-  const tpopIsFiltered = tableIsFiltered({
-    table: 'tpop',
-  })
+  const tpopIsFiltered = tableIsFiltered('tpop')
 
   return (
     <DownloadCardButton

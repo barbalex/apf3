@@ -141,14 +141,13 @@ const ApFilter = ({ treeName }) => {
       const value = ifIsNumericAsNumber(event.target.value)
 
       dataFilterSetValue({
-        treeName,
         table: 'ap',
         key: field,
         value,
         index: activeTab,
       })
     },
-    [activeTab, dataFilterSetValue, treeName],
+    [activeTab, dataFilterSetValue],
   )
 
   const aeTaxonomiesFilter = useCallback(

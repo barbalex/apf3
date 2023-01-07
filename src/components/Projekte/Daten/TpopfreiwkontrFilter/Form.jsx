@@ -112,14 +112,13 @@ const TpopfreiwkontrForm = ({ treeName, row, activeTab }) => {
     async (event) => {
       console.log('TpopfreiwkontrForm, saveToDb, event:', event)
       dataFilterSetValue({
-        treeName,
         table: 'tpopfreiwkontr',
         key: event.target.name,
         value: ifIsNumericAsNumber(event.target.value),
         index: activeTab,
       })
     },
-    [activeTab, dataFilterSetValue, treeName],
+    [activeTab, dataFilterSetValue],
   )
 
   const { width = 500, ref: resizeRef } = useResizeDetector({

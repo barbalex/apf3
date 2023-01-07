@@ -44,44 +44,34 @@ const StyledDeleteFilterIcon3 = styled(FaRegTrashAlt)`
 `
 const StyledInfoIcon = styled(MdInfoOutline)``
 
-const FilterTitle = ({
-  title,
-  table,
-  treeName,
-  totalNr,
-  filteredNr,
-  activeTab,
-}) => {
+const FilterTitle = ({ title, table, totalNr, filteredNr, activeTab }) => {
   const store = useContext(storeContext)
   const {
     tableIsFiltered,
     dataFilterTreeIsFiltered,
     dataFilterEmptyTab,
     dataFilterEmptyTable,
-    dataFilterEmptyTree,
+    dataFilterEmpty,
   } = store
-  const { emptyMapFilter, setApFilter } = store[treeName]
+  const { emptyMapFilter, setApFilter } = store.tree
 
-  const existsTableFilter = tableIsFiltered({
-    treeName,
-    table,
-  })
-  const existsTreeFilter = dataFilterTreeIsFiltered(treeName)
+  const existsTableFilter = tableIsFiltered(table)
+  const existsTreeFilter = dataFilterTreeIsFiltered()
 
   const onEmptyTab = useCallback(
-    () => dataFilterEmptyTab({ treeName, table, activeTab }),
-    [dataFilterEmptyTab, treeName, table, activeTab],
+    () => dataFilterEmptyTab({ table, activeTab }),
+    [dataFilterEmptyTab, table, activeTab],
   )
   const onEmptyTable = useCallback(
-    () => dataFilterEmptyTable({ treeName, table }),
-    [dataFilterEmptyTable, treeName, table],
+    () => dataFilterEmptyTable({ table }),
+    [dataFilterEmptyTable, table],
   )
   const onEmptyTree = useCallback(() => {
-    store[treeName].nodeLabelFilter.empty()
-    dataFilterEmptyTree(treeName)
+    store.tree.nodeLabelFilter.empty()
+    dataFilterEmpty()
     emptyMapFilter()
     setApFilter(false)
-  }, [dataFilterEmptyTree, emptyMapFilter, setApFilter, store, treeName])
+  }, [dataFilterEmpty, emptyMapFilter, setApFilter, store])
 
   const onClickInfo = useCallback(() => {
     const url = `${appBaseUrl()}Dokumentation/filter`

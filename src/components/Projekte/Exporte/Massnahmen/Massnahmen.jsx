@@ -14,9 +14,7 @@ const Massnahmen = ({ filtered = false }) => {
 
   const [queryState, setQueryState] = useState()
 
-  const tpopmassnIsFiltered = tableIsFiltered({
-    table: 'tpopmassn',
-  })
+  const tpopmassnIsFiltered = tableIsFiltered('tpopmassn')
 
   return (
     <DownloadCardButton

@@ -165,40 +165,36 @@ const myTypes = types
     setBounds(val) {
       self.bounds = val
     },
-    dataFilterAddOr({ treeName, table, val }) {
-      self?.[treeName]?.dataFilter?.[table]?.push(val)
+    dataFilterAddOr({ table, val }) {
+      self.tree?.dataFilter?.[table]?.push(val)
     },
-    dataFilterSetValue({ treeName, table, key, value, index }) {
-      // console.log('dataFilterSetValue', { table, key, value, index })
+    dataFilterSetValue({ table, key, value, index }) {
       if (index !== undefined) {
-        if (!self[treeName].dataFilter[table][index]) {
-          // console.log('dataFilterSetValue adding new initial value')
-          self?.[treeName]?.dataFilter?.[table]?.push(
-            dataFilterInitialValues[table],
-          )
+        if (!self.tree.dataFilter[table][index]) {
+          self.tree?.dataFilter?.[table]?.push(dataFilterInitialValues[table])
         }
-        self[treeName].dataFilter[table][index][key] = value
+        self.tree.dataFilter[table][index][key] = value
         return
       }
-      self[treeName].dataFilter[table][key] = value
+      self.tree.dataFilter[table][key] = value
     },
-    dataFilterEmptyTree(treeName) {
-      self[treeName].dataFilter = initialDataFilterTreeValues
+    dataFilterEmpty() {
+      self.tree.dataFilter = initialDataFilterTreeValues
     },
-    dataFilterEmptyTab({ treeName, table, activeTab }) {
-      if (self[treeName].dataFilter[table].length === 1) {
-        const firstElement = self[treeName].dataFilter[table][0]
+    dataFilterEmptyTab({ table, activeTab }) {
+      if (self.tree.dataFilter[table].length === 1) {
+        const firstElement = self.tree.dataFilter[table][0]
         Object.keys(firstElement).forEach((key) => (firstElement[key] = null))
         return
       }
-      self[treeName].dataFilter[table].splice(activeTab, 1)
+      self.tree.dataFilter[table].splice(activeTab, 1)
     },
-    dataFilterEmptyTable({ treeName, table }) {
-      self[treeName].dataFilter[table] = initialDataFilterTreeValues[table]
+    dataFilterEmptyTable({ table }) {
+      self.tree.dataFilter[table] = initialDataFilterTreeValues[table]
     },
-    tableIsFiltered({ treeName, table }) {
+    tableIsFiltered(table) {
       // check nodeLabelFilter
-      const nodeLabelFilterExists = !!self[treeName].nodeLabelFilter[table]
+      const nodeLabelFilterExists = !!self.tree.nodeLabelFilter[table]
       if (nodeLabelFilterExists) return true
       // check mapFilter in tables with (parent) coordinates
       if (
@@ -209,20 +205,20 @@ const myTypes = types
           'tpopfreiwkontr',
           'tpopmassn',
         ].includes(table) &&
-        self[treeName].mapFilter
+        self.tree.mapFilter
       ) {
         return true
       }
       // check data and hierarchy filter: is included in gqlFilter
       // check gql filter
       const gqlFilter =
-        self?.[treeName]?.[`${table}GqlFilter`]?.filtered?.or?.[0] ?? {}
+        self.tree?.[`${table}GqlFilter`]?.filtered?.or?.[0] ?? {}
       const isGqlFilter = Object.keys(gqlFilter).length > 0
       return isGqlFilter
     },
     dataFilterTreeIsFiltered(treeName) {
       const tables = Object.keys(self[treeName].dataFilter)
-      return tables.some((table) => self.tableIsFiltered({ treeName, table }))
+      return tables.some((table) => self.tableIsFiltered(table))
     },
     setUser(val) {
       self.user = val

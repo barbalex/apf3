@@ -100,13 +100,12 @@ const TpopmassnFilter = ({ treeName }) => {
   const saveToDb = useCallback(
     async (event) =>
       dataFilterSetValue({
-        treeName,
         table: 'tpopmassn',
         key: event.target.name,
         value: ifIsNumericAsNumber(event.target.value),
         index: activeTab,
       }),
-    [dataFilterSetValue, treeName, activeTab],
+    [dataFilterSetValue, activeTab],
   )
 
   const { width = 500, ref: resizeRef } = useResizeDetector({
