@@ -21,8 +21,6 @@ const initiateDataFromUrl = ({
     activeNodeArray: initialActiveNodeArray,
     store,
   })
-  // clone tree2 in case tree2 is open
-  cloneTree2From1()
   setUrlQuery(urlQuery)
 
   // set projekte tabs of not yet existing

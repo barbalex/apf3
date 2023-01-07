@@ -61,14 +61,7 @@ const DokuButton = styled(Button)`
 
 const ProjekteAppBar = () => {
   const store = useContext(storeContext)
-  const {
-    dataFilterClone1To2,
-    user,
-    urlQuery,
-    setUrlQuery,
-    cloneTree2From1,
-    tree,
-  } = store
+  const { user, urlQuery, setUrlQuery, tree } = store
   const { projIdInActiveNodeArray } = store.tree
 
   const navigate = useNavigate()
@@ -106,10 +99,6 @@ const ProjekteAppBar = () => {
           }
         } else {
           projekteTabs.push(name)
-          if (name === 'tree2') {
-            cloneTree2From1()
-            dataFilterClone1To2()
-          }
         }
         setUrlQueryValue({
           key: 'projekteTabs',
@@ -119,14 +108,7 @@ const ProjekteAppBar = () => {
         })
       }
     },
-    [
-      isMobile,
-      urlQuery,
-      setUrlQuery,
-      projekteTabs,
-      cloneTree2From1,
-      dataFilterClone1To2,
-    ],
+    [isMobile, urlQuery, setUrlQuery, projekteTabs],
   )
   const onClickTree = useCallback(() => onClickButton('tree'), [onClickButton])
   const onClickKarte = useCallback(

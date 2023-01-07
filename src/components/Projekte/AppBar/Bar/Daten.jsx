@@ -33,8 +33,7 @@ const StyledButton = styled(Button)`
 `
 
 const MyAppBarDaten = ({ treeNr = '' }) => {
-  const { dataFilterClone1To2, urlQuery, setUrlQuery, cloneTree2From1, tree } =
-    useContext(storeContext)
+  const { urlQuery, setUrlQuery, tree } = useContext(storeContext)
   const { activeNodeArray } = tree
 
   const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
@@ -60,10 +59,6 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
         remove(copyOfProjekteTabs, (el) => el === `daten${treeNr}`)
       } else {
         copyOfProjekteTabs.push(`daten${treeNr}`)
-        if (treeNr === '2') {
-          cloneTree2From1()
-          dataFilterClone1To2()
-        }
       }
       setUrlQueryValue({
         key: 'projekteTabs',
@@ -72,14 +67,7 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
         setUrlQuery,
       })
     }
-  }, [
-    cloneTree2From1,
-    dataFilterClone1To2,
-    projekteTabs,
-    setUrlQuery,
-    treeNr,
-    urlQuery,
-  ])
+  }, [projekteTabs, setUrlQuery, treeNr, urlQuery])
 
   let followed = projekteTabs.includes('filter')
   if (treeNr === '2') {

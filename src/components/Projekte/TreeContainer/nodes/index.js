@@ -86,18 +86,15 @@ const nodes = ({ data, loading, store, role, treeName }) => {
   //console.log('nodes', { data, openNodes })
   const projektNodes = buildProjektNodes({ data })
 
-  // remember not to render nodes navigated via routing in tree2
   let nodes = [
     ...projektNodes,
-    ...(treeName === 'tree'
-      ? buildUserFolderNodes({
-          data,
-          treeName,
-          projektNodes,
-          loading,
-          store,
-        })
-      : []),
+    ...buildUserFolderNodes({
+      data,
+      treeName,
+      projektNodes,
+      loading,
+      store,
+    }),
     ...buildCurrentIssuesFolderNodes({
       data,
       projektNodes,

@@ -10,13 +10,9 @@ const Div = styled.div`
   margin-top: -5px;
 `
 
-const TestdataMessage = ({ treeName, apId }) => {
+const TestdataMessage = ({ apId }) => {
   const store = useContext(storeContext)
-  if (!treeName) {
-    console.log('TestdataMessage was not passed a treeName, bailing out!')
-    return
-  }
-  const { apIdInActiveNodeArray } = store[treeName]
+  const { apIdInActiveNodeArray } = store.tree
   const apIdUsed = apIdInActiveNodeArray || apId
   const isTestAp = apIdUsed && constants.testAps.includes(apIdUsed)
 

@@ -75,7 +75,6 @@ const myTypes = types
     exportFileType: types.optional(types.maybeNull(types.string), 'xlsx'),
     assigningBeob: types.optional(types.boolean, false),
     tree: types.optional(Tree, defaultTree),
-    tree2: types.optional(Tree, defaultTree),
     ekPlan: types.optional(EkPlan, defaultEkPlan),
     showDeletions: types.optional(types.boolean, false),
     dokuFilter: types.optional(types.union(types.string, types.number), ''),
@@ -165,9 +164,6 @@ const myTypes = types
     },
     setBounds(val) {
       self.bounds = val
-    },
-    dataFilterClone1To2() {
-      self.tree2.dataFilter = cloneDeep(self.tree.dataFilter)
     },
     dataFilterAddOr({ treeName, table, val }) {
       self?.[treeName]?.dataFilter?.[table]?.push(val)

@@ -132,28 +132,11 @@ const deleteModule = async ({ client, store }) => {
     }
     store.tree.setActiveNodeArray(newActiveNodeArray1)
   }
-  const activeNodeArray2 = store?.tree2?.activeNodeArray
-  if (
-    isEqual(activeNodeArray2, toDeleteUrl) &&
-    !isFreiwilligenKontrolle(activeNodeArray2)
-  ) {
-    const newActiveNodeArray2 = [...toDeleteUrl]
-    newActiveNodeArray2.pop()
-    // if zieljahr is active, need to pop again,
-    // (in case there is no other ziel left in same year)
-    if (table === 'ziel') {
-      newActiveNodeArray2.pop()
-    }
-    store.tree2.setActiveNodeArray(newActiveNodeArray2)
-  }
 
   // remove from openNodes
   const openNodes1 = store?.tree?.openNodes
   const newOpenNodes1 = openNodes1.filter((n) => !isEqual(n, toDeleteUrl))
   store.tree.setOpenNodes(newOpenNodes1)
-  const openNodes2 = store?.tree2?.openNodes
-  const newOpenNodes2 = openNodes2.filter((n) => !isEqual(n, toDeleteUrl))
-  store.tree2.setOpenNodes(newOpenNodes2)
 
   if (toDeleteAfterDeletionHook) toDeleteAfterDeletionHook()
 

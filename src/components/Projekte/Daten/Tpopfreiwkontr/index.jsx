@@ -43,7 +43,7 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification, isPrint, setIsPrint, user } = store
-  const tree = store[treeName]
+  const tree = store.tree
   const { activeNodeArray } = tree
 
   const id = idPassed
