@@ -409,7 +409,6 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         },
         openLowerNodes() {
           openLowerNodes({
-            treeName,
             id,
             parentId,
             menuType,

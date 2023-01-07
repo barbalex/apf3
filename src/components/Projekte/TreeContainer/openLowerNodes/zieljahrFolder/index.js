@@ -7,14 +7,13 @@
 import dataGql from './data'
 
 const openLowerNodesZieljahrFolder = async ({
-  treeName,
   id: jahrString,
   parentId: apId,
   client,
   store,
   queryClient,
 }) => {
-  const tree = store[treeName]
+  const tree = store.tree
   const jahr = +jahrString
   const { addOpenNodes, projIdInActiveNodeArray } = tree
   const projId =
@@ -67,7 +66,7 @@ const openLowerNodesZieljahrFolder = async ({
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default openLowerNodesZieljahrFolder

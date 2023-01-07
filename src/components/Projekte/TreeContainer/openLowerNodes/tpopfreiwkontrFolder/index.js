@@ -8,13 +8,12 @@
 import dataGql from './data'
 
 const openLowerNodesTpopfreiwkontrFolder = async ({
-  treeName,
   id,
   client,
   store,
   queryClient,
 }) => {
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     addOpenNodes,
     projIdInActiveNodeArray,
@@ -100,7 +99,7 @@ const openLowerNodesTpopfreiwkontrFolder = async ({
   addOpenNodes(newOpenNodes)
 
   // 4. refresh tree
-  queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default openLowerNodesTpopfreiwkontrFolder

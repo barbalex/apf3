@@ -8,7 +8,6 @@ import zielFolder from './zielFolder'
 import zieljahrFolder from './zieljahrFolder'
 
 const openLowerNodes = ({
-  treeName,
   id,
   parentId,
   menuType,
@@ -35,11 +34,10 @@ const openLowerNodes = ({
       tpopFolder({ id, client, store, queryClient })
       break
     case 'tpop':
-      tpop({ treeName, id, client, store, queryClient })
+      tpop({ id, client, store, queryClient })
       break
     case 'tpopfeldkontrFolder':
       tpopfeldkontrFolder({
-        treeName,
         id,
         client,
         store,
@@ -48,7 +46,6 @@ const openLowerNodes = ({
       break
     case 'tpopfreiwkontrFolder':
       tpopfreiwkontrFolder({
-        treeName,
         id,
         client,
         store,
@@ -56,11 +53,10 @@ const openLowerNodes = ({
       })
       break
     case 'zielFolder':
-      zielFolder({ treeName, id, client, store, queryClient })
+      zielFolder({ id, client, store, queryClient })
       break
     case 'zieljahrFolder':
       zieljahrFolder({
-        treeName,
         id,
         parentId,
         store,
