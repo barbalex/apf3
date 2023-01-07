@@ -54,7 +54,7 @@ const showCoordOfTpopOnMapGeoAdminChData = {
   action: 'showCoordOfTpopOnMapGeoAdminCh',
 }
 
-const Tpop = ({ onClick, treeName }) => {
+const Tpop = ({ onClick }) => {
   const { copying, user, moving } = useContext(storeContext)
 
   const isMoving =
@@ -66,7 +66,7 @@ const Tpop = ({ onClick, treeName }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpop`} hideOnLeave={true}>
+      <ContextMenu id="treetpop" hideOnLeave={true}>
         <div className="react-contextmenu-title">Teil-Population</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen
@@ -82,11 +82,9 @@ const Tpop = ({ onClick, treeName }) => {
             <MenuItem onClick={onClick} data={deleteData}>
               lösche
             </MenuItem>
-            {treeName === 'tree' && (
-              <MenuItem onClick={onClick} data={localizeOnMapData}>
-                verorte auf Karte (mit Doppel-Klick)
-              </MenuItem>
-            )}
+            <MenuItem onClick={onClick} data={localizeOnMapData}>
+              verorte auf Karte (mit Doppel-Klick)
+            </MenuItem>
             <MenuItem onClick={onClick} data={markForMovingData}>
               verschiebe
             </MenuItem>

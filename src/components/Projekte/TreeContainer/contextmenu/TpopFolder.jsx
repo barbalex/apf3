@@ -27,7 +27,7 @@ const resetCopyingData = {
   action: 'resetCopying',
 }
 
-const TpopFolder = ({ treeName, onClick }) => {
+const TpopFolder = ({ onClick }) => {
   const { copying, user, moving } = useContext(storeContext)
 
   const isMoving = moving.table && moving.table === 'tpop'
@@ -35,7 +35,7 @@ const TpopFolder = ({ treeName, onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}tpopFolder`} hideOnLeave={true}>
+      <ContextMenu id="treetpopFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Teil-Populationen</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen
