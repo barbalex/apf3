@@ -63,6 +63,7 @@ const Headdata = ({ row, activeTab }) => {
   )
 
   if (error) return <Error error={error} />
+
   return (
     <Container>
       <BearbLabel>BeobachterIn</BearbLabel>

@@ -54,7 +54,7 @@ const FilterComment = styled.li`
   font-size: 0.75em;
 `
 
-const TpopmassnFilter = ({ treeName }) => {
+const TpopmassnFilter = () => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
 
@@ -70,7 +70,7 @@ const TpopmassnFilter = ({ treeName }) => {
     apIdInActiveNodeArray,
     // popIdInActiveNodeArray,
     // tpopIdInActiveNodeArray,
-  } = store[treeName]
+  } = store.tree
 
   const apId = apIdInActiveNodeArray
   // const popId = popIdInActiveNodeArray
@@ -158,7 +158,6 @@ const TpopmassnFilter = ({ treeName }) => {
       <ErrorBoundary>
         <FilterTitle
           title="Massnahmen"
-          treeName={treeName}
           table="tpopmassn"
           totalNr={data?.allTpopmassns?.totalCount ?? '...'}
           filteredNr={data?.tpopmassnsFiltered?.totalCount ?? '...'}
@@ -196,7 +195,6 @@ const TpopmassnFilter = ({ treeName }) => {
           dataFilter={dataFilter.tpopmassn}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          treeName={treeName}
         />
         <FormScrollContainer>
           <SimpleBar

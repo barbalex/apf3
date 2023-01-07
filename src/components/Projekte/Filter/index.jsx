@@ -28,13 +28,9 @@ const Filter = ({ treeName }) => {
         {activeTab === 'ap' && <ApFilter treeName={treeName} />}
         {activeTab === 'pop' && <PopFilter treeName={treeName} />}
         {activeTab === 'tpop' && <TpopFilter treeName={treeName} />}
-        {activeTab === 'tpopmassn' && <TpopmassnFilter treeName={treeName} />}
-        {activeTab === 'tpopfeldkontr' && (
-          <TpopfeldkontrFilter treeName={treeName} />
-        )}
-        {activeTab === 'tpopfreiwkontr' && (
-          <TpopfreiwkontrFilter treeName={treeName} />
-        )}
+        {activeTab === 'tpopmassn' && <TpopmassnFilter />}
+        {activeTab === 'tpopfeldkontr' && <TpopfeldkontrFilter />}
+        {activeTab === 'tpopfreiwkontr' && <TpopfreiwkontrFilter />}
       </Container>
     </ErrorBoundary>
   )

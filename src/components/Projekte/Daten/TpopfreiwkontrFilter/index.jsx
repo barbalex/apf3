@@ -45,9 +45,9 @@ const FilterComment = styled.li`
   font-size: 0.75em;
 `
 
-const Tpopfreiwkontr = ({ treeName }) => {
+const Tpopfreiwkontr = () => {
   const store = useContext(storeContext)
-  const tree = store[treeName]
+  const tree = store.tree
   const {
     dataFilter,
     ekfGqlFilter,
@@ -122,7 +122,6 @@ const Tpopfreiwkontr = ({ treeName }) => {
     <Container>
       <FilterTitle
         title="Freiwilligen-Kontrollen"
-        treeName={treeName}
         table="tpopfreiwkontr"
         totalNr={dataTpopkontrs?.allTpopkontrs?.totalCount ?? '...'}
         filteredNr={dataTpopkontrs?.tpopkontrsFiltered?.totalCount ?? '...'}
@@ -160,7 +159,6 @@ const Tpopfreiwkontr = ({ treeName }) => {
         dataFilter={dataFilter.tpopfreiwkontr}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        treeName={treeName}
       />
       <ScrollContainer>
         <SimpleBar
@@ -169,11 +167,7 @@ const Tpopfreiwkontr = ({ treeName }) => {
             height: '100%',
           }}
         >
-          <TpopfreiwkontrForm
-            treeName={treeName}
-            row={row}
-            activeTab={activeTab}
-          />
+          <TpopfreiwkontrForm row={row} activeTab={activeTab} />
         </SimpleBar>
       </ScrollContainer>
     </Container>

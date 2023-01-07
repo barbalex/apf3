@@ -93,7 +93,7 @@ const tpopkontrTypWerte = [
   },
 ]
 
-const TpopfeldkontrFilter = ({ treeName }) => {
+const TpopfeldkontrFilter = () => {
   const store = useContext(storeContext)
   const { dataFilterSetValue, urlQuery, setUrlQuery } = store
   const {
@@ -108,7 +108,7 @@ const TpopfeldkontrFilter = ({ treeName }) => {
     apIdInActiveNodeArray,
     // popIdInActiveNodeArray,
     // tpopIdInActiveNodeArray,
-  } = store[treeName]
+  } = store.tree
 
   const apId = apIdInActiveNodeArray
   // const popId = popIdInActiveNodeArray
@@ -215,7 +215,6 @@ const TpopfeldkontrFilter = ({ treeName }) => {
       <Container ref={resizeRef}>
         <FilterTitle
           title="Feld-Kontrollen"
-          treeName={treeName}
           table="tpopfeldkontr"
           totalNr={dataTpopkontrs?.allTpopkontrs?.totalCount ?? '...'}
           filteredNr={dataTpopkontrs?.tpopkontrsFiltered?.totalCount ?? '...'}
@@ -253,7 +252,6 @@ const TpopfeldkontrFilter = ({ treeName }) => {
           dataFilter={dataFilter.tpopfeldkontr}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          treeName={treeName}
         />
         <FieldsContainer>
           <Tabs

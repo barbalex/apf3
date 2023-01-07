@@ -104,7 +104,7 @@ const GridContainer = styled.div`
   }
 `
 
-const TpopfreiwkontrForm = ({ treeName, row, activeTab }) => {
+const TpopfreiwkontrForm = ({ row, activeTab }) => {
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
 
@@ -130,7 +130,7 @@ const TpopfreiwkontrForm = ({ treeName, row, activeTab }) => {
   return (
     <FormContainer ref={resizeRef}>
       <GridContainer width={width}>
-        <Headdata row={row} treeName={treeName} activeTab={activeTab} />
+        <Headdata row={row} activeTab={activeTab} />
         <Date saveToDb={saveToDb} row={row} />
         <Map saveToDb={saveToDb} row={row} />
         <Cover saveToDb={saveToDb} row={row} />
