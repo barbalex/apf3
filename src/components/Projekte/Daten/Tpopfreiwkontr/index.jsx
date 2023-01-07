@@ -38,7 +38,7 @@ const StyledIconButton = styled(IconButton)`
   margin-right: 10px !important;
 `
 
-const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
+const Tpopfreiwkontr = ({ id: idPassed }) => {
   const { pathname } = useLocation()
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -157,7 +157,6 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
       )}
       {isPrint ? (
         <TpopfreiwkontrForm
-          treeName={treeName}
           data={data}
           row={row}
           apId={apId}
@@ -172,7 +171,6 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
             }}
           >
             <TpopfreiwkontrForm
-              treeName={treeName}
               data={data}
               row={row}
               apId={apId}

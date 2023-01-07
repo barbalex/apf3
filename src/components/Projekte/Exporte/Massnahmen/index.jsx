@@ -13,7 +13,7 @@ import {
 import Massnahmen from './Massnahmen'
 import MassnWebgisBun from './MassnWebgisBun'
 
-const MassnahmenExporte = ({ treeName }) => {
+const MassnahmenExporte = () => {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -34,8 +34,8 @@ const MassnahmenExporte = ({ treeName }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {expanded ? (
           <StyledCardContent>
-            <Massnahmen treeName={treeName} />
-            <Massnahmen treeName={treeName} filtered={true} />
+            <Massnahmen />
+            <Massnahmen filtered={true} />
             <MassnWebgisBun />
           </StyledCardContent>
         ) : null}

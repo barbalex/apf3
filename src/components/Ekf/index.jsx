@@ -107,7 +107,7 @@ const Ekf = () => {
       <AppBar ekf={ekf}>
         <>
           {ekf.map((e) => (
-            <Tpopfreiwkontr treeName="tree" id={e.id} key={e.id} />
+            <Tpopfreiwkontr id={e.id} key={e.id} />
           ))}
         </>
       </AppBar>
@@ -119,11 +119,7 @@ const Ekf = () => {
       <Container>
         <StyledSplitPane split="vertical" size="350px" minSize={100}>
           <EkfList ekf={ekf} />
-          {ekfId ? (
-            <Tpopfreiwkontr treeName="tree" id={ekfId} />
-          ) : (
-            <InnerContainer />
-          )}
+          {ekfId ? <Tpopfreiwkontr id={ekfId} /> : <InnerContainer />}
         </StyledSplitPane>
       </Container>
     </AppBar>

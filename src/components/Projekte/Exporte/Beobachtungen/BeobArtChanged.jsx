@@ -6,11 +6,11 @@ import exportModule from '../../../../modules/export'
 import storeContext from '../../../../storeContext'
 import { DownloadCardButton, StyledProgressText } from '../index'
 
-const BeobachtungenExports = ({ treeName }) => {
+const BeobachtungenExports = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification } = store
-  const { mapFilter } = store[treeName]
+  const { mapFilter } = store.tree
 
   const [queryState, setQueryState] = useState()
 

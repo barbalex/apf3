@@ -107,14 +107,14 @@ const Exporte = () => {
               }}
             >
               <InnerContainer>
-                <Optionen  />
+                <Optionen />
                 <Tipps />
-                <Ap  />
-                <Populationen  />
-                <Teilpopulationen  />
-                <Kontrollen treeName={treeName} />
-                <Massnahmen treeName={treeName} />
-                <Beobachtungen treeName={treeName} />
+                <Ap />
+                <Populationen />
+                <Teilpopulationen />
+                <Kontrollen />
+                <Massnahmen />
+                <Beobachtungen />
                 <Anwendung />
               </InnerContainer>
             </SimpleBar>

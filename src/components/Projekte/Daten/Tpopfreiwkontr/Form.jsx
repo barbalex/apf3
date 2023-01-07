@@ -149,7 +149,7 @@ const fieldTypes = {
   ekfBemerkungen: 'String',
 }
 
-const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
+const TpopfreiwkontrForm = ({ data, refetch, row, apId }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { dataFilterSetValue, isPrint, user } = store
@@ -353,7 +353,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehl1ShowEmpty && (
@@ -372,7 +371,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehl2ShowNew && (
@@ -385,7 +383,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehl2ShowEmpty && !zaehl1ShowEmpty && (
@@ -399,7 +396,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehls3 && (
@@ -412,7 +408,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehl3ShowNew && (
@@ -425,7 +420,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         {zaehl3ShowEmpty && !zaehl2ShowEmpty && (
@@ -439,7 +433,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
             einheitsUsed={einheitsUsed}
             ekzaehleinheits={ekzaehleinheits}
             ekzaehleinheitsOriginal={ekzaehleinheitsOriginal}
-            treeName={treeName}
           />
         )}
         <Cover saveToDb={saveToDb} row={row} errors={errors} />
