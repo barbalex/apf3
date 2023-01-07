@@ -682,22 +682,13 @@ const TreeContainer = ({ treeName, nodes, treeLoading, treeError }) => {
         <CmTpopmassnber onClick={handleClick} />
         <CmTpopmassnFolder onClick={handleClick} />
         <CmTpopmassn onClick={handleClick} />
-        <CmUserFolder onClick={handleClick} treeName={treeName} />
-        <CmUser onClick={handleClick} treeName={treeName} />
-        <CmAdresseFolder onClick={handleClick} treeName={treeName} />
-        <CmTpopApberrelevantGrundWerteFolder
-          onClick={handleClick}
-          treeName={treeName}
-        />
-        <CmEkAbrechnungstypWerteFolder
-          onClick={handleClick}
-          treeName={treeName}
-        />
-        <CmEkAbrechnungstypWerte onClick={handleClick} treeName={treeName} />
-        <CmTpopkontrzaehlEinheitWerteFolder
-          onClick={handleClick}
-          treeName={treeName}
-        />
+        <CmUserFolder onClick={handleClick} />
+        <CmUser onClick={handleClick} />
+        <CmAdresseFolder onClick={handleClick} />
+        <CmTpopApberrelevantGrundWerteFolder onClick={handleClick} />
+        <CmEkAbrechnungstypWerteFolder onClick={handleClick} />
+        <CmEkAbrechnungstypWerte onClick={handleClick} />
+        <CmTpopkontrzaehlEinheitWerteFolder onClick={handleClick} />
         <CmTpopkontrzaehlEinheitWerte
           onClick={handleClick}
           treeName={treeName}

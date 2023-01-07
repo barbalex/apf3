@@ -15,12 +15,12 @@ const insertData = {
   table: 'user',
 }
 
-const Apfolder = ({ onClick, treeName }) => {
+const UserFolder = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}userFolder`} hideOnLeave={true}>
+      <ContextMenu id="treeUserFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Benutzer</div>
         <MenuItem onClick={onClick} data={closeLowerNodesData}>
           alle schliessen
@@ -35,4 +35,4 @@ const Apfolder = ({ onClick, treeName }) => {
   )
 }
 
-export default observer(Apfolder)
+export default observer(UserFolder)

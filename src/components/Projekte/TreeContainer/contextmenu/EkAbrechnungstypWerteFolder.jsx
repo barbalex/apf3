@@ -12,12 +12,9 @@ const insertData = {
   table: 'ek_abrechnungstyp_werte',
 }
 
-const EkAbrechnungstypWerteFolder = ({ onClick, treeName }) => (
+const EkAbrechnungstypWerteFolder = ({ onClick }) => (
   <ErrorBoundary>
-    <ContextMenu
-      id={`${treeName}ekAbrechnungstypWerteFolder`}
-      hideOnLeave={true}
-    >
+    <ContextMenu id="treeEkAbrechnungstypWerteFolder" hideOnLeave={true}>
       <div className="react-contextmenu-title">EK-Abrechnungstyp</div>
       <MenuItem onClick={onClick} data={closeLowerNodesData}>
         alle schliessen

@@ -12,12 +12,9 @@ const insertData = {
   table: 'tpopkontrzaehl_einheit_werte',
 }
 
-const TpopkontrzaehlEinheitWerteFolder = ({ onClick, treeName }) => (
+const TpopkontrzaehlEinheitWerteFolder = ({ onClick }) => (
   <ErrorBoundary>
-    <ContextMenu
-      id={`${treeName}tpopkontrzaehlEinheitWerteFolder`}
-      hideOnLeave={true}
-    >
+    <ContextMenu id="treeTpopkontrzaehlEinheitWerteFolder" hideOnLeave={true}>
       <div className="react-contextmenu-title">Zähl-Einheiten</div>
       <MenuItem onClick={onClick} data={closeLowerNodesData}>
         alle schliessen

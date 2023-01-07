@@ -13,9 +13,9 @@ const deleteData = {
   table: 'ek_abrechnungstyp_werte',
 }
 
-const EkAbrechnungstypWerte = ({ onClick, treeName }) => (
+const EkAbrechnungstypWerte = ({ onClick }) => (
   <ErrorBoundary>
-    <ContextMenu id={`${treeName}ekAbrechnungstypWerte`} hideOnLeave={true}>
+    <ContextMenu id="treeEkAbrechnungstypWerte" hideOnLeave={true}>
       <div className="react-contextmenu-title">EK-Abrechnungstyp</div>
       <MenuItem onClick={onClick} data={insertData}>
         erstelle neue
