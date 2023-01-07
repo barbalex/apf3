@@ -3,7 +3,6 @@ import findIndex from 'lodash/findIndex'
 const apartFolderNode = ({
   nodes: nodesPassed,
   data,
-  treeName,
   loading,
   projektNodes,
   projId,
@@ -14,7 +13,7 @@ const apartFolderNode = ({
   // return empty if ap is not a real ap and apFilter is set
   const ap = (data?.allAps?.nodes ?? []).find((n) => n.id === apId)
   const isAp = ap && [1, 2, 3].includes(ap.bearbeitung) //@485
-  const apFilter = store?.[treeName]?.apFilter
+  const apFilter = store.tree?.apFilter
   if (!!apFilter && !isAp) return []
 
   const aparts = data?.allAparts?.nodes ?? []
@@ -26,7 +25,7 @@ const apartFolderNode = ({
   const apIndex = findIndex(apNodes, {
     id: apId,
   })
-  const nodeLabelFilterString = store?.[treeName]?.nodeLabelFilter?.apart ?? ''
+  const nodeLabelFilterString = store.tree?.nodeLabelFilter?.apart ?? ''
 
   const apartNodesLength = aparts.filter((el) => el.apId === apId).length
   /*let message = loading && !apartNodesLength ? '...' : apartNodesLength

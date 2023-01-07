@@ -267,7 +267,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildApartFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -277,8 +276,7 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           }),
           ...buildBeobNichtBeurteiltFolderNodes({
             nodes,
-            data: data,
-            treeName,
+            data,
             loading,
             apNodes,
             projektNodes,
@@ -289,7 +287,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildBeobNichtZuzuordnenFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             projektNodes,
@@ -350,7 +347,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildApzielberFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             apNodes,
             openNodes,
@@ -519,7 +515,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildTpopFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projektNodes,
             projId,
@@ -532,7 +527,6 @@ const nodes = ({ data, loading, store, role, treeName }) => {
           ...buildPopberFolderNodes({
             nodes,
             data,
-            treeName,
             loading,
             projektNodes,
             projId,
