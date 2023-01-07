@@ -320,7 +320,6 @@ const TpopfreiwkontrForm = ({ treeName, data, refetch, row, apId }) => {
       row.tpopkontrzaehlsByTpopkontrId,
       user.name,
       dataFilterSetValue,
-      treeName,
       client,
     ],
   )

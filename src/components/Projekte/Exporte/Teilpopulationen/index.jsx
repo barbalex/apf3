@@ -11,7 +11,7 @@ import {
   CardActionIconButton,
 } from '../index'
 
-const Teilpopulationen = ({ treeName }) => {
+const Teilpopulationen = () => {
   const [expanded, setExpanded] = useState(false)
 
   const onClickAction = useCallback(() => setExpanded(!expanded), [expanded])
@@ -32,7 +32,7 @@ const Teilpopulationen = ({ treeName }) => {
         </CardActionIconButton>
       </StyledCardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {expanded ? <CardContent treeName={treeName} /> : null}
+        {expanded ? <CardContent /> : null}
       </Collapse>
     </StyledCard>
   )

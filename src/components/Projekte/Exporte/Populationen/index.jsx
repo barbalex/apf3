@@ -24,7 +24,7 @@ import LetzterMassnBericht from './LetzterMassnBericht'
 import LetzteZaehlung from './LetzteZaehlung'
 import LetzteZaehlungInklAnpflanz from './LetzteZaehlungInklAnpflanz'
 
-const PopulationenExports = ({ treeName }) => {
+const PopulationenExports = () => {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -45,8 +45,8 @@ const PopulationenExports = ({ treeName }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {expanded ? (
           <StyledCardContent>
-            <Pops treeName={treeName} />
-            <Pops treeName={treeName} filtered={true} />
+            <Pops  />
+            <Pops  filtered={true} />
             <PopsForGoogleEarth />
             <PopsForGEArtname />
             <ApOhneStatus />

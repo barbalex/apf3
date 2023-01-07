@@ -6,16 +6,15 @@ import exportModule from '../../../../modules/export'
 import storeContext from '../../../../storeContext'
 import { DownloadCardButton, StyledProgressText } from '../index'
 
-const Pops = ({ treeName, filtered = false }) => {
+const Pops = ({ filtered = false }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification, tableIsFiltered } = store
-  const { popGqlFilter } = store[treeName]
+  const { popGqlFilter } = store.tree
 
   const [queryState, setQueryState] = useState()
 
   const popIsFiltered = tableIsFiltered({
-    treeName,
     table: 'pop',
   })
 

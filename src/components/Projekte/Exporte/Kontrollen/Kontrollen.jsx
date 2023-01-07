@@ -6,11 +6,11 @@ import exportModule from '../../../../modules/export'
 import storeContext from '../../../../storeContext'
 import { DownloadCardButton, StyledProgressText } from '../index'
 
-const KontrollenButton = ({ treeName, filtered = false }) => {
+const KontrollenButton = ({ filtered = false }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification } = store
-  const { tpopkontrGqlFilter } = store[treeName]
+  const { tpopkontrGqlFilter } = store.tree
 
   const [queryState, setQueryState] = useState()
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TPop from './TPop' 
+import TPop from './TPop'
 import Wollmilchsau from './Wollmilchsau'
 import WollmilchsauSingle from './WollmilchsauSingle'
 import LetzteZaehlungen from './LetzteZaehlungen'
@@ -14,10 +14,10 @@ import TPopFuerGoogleEarth from './TPopFuerGoogleEarth'
 import TPopFuerWebgisBun from './TPopFuerWebgisBun'
 import { StyledCardContent } from '../index'
 
-const Teilpopulationen = ({ treeName }) => (
+const Teilpopulationen = () => (
   <StyledCardContent>
-    <TPop treeName={treeName} />
-    <TPop treeName={treeName} filtered={true} />
+    <TPop />
+    <TPop filtered={true} />
     <TPopFuerWebgisBun />
     <TPopFuerGoogleEarth />
     <TPopFuerGEArtname />

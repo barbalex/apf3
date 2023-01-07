@@ -9,7 +9,7 @@ import storeContext from '../../../../../storeContext'
 import updateTpopkontrzaehlByIdGql from './updateTpopkontrzaehlById'
 import ifIsNumericAsNumber from '../../../../../modules/ifIsNumericAsNumber'
 
-const Gezaehlt = ({ row, refetch, treeName }) => {
+const Gezaehlt = ({ row, refetch }) => {
   const store = useContext(storeContext)
   const client = useApolloClient()
   const queryClient = useQueryClient()
@@ -37,7 +37,7 @@ const Gezaehlt = ({ row, refetch, treeName }) => {
         return setErrors({ anzahl: error.message })
       }
       refetch()
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
     [
       client,

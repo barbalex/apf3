@@ -6,11 +6,11 @@ import exportModule from '../../../../modules/export'
 import storeContext from '../../../../storeContext'
 import { DownloadCardButton, StyledProgressText } from '../index'
 
-const Teilpopulationen = ({ treeName, filtered = false }) => { 
+const Teilpopulationen = ({ filtered = false }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification, tableIsFiltered } = store
-  const { tpopGqlFilter } = store[treeName]
+  const { tpopGqlFilter } = store.tree
 
   const [queryState, setQueryState] = useState()
 
@@ -204,7 +204,6 @@ const Teilpopulationen = ({ treeName, filtered = false }) => {
   }, [client, enqueNotification, filtered, store, tpopGqlFilter.filtered])
 
   const tpopIsFiltered = tableIsFiltered({
-    treeName,
     table: 'tpop',
   })
 

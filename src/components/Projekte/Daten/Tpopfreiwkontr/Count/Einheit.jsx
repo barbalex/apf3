@@ -33,7 +33,7 @@ const EinheitLabel = styled(Label)`
   margin-top: 5px;
 `
 
-const Einheit = ({ nr, row, refetch, zaehleinheitWerte, treeName }) => {
+const Einheit = ({ nr, row, refetch, zaehleinheitWerte }) => {
   const store = useContext(storeContext)
   const client = useApolloClient()
   const queryClient = useQueryClient()
@@ -59,7 +59,7 @@ const Einheit = ({ nr, row, refetch, zaehleinheitWerte, treeName }) => {
         return setErrors(error.message)
       }
       refetch()
-      queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
     [
       client,
@@ -69,7 +69,6 @@ const Einheit = ({ nr, row, refetch, zaehleinheitWerte, treeName }) => {
       row.id,
       row.methode,
       store.user.name,
-      treeName,
     ],
   )
 

@@ -93,7 +93,7 @@ export const CardActionIconButton = styled(IconButton)`
   transform: ${(props) => (props['data-expanded'] ? 'rotate(180deg)' : 'none')};
 `
 
-const Exporte = ({ treeName }) => {
+const Exporte = () => {
   return (
     <ExporteContainer data-id={`exporte-container`}>
       <ErrorBoundary>
@@ -107,11 +107,11 @@ const Exporte = ({ treeName }) => {
               }}
             >
               <InnerContainer>
-                <Optionen treeName={treeName} />
+                <Optionen  />
                 <Tipps />
-                <Ap treeName={treeName} />
-                <Populationen treeName={treeName} />
-                <Teilpopulationen treeName={treeName} />
+                <Ap  />
+                <Populationen  />
+                <Teilpopulationen  />
                 <Kontrollen treeName={treeName} />
                 <Massnahmen treeName={treeName} />
                 <Beobachtungen treeName={treeName} />

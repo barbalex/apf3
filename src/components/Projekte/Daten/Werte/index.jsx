@@ -27,10 +27,10 @@ const FormContainer = styled.div`
   padding: 10px;
 `
 
-const Werte = ({ treeName, table }) => {
+const Werte = ({ table }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -131,11 +131,7 @@ const Werte = ({ treeName, table }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.apId}
-          title={table}
-          table={table}
-        />
+        <FormTitle apId={row.apId} title={table} table={table} />
         <FieldsContainer>
           <SimpleBar
             style={{

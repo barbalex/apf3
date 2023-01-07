@@ -170,14 +170,13 @@ const Count = ({
   einheitsUsed = [],
   ekzaehleinheits = [],
   ekzaehleinheitsOriginal = [],
-  treeName,
 }) => {
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { setToDelete } = useContext(storeContext)
 
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const {
     data,
@@ -238,7 +237,7 @@ const Count = ({
     ({ row }) => {
       const afterDeletionHook = () => {
         refetch()
-        queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] })
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       }
       setToDelete({
         table: 'tpopkontrzaehl',
@@ -248,7 +247,7 @@ const Count = ({
         afterDeletionHook,
       })
     },
-    [setToDelete, activeNodeArray, refetch, queryClient, treeName],
+    [setToDelete, activeNodeArray, refetch, queryClient],
   )
 
   //console.log('Count, row:', row)
@@ -287,15 +286,14 @@ const Count = ({
         refetch={refetch}
         zaehleinheitWerte={zaehleinheitWerte}
         nr={nr}
-        treeName={treeName}
       />
       <GezaehltLabel>gezählt</GezaehltLabel>
       <GeschaetztLabel>geschätzt</GeschaetztLabel>
       <GezaehltVal>
-        <Gezaehlt row={row} refetch={refetchMe} treeName={treeName} />
+        <Gezaehlt row={row} refetch={refetchMe} />
       </GezaehltVal>
       <GeschaetztVal>
-        <Geschaetzt row={row} refetch={refetchMe} treeName={treeName} />
+        <Geschaetzt row={row} refetch={refetchMe} />
       </GeschaetztVal>
       {showDelete && (
         <Delete>

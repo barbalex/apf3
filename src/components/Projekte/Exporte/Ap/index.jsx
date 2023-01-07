@@ -24,7 +24,7 @@ import Erfkrit from './Erfkrit'
 import Idealbiotop from './Idealbiotop'
 import Assozart from './Assozart'
 
-const ApExports = ({ treeName }) => {
+const ApExports = () => {
   const [expanded, setExpanded] = useState(false)
 
   const onClickAction = useCallback(() => setExpanded(!expanded), [expanded])
@@ -47,8 +47,8 @@ const ApExports = ({ treeName }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {expanded ? (
           <StyledCardContent>
-            <Ap treeName={treeName} />
-            <Ap treeName={treeName} filtered={true} />
+            <Ap />
+            <Ap filtered={true} />
             <ApOhnePop />
             <AnzMassn />
             <AnzKontr />

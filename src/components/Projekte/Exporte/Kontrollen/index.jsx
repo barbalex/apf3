@@ -14,7 +14,7 @@ import Kontrollen from './Kontrollen'
 import KontrFuerWebgisBun from './KontrFuerWebgisBun'
 import KontrAnzProZaehlEinheit from './KontrAnzProZaehlEinheit'
 
-const KontrollenComponent = ({ treeName }) => {
+const KontrollenComponent = () => {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -35,8 +35,8 @@ const KontrollenComponent = ({ treeName }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {expanded ? (
           <StyledCardContent>
-            <Kontrollen treeName={treeName} />
-            <Kontrollen treeName={treeName} filtered={true} />
+            <Kontrollen />
+            <Kontrollen filtered={true} />
             <KontrFuerWebgisBun />
             <KontrAnzProZaehlEinheit />
           </StyledCardContent>
