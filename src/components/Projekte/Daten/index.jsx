@@ -88,7 +88,7 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'currentIssue': {
-      form = <CurrentIssue treeName={treeName} />
+      form = <CurrentIssue />
       break
     }
     case 'message': {
@@ -96,19 +96,19 @@ const Daten = ({ treeName, activeForm }) => {
       break
     }
     case 'ekzaehleinheit': {
-      form = <Ekzaehleinheit treeName={treeName} />
+      form = <Ekzaehleinheit />
       break
     }
     case 'ekfrequenz': {
-      form = <Ekfrequenz treeName={treeName} />
+      form = <Ekfrequenz />
       break
     }
     case 'erfkrit': {
-      form = <Erfkrit treeName={treeName} />
+      form = <Erfkrit />
       break
     }
     case 'exporte': {
-      form = <Exporte treeName={treeName} />
+      form = <Exporte />
       break
     }
     case 'idealbiotop': {

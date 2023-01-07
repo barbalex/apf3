@@ -69,10 +69,10 @@ const kontrolljahreAbWertes = [
   { value: 'ANSIEDLUNG', label: 'Ansiedlung' },
 ]
 
-const Ekfrequenz = ({ treeName }) => {
+const Ekfrequenz = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

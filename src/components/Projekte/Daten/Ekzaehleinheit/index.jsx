@@ -42,10 +42,10 @@ const fieldTypes = {
   sort: 'Int',
 }
 
-const Ekzaehleinheit = ({ treeName }) => {
+const Ekzaehleinheit = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -35,9 +35,9 @@ const query = gql`
   ${currentIssueFragment}
 `
 
-const CurrentIssue = ({ treeName }) => {
+const CurrentIssue = () => {
   const store = useContext(storeContext)
-  const { activeNodeArray } = store[treeName]
+  const { activeNodeArray } = store.tree
 
   const { data, loading, error } = useQuery(query, {
     variables: {
