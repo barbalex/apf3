@@ -71,7 +71,7 @@ const Error = styled.div`
   color: red;
 `
 
-const ErfkritFolder = ({ onClick, treeName }) => {
+const ErfkritFolder = ({ onClick }) => {
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const { user, enqueNotification } = useContext(storeContext)
@@ -222,7 +222,7 @@ const ErfkritFolder = ({ onClick, treeName }) => {
               },
             })
           }),
-          queryClient.invalidateQueries({ queryKey: [`${treeName}Query`] }),
+          queryClient.invalidateQueries({ queryKey: [`treeQuery`] }),
         )
       } catch (error) {
         console.log({ error })
@@ -240,7 +240,7 @@ const ErfkritFolder = ({ onClick, treeName }) => {
         },
       })
     },
-    [apId, client, enqueNotification, queryClient, treeName, user.name],
+    [apId, client, enqueNotification, queryClient, user.name],
   )
 
   const [apOptionsError, setApOptionsError] = useState(undefined)
@@ -292,7 +292,7 @@ const ErfkritFolder = ({ onClick, treeName }) => {
   return (
     <ErrorBoundary>
       <ContextMenu
-        id={`${treeName}erfkritFolder`}
+        id="treeerfkritFolder"
         collect={(props) => props}
         onShow={onShow}
         hideOnLeave={true}

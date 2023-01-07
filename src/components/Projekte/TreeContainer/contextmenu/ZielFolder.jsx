@@ -18,12 +18,12 @@ const insertData = {
   table: 'ziel',
 }
 
-const ZielFolder = ({ onClick, treeName }) => {
+const ZielFolder = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}zielFolder`} hideOnLeave={true}>
+      <ContextMenu id="treezielFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Ziele</div>
         <MenuItem onClick={onClick} data={openLowerNodesData}>
           alle öffnen

@@ -16,12 +16,12 @@ const deleteData = {
   table: 'ziel',
 }
 
-const Ziel = ({ treeName, onClick }) => {
+const Ziel = ({ onClick }) => {
   const { user } = useContext(storeContext)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id={`${treeName}ziel`} hideOnLeave={true}>
+      <ContextMenu id="treeziel" hideOnLeave={true}>
         <div className="react-contextmenu-title">Ziel</div>
         {!userIsReadOnly(user.token) && (
           <>
