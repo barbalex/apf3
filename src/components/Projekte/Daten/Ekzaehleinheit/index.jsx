@@ -154,7 +154,6 @@ const Ekzaehleinheit = ({ treeName }) => {
         <FormTitle
           apId={row.apId}
           title="EK-Zähleinheit"
-          treeName={treeName}
           table="ekzaehleinheit"
         />
         <FieldsContainer>

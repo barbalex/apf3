@@ -98,7 +98,7 @@ const Projekt = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle title="Projekt" treeName={treeName} table={filterTable} />
+        <FormTitle title="Projekt" table={filterTable} />
         <FieldsContainer>
           <SimpleBar
             style={{

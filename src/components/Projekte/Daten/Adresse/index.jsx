@@ -102,12 +102,7 @@ const Adresse = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.id}
-          title="Adresse"
-          treeName={treeName}
-          table="adresse"
-        />
+        <FormTitle apId={row.id} title="Adresse" table="adresse" />
         <FieldsContainer>
           <SimpleBar
             style={{

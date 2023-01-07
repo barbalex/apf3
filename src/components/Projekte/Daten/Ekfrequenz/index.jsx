@@ -145,12 +145,7 @@ const Ekfrequenz = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.apId}
-          title="EK-Frequenz"
-          treeName={treeName}
-          table="ekfrequenz"
-        />
+        <FormTitle apId={row.apId} title="EK-Frequenz" table="ekfrequenz" />
         <FieldsContainer>
           <SimpleBar
             style={{

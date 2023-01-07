@@ -62,7 +62,6 @@ const CurrentIssue = ({ treeName }) => {
         <FormTitle
           apId={row.id}
           title="Aktueller Fehler"
-          treeName={treeName}
           table="currentissue"
         />
         <FieldsContainer>

@@ -114,12 +114,7 @@ const Erfkrit = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.apId}
-          title="Erfolgs-Kriterium"
-          treeName={treeName}
-          table="erfkrit"
-        />
+        <FormTitle apId={row.apId} title="Erfolgs-Kriterium" table="erfkrit" />
         <FieldsContainer>
           <SimpleBar
             style={{

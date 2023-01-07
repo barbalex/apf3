@@ -139,12 +139,7 @@ const Apber = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle
-          apId={row.apId}
-          title="AP-Bericht"
-          treeName={treeName}
-          table="apber"
-        />
+        <FormTitle apId={row.apId} title="AP-Bericht" table="apber" />
         <FieldsContainer>
           <SimpleBar
             style={{

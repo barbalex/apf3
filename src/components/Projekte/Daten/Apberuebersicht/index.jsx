@@ -225,11 +225,7 @@ const Apberuebersicht = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          title="AP-Bericht Jahresübersicht"
-          treeName={treeName}
-          table="apberuebersicht"
-        />
+        <FormTitle title="AP-Bericht Jahresübersicht" table="apberuebersicht" />
         <FieldsContainer>
           <SimpleBar
             style={{

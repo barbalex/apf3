@@ -198,7 +198,6 @@ const TpopForm = ({ treeName }) => {
         <FormTitle
           apId={data?.tpopById?.popByPopId?.apId}
           title="Teil-Population"
-          treeName={treeName}
         />
         <FieldsContainer>
           <Tabs

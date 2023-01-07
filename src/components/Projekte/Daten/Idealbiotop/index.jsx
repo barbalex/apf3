@@ -179,12 +179,7 @@ const Idealbiotop = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle
-          apId={row.apId}
-          title="Idealbiotop"
-          treeName={treeName}
-          table="idealbiotop"
-        />
+        <FormTitle apId={row.apId} title="Idealbiotop" table="idealbiotop" />
         <FieldsContainer>
           <Tabs
             value={tab}

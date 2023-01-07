@@ -295,12 +295,7 @@ const Beobzuordnung = ({ type, treeName }) => {
   return (
     <ErrorBoundary>
       <FormContainer>
-        <FormTitle
-          apId={apId ?? null}
-          title="Beobachtung"
-          treeName={treeName}
-          table="beob"
-        />
+        <FormTitle apId={apId ?? null} title="Beobachtung" table="beob" />
         <DataContainer>
           <SimpleBar
             style={{

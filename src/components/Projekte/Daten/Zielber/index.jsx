@@ -107,7 +107,6 @@ const Zielber = ({ treeName }) => {
         <FormTitle
           apId={activeNodeArray[3]}
           title="Ziel-Bericht"
-          treeName={treeName}
           table="zielber"
         />
         <FieldsContainer>

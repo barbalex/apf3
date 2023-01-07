@@ -135,12 +135,7 @@ const TpopkontrzaehlEinheitWerte = ({ treeName, table }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.apId}
-          title={table}
-          treeName={treeName}
-          table={table}
-        />
+        <FormTitle apId={row.apId} title={table} table={table} />
         <FieldsContainer>
           <SimpleBar
             style={{

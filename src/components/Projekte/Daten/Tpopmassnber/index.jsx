@@ -117,7 +117,6 @@ const Tpopmassnber = ({ treeName }) => {
         <FormTitle
           apId={data?.tpopmassnberById?.tpopByTpopId?.popByPopId?.apId}
           title="Massnahmen-Bericht Teil-Population"
-          treeName={treeName}
           table="tpopmassnber"
         />
         <FieldsContainer>

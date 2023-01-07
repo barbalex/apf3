@@ -134,7 +134,6 @@ const Werte = ({ treeName, table }) => {
         <FormTitle
           apId={row.apId}
           title={table}
-          treeName={treeName}
           table={table}
         />
         <FieldsContainer>

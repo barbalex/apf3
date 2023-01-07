@@ -146,7 +146,6 @@ const Tpopfreiwkontr = ({ treeName, id: idPassed }) => {
         <FormTitle
           apId={apId}
           title="Freiwilligen-Kontrolle"
-          treeName={treeName}
           buttons={
             <>
               <StyledIconButton onClick={onClickPrint} title="drucken">

@@ -320,7 +320,6 @@ const User = ({ treeName }) => {
         <FormTitle
           apId={row.id}
           title="Benutzer"
-          treeName={treeName}
           table="user"
           buttons={
             <>

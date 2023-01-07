@@ -131,12 +131,7 @@ const Assozart = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container data-id="assozart">
-        <FormTitle
-          apId={row.apId}
-          title="assoziierte Art"
-          treeName={treeName}
-          table="assozart"
-        />
+        <FormTitle apId={row.apId} title="assoziierte Art" table="assozart" />
         <FieldsContainer>
           <SimpleBar
             style={{

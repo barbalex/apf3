@@ -130,7 +130,6 @@ const Tpopkontrzaehl = ({ treeName }) => {
         <FormTitle
           apId={activeNodeArray[3]}
           title="Zählung"
-          treeName={treeName}
           table="tpopkontrzaehl"
         />
         <FieldsContainer>

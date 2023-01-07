@@ -156,11 +156,7 @@ const Pop = ({ treeName }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={data?.popById?.apId}
-          title="Population"
-          treeName={treeName}
-        />
+        <FormTitle apId={data?.popById?.apId} title="Population" />
         <Tabs
           value={tab}
           onChange={onChangeTab}

@@ -135,7 +135,6 @@ const Tpopber = ({ treeName }) => {
         <FormTitle
           apId={activeNodeArray[3]}
           title="Kontroll-Bericht Teil-Population"
-          treeName={treeName}
           table="tpopber"
         />
         <FieldsContainer>
