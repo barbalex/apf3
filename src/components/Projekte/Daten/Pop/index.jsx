@@ -153,7 +153,7 @@ const Pop = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={data?.popById?.apId} title="Population" />
+        <FormTitle title="Population" />
         <Tabs
           value={tab}
           onChange={onChangeTab}

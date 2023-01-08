@@ -114,11 +114,7 @@ const Popber = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={data?.popberById?.popByPopId?.apId}
-          title="Kontroll-Bericht Population"
-          table="popber"
-        />
+        <FormTitle title="Kontroll-Bericht Population" />
         <FieldsContainer>
           <SimpleBar
             style={{

@@ -178,7 +178,7 @@ const Idealbiotop = () => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle apId={row.apId} title="Idealbiotop" table="idealbiotop" />
+        <FormTitle title="Idealbiotop" />
         <FieldsContainer>
           <Tabs
             value={tab}

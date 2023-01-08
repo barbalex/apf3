@@ -112,7 +112,7 @@ const Erfkrit = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title="Erfolgs-Kriterium" table="erfkrit" />
+        <FormTitle title="Erfolgs-Kriterium" />
         <FieldsContainer>
           <SimpleBar
             style={{

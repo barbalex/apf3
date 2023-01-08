@@ -127,11 +127,7 @@ const Tpopkontrzaehl = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={activeNodeArray[3]}
-          title="Zählung"
-          table="tpopkontrzaehl"
-        />
+        <FormTitle title="Zählung" />
         <FieldsContainer>
           <SimpleBar
             style={{
