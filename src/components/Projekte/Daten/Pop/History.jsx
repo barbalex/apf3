@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import SimpleBar from 'simplebar-react'
 import { useQuery, gql } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import Spinner from '../../../shared/Spinner'
 import History from '../../../shared/History'
@@ -105,7 +106,9 @@ const Aktuell = styled.span`
   background-color: rgb(201, 238, 211);
 `
 
-const PopHistory = ({ popId }) => {
+const PopHistory = () => {
+  const { popId } = useParams()
+
   const { error, data, loading } = useQuery(popHistoriesQuery, {
     variables: {
       popId,

@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -54,17 +55,13 @@ const fieldTypes = {
 }
 
 const Pop = () => {
+  const { popId: id } = useParams()
+
   const store = useContext(storeContext)
   const client = useApolloClient()
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
-
-  const id =
-    activeNodeArray.length > 5
-      ? activeNodeArray[5]
-      : '99999999-9999-9999-9999-999999999999'
 
   const {
     data,
@@ -223,7 +220,7 @@ const Pop = () => {
               </SimpleBar>
             )}
             {tab === 'dateien' && <Files parentId={row.id} parent="pop" />}
-            {tab === 'history' && <PopHistory popId={id} />}
+            {tab === 'history' && <PopHistory />}
           </TabContent>
         </div>
       </Container>

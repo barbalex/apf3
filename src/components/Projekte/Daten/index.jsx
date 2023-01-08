@@ -2,7 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import Exporte from '../Exporte'
-import Pop from './Pop'
 import Popber from './Popber'
 import Popmassnber from './Popmassnber'
 import Projekt from './Projekt'
@@ -36,10 +35,6 @@ const Daten = ({ activeForm }) => {
   switch (activeForm.form) {
     case 'exporte': {
       form = <Exporte />
-      break
-    }
-    case 'pop': {
-      form = <Pop />
       break
     }
     case 'popber': {
