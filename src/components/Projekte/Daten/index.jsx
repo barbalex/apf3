@@ -2,7 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import Exporte from '../Exporte'
-import Tpopber from './Tpopber'
 import Tpopfeldkontr from './Tpopfeldkontr'
 import Tpopfreiwkontr from './Tpopfreiwkontr'
 import Tpopkontrzaehl from './Tpopkontrzaehl'
@@ -31,10 +30,6 @@ const Daten = ({ activeForm }) => {
   switch (activeForm.form) {
     case 'exporte': {
       form = <Exporte />
-      break
-    }
-    case 'tpopber': {
-      form = <Tpopber />
       break
     }
     case 'tpopfeldkontr': {

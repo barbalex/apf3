@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -35,6 +36,8 @@ const fieldTypes = {
 }
 
 const Tpopber = () => {
+  const { tpopberId: id } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { activeNodeArray } = store.tree
@@ -58,10 +61,7 @@ const Tpopber = () => {
     `,
     {
       variables: {
-        id:
-          activeNodeArray.length > 9
-            ? activeNodeArray[9]
-            : '99999999-9999-9999-9999-999999999999',
+        id,
       },
     },
   )
