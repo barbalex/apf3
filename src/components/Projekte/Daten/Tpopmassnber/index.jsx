@@ -114,11 +114,7 @@ const Tpopmassnber = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={data?.tpopmassnberById?.tpopByTpopId?.popByPopId?.apId}
-          title="Massnahmen-Bericht Teil-Population"
-          table="tpopmassnber"
-        />
+        <FormTitle title="Massnahmen-Bericht Teil-Population" />
         <FieldsContainer>
           <SimpleBar
             style={{

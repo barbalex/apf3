@@ -315,9 +315,7 @@ const User = () => {
     <ErrorBoundary>
       <Container>
         <FormTitle
-          apId={row.id}
           title="Benutzer"
-          table="user"
           buttons={
             <>
               {!editPassword && !passwordMessage && (

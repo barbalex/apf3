@@ -135,7 +135,7 @@ const TpopkontrzaehlEinheitWerte = ({ table }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title={table} table={table} />
+        <FormTitle title={table} />
         <FieldsContainer>
           <SimpleBar
             style={{

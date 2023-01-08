@@ -103,11 +103,7 @@ const Zielber = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={activeNodeArray[3]}
-          title="Ziel-Bericht"
-          table="zielber"
-        />
+        <FormTitle title="Ziel-Bericht" />
         <FieldsContainer>
           <SimpleBar
             style={{

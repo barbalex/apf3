@@ -379,7 +379,7 @@ const Tpopmassn = ({ showFilter = false }) => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle apId={activeNodeArray[3]} title="Massnahme" />
+        <FormTitle title="Massnahme" />
         <Tabs
           value={tab}
           onChange={onChangeTab}
