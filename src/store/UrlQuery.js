@@ -14,7 +14,6 @@ export default types
       'idealbiotop',
     ),
     qkTab: types.optional(types.maybeNull(types.string), 'qk'),
-    hideAppBar: types.optional(types.maybeNull(types.boolean), false),
   })
   .actions((self) => ({
     addProjekteTabs(tabs) {
@@ -31,5 +30,4 @@ export const defaultValue = {
   qkTab: 'qk',
   feldkontrTab: 'entwicklung',
   idealbiotopTab: 'idealbiotop',
-  hideAppBar: false,
 }

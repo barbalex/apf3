@@ -18,6 +18,7 @@ const RouterComponent = () => (
     <Route path="/Daten/*" element={<ProtectedRoute />}>
       {/* <Route path="*" element={<Unterhalt />}></Route> */}
       <Route path="*" element={<Projekte />} />
+      <Route path="Projekte/:projId/*" element={<Projekte />} />
       <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
       <Route path="Benutzer/:userId/*" element={<Projekte />} />
       <Route

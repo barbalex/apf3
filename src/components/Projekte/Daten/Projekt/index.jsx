@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams, useLocation } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import FormTitle from '../../../shared/FormTitle'
@@ -31,9 +32,13 @@ const fieldTypes = {
 }
 
 const Projekt = () => {
+  const { projId } = useParams()
+  const { pathname } = useLocation()
+  console.log('Projekt: pathname:', pathname)
+
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray, projIdInActiveNodeArray: projId } = store.tree
+  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -45,7 +50,8 @@ const Projekt = () => {
 
   const row = useMemo(() => data?.projektById ?? {}, [data?.projektById])
 
-  const filterTable = activeNodeArray.length === 2 ? 'projekt' : 'ap'
+  // const filterTable = activeNodeArray.length === 2 ? 'projekt' : 'ap'
+  const filterTable = pathname.endsWith('Arten') ? 'ap' : 'projekt'
 
   const saveToDb = useCallback(
     async (event) => {

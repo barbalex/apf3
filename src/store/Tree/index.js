@@ -72,8 +72,6 @@ export default types
         .filter((t) => t.includes('2'))
         // - rewrite tree2 values to tree values
         .map((t) => t.replace('2', ''))
-      // add a variable to hide app bar
-      iFrameUrlQuery.hideAppBar = true
       const search = queryString.stringify(iFrameUrlQuery)
       // pass this via src to iframe
       const iFrameSrc = `${appBaseUrl().slice(

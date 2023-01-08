@@ -15,6 +15,7 @@ import StyledSplitPane from '../shared/StyledSplitPane'
 import AppBar from './AppBar'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
+import inIframe from '../../modules/inIframe'
 
 const Container = styled.div`
   height: 100%;
@@ -31,6 +32,7 @@ const StyledIframe = styled.iframe`
 `
 
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
+const isInIframe = inIframe()
 
 const Projekte = () => {
   const { pathname } = useLocation()
@@ -38,12 +40,12 @@ const Projekte = () => {
   const { isPrint, urlQuery } = store
   const { tree2Src } = store.tree
 
-  const { projekteTabs, hideAppBar } = urlQuery
+  const { projekteTabs } = urlQuery
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   if (tree2Tabs.length === 0 || isPrint) {
     // inside iframe app bar should be hidden
-    if (hideAppBar) {
+    if (isInIframe) {
       return (
         <Container>
           <ProjektContainer />
@@ -70,8 +72,6 @@ const Projekte = () => {
       .filter((t) => t.includes('2'))
       // - rewrite tree2 values to tree values
       .map((t) => t.replace('2', ''))
-    // add a variable to hide app bar
-    iFrameUrlQuery.hideAppBar = true
     const search = queryString.stringify(iFrameUrlQuery)
     // pass this via src to iframe
     iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`

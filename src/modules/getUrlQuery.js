@@ -1,5 +1,5 @@
 import isString from 'lodash/isString'
-import queryString from 'query-string' 
+import queryString from 'query-string'
 
 const getUrlQuery = () => {
   const query = queryString.parse(window.location.search)
@@ -13,7 +13,6 @@ const getUrlQuery = () => {
   if (!query.apTab) query.apTab = 'ap'
   if (!query.qkTab) query.qkTab = 'qk'
   if (!query.idealbiotopTab) query.idealbiotopTab = 'idealbiotop'
-  if (query.hideAppBar !== undefined) query.hideAppBar = true
   /**
    * arrays are converted to strings in url if only one element is contained
    * need to convert it to array
