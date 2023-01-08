@@ -10,7 +10,6 @@ import storeContext from '../../storeContext'
 import User from '../User'
 import Messages from '../Messages'
 import Deletions from '../Deletions'
-import AppBar from '../Projekte/AppBar'
 import inIframe from '../../modules/inIframe'
 
 const isInIframe = inIframe()
@@ -72,16 +71,14 @@ const ProtectedRoute = () => {
 
   return (
     <Container>
-      <AppBar>
-        {!!user.token && (
-          <>
-            <Outlet />
-            {!isFreiwillig && <Messages />}
-            {!isFreiwillig && showDeletions && <Deletions />}
-          </>
-        )}
-        <User />
-      </AppBar>
+      {!!user.token && (
+        <>
+          <Outlet />
+          {!isFreiwillig && <Messages />}
+          {!isFreiwillig && showDeletions && <Deletions />}
+        </>
+      )}
+      <User />
     </Container>
   )
 }

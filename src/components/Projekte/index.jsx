@@ -14,6 +14,7 @@ import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
+import AppBar from './AppBar'
 
 const Container = styled.div`
   height: 100%;
@@ -40,15 +41,6 @@ const Projekte = () => {
   const { projekteTabs } = urlQuery
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
-  if (tree2Tabs.length === 0 || isPrint) {
-    return (
-      <Container>
-        <ProjektContainer />
-      </Container>
-    )
-  }
-
-  // use
   let iFrameSrc = tree2Src
   if (!tree2Src) {
     // build search string for iframe
@@ -65,17 +57,23 @@ const Projekte = () => {
   }
 
   return (
-    <Container>
-      <StyledSplitPane split="vertical" defaultSize="50%">
-        <ProjektContainer />
-        <StyledIframe
-          src={iFrameSrc}
-          title="tree2"
-          width="100%"
-          height="100%"
-        />
-      </StyledSplitPane>
-    </Container>
+    <AppBar>
+      <Container>
+        {tree2Tabs.length === 0 || isPrint ? (
+          <ProjektContainer />
+        ) : (
+          <StyledSplitPane split="vertical" defaultSize="50%">
+            <ProjektContainer />
+            <StyledIframe
+              src={iFrameSrc}
+              title="tree2"
+              width="100%"
+              height="100%"
+            />
+          </StyledSplitPane>
+        )}
+      </Container>
+    </AppBar>
   )
 }
 

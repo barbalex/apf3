@@ -48,6 +48,7 @@ const RouterComponent = () => (
     <Route path="/" element={<Home />} />
     <Route path="/Daten/*" element={<ProtectedRoute />}>
       {/* <Route path="*" element={<Unterhalt />}></Route> */}
+      <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
       <Route path="*" element={<Projekte />}>
         <Route path="Werte-Listen/Adressen/:adrId" element={<Adresse />} />
         <Route
@@ -64,7 +65,6 @@ const RouterComponent = () => (
         />
         <Route path="Mitteilungen" element={<Messages />} />
         <Route path="Aktuelle-Fehler/:issueId" element={<CurrentIssue />} />
-        <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
         <Route path="Projekte/:projId/*" element={<Projekt />} />
         <Route
           path="Projekte/:projId/AP-Berichte/:apberUebersichtId"
