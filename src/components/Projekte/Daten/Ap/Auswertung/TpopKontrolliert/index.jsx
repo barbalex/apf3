@@ -12,6 +12,7 @@ import {
 } from 'recharts'
 import CircularProgress from '@mui/material/CircularProgress'
 import styled from '@emotion/styled'
+import { useParams } from 'react-router-dom'
 
 import query from './query'
 import CustomTooltip from '../CustomTooltip'
@@ -50,7 +51,9 @@ const color = {
   kontrolliert: 'red',
 }
 
-const ApAuswertungTpopKontrolliert = ({ id, height = 400, print, jahr }) => {
+const ApAuswertungTpopKontrolliert = ({ height = 400, print, jahr }) => {
+  const { apId: id } = useParams()
+  
   const { data, error, loading } = useQuery(query, {
     variables: { id, year: jahr ?? new Date().getFullYear() },
   })

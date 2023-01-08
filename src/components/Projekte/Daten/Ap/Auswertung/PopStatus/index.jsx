@@ -12,6 +12,7 @@ import {
 } from 'recharts'
 import CircularProgress from '@mui/material/CircularProgress'
 import styled from '@emotion/styled'
+import { useParams } from 'react-router-dom'
 
 import query from './query'
 import CustomTooltip from '../CustomTooltip'
@@ -50,12 +51,9 @@ const color = {
     'rgba(245,141,66,0.5)',
 }
 
-const ApAuswertungPopStatus = ({
-  id,
-  height = 400,
-  print,
-  year: yearPassed,
-}) => {
+const ApAuswertungPopStatus = ({ height = 400, print, year: yearPassed }) => {
+  const { apId: id } = useParams()
+
   const year = yearPassed ?? new Date().getFullYear()
   const {
     data: dataPopStati,

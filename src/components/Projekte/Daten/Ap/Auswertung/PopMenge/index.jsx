@@ -16,6 +16,7 @@ import { keyframes } from '@emotion/react'
 import { FaRedo } from 'react-icons/fa'
 import { IoMdInformationCircleOutline } from 'react-icons/io'
 import IconButton from '@mui/material/IconButton'
+import { useParams } from 'react-router-dom'
 
 import queryPopMenge from './queryPopMenge'
 import CustomTooltip from './CustomTooltip'
@@ -72,12 +73,9 @@ const formatNumber = (tickItem) => {
   return value
 }
 
-const ApAuswertungPopMenge = ({
-  id,
-  height = 400,
-  print,
-  jahr: jahrPassed,
-}) => {
+const ApAuswertungPopMenge = ({ height = 400, print, jahr: jahrPassed }) => {
+  const { apId: id } = useParams()
+
   const store = useContext(storeContext)
   const { enqueNotification } = store
 

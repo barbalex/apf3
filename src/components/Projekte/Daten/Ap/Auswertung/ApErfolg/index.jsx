@@ -13,6 +13,7 @@ import {
 } from 'recharts'
 import CircularProgress from '@mui/material/CircularProgress'
 import styled from '@emotion/styled'
+import { useParams } from 'react-router-dom'
 
 import queryErfolg from './queryErfolg'
 import CustomTick from './CustomTick'
@@ -58,7 +59,9 @@ const addMissingErfolgData = (erfolgRawData) => {
   return allYears.map((jahr) => getErfolg({ jahr, erfolgRawData }))
 }
 
-const ApAuswertungApErfolg = ({ id }) => {
+const ApAuswertungApErfolg = () => {
+  const { apId: id } = useParams()
+
   const {
     data: dataErfolg,
     error: errorErfolg,
