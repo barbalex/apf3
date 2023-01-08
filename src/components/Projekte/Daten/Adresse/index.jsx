@@ -100,7 +100,7 @@ const Adresse = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.id} title="Adresse" table="adresse" />
+        <FormTitle title="Adresse" />
         <FieldsContainer>
           <SimpleBar
             style={{

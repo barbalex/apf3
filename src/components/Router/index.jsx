@@ -158,6 +158,10 @@ const RouterComponent = () => {
             path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Freiwilligen-Kontrollen/:tpopkontrId/*"
             element={<Tpopfreiwkontr />}
           />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Feld-Kontrollen/:tpopkontrId/*"
+            element={<Tpopfeldkontr />}
+          />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
             path="Benutzer/:userId/EKF/*"

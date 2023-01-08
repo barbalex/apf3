@@ -131,7 +131,7 @@ const ApArt = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title="Taxon" table="apart" />
+        <FormTitle title="Taxon" />
         <FieldsContainer>
           <SimpleBar
             style={{

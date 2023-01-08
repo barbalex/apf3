@@ -138,7 +138,7 @@ const Apber = () => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle apId={row.apId} title="AP-Bericht" table="apber" />
+        <FormTitle title="AP-Bericht" />
         <FieldsContainer>
           <SimpleBar
             style={{
