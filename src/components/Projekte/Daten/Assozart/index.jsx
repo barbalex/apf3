@@ -130,7 +130,7 @@ const Assozart = () => {
   return (
     <ErrorBoundary>
       <Container data-id="assozart">
-        <FormTitle apId={row.apId} title="assoziierte Art" table="assozart" />
+        <FormTitle title="assoziierte Art" />
         <FieldsContainer>
           <SimpleBar
             style={{

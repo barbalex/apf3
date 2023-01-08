@@ -54,11 +54,7 @@ const CurrentIssue = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.id}
-          title="Aktueller Fehler"
-          table="currentissue"
-        />
+        <FormTitle title="Aktueller Fehler" />
         <FieldsContainer>
           <SimpleBar
             style={{

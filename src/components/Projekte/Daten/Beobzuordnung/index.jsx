@@ -290,7 +290,7 @@ const Beobzuordnung = ({ type }) => {
   return (
     <ErrorBoundary>
       <FormContainer>
-        <FormTitle apId={apId ?? null} title="Beobachtung" table="beob" />
+        <FormTitle title="Beobachtung" />
         <DataContainer>
           <SimpleBar
             style={{

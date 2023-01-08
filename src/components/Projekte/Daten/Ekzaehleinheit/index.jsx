@@ -150,11 +150,7 @@ const Ekzaehleinheit = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={row.apId}
-          title="EK-Zähleinheit"
-          table="ekzaehleinheit"
-        />
+        <FormTitle title="EK-Zähleinheit" />
         <FieldsContainer>
           <SimpleBar
             style={{

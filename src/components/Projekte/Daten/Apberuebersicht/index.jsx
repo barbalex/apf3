@@ -224,7 +224,7 @@ const Apberuebersicht = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle title="AP-Bericht Jahresübersicht" table="apberuebersicht" />
+        <FormTitle title="AP-Bericht Jahresübersicht" />
         <FieldsContainer>
           <SimpleBar
             style={{

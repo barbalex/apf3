@@ -144,7 +144,7 @@ const Ekfrequenz = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title="EK-Frequenz" table="ekfrequenz" />
+        <FormTitle title="EK-Frequenz" />
         <FieldsContainer>
           <SimpleBar
             style={{
