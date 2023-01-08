@@ -32,6 +32,8 @@ import Erfkrit from '../Projekte/Daten/Erfkrit'
 import Ziel from '../Projekte/Daten/Ziel'
 import Zielber from '../Projekte/Daten/Zielber'
 import Pop from '../Projekte/Daten/Pop'
+import Popmassnber from '../Projekte/Daten/Popmassnber'
+import Popber from '../Projekte/Daten/Popber'
 import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
@@ -127,6 +129,14 @@ const RouterComponent = () => {
           <Route
             path="Projekte/:projId/Arten/:apId/Populationen/:popId/*"
             element={<Pop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Massnahmen-Berichte/:popmassnberId/*"
+            element={<Popmassnber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Kontroll-Berichte/:popberId/*"
+            element={<Popber />}
           />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
