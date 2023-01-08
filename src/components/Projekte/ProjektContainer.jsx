@@ -12,7 +12,7 @@ import { getSnapshot } from 'mobx-state-tree'
 import { useApolloClient } from '@apollo/client'
 import { useQuery } from '@tanstack/react-query'
 import intersection from 'lodash/intersection'
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode' 
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
