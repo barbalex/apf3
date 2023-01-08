@@ -126,12 +126,11 @@ const nichtZuordnenPopover = (
 )
 
 const Beobzuordnung = ({ type }) => {
-  const { beobId, apId } = useParams()
+  const { beobId: id, apId } = useParams()
 
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const id = beobId
 
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {

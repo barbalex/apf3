@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -7,16 +6,15 @@ import TableRow from '@mui/material/TableRow'
 import styled from '@emotion/styled'
 import max from 'lodash/max'
 import groupBy from 'lodash/groupBy'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import Checkbox2States from '../../../../shared/Checkbox2States'
 import RadioButtonGroup from '../../../../shared/RadioButtonGroup'
 import Select from '../../../../shared/Select'
 import TextField from '../../../../shared/TextField'
 import queryEk from './queryEk'
-import storeContext from '../../../../../storeContext'
 import EkYear from './EkYear'
 import ErrorBoundary from '../../../../shared/ErrorBoundary'
 import Spinner from '../../../../shared/Spinner'
@@ -62,11 +60,7 @@ const EkplanTitle = styled.h5`
 `
 
 const Ek = ({ saveToDb, row, fieldErrors, loadingParent }) => {
-  const store = useContext(storeContext)
-
-  const { activeNodeArray } = store.tree
-
-  const apId = activeNodeArray[3]
+  const { tpopId, apId } = useParams()
 
   const {
     data: dataEk,
@@ -74,7 +68,7 @@ const Ek = ({ saveToDb, row, fieldErrors, loadingParent }) => {
     error: errorEk,
   } = useQuery(queryEk, {
     variables: {
-      id: row?.id || '99999999-9999-9999-9999-999999999999',
+      id: tpopId,
       isEk: true,
       apId,
     },
@@ -189,4 +183,4 @@ const Ek = ({ saveToDb, row, fieldErrors, loadingParent }) => {
   )
 }
 
-export default observer(Ek)
+export default Ek

@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery, useApolloClient, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useResizeDetector } from 'react-resize-detector'
+import { useResizeDetector } from 'react-resize-detector' 
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -36,6 +36,7 @@ const Tpop = ({
   refetchTpop,
   loadingParent,
 }) => {
+
   const store = useContext(storeContext)
   const { enqueNotification } = store
   const client = useApolloClient()

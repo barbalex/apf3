@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import query from './query'
@@ -82,11 +83,12 @@ const fieldTypes = {
 }
 
 const TpopForm = () => {
+  const { tpopId: id } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
 
-  const { activeNodeArray } = store.tree
   const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
   const onChangeTab = useCallback(
     (event, value) => {
@@ -101,10 +103,6 @@ const TpopForm = () => {
     [setUrlQuery, urlQuery],
   )
 
-  const id =
-    activeNodeArray.length > 7
-      ? activeNodeArray[7]
-      : '99999999-9999-9999-9999-999999999999'
   const {
     data,
     loading,
@@ -233,7 +231,7 @@ const TpopForm = () => {
             ) : tab === 'dateien' ? (
               <Files parentId={row?.id} parent="tpop" loadingParent={loading} />
             ) : (
-              <TpopHistory tpopId={id} />
+              <TpopHistory />
             )}
           </TabContent>
         </FieldsContainer>

@@ -2,10 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import Exporte from '../Exporte'
-import Popber from './Popber'
-import Popmassnber from './Popmassnber'
-import Projekt from './Projekt'
-import Tpop from './Tpop'
 import Tpopber from './Tpopber'
 import Tpopfeldkontr from './Tpopfeldkontr'
 import Tpopfreiwkontr from './Tpopfreiwkontr'
@@ -35,22 +31,6 @@ const Daten = ({ activeForm }) => {
   switch (activeForm.form) {
     case 'exporte': {
       form = <Exporte />
-      break
-    }
-    case 'popber': {
-      form = <Popber />
-      break
-    }
-    case 'popmassnber': {
-      form = <Popmassnber />
-      break
-    }
-    case 'projekt': {
-      form = <Projekt />
-      break
-    }
-    case 'tpop': {
-      form = <Tpop />
       break
     }
     case 'tpopber': {

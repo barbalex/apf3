@@ -34,6 +34,7 @@ import Zielber from '../Projekte/Daten/Zielber'
 import Pop from '../Projekte/Daten/Pop'
 import Popmassnber from '../Projekte/Daten/Popmassnber'
 import Popber from '../Projekte/Daten/Popber'
+import Tpop from '../Projekte/Daten/Tpop'
 import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
@@ -80,11 +81,11 @@ const RouterComponent = () => {
           />
           <Route
             path="Projekte/:projId/Arten/:apId/nicht-zuzuordnende-Beobachtungen/:beobId"
-            element={<Beobzuordnung />}
+            element={<Beobzuordnung type="nichtZuzuordnen" />}
           />
           <Route
             path="Projekte/:projId/Arten/:apId/nicht-beurteilte-Beobachtungen/:beobId"
-            element={<Beobzuordnung />}
+            element={<Beobzuordnung type="nichtBeurteilt" />}
           />
           <Route
             path="Projekte/:projId/Arten/:apId/EK-Zähleinheiten/:zaehleinheitId"
@@ -137,6 +138,14 @@ const RouterComponent = () => {
           <Route
             path="Projekte/:projId/Arten/:apId/Populationen/:popId/Kontroll-Berichte/:popberId/*"
             element={<Popber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/*"
+            element={<Tpop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Beobachtungen/:beobId/*"
+            element={<Beobzuordnung type="zugeordnet" />}
           />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
