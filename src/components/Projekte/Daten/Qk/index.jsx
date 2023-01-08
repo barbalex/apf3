@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
@@ -34,10 +35,10 @@ const TabContent = styled.div`
 `
 
 const QkForm = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store.tree
-  const apId = activeNodeArray[3]
 
   const { data, loading, error, refetch } = useQuery(queryQk, {
     variables: { apId },

@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import { useQueryClient } from '@tanstack/react-query'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import TextField from '../../../shared/TextField2'
@@ -125,16 +126,12 @@ const nichtZuordnenPopover = (
 )
 
 const Beobzuordnung = ({ type }) => {
+  const { beobId, apId } = useParams()
+
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const tree = store.tree
-  const { activeNodeArray } = tree
-  const id = activeNodeArray[activeNodeArray.length - 1]
-  const apId =
-    activeNodeArray.length > 3
-      ? activeNodeArray[3]
-      : '99999999-9999-9999-9999-999999999999'
+  const id = beobId
 
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {

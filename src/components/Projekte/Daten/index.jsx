@@ -4,9 +4,6 @@ import styled from '@emotion/styled'
 import Apart from './Apart'
 import Apber from './Apber'
 import Assozart from './Assozart'
-import Beobzuordnung from './Beobzuordnung'
-import Ekzaehleinheit from './Ekzaehleinheit'
-import Ekfrequenz from './Ekfrequenz'
 import Erfkrit from './Erfkrit'
 import Exporte from '../Exporte'
 import Idealbiotop from './Idealbiotop'
@@ -14,7 +11,6 @@ import Pop from './Pop'
 import Popber from './Popber'
 import Popmassnber from './Popmassnber'
 import Projekt from './Projekt'
-import Qk from './Qk'
 import Tpop from './Tpop'
 import Tpopber from './Tpopber'
 import Tpopfeldkontr from './Tpopfeldkontr'
@@ -57,18 +53,6 @@ const Daten = ({ activeForm }) => {
       form = <Assozart />
       break
     }
-    case 'beobzuordnung': {
-      form = <Beobzuordnung type={activeForm.type} />
-      break
-    }
-    case 'ekzaehleinheit': {
-      form = <Ekzaehleinheit />
-      break
-    }
-    case 'ekfrequenz': {
-      form = <Ekfrequenz />
-      break
-    }
     case 'erfkrit': {
       form = <Erfkrit />
       break
@@ -95,10 +79,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'projekt': {
       form = <Projekt />
-      break
-    }
-    case 'qk': {
-      form = <Qk />
       break
     }
     case 'tpop': {

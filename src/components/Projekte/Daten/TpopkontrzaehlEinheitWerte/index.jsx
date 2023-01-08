@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import Checkbox2States from '../../../shared/Checkbox2States'
@@ -26,35 +27,34 @@ const FormContainer = styled.div`
   padding: 10px;
 `
 
+const query = gql`
+  query werteByIdQueryForTpopkontrzaehlEinheitWerte($id: UUID!) {
+    tpopkontrzaehlEinheitWerteById(id: $id) {
+      id
+      code
+      text
+      correspondsToMassnAnzPflanzen
+      correspondsToMassnAnzTriebe
+      sort
+    }
+  }
+`
+
 const TpopkontrzaehlEinheitWerte = ({ table }) => {
+  const { zaehleinheitId: id } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { refetch: refetchTree } = store
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
-  const id =
-    activeNodeArray.length > 2
-      ? activeNodeArray[2]
-      : '99999999-9999-9999-9999-999999999999'
-  const query = gql`
-    query werteByIdQueryForTpopkontrzaehlEinheitWerte($id: UUID!) {
-      tpopkontrzaehlEinheitWerteById(id: $id) {
-        id
-        code
-        text
-        correspondsToMassnAnzPflanzen
-        correspondsToMassnAnzTriebe
-        sort
-      }
-    }
-  `
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {
       id,
     },
   })
+  console.log('TpopkontrzaehlEinheitWerte:', { id, data })
 
   const row = useMemo(
     () => data?.tpopkontrzaehlEinheitWerteById ?? {},

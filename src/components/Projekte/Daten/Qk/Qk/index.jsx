@@ -40,6 +40,7 @@ const StyledA = styled.p`
   text-decoration-line: underline;
   cursor: pointer;
   margin-bottom: 0;
+  margin-top: 0;
   padding: 2px 0;
 `
 const Row = styled.div`

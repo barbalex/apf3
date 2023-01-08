@@ -19,6 +19,11 @@ import Werte from '../Projekte/Daten/Werte'
 import Messages from '../Projekte/Daten/Messages'
 import CurrentIssue from '../Projekte/Daten/CurrentIssue'
 import Ap from '../Projekte/Daten/Ap'
+import Qk from '../Projekte/Daten/Qk'
+import Beobzuordnung from '../Projekte/Daten/Beobzuordnung'
+import Ekzaehleinheit from '../Projekte/Daten/Ekzaehleinheit'
+import Ekfrequenz from '../Projekte/Daten/Ekfrequenz'
+import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 import Apber from '../Projekte/Daten/Apber'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
@@ -59,6 +64,26 @@ const RouterComponent = () => {
             element={<ApberForYear />}
           />
           <Route path="Projekte/:projId/Arten/:apId" element={<Ap />} />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Qualitaetskontrollen"
+            element={<Qk />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/nicht-zuzuordnende-Beobachtungen/:beobId"
+            element={<Beobzuordnung />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/nicht-beurteilte-Beobachtungen/:beobId"
+            element={<Beobzuordnung />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/EK-Zähleinheiten/:zaehleinheitId"
+            element={<Ekzaehleinheit />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/EK-Frequenzen/:ekfrequenzId"
+            element={<Ekfrequenz />}
+          />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
             path="Benutzer/:userId/EKF/*"
