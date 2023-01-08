@@ -234,7 +234,7 @@ const Tpopfeldkontr = () => {
   return (
     <ErrorBoundary>
       <Container ref={resizeRef}>
-        <FormTitle apId={activeNodeArray[3]} title="Feld-Kontrolle" />
+        <FormTitle title="Feld-Kontrolle" />
         <FieldsContainer>
           <Tabs
             value={tab}

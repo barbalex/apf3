@@ -139,7 +139,6 @@ const Tpopfreiwkontr = ({ id: idPassed }) => {
     <Container>
       {!pathname.includes('EKF') && (
         <FormTitle
-          apId={apId}
           title="Freiwilligen-Kontrolle"
           buttons={
             <>

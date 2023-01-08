@@ -132,11 +132,7 @@ const Tpopber = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={activeNodeArray[3]}
-          title="Kontroll-Bericht Teil-Population"
-          table="tpopber"
-        />
+        <FormTitle title="Kontroll-Bericht Teil-Population" />
         <FieldsContainer>
           <SimpleBar
             style={{

@@ -129,7 +129,7 @@ const Ziel = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title="Ziel" table="ziel" />
+        <FormTitle title="Ziel" />
         <FieldsContainer>
           <SimpleBar
             style={{

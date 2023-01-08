@@ -193,10 +193,7 @@ const TpopForm = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle
-          apId={data?.tpopById?.popByPopId?.apId}
-          title="Teil-Population"
-        />
+        <FormTitle title="Teil-Population" />
         <FieldsContainer>
           <Tabs
             value={tab}
