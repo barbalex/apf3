@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import Apart from './Apart'
 import Apber from './Apber'
 import Erfkrit from './Erfkrit'
 import Exporte from '../Exporte'
@@ -40,10 +39,6 @@ const Container = styled.div`
 const Daten = ({ activeForm }) => {
   let form
   switch (activeForm.form) {
-    case 'apart': {
-      form = <Apart />
-      break
-    }
     case 'apber': {
       form = <Apber />
       break

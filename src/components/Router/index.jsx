@@ -24,6 +24,7 @@ import Beobzuordnung from '../Projekte/Daten/Beobzuordnung'
 import Ekzaehleinheit from '../Projekte/Daten/Ekzaehleinheit'
 import Ekfrequenz from '../Projekte/Daten/Ekfrequenz'
 import Assozart from '../Projekte/Daten/Assozart'
+import Apart from '../Projekte/Daten/Apart'
 import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 import Apber from '../Projekte/Daten/Apber'
 // import Unterhalt from './components/Unterhalt'
@@ -88,6 +89,10 @@ const RouterComponent = () => {
           <Route
             path="Projekte/:projId/Arten/:apId/assoziierte-Arten/:assozartId"
             element={<Assozart />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Taxa/:taxonId"
+            element={<Apart />}
           />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route

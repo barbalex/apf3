@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import SelectLoadingOptions from '../../../shared/SelectLoadingOptions'
 import FormTitle from '../../../shared/FormTitle'
@@ -37,18 +38,16 @@ const fieldTypes = {
 }
 
 const ApArt = () => {
+  const { taxonId: id } = useParams()
+
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 5
-          ? activeNodeArray[5]
-          : '99999999-9999-9999-9999-999999999999',
+      id,
     },
   })
 
