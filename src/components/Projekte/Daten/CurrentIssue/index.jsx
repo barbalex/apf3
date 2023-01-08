@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { useQuery, gql } from '@apollo/client'
 import MarkdownIt from 'markdown-it'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
-import storeContext from '../../../../storeContext'
 import { currentIssue as currentIssueFragment } from '../../../shared/fragments'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
@@ -36,15 +35,11 @@ const query = gql`
 `
 
 const CurrentIssue = () => {
-  const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
+  const { issueId } = useParams()
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 1
-          ? activeNodeArray[1]
-          : '99999999-9999-9999-9999-999999999999',
+      id: issueId,
     },
   })
 

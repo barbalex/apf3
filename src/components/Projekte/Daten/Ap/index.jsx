@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 import Ap from './Ap'
 import Auswertung from './Auswertung'
@@ -27,14 +28,9 @@ const TabContent = styled.div`
 `
 
 const ApTabs = () => {
+  const { apId } = useParams()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store.tree
-
-  const id =
-    activeNodeArray.length > 3
-      ? activeNodeArray[3]
-      : '99999999-9999-9999-9999-999999999999'
 
   const [tab, setTab] = useState(urlQuery?.apTab ?? 'ap')
   const onChangeTab = useCallback(
@@ -53,7 +49,7 @@ const ApTabs = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={id} title="Art" />
+        <FormTitle apId={apId} title="Art" />
         <Tabs
           value={tab}
           onChange={onChangeTab}
@@ -71,10 +67,10 @@ const ApTabs = () => {
           <StyledTab label="Historien" value="history" data-id="history" />
         </Tabs>
         <TabContent>
-          {tab === 'ap' && <Ap id={id} />}
-          {tab === 'auswertung' && <Auswertung id={id} />}
-          {tab === 'dateien' && <Files parentId={id} parent="ap" />}
-          {tab === 'history' && <ApHistory apId={id} />}
+          {tab === 'ap' && <Ap id={apId} />}
+          {tab === 'auswertung' && <Auswertung id={apId} />}
+          {tab === 'dateien' && <Files parentId={apId} parent="ap" />}
+          {tab === 'history' && <ApHistory apId={apId} />}
         </TabContent>
       </Container>
     </ErrorBoundary>

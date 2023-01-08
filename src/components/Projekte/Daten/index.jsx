@@ -1,14 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import Ap from './Ap'
 import Apart from './Apart'
 import Apber from './Apber'
-import Apberuebersicht from './Apberuebersicht'
 import Assozart from './Assozart'
 import Beobzuordnung from './Beobzuordnung'
-import CurrentIssue from './CurrentIssue'
-import Messages from './Messages'
 import Ekzaehleinheit from './Ekzaehleinheit'
 import Ekfrequenz from './Ekfrequenz'
 import Erfkrit from './Erfkrit'
@@ -49,14 +45,6 @@ const Container = styled.div`
 const Daten = ({ activeForm }) => {
   let form
   switch (activeForm.form) {
-    case 'ap': {
-      form = <Ap />
-      break
-    }
-    case 'apberuebersicht': {
-      form = <Apberuebersicht />
-      break
-    }
     case 'apart': {
       form = <Apart />
       break
@@ -71,14 +59,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'beobzuordnung': {
       form = <Beobzuordnung type={activeForm.type} />
-      break
-    }
-    case 'currentIssue': {
-      form = <CurrentIssue />
-      break
-    }
-    case 'message': {
-      form = <Messages />
       break
     }
     case 'ekzaehleinheit': {

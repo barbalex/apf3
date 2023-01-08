@@ -13,17 +13,19 @@ import Projekte from '../Projekte'
 import Projekt from '../Projekte/Daten/Projekt'
 import Apberuebersicht from '../Projekte/Daten/Apberuebersicht'
 import ApberForYear from '../Print/ApberForYear/ApberForYear'
-import Apber from '../Projekte/Daten/Apber'
 import User from '../Projekte/Daten/User'
 import Adresse from '../Projekte/Daten/Adresse'
 import Werte from '../Projekte/Daten/Werte'
+import Messages from '../Projekte/Daten/Messages'
+import CurrentIssue from '../Projekte/Daten/CurrentIssue'
+import Ap from '../Projekte/Daten/Ap'
+import Apber from '../Projekte/Daten/Apber'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
 
 // uncomment unterhalt route for Unterhalt
 const RouterComponent = () => {
   const store = useContext(storeContext)
-  const { isPrint } = store
 
   return (
     <Routes>
@@ -44,6 +46,8 @@ const RouterComponent = () => {
             path="Werte-Listen/TpopkontrzaehlEinheitWerte/:wertId"
             element={<Werte table="tpopkontrzaehlEinheitWerte" />}
           />
+          <Route path="Mitteilungen" element={<Messages />} />
+          <Route path="Aktuelle-Fehler/:issueId" element={<CurrentIssue />} />
           <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
           <Route path="Projekte/:projId/*" element={<Projekt />} />
           <Route
@@ -54,6 +58,7 @@ const RouterComponent = () => {
             path="Projekte/:projId/AP-Berichte/:apberUebersichtId/print"
             element={<ApberForYear />}
           />
+          <Route path="Projekte/:projId/Arten/:apId" element={<Ap />} />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
             path="Benutzer/:userId/EKF/*"
