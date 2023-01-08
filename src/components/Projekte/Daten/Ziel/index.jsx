@@ -4,6 +4,7 @@ import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -37,6 +38,7 @@ const fieldTypes = {
 }
 
 const Ziel = () => {
+  const { zielId: id } = useParams()
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { activeNodeArray, setActiveNodeArray, openNodes, setOpenNodes } =
@@ -46,10 +48,7 @@ const Ziel = () => {
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 6
-          ? activeNodeArray[6]
-          : '99999999-9999-9999-9999-999999999999',
+      id,
     },
   })
 

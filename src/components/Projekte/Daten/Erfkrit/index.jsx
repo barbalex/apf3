@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -36,18 +37,15 @@ const fieldTypes = {
 }
 
 const Erfkrit = () => {
+  const { erfkritId: id } = useParams()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 5
-          ? activeNodeArray[5]
-          : '99999999-9999-9999-9999-999999999999',
+      id,
     },
   })
 

@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import FormTitle from '../../../shared/FormTitle'
@@ -35,6 +36,7 @@ const fieldTypes = {
 }
 
 const Zielber = () => {
+  const { zielberId: id } = useParams()
   const client = useApolloClient()
 
   const store = useContext(storeContext)
@@ -44,10 +46,7 @@ const Zielber = () => {
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 8
-          ? activeNodeArray[8]
-          : '99999999-9999-9999-9999-999999999999',
+      id,
     },
   })
 

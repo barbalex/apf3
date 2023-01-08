@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import Apber from './Apber'
-import Erfkrit from './Erfkrit'
 import Exporte from '../Exporte'
 import Pop from './Pop'
 import Popber from './Popber'
@@ -17,8 +15,6 @@ import TpopkontrzaehlEinheitWerte from './TpopkontrzaehlEinheitWerte'
 import Tpopmassn from './Tpopmassn'
 import Tpopmassnber from './Tpopmassnber'
 import User from './User'
-import Ziel from './Ziel'
-import Zielber from './Zielber'
 
 const Container = styled.div`
   height: 100%;
@@ -38,14 +34,6 @@ const Container = styled.div`
 const Daten = ({ activeForm }) => {
   let form
   switch (activeForm.form) {
-    case 'apber': {
-      form = <Apber />
-      break
-    }
-    case 'erfkrit': {
-      form = <Erfkrit />
-      break
-    }
     case 'exporte': {
       form = <Exporte />
       break
@@ -100,14 +88,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'user': {
       form = <User />
-      break
-    }
-    case 'ziel': {
-      form = <Ziel />
-      break
-    }
-    case 'zielber': {
-      form = <Zielber />
       break
     }
     default:
