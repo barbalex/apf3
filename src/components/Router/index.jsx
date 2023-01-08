@@ -23,6 +23,7 @@ import Qk from '../Projekte/Daten/Qk'
 import Beobzuordnung from '../Projekte/Daten/Beobzuordnung'
 import Ekzaehleinheit from '../Projekte/Daten/Ekzaehleinheit'
 import Ekfrequenz from '../Projekte/Daten/Ekfrequenz'
+import Assozart from '../Projekte/Daten/Assozart'
 import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 import Apber from '../Projekte/Daten/Apber'
 // import Unterhalt from './components/Unterhalt'
@@ -63,7 +64,7 @@ const RouterComponent = () => {
             path="Projekte/:projId/AP-Berichte/:apberUebersichtId/print"
             element={<ApberForYear />}
           />
-          <Route path="Projekte/:projId/Arten/:apId" element={<Ap />} />
+          <Route path="Projekte/:projId/Arten/:apId/*" element={<Ap />} />
           <Route
             path="Projekte/:projId/Arten/:apId/Qualitaetskontrollen"
             element={<Qk />}
@@ -83,6 +84,10 @@ const RouterComponent = () => {
           <Route
             path="Projekte/:projId/Arten/:apId/EK-Frequenzen/:ekfrequenzId"
             element={<Ekfrequenz />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/assoziierte-Arten/:assozartId"
+            element={<Assozart />}
           />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route

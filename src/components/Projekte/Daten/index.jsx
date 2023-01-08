@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 
 import Apart from './Apart'
 import Apber from './Apber'
-import Assozart from './Assozart'
 import Erfkrit from './Erfkrit'
 import Exporte from '../Exporte'
 import Idealbiotop from './Idealbiotop'
@@ -47,10 +46,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'apber': {
       form = <Apber />
-      break
-    }
-    case 'assozart': {
-      form = <Assozart />
       break
     }
     case 'erfkrit': {
