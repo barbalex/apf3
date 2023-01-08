@@ -70,7 +70,7 @@ const ApTabs = () => {
           {tab === 'ap' && <Ap />}
           {tab === 'auswertung' && <Auswertung />}
           {tab === 'dateien' && <Files parentId={apId} parent="ap" />}
-          {tab === 'history' && <ApHistory apId={apId} />}
+          {tab === 'history' && <ApHistory />}
         </TabContent>
       </Container>
     </ErrorBoundary>
