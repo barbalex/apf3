@@ -96,7 +96,6 @@ const User = () => {
   const navigate = useNavigate()
 
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
 
   const client = useApolloClient()
 

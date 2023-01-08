@@ -21,7 +21,7 @@ import Exporte from './Exporte'
 import Filter from './Filter'
 import storeContext from '../../storeContext'
 // TODO: rid getActiveForm
-// import getActiveForm from '../../modules/getActiveForm'
+import getActiveForm from '../../modules/getActiveForm'
 import StyledSplitPane from '../shared/StyledSplitPane'
 import buildTreeQueryVariables from './buildTreeQueryVariables'
 import queryTree from './queryTree'

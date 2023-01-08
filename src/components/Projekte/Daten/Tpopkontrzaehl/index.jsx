@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -37,20 +38,12 @@ const fieldTypes = {
 }
 
 const Tpopkontrzaehl = () => {
+  const { tpopkontrzaehlId, tpopkontrId } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
-
-  const tpopkontrzaehlId =
-    activeNodeArray.length > 11
-      ? activeNodeArray[11]
-      : '99999999-9999-9999-9999-999999999999'
-  const tpopkontrId =
-    activeNodeArray.length > 9
-      ? activeNodeArray[9]
-      : '99999999-9999-9999-9999-999999999999'
 
   const { data, loading, error } = useQuery(query, {
     variables: {
