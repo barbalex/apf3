@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import Adresse from './Adresse'
 import Ap from './Ap'
 import Apart from './Apart'
 import Apber from './Apber'
 import Apberuebersicht from './Apberuebersicht'
 import Assozart from './Assozart'
 import Beobzuordnung from './Beobzuordnung'
-import CurrentIssue from './CurrentIssue' 
+import CurrentIssue from './CurrentIssue'
 import Messages from './Messages'
 import Ekzaehleinheit from './Ekzaehleinheit'
 import Ekfrequenz from './Ekfrequenz'
@@ -29,7 +28,6 @@ import TpopkontrzaehlEinheitWerte from './TpopkontrzaehlEinheitWerte'
 import Tpopmassn from './Tpopmassn'
 import Tpopmassnber from './Tpopmassnber'
 import User from './User'
-import Werte from './Werte'
 import Ziel from './Ziel'
 import Zielber from './Zielber'
 
@@ -51,14 +49,6 @@ const Container = styled.div`
 const Daten = ({ activeForm }) => {
   let form
   switch (activeForm.form) {
-    case 'adresse': {
-      form = <Adresse />
-      break
-    }
-    case 'werte': {
-      form = <Werte table={activeForm.type} />
-      break
-    }
     case 'ap': {
       form = <Ap />
       break

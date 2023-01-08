@@ -4,6 +4,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { observer } from 'mobx-react-lite'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import Checkbox2States from '../../../shared/Checkbox2States'
 import TextField from '../../../shared/TextField'
@@ -37,14 +38,11 @@ const fieldTypes = {
 }
 
 const Adresse = () => {
+  const { adrId } = useParams()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
-  const id =
-    activeNodeArray.length > 2
-      ? activeNodeArray[2]
-      : '99999999-9999-9999-9999-999999999999'
+
   const { data, error, loading } = useQuery(query, {
-    variables: { id },
+    variables: { id: adrId },
   })
   const client = useApolloClient()
 

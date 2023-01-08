@@ -1,17 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { DateTime } from 'luxon'
-import { observer } from 'mobx-react-lite'
-import { useQuery } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
+import { useQuery } from '@tanstack/react-query'
 import MarkdownIt from 'markdown-it'
+import { useParams } from 'react-router-dom'
 
-import query from './query'
+import queryForYear from './query'
+import queryForApberuebersicht from '../../Projekte/Daten/Apberuebersicht/query'
 import fnslogo from './fnslogo.png'
 import AvList from './AvList'
 import AktPopList from './AktPopList'
 import ErfolgList from './ErfolgList'
 import ApberForAps from './ApberForAps'
-import storeContext from '../../../storeContext'
 import ErrorBoundary from '../../shared/ErrorBoundary'
 import Spinner from '../../shared/Spinner'
 
@@ -100,17 +101,32 @@ const SecondPageText = styled.div`
   padding-top: 0.2cm;
 `
 
-const ApberForYear = ({ apberuebersichtId, jahr }) => {
-  const store = useContext(storeContext)
-  const { projIdInActiveNodeArray } = store.tree
+const ApberForYear = () => {
+  const { apberUebersichtId, projId } = useParams()
 
-  const projektId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const { data, loading, error } = useQuery(query, {
-    variables: {
-      projektId,
-      jahr,
-      apberuebersichtId,
+  const client = useApolloClient()
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['ApberForYearQuery'],
+    queryFn: async () => {
+      // first get year
+      const { data: data1 } = await client.query({
+        query: queryForApberuebersicht,
+        variables: {
+          id: apberUebersichtId,
+        },
+      })
+      const jahr = data1?.apberuebersichtById?.jahr
+      const { data } = await client.query({
+        query: queryForYear,
+        variables: {
+          projektId: projId,
+          jahr,
+          apberuebersichtId: apberUebersichtId,
+        },
+      })
+
+      return { data, jahr }
     },
   })
 
@@ -121,9 +137,10 @@ const ApberForYear = ({ apberuebersichtId, jahr }) => {
   // DANGER: without rerendering when loading mutates from true to false
   // data remains undefined
   // BUT WITH IT PRINT SOMETIMES ONLY SHOWS THE SPINNER!!!!!!!!!!!!!!!
-  if (loading) return <Spinner />
+  if (isLoading) return <Spinner />
 
-  const apberuebersicht = data?.apberuebersichtById
+  const jahr = data?.jahr
+  const apberuebersicht = data?.data?.apberuebersichtById
 
   return (
     <ErrorBoundary>
@@ -153,14 +170,14 @@ const ApberForYear = ({ apberuebersichtId, jahr }) => {
               </SecondPageText>
             </SecondPage>
           )}
-          <AvList data={data} />
-          <ErfolgList jahr={jahr} data={data} />
+          <AvList data={data?.data} />
+          <ErfolgList jahr={jahr} data={data?.data} />
           <AktPopList year={jahr} />
-          <ApberForAps jahr={jahr} data={data} />
+          <ApberForAps jahr={jahr} data={data?.data} />
         </ContentContainer>
       </Container>
     </ErrorBoundary>
   )
 }
 
-export default observer(ApberForYear)
+export default ApberForYear

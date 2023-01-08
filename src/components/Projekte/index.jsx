@@ -12,7 +12,6 @@ import queryString from 'query-string'
 import ProjektContainer from './ProjektContainer'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
-import AppBar from './AppBar'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
 

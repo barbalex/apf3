@@ -199,52 +199,11 @@ const ProjektContainer = () => {
   //   treeTabs,
   // })
 
-  if (showApberForAll) {
-    if (isPrint) return <ApberForYear />
-    return (
-      <Container>
-        <StyledSplitPane
-          split="vertical"
-          size={paneSize}
-          maxSize={-10}
-          overflow="auto"
-        >
-          {elObj.tree}
-          <ApberForYear />
-        </StyledSplitPane>
-      </Container>
-    )
-  }
-
-  if (showApberForArt) {
-    if (isPrint) return <ApberForApFromAp />
-    return (
-      <Container>
-        <StyledSplitPane
-          split="vertical"
-          size={paneSize}
-          maxSize={-10}
-          overflow="auto"
-        >
-          {elObj.tree}
-          <InnerContainer>
-            <ApberForApFromAp />
-          </InnerContainer>
-        </StyledSplitPane>
-      </Container>
-    )
-  }
-
   if (isPrint) {
-    return (
-      <Daten
-        activeForm={getActiveForm({
-          store,
-          nodes: treeNodes,
-        })}
-      />
-    )
+    return <Outlet />
   }
+
+  const overflow = showApberForAll || showApberForArt ? 'auto' : 'hidden'
 
   if (treeTabs.length < 2) {
     // return WITH split pane
@@ -265,7 +224,12 @@ const ProjektContainer = () => {
   if (treeTabs.length === 2) {
     return (
       <Container>
-        <StyledSplitPane split="vertical" size={paneSize} maxSize={-10}>
+        <StyledSplitPane
+          split="vertical"
+          size={paneSize}
+          maxSize={-10}
+          overflow={overflow}
+        >
           {elObj[treeTabs[0]]}
           {elObj[treeTabs[1]]}
         </StyledSplitPane>

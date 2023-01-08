@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
-import camelCase from 'lodash/camelCase'
 import upperFirst from 'lodash/upperFirst'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import FormTitle from '../../../shared/FormTitle'
@@ -28,21 +28,15 @@ const FormContainer = styled.div`
 `
 
 const Werte = ({ table }) => {
+  const { wertId: id } = useParams()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
-  const tableCamelCased = camelCase(table)
-  const id =
-    activeNodeArray.length > 2
-      ? activeNodeArray[2]
-      : '99999999-9999-9999-9999-999999999999'
-
   const query = gql`
     query werteByIdQuery($id: UUID!) {
-      ${tableCamelCased}ById(id: $id) {
+      ${table}ById(id: $id) {
         id
         code
         text
@@ -56,14 +50,11 @@ const Werte = ({ table }) => {
     },
   })
 
-  const row = useMemo(
-    () => data?.[`${tableCamelCased}ById`] ?? {},
-    [data, tableCamelCased],
-  )
+  const row = useMemo(() => data?.[`${table}ById`] ?? {}, [data, table])
 
   let codeGqlType = 'Int'
   let codeFieldType = 'number'
-  if (['ekAbrechnungstypWerte'].includes(tableCamelCased)) {
+  if (['ekAbrechnungstypWerte'].includes(table)) {
     codeGqlType = 'String'
     codeFieldType = 'text'
   }
@@ -79,7 +70,7 @@ const Werte = ({ table }) => {
         changedBy: store.user.name,
       }
 
-      const __typename = upperFirst(tableCamelCased)
+      const __typename = upperFirst(table)
       try {
         const mutation = gql`
           mutation updateWert(
@@ -92,7 +83,7 @@ const Werte = ({ table }) => {
             update${__typename}ById(
               input: {
                 id: $id
-                ${tableCamelCased}Patch: {
+                ${table}Patch: {
                   id: $id
                   code: $code
                   text: $text
@@ -101,7 +92,7 @@ const Werte = ({ table }) => {
                 }
               }
             ) {
-              ${tableCamelCased} {
+              ${table} {
                 id
                 code
                 text
@@ -121,7 +112,7 @@ const Werte = ({ table }) => {
       refetch()
       setFieldErrors({})
     },
-    [client, codeGqlType, refetch, row.id, store.user.name, tableCamelCased],
+    [client, codeGqlType, refetch, row.id, store.user.name, table],
   )
 
   if (loading) return <Spinner />
@@ -131,7 +122,7 @@ const Werte = ({ table }) => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={row.apId} title={table} table={table} />
+        <FormTitle title={table} />
         <FieldsContainer>
           <SimpleBar
             style={{
