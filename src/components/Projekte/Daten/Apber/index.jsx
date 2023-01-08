@@ -64,9 +64,8 @@ const fieldTypes = {
 
 const Apber = () => {
   const { apberId } = useParams()
-  
+
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
   const client = useApolloClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
@@ -78,8 +77,6 @@ const Apber = () => {
   })
 
   const row = useMemo(() => data?.apberById ?? {}, [data?.apberById])
-
-  console.log('Apber', { apberId, data, activeNodeArray5: activeNodeArray[5] })
 
   const { width = 500, ref: resizeRef } = useResizeDetector({
     refreshMode: 'debounce',

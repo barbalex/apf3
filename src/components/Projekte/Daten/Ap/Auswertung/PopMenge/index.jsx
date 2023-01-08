@@ -73,8 +73,14 @@ const formatNumber = (tickItem) => {
   return value
 }
 
-const ApAuswertungPopMenge = ({ height = 400, print, jahr: jahrPassed }) => {
-  const { apId: id } = useParams()
+const ApAuswertungPopMenge = ({
+  apId: apIdPassed,
+  height = 400,
+  print,
+  jahr: jahrPassed,
+}) => {
+  const { apId } = useParams()
+  const id = apIdPassed ?? apId
 
   const store = useContext(storeContext)
   const { enqueNotification } = store

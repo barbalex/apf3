@@ -1,29 +1,15 @@
-import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import apQuery from './apByIdJahr'
 import apberQuery from './apberById'
 import ApberForAp from '../ApberForAp'
-import storeContext from '../../../storeContext'
 import ErrorBoundary from '../../shared/ErrorBoundary'
 import Spinner from '../../shared/Spinner'
 
-const ApberForApFromAp = ({ apberId: apberIdPassed, apId: apIdPassed }) => {
-  const store = useContext(storeContext)
-  const { apberIdInActiveNodeArray, apIdInActiveNodeArray } = store.tree
-  let apberId
-  if (apberIdPassed) {
-    apberId = apberIdPassed
-  } else {
-    apberId = apberIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  }
-  let apId
-  if (apIdPassed) {
-    apId = apIdPassed
-  } else {
-    apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  }
+const ApberForApFromAp = () => {
+  const { apberId, apId } = useParams()
 
   const { data: apberData, error: apberDataError } = useQuery(apberQuery, {
     variables: {

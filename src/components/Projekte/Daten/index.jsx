@@ -4,7 +4,6 @@ import styled from '@emotion/styled'
 import Apber from './Apber'
 import Erfkrit from './Erfkrit'
 import Exporte from '../Exporte'
-import Idealbiotop from './Idealbiotop'
 import Pop from './Pop'
 import Popber from './Popber'
 import Popmassnber from './Popmassnber'
@@ -49,10 +48,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'exporte': {
       form = <Exporte />
-      break
-    }
-    case 'idealbiotop': {
-      form = <Idealbiotop />
       break
     }
     case 'pop': {

@@ -51,8 +51,14 @@ const color = {
     'rgba(245,141,66,0.5)',
 }
 
-const ApAuswertungPopStatus = ({ height = 400, print, year: yearPassed }) => {
-  const { apId: id } = useParams()
+const ApAuswertungPopStatus = ({
+  apId: apIdPassed,
+  height = 400,
+  print,
+  year: yearPassed,
+}) => {
+  const { apId } = useParams()
+  const id = apIdPassed ?? apId
 
   const year = yearPassed ?? new Date().getFullYear()
   const {

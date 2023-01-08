@@ -51,9 +51,15 @@ const color = {
   kontrolliert: 'red',
 }
 
-const ApAuswertungTpopKontrolliert = ({ height = 400, print, jahr }) => {
-  const { apId: id } = useParams()
-  
+const ApAuswertungTpopKontrolliert = ({
+  apId: apIdPassed,
+  height = 400,
+  print,
+  jahr,
+}) => {
+  const { apId } = useParams()
+  const id = apIdPassed ?? apId
+
   const { data, error, loading } = useQuery(query, {
     variables: { id, year: jahr ?? new Date().getFullYear() },
   })

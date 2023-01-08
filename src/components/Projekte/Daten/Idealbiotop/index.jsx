@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import DateField from '../../../shared/Date'
@@ -84,6 +85,8 @@ const fieldTypes = {
 }
 
 const Idealbiotop = () => {
+  const { apId: id } = useParams()
+
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
   const client = useApolloClient()
@@ -91,14 +94,10 @@ const Idealbiotop = () => {
   const [fieldErrors, setFieldErrors] = useState({})
 
   const [tab, setTab] = useState(urlQuery?.idealbiotopTab ?? 'idealbiotop')
-  const { activeNodeArray } = store.tree
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 3
-          ? activeNodeArray[3]
-          : '99999999-9999-9999-9999-999999999999',
+      id,
     },
   })
 

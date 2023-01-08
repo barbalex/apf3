@@ -1,7 +1,7 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import storeContext from '../../storeContext'
+// import storeContext from '../../storeContext'
 import Home from '../Home'
 import EkPlan from '../EkPlan'
 import FourOhFour from '../404'
@@ -25,14 +25,16 @@ import Ekzaehleinheit from '../Projekte/Daten/Ekzaehleinheit'
 import Ekfrequenz from '../Projekte/Daten/Ekfrequenz'
 import Assozart from '../Projekte/Daten/Assozart'
 import Apart from '../Projekte/Daten/Apart'
-import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
+import Idealbiotop from '../Projekte/Daten/Idealbiotop'
 import Apber from '../Projekte/Daten/Apber'
+import ApberForApFromAp from '../Print/ApberForApFromAp'
+import TpopkontrzaehlEinheitWerte from '../Projekte/Daten/TpopkontrzaehlEinheitWerte'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
 
 // uncomment unterhalt route for Unterhalt
 const RouterComponent = () => {
-  const store = useContext(storeContext)
+  // const store = useContext(storeContext)
 
   return (
     <Routes>
@@ -93,6 +95,18 @@ const RouterComponent = () => {
           <Route
             path="Projekte/:projId/Arten/:apId/Taxa/:taxonId"
             element={<Apart />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Idealbiotop"
+            element={<Idealbiotop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId"
+            element={<Apber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId/print"
+            element={<ApberForApFromAp />}
           />
           <Route path="Benutzer/:userId/*" element={<User />} />
           <Route
