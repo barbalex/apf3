@@ -4,7 +4,6 @@ import styled from '@emotion/styled'
 import Exporte from '../Exporte'
 import Tpopkontrzaehl from './Tpopkontrzaehl'
 import TpopkontrzaehlEinheitWerte from './TpopkontrzaehlEinheitWerte'
-import Tpopmassn from './Tpopmassn'
 import User from './User'
 
 const Container = styled.div`
@@ -35,10 +34,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'tpopkontrzaehlEinheitWerte': {
       form = <TpopkontrzaehlEinheitWerte />
-      break
-    }
-    case 'tpopmassn': {
-      form = <Tpopmassn />
       break
     }
     case 'user': {

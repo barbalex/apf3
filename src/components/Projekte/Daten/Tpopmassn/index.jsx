@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -76,6 +77,8 @@ const fieldTypes = {
 }
 
 const Tpopmassn = ({ showFilter = false }) => {
+  const { tpopmassnId } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
@@ -84,11 +87,7 @@ const Tpopmassn = ({ showFilter = false }) => {
 
   const [fieldErrors, setFieldErrors] = useState({})
 
-  let id =
-    activeNodeArray.length > 9
-      ? activeNodeArray[9]
-      : '99999999-9999-9999-9999-999999999999'
-  if (showFilter) id = '99999999-9999-9999-9999-999999999999'
+  const id = showFilter ? '99999999-9999-9999-9999-999999999999' : tpopmassnId
 
   const { data, loading, error } = useQuery(query, {
     variables: {
