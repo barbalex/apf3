@@ -5,7 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { MdPrint } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import SimpleBar from 'simplebar-react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import query from './query'
 import createTpopkontrzaehl from './createTpopkontrzaehl'
@@ -39,25 +39,20 @@ const StyledIconButton = styled(IconButton)`
 `
 
 const Tpopfreiwkontr = ({ id: idPassed }) => {
+  const { tpopkontrId: idPassedFromUrl } = useParams()
+
   const { pathname } = useLocation()
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { enqueNotification, isPrint, setIsPrint, user } = store
-  const tree = store.tree
-  const { activeNodeArray } = tree
 
-  const id = idPassed
-    ? idPassed
-    : activeNodeArray.length > 9
-    ? activeNodeArray[9]
-    : '99999999-9999-9999-9999-999999999999'
+  const id = idPassed ?? idPassedFromUrl
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {
       id,
     },
   })
-  // DO NOT fetch apId from activeNodeArray because this form is also used for mass prints
-  //const apId = activeNodeArray[3]
+  // DO NOT use apId from url because this form is also used for mass prints
   const apId =
     data?.tpopkontrById?.tpopByTpopId?.popByPopId?.apId ??
     '99999999-9999-9999-9999-999999999999'

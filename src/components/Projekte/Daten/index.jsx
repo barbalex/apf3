@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 
 import Exporte from '../Exporte'
 import Tpopfeldkontr from './Tpopfeldkontr'
-import Tpopfreiwkontr from './Tpopfreiwkontr'
 import Tpopkontrzaehl from './Tpopkontrzaehl'
 import TpopkontrzaehlEinheitWerte from './TpopkontrzaehlEinheitWerte'
 import Tpopmassn from './Tpopmassn'
@@ -34,10 +33,6 @@ const Daten = ({ activeForm }) => {
     }
     case 'tpopfeldkontr': {
       form = <Tpopfeldkontr />
-      break
-    }
-    case 'tpopfreiwkontr': {
-      form = <Tpopfreiwkontr />
       break
     }
     case 'tpopkontrzaehl': {
