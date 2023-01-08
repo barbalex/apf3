@@ -8,6 +8,10 @@ import Docs from '../Docs'
 import ProtectedRoute from './ProtectedRoute'
 import Ekf from '../Ekf'
 import Projekte from '../Projekte'
+import Projekt from '../Projekte/Daten/Projekt'
+import Apberuebersicht from '../Projekte/Daten/Apberuebersicht'
+import Apber from '../Projekte/Daten/Apber'
+import User from '../Projekte/Daten/User'
 // import Unterhalt from './components/Unterhalt'
 const ekfRefYear = new Date().getFullYear()
 
@@ -19,8 +23,12 @@ const RouterComponent = () => (
       {/* <Route path="*" element={<Unterhalt />}></Route> */}
       <Route path="*" element={<Projekte />}>
         <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
-        <Route path="Projekte/:projId/*" element={<Projekte />}></Route>
-        <Route path="Benutzer/:userId/*" element={<Projekte />} />
+        <Route path="Projekte/:projId/*" element={<Projekt />} />
+        <Route
+          path="Projekte/:projId/AP-Berichte/:apberUebersichtId"
+          element={<Apberuebersicht />}
+        />
+        <Route path="Benutzer/:userId/*" element={<User />} />
         <Route
           path="Benutzer/:userId/EKF/*"
           element={<Navigate to={ekfRefYear.toString()} />}

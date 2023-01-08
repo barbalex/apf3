@@ -11,7 +11,7 @@ import Button from '@mui/material/Button'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField2'
@@ -92,6 +92,7 @@ const fieldTypes = {
 }
 
 const User = () => {
+  const { userId } = useParams()
   const navigate = useNavigate()
 
   const store = useContext(storeContext)
@@ -109,13 +110,9 @@ const User = () => {
   const [password2ErrorText, setPassword2ErrorText] = useState('')
   const [passwordMessage, setPasswordMessage] = useState('')
 
-  const id =
-    activeNodeArray.length > 1
-      ? activeNodeArray[1]
-      : '99999999-9999-9999-9999-999999999999'
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id,
+      id: userId,
     },
   })
 

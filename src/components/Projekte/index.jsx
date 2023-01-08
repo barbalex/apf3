@@ -15,7 +15,6 @@ import StyledSplitPane from '../shared/StyledSplitPane'
 import AppBar from './AppBar'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
-import inIframe from '../../modules/inIframe'
 
 const Container = styled.div`
   height: 100%;
@@ -32,7 +31,6 @@ const StyledIframe = styled.iframe`
 `
 
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
-const isInIframe = inIframe()
 
 const Projekte = () => {
   const { pathname } = useLocation()
@@ -44,20 +42,10 @@ const Projekte = () => {
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   if (tree2Tabs.length === 0 || isPrint) {
-    // inside iframe app bar should be hidden
-    if (isInIframe) {
-      return (
-        <Container>
-          <ProjektContainer />
-        </Container>
-      )
-    }
     return (
-      <AppBar>
-        <Container>
-          <ProjektContainer />
-        </Container>
-      </AppBar>
+      <Container>
+        <ProjektContainer />
+      </Container>
     )
   }
 
@@ -78,19 +66,17 @@ const Projekte = () => {
   }
 
   return (
-    <AppBar>
-      <Container>
-        <StyledSplitPane split="vertical" defaultSize="50%">
-          <ProjektContainer />
-          <StyledIframe
-            src={iFrameSrc}
-            title="tree2"
-            width="100%"
-            height="100%"
-          />
-        </StyledSplitPane>
-      </Container>
-    </AppBar>
+    <Container>
+      <StyledSplitPane split="vertical" defaultSize="50%">
+        <ProjektContainer />
+        <StyledIframe
+          src={iFrameSrc}
+          title="tree2"
+          width="100%"
+          height="100%"
+        />
+      </StyledSplitPane>
+    </Container>
   )
 }
 

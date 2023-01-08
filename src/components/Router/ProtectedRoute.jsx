@@ -10,6 +10,10 @@ import storeContext from '../../storeContext'
 import User from '../User'
 import Messages from '../Messages'
 import Deletions from '../Deletions'
+import AppBar from '../Projekte/AppBar'
+import inIframe from '../../modules/inIframe'
+
+const isInIframe = inIframe()
 
 const Container = styled.div`
   background-color: #fffde7;
@@ -36,19 +40,11 @@ const ProtectedRoute = () => {
   const role = tokenDecoded ? tokenDecoded.role : null
   const isFreiwillig = role === 'apflora_freiwillig'
 
-  // TODO:
   // if user is freiwillig
   // and path is not in /Benutzer/:userId
   // then redirect to /Benutzer/:userId/EKF
   const shouldNavigate =
     isFreiwillig && userId && !pathname.includes(`Daten/Benutzer/${userId}`)
-  // console.log('ProtectedRoute', {
-  //   user: getSnapshot(user),
-  //   isFreiwillig,
-  //   role,
-  //   pathname,
-  //   shouldNavigate,
-  // })
   if (shouldNavigate) {
     return (
       <Navigate
@@ -57,16 +53,35 @@ const ProtectedRoute = () => {
     )
   }
 
+  if (isInIframe) {
+    // inside iframe app bar should be hidden
+    // also: no messages
+    // also: freiwillige don't see the iFrame
+    return (
+      <Container>
+        {!!user.token && (
+          <>
+            <Outlet />
+            {showDeletions && <Deletions />}
+          </>
+        )}
+        <User />
+      </Container>
+    )
+  }
+
   return (
     <Container>
-      {!!user.token && (
-        <>
-          <Outlet />
-          {!isFreiwillig && <Messages />}
-          {!isFreiwillig && showDeletions && <Deletions />}
-        </>
-      )}
-      <User />
+      <AppBar>
+        {!!user.token && (
+          <>
+            <Outlet />
+            {!isFreiwillig && <Messages />}
+            {!isFreiwillig && showDeletions && <Deletions />}
+          </>
+        )}
+        <User />
+      </AppBar>
     </Container>
   )
 }

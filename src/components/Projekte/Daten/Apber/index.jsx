@@ -5,6 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -62,22 +63,23 @@ const fieldTypes = {
 }
 
 const Apber = () => {
+  const { apberId } = useParams()
+  
   const store = useContext(storeContext)
-  const client = useApolloClient()
   const { activeNodeArray } = store.tree
+  const client = useApolloClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 5
-          ? activeNodeArray[5]
-          : '99999999-9999-9999-9999-999999999999',
+      id: apberId,
     },
   })
 
   const row = useMemo(() => data?.apberById ?? {}, [data?.apberById])
+
+  console.log('Apber', { apberId, data, activeNodeArray5: activeNodeArray[5] })
 
   const { width = 500, ref: resizeRef } = useResizeDetector({
     refreshMode: 'debounce',

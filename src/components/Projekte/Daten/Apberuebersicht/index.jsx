@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode'
 import format from 'date-fns/format'
 import { DateTime } from 'luxon'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import MdField from '../../../shared/MarkdownField'
@@ -49,22 +50,20 @@ const fieldTypes = {
 }
 
 const Apberuebersicht = () => {
+  const { apberUebersichtId } = useParams()
+
   const store = useContext(storeContext)
   const client = useApolloClient()
   const { user, enqueNotification } = store
   const { token } = user
   const role = token ? jwtDecode(token).role : null
   const userIsManager = role === 'apflora_manager'
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
   const { data, loading, error, refetch } = useQuery(query, {
     variables: {
-      id:
-        activeNodeArray.length > 3
-          ? activeNodeArray[3]
-          : '99999999-9999-9999-9999-999999999999',
+      id: apberUebersichtId,
     },
   })
 
