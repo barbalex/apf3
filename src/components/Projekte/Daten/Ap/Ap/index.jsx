@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroupWithInfo from '../../../../shared/RadioButtonGroupWithInfo'
 import TextField from '../../../../shared/TextField'
@@ -64,7 +65,9 @@ const fieldTypes = {
   projId: 'UUID',
 }
 
-const ApAp = ({ id }) => {
+const ApAp = () => {
+  const { apId } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { user } = store
@@ -72,7 +75,7 @@ const ApAp = ({ id }) => {
   const [fieldErrors, setFieldErrors] = useState({})
 
   const { data, error, loading } = useQuery(query, {
-    variables: { id },
+    variables: { id: apId },
   })
 
   const row = useMemo(() => data?.apById ?? {}, [data?.apById])
@@ -131,17 +134,17 @@ const ApAp = ({ id }) => {
         ? {
             or: [
               { apByArtIdExists: false },
-              { apByArtId: { id: { equalTo: id } } },
+              { apByArtId: { id: { equalTo: apId } } },
             ],
             taxArtName: { includesInsensitive: inputValue },
           }
         : {
             or: [
               { apByArtIdExists: false },
-              { apByArtId: { id: { equalTo: id } } },
+              { apByArtId: { id: { equalTo: apId } } },
             ],
           },
-    [id],
+    [apId],
   )
 
   if (loading) return <Spinner />
@@ -250,7 +253,7 @@ const ApAp = ({ id }) => {
           saveToDb={saveToDb}
           error={fieldErrors.bearbeiter}
         />
-        <ApUsers apId={row.id} />
+        <ApUsers />
         <TextField
           name="ekfBeobachtungszeitpunkt"
           label="Bester Beobachtungszeitpunkt für EKF (Freiwilligen-Kontrollen)"

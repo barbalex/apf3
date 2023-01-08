@@ -49,7 +49,7 @@ const ApTabs = () => {
   return (
     <ErrorBoundary>
       <Container>
-        <FormTitle apId={apId} title="Art" />
+        <FormTitle title="Art" />
         <Tabs
           value={tab}
           onChange={onChangeTab}
@@ -67,7 +67,7 @@ const ApTabs = () => {
           <StyledTab label="Historien" value="history" data-id="history" />
         </Tabs>
         <TabContent>
-          {tab === 'ap' && <Ap id={apId} />}
+          {tab === 'ap' && <Ap />}
           {tab === 'auswertung' && <Auswertung id={apId} />}
           {tab === 'dateien' && <Files parentId={apId} parent="ap" />}
           {tab === 'history' && <ApHistory apId={apId} />}

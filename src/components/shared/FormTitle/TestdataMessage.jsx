@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
+import { useParams } from 'react-router-dom'
 
 import constants from '../../../modules/constants'
-import storeContext from '../../../storeContext'
 
 const Div = styled.div`
   color: #c8e6c9;
@@ -10,11 +9,9 @@ const Div = styled.div`
   margin-top: -5px;
 `
 
-const TestdataMessage = ({ apId }) => {
-  const store = useContext(storeContext)
-  const { apIdInActiveNodeArray } = store.tree
-  const apIdUsed = apIdInActiveNodeArray || apId
-  const isTestAp = apIdUsed && constants.testAps.includes(apIdUsed)
+const TestdataMessage = () => {
+  const { apId } = useParams()
+  const isTestAp = apId && constants.testAps.includes(apId)
 
   if (isTestAp) {
     return (

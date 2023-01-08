@@ -2,6 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { useQuery, gql } from '@apollo/client'
 import styled from '@emotion/styled'
+import { useParams } from 'react-router-dom'
 
 import ApUser from './ApUser'
 import NewUser from './NewUser'
@@ -32,7 +33,9 @@ const InfoRow = styled.li`
   margin-bottom: 0;
 `
 
-const ApUsers = ({ apId }) => {
+const ApUsers = () => {
+  const { apId } = useParams()
+
   const { data, error, loading, refetch } = useQuery(
     gql`
       query apUsersForApQuery($apId: UUID!) {

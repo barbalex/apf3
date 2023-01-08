@@ -30,16 +30,14 @@ const Buttons = styled.div`
   padding: 3px 0 3px 10px;
 `
 
-const FormTitle = ({ title, apId, buttons, noTestDataMessage = false }) => {
-  return (
-    <Container>
-      <TitleRow>
-        <Title data-id="form-title">{title}</Title>
-        <Buttons>{buttons}</Buttons>
-      </TitleRow>
-      {!noTestDataMessage && <TestdataMessage apId={apId} />}
-    </Container>
-  )
-}
+const FormTitle = ({ title, buttons, noTestDataMessage = false }) => (
+  <Container>
+    <TitleRow>
+      <Title data-id="form-title">{title}</Title>
+      <Buttons>{buttons}</Buttons>
+    </TitleRow>
+    {!noTestDataMessage && <TestdataMessage />}
+  </Container>
+)
 
 export default FormTitle
