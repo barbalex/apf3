@@ -275,10 +275,10 @@ const getAndValidateCoordinatesOfBeob = async ({
 
 const TreeContainer = ({ nodes, treeLoading, treeError }) => {
   const client = useApolloClient()
-  const store = useContext(storeContext)
   const { idb } = useContext(idbContext)
   const queryClient = useQueryClient()
 
+  const store = useContext(storeContext)
   const {
     activeApfloraLayers,
     setActiveApfloraLayers,
