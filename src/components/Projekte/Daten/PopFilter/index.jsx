@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -44,10 +45,11 @@ const FilterComment = styled.li`
 `
 
 const PopFilter = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const { dataFilterSetValue } = store
   const {
-    activeNodeArray,
     dataFilter,
     nodeLabelFilter,
     popGqlFilter,
@@ -55,10 +57,6 @@ const PopFilter = () => {
     artIsFiltered,
     apFilter,
   } = store.tree
-
-  // need to slice to rerender on change
-  const aNA = activeNodeArray.slice()
-  const apId = aNA[3]
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {
