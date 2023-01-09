@@ -119,10 +119,9 @@ export default types
     },
   }))
   .views((self) => ({
-    get ekfIdInActiveNodeArray() {
-      if (self.activeNodeArray.includes('Freiwilligen-Kontrollen')) {
-        const indexOfId =
-          self.activeNodeArray.indexOf('Freiwilligen-Kontrollen') + 1
+    get projIdInActiveNodeArray() {
+      if (self.activeNodeArray.includes('Projekte')) {
+        const indexOfId = self.activeNodeArray.indexOf('Projekte') + 1
         if (self.activeNodeArray.length > indexOfId) {
           const id = self.activeNodeArray?.[indexOfId]
           if (isUuid.anyNonNil(id)) return id
@@ -130,43 +129,13 @@ export default types
       }
       return undefined
     },
-    get apberIdInActiveNodeArray() {
-      if (self.activeNodeArray[4] === 'AP-Berichte') {
-        const indexOfId = self.activeNodeArray.indexOf('AP-Berichte') + 1
-        if (self.activeNodeArray.length > indexOfId) {
-          const id = self.activeNodeArray?.[indexOfId]
-          if (isUuid.anyNonNil(id)) return id
-        }
-      }
-      return undefined
-    },
-    get apberuebersichtIdInActiveNodeArray() {
-      if (self.activeNodeArray[2] === 'AP-Berichte') {
-        const indexOfId = self.activeNodeArray.indexOf('AP-Berichte') + 1
-        if (self.activeNodeArray.length > indexOfId) {
-          const id = self.activeNodeArray?.[indexOfId]
-          if (isUuid.anyNonNil(id)) return id
-        }
-      }
-      return undefined
-    },
-    get popIdInActiveNodeArray() {
+    get apIdInActiveNodeArray() {
       if (
-        self.activeNodeArray.length > 5 &&
-        self.activeNodeArray[4] === 'Populationen'
+        self.activeNodeArray.length > 3 &&
+        self.activeNodeArray[2] === 'Arten'
       ) {
-        const id = self.activeNodeArray[5]
+        const id = self.activeNodeArray[3]
         if (isUuid.anyNonNil(id)) return id
-      }
-      return undefined
-    },
-    get tpopIdInActiveNodeArray() {
-      if (self.activeNodeArray.includes('Teil-Populationen')) {
-        const indexOfId = self.activeNodeArray.indexOf('Teil-Populationen') + 1
-        if (self.activeNodeArray.length > indexOfId) {
-          const id = self.activeNodeArray?.[indexOfId]
-          if (isUuid.anyNonNil(id)) return id
-        }
       }
       return undefined
     },
@@ -400,9 +369,6 @@ export default types
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
       const apId = self.apIdInActiveNodeArray
-      // Der Hierarchie-Filter auf Ebene Population und Teil-Population hat sich nicht bewährt und wurde nach kurzer Zeit wieder entfernt
-      // const popId = self.popIdInActiveNodeArray
-      // const popHierarchyFilter = popId ? { popId: { equalTo: popId } } : {}
       const apHiearchyFilter = apId
         ? { popByPopId: { apId: { equalTo: apId } } }
         : {}
@@ -516,13 +482,6 @@ export default types
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
       const apId = self.apIdInActiveNodeArray
-      // Der Hierarchie-Filter auf Ebene Population und Teil-Population hat sich nicht bewährt und wurde nach kurzer Zeit wieder entfernt
-      // const popId = self.popIdInActiveNodeArray
-      // const tpopId = self.tpopIdInActiveNodeArray
-      // const tpopHierarchyFilter = tpopId ? { tpopId: { equalTo: tpopId } } : {}
-      // const popHierarchyFilter = popId
-      //   ? { tpopByTpopId: { popId: { equalTo: popId } } }
-      //   : {}
       const apHiearchyFilter = apId
         ? { tpopByTpopId: { popByPopId: { apId: { equalTo: apId } } } }
         : {}
@@ -642,13 +601,6 @@ export default types
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
       const apId = self.apIdInActiveNodeArray
-      // Der Hierarchie-Filter auf Ebene Population und Teil-Population hat sich nicht bewährt und wurde nach kurzer Zeit wieder entfernt
-      // const popId = self.popIdInActiveNodeArray
-      // const tpopId = self.tpopIdInActiveNodeArray
-      // const tpopHierarchyFilter = tpopId ? { tpopId: { equalTo: tpopId } } : {}
-      // const popHierarchyFilter = popId
-      //   ? { tpopByTpopId: { popId: { equalTo: popId } } }
-      //   : {}
       const apHiearchyFilter = apId
         ? { tpopByTpopId: { popByPopId: { apId: { equalTo: apId } } } }
         : {}
@@ -772,13 +724,6 @@ export default types
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
       const apId = self.apIdInActiveNodeArray
-      // Der Hierarchie-Filter auf Ebene Population und Teil-Population hat sich nicht bewährt und wurde nach kurzer Zeit wieder entfernt
-      // const popId = self.popIdInActiveNodeArray
-      // const tpopId = self.tpopIdInActiveNodeArray
-      // const tpopHierarchyFilter = tpopId ? { tpopId: { equalTo: tpopId } } : {}
-      // const popHierarchyFilter = popId
-      //   ? { tpopByTpopId: { popId: { equalTo: popId } } }
-      //   : {}
       const apHiearchyFilter = apId
         ? { tpopByTpopId: { popByPopId: { apId: { equalTo: apId } } } }
         : {}
@@ -906,8 +851,6 @@ export default types
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
       const apId = self.apIdInActiveNodeArray
-      // const popId = self.popIdInActiveNodeArray
-      // const tpopId = self.tpopIdInActiveNodeArray
 
       const apFilter = {
         aeTaxonomyByArtId: {
