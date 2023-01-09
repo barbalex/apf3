@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
+import { useParams } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -94,6 +95,8 @@ const tpopkontrTypWerte = [
 ]
 
 const TpopfeldkontrFilter = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const { dataFilterSetValue, urlQuery, setUrlQuery } = store
   const {
@@ -105,14 +108,7 @@ const TpopfeldkontrFilter = () => {
     artIsFiltered,
     popIsFiltered,
     tpopIsFiltered,
-    apIdInActiveNodeArray,
-    // popIdInActiveNodeArray,
-    // tpopIdInActiveNodeArray,
   } = store.tree
-
-  const apId = apIdInActiveNodeArray
-  // const popId = popIdInActiveNodeArray
-  // const tpopId = tpopIdInActiveNodeArray
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {

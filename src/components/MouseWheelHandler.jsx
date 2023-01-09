@@ -7,7 +7,7 @@ const MouseWheelHandler = () => {
   // passive: false is needed or else chrome will bark
   useEffect(() => {
     const handleWheel = (e) => {
-      //console.log('preventing wheel')
+      console.log('preventing wheel')
       e.preventDefault()
       e.target.blur()
     }

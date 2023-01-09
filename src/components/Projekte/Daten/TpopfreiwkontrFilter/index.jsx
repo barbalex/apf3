@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import queryTpopkontrs from './queryTpopkontrs'
 import FilterTitle from '../../../shared/FilterTitle'
@@ -46,6 +47,8 @@ const FilterComment = styled.li`
 `
 
 const Tpopfreiwkontr = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const tree = store.tree
   const {
@@ -57,14 +60,7 @@ const Tpopfreiwkontr = () => {
     artIsFiltered,
     popIsFiltered,
     tpopIsFiltered,
-    apIdInActiveNodeArray,
-    // popIdInActiveNodeArray,
-    // tpopIdInActiveNodeArray,
   } = tree
-
-  const apId = apIdInActiveNodeArray
-  // const popId = popIdInActiveNodeArray
-  // const tpopId = tpopIdInActiveNodeArray
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {
