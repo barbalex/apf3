@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import { gql } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import ApberForYear from './ApberForYear'
 import storeContext from '../../../storeContext'
@@ -9,13 +10,12 @@ import ErrorBoundary from '../../shared/ErrorBoundary'
 import Spinner from '../../shared/Spinner'
 
 const ApberForYearContainer = () => {
+  const { apberUebersichtId = '99999999-9999-9999-9999-999999999999' } =
+    useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { printingJberYear } = store
-  const { apberuebersichtIdInActiveNodeArray } = store.tree
-
-  const apberuebersichtId =
-    apberuebersichtIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
 
   const [year, setYear] = useState(printingJberYear)
   const [error, setError] = useState(undefined)
@@ -47,7 +47,7 @@ const ApberForYearContainer = () => {
             }
           `,
           variables: {
-            apberuebersichtId,
+            apberuebersichtId: apberUebersichtId,
           },
         })
       } catch (error) {
@@ -71,12 +71,7 @@ const ApberForYearContainer = () => {
     return () => {
       isActive = false
     }
-  }, [
-    apberuebersichtId,
-    apberuebersichtIdInActiveNodeArray,
-    client,
-    printingJberYear,
-  ])
+  }, [apberUebersichtId, client, printingJberYear])
 
   if (error) {
     return `Fehler: ${error.message}`
@@ -92,7 +87,7 @@ const ApberForYearContainer = () => {
 
   return (
     <ErrorBoundary>
-      <ApberForYear jahr={year} apberuebersichtId={apberuebersichtId} />
+      <ApberForYear jahr={year} apberuebersichtId={apberUebersichtId} />
     </ErrorBoundary>
   )
 }
