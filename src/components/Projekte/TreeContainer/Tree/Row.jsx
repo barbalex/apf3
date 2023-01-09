@@ -13,6 +13,8 @@ import {
 } from 'react-icons/md'
 import { observer } from 'mobx-react-lite'
 import Highlighter from 'react-highlight-words'
+import { useParams } from 'react-router-dom'
+import upperFirst from 'lodash/upperFirst'
 
 import isNodeInActiveNodePath from '../isNodeInActiveNodePath'
 import isNodeOpen from '../isNodeOpen'
@@ -189,6 +191,8 @@ const PrintIconContainer = styled.div`
 `
 
 const Row = ({ node }) => {
+  const { apId, tpopId } = useParams()
+
   const store = useContext(storeContext)
   const {
     activeApfloraLayers,
@@ -198,14 +202,8 @@ const Row = ({ node }) => {
     setPrintingJberYear,
   } = store
   const tree = store.tree
-  const {
-    openNodes,
-    setActiveNodeArray,
-    apIdInActiveNodeArray,
-    tpopIdInActiveNodeArray,
-    nodeLabelFilter,
-    activeNodeArray,
-  } = tree
+  const { openNodes, setActiveNodeArray, nodeLabelFilter, activeNodeArray } =
+    tree
   const activeId = activeNodeArray[activeNodeArray.length - 1]
   const nodeIsActive = node.id === activeId
 
@@ -229,9 +227,7 @@ const Row = ({ node }) => {
     useSymbolSpan = true
     useSymbolIcon = false
   }
-  if (
-    (node.menuType === 'apber' || node.menuType === 'apberuebersicht')
-  ) {
+  if (node.menuType === 'apber' || node.menuType === 'apberuebersicht') {
     showPrintIcon = true
   }
   const printIconTitle =
@@ -270,7 +266,7 @@ const Row = ({ node }) => {
 
   return (
     <ContextMenuTrigger
-      id={`tree${node.menuType}`}
+      id={`tree${upperFirst(node.menuType)}`}
       //collect={(props) => ({ key: index })}
       collect={(props) => props}
       nodeId={node.id}
@@ -312,35 +308,35 @@ const Row = ({ node }) => {
         {karteIsVisible && (
           <>
             {node.menuType === 'ap' &&
-              node.id === apIdInActiveNodeArray &&
+              node.id === apId &&
               activeApfloraLayers.includes('pop') && (
                 <div title="in Karte sichtbar">
                   <PopMapIcon />
                 </div>
               )}
             {node.menuType === 'ap' &&
-              node.id === apIdInActiveNodeArray &&
+              node.id === apId &&
               activeApfloraLayers.includes('tpop') && (
                 <div title="in Karte sichtbar">
                   <TpopMapIcon />
                 </div>
               )}
             {node.menuType === 'beobNichtBeurteiltFolder' &&
-              node.id === apIdInActiveNodeArray &&
+              node.id === apId &&
               activeApfloraLayers.includes('beobNichtBeurteilt') && (
                 <div title="in Karte sichtbar">
                   <BeobNichtBeurteiltMapIcon />
                 </div>
               )}
             {node.menuType === 'beobNichtZuzuordnenFolder' &&
-              node.id === apIdInActiveNodeArray &&
+              node.id === apId &&
               activeApfloraLayers.includes('beobNichtZuzuordnen') && (
                 <div title="in Karte sichtbar">
                   <BeobNichtZuzuordnenMapIcon />
                 </div>
               )}
             {node.menuType === 'beobZugeordnetFolder' &&
-              node.id === tpopIdInActiveNodeArray &&
+              node.id === tpopId &&
               activeApfloraLayers.includes('beobZugeordnet') && (
                 <div title="in Karte sichtbar">
                   <BeobZugeordnetMapIcon />

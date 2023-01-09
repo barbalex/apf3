@@ -25,7 +25,9 @@ const MyTextField = ({
   error,
   saveToDb,
   required = false,
-  onFocus = () => {},
+  onFocus = () => {
+    // do nothing
+  },
 }) => {
   const [stateValue, setStateValue] = useState(
     value || value === 0 ? value : '',
@@ -43,19 +45,6 @@ const MyTextField = ({
     },
     [saveToDb],
   )
-
-  // only working solution to prevent whell scrolling from changing number values
-  // see: https://github.com/mui-org/material-ui/issues/7960#issuecomment-497945204
-  // const textFieldRef = useRef(null)
-  // useEffect(() => {
-  //   const handleWheel = (e) => e.preventDefault()
-  //   const current = textFieldRef.current
-  //   current.addEventListener('wheel', handleWheel)
-
-  //   return () => {
-  //     current.removeEventListener('wheel', handleWheel)
-  //   }
-  // }, [])
 
   return (
     <StyledFormControl

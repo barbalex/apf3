@@ -10,6 +10,8 @@ import zieljahrFolder from './zieljahrFolder'
 const openLowerNodes = ({
   id,
   parentId,
+  apId,
+  projId,
   menuType,
   client,
   store,

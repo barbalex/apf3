@@ -1,10 +1,10 @@
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
+import { ContextMenu, MenuItem } from 'react-contextmenu/dist/react-contextmenu'
 
 import userIsReadOnly from '../../../../modules/userIsReadOnly'
 import storeContext from '../../../../storeContext'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
-import { ContextMenu, MenuItem } from 'react-contextmenu/dist/react-contextmenu'
 
 // create objects outside render
 const openLowerNodesData = {
