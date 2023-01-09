@@ -97,7 +97,7 @@ import TpopFromBeobPopList from './TpopFromBeobPopList'
 import ErrorBoundary from '../../shared/ErrorBoundary'
 import Error from '../../shared/Error'
 import Spinner from '../../shared/Spinner'
-import queryTree from './queryTree'
+import query from './query'
 import buildTreeQueryVariables from './buildTreeQueryVariables'
 import buildNodes from './nodes'
 
@@ -344,7 +344,7 @@ const TreeContainer = () => {
     ],
     queryFn: () =>
       client.query({
-        query: queryTree,
+        query,
         variables: buildTreeQueryVariables({
           dataFilter: treeDataFilter,
           openNodes: treeOpenNodes,
