@@ -6,13 +6,16 @@ import styled from '@emotion/styled'
 import uniq from 'lodash/uniq'
 import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
+import { getSnapshot } from 'mobx-state-tree'
 import { useApolloClient } from '@apollo/client'
-import { useQueryClient } from '@tanstack/react-query'
+import { useQueryClient, useQuery } from '@tanstack/react-query'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
+import { useParams } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 
 import LabelFilter from './LabelFilter'
 import ApFilter from './ApFilter'
@@ -94,6 +97,9 @@ import TpopFromBeobPopList from './TpopFromBeobPopList'
 import ErrorBoundary from '../../shared/ErrorBoundary'
 import Error from '../../shared/Error'
 import Spinner from '../../shared/Spinner'
+import queryTree from './queryTree'
+import buildTreeQueryVariables from './buildTreeQueryVariables'
+import buildNodes from './nodes'
 
 const Container = styled.div`
   height: 100%;
@@ -273,7 +279,9 @@ const getAndValidateCoordinatesOfBeob = async ({
   return { lv95X, lv95Y }
 }
 
-const TreeContainer = ({ nodes, treeLoading, treeError }) => {
+const TreeContainer = () => {
+  const { apId } = useParams()
+
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
   const queryClient = useQueryClient()
@@ -292,6 +300,7 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
     setCopyingBiotop,
     urlQuery,
     setUrlQuery,
+    user,
   } = store
   const {
     setActiveNodeArray,
@@ -301,12 +310,90 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
     activeNodeArray,
   } = store.tree
 
+  const { token } = user
+  const role = token ? jwtDecode(token).role : null
+
+  const treeDataFilter = getSnapshot(store.tree.dataFilter)
+  const treeNodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
+  const treeOpenNodes = getSnapshot(store.tree.openNodes)
+  const treeApFilter = store.tree.apFilter
+  const popGqlFilterTree = store.tree.popGqlFilter
+  const apGqlFilterTree = store.tree.apGqlFilter
+  const tpopGqlFilterTree = store.tree.tpopGqlFilter
+  const tpopmassnGqlFilterTree = store.tree.tpopmassnGqlFilter
+  const ekGqlFilterTree = store.tree.ekGqlFilter
+  const ekfGqlFilterTree = store.tree.ekfGqlFilter
+  const beobGqlFilterTree = store.tree.beobGqlFilter
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: [
+      'treeQuery',
+      treeDataFilter,
+      treeOpenNodes,
+      treeApFilter,
+      treeNodeLabelFilter,
+      apId,
+      popGqlFilterTree,
+      tpopGqlFilterTree,
+      tpopmassnGqlFilterTree,
+      ekGqlFilterTree,
+      ekfGqlFilterTree,
+      apGqlFilterTree,
+      beobGqlFilterTree,
+      role,
+    ],
+    queryFn: () =>
+      client.query({
+        query: queryTree,
+        variables: buildTreeQueryVariables({
+          dataFilter: treeDataFilter,
+          openNodes: treeOpenNodes,
+          apFilter: treeApFilter,
+          nodeLabelFilter: treeNodeLabelFilter,
+          artId: apId,
+          popGqlFilter: popGqlFilterTree,
+          tpopGqlFilter: tpopGqlFilterTree,
+          tpopmassnGqlFilter: tpopmassnGqlFilterTree,
+          ekGqlFilter: ekGqlFilterTree,
+          ekfGqlFilter: ekfGqlFilterTree,
+          apGqlFilter: apGqlFilterTree,
+          beobGqlFilter: beobGqlFilterTree,
+        }),
+      }),
+  })
+
+  const treeData = data?.data
+
+  const [treeNodes, setTreeNodes] = useState([])
+
+  useEffect(() => {
+    //console.log('Projekte, building treeNodes')
+    if (!isLoading) {
+      setTreeNodes(
+        buildNodes({
+          role,
+          data: treeData,
+          loading: isLoading,
+          store,
+        }),
+      )
+    }
+  }, [
+    isLoading,
+    store.tree.openNodes,
+    store.tree.openNodes.length,
+    treeData,
+    treeDataFilter,
+    role,
+    store,
+  ])
+
   useEffect(() => {
     // if activeNodeArray.length === 1
     // and there is only one projekt
     // open it
     // dont do this in render!
-    const projekteNodes = nodes.filter((n) => n.menuType === 'projekt')
+    const projekteNodes = treeNodes.filter((n) => n.menuType === 'projekt')
     const existsOnlyOneProjekt = projekteNodes.length === 1
     const projektNode = projekteNodes[0]
     if (
@@ -322,7 +409,7 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
     }
   }, [
     activeNodeArray,
-    nodes,
+    treeNodes,
     openNodes,
     projIdInActiveNodeArray,
     setActiveNodeArray,
@@ -595,11 +682,10 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
 
   //console.log('TreeContainer',{data})
 
-  const { token } = store.user
   const existsPermissionError =
-    !!treeError &&
-    (treeError.message.includes('permission denied') ||
-      treeError.message.includes('keine Berechtigung'))
+    !!error &&
+    (error.message.includes('permission denied') ||
+      error.message.includes('keine Berechtigung'))
   if (existsPermissionError) {
     // during login don't show permission error
     if (!token) return null
@@ -620,20 +706,20 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
       </ErrorContainer>
     )
   }
-  if (treeError) return <Error error={treeError} />
+  if (error) return <Error error={error} />
 
   // should only show on initial tree loading
-  if (treeLoading && !nodes.length) return <Spinner />
+  if (isLoading && !treeNodes.length) return <Spinner />
 
   return (
     <ErrorBoundary>
       <Container data-id="tree-container1">
         {!!toDeleteId && <DeleteDatasetModal />}
         <LabelFilterContainer>
-          <LabelFilter nodes={nodes} />
+          <LabelFilter nodes={treeNodes} />
           {!!projIdInActiveNodeArray && <ApFilter />}
         </LabelFilterContainer>
-        <Tree nodes={nodes} />
+        <Tree nodes={treeNodes} />
         <CmApFolder onClick={handleClick} />
         <CmAp onClick={handleClick} />
         <CmApberuebersichtFolder onClick={handleClick} />

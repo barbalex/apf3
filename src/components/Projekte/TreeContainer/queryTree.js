@@ -25,7 +25,7 @@ import {
   tpopkontrzaehlEinheitWerte,
   zielber,
   ziel,
-} from '../shared/fragments'
+} from '../../shared/fragments'
 
 export default gql`
   query TreeAllQuery(

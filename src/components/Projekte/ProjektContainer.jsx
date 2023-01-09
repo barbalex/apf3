@@ -5,14 +5,10 @@
  * and react would not like this to happen from below
  * so needed to move building nodes up to here
  */
-import React, { useContext, useMemo, useState, useEffect } from 'react'
+import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { getSnapshot } from 'mobx-state-tree'
-import { useApolloClient } from '@apollo/client'
-import { useQuery } from '@tanstack/react-query'
 import intersection from 'lodash/intersection'
-import jwtDecode from 'jwt-decode'
 import { Outlet } from 'react-router-dom'
 
 import Karte from './Karte'
@@ -21,9 +17,6 @@ import Exporte from './Exporte'
 import Filter from './Filter'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
-import buildTreeQueryVariables from './buildTreeQueryVariables'
-import queryTree from './queryTree'
-import buildNodes from './TreeContainer/nodes'
 
 const Container = styled.div`
   height: 100%;
@@ -42,14 +35,9 @@ const InnerContainer = styled.div`
 `
 
 const ProjektContainer = () => {
-  const client = useApolloClient()
   const store = useContext(storeContext)
-  const { isPrint, urlQuery, user } = store
-  const {
-    activeNodeArray,
-    apIdInActiveNodeArray: artId,
-    projIdInActiveNodeArray: projId,
-  } = store.tree
+  const { isPrint, urlQuery } = store
+  const { activeNodeArray, projIdInActiveNodeArray: projId } = store.tree
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -68,84 +56,6 @@ const ProjektContainer = () => {
     [projekteTabs, treeTabValues],
   )
 
-  const { token } = user
-  const role = token ? jwtDecode(token).role : null
-
-  const treeDataFilter = getSnapshot(store.tree.dataFilter)
-  const treeNodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
-  const treeOpenNodes = getSnapshot(store.tree.openNodes)
-  const treeApFilter = store.tree.apFilter
-  const popGqlFilterTree = store.tree.popGqlFilter
-  const apGqlFilterTree = store.tree.apGqlFilter
-  const tpopGqlFilterTree = store.tree.tpopGqlFilter
-  const tpopmassnGqlFilterTree = store.tree.tpopmassnGqlFilter
-  const ekGqlFilterTree = store.tree.ekGqlFilter
-  const ekfGqlFilterTree = store.tree.ekfGqlFilter
-  const beobGqlFilterTree = store.tree.beobGqlFilter
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: [
-      'treeQuery',
-      treeDataFilter,
-      treeOpenNodes,
-      treeApFilter,
-      treeNodeLabelFilter,
-      artId,
-      popGqlFilterTree,
-      tpopGqlFilterTree,
-      tpopmassnGqlFilterTree,
-      ekGqlFilterTree,
-      ekfGqlFilterTree,
-      apGqlFilterTree,
-      beobGqlFilterTree,
-      role,
-    ],
-    queryFn: () =>
-      client.query({
-        query: queryTree,
-        variables: buildTreeQueryVariables({
-          dataFilter: treeDataFilter,
-          openNodes: treeOpenNodes,
-          apFilter: treeApFilter,
-          nodeLabelFilter: treeNodeLabelFilter,
-          artId,
-          popGqlFilter: popGqlFilterTree,
-          tpopGqlFilter: tpopGqlFilterTree,
-          tpopmassnGqlFilter: tpopmassnGqlFilterTree,
-          ekGqlFilter: ekGqlFilterTree,
-          ekfGqlFilter: ekfGqlFilterTree,
-          apGqlFilter: apGqlFilterTree,
-          beobGqlFilter: beobGqlFilterTree,
-        }),
-      }),
-  })
-
-  const treeData = data?.data
-
-  const [treeNodes, setTreeNodes] = useState([])
-
-  useEffect(() => {
-    //console.log('Projekte, building treeNodes')
-    if (!isLoading) {
-      setTreeNodes(
-        buildNodes({
-          role,
-          data: treeData,
-          loading: isLoading,
-          store,
-        }),
-      )
-    }
-  }, [
-    isLoading,
-    store.tree.openNodes,
-    store.tree.openNodes.length,
-    treeData,
-    treeDataFilter,
-    role,
-    store,
-  ])
-
   const showApberForArt =
     activeNodeArray.length === 7 &&
     activeNodeArray[4] === 'AP-Berichte' &&
@@ -158,7 +68,7 @@ const ProjektContainer = () => {
   const elObj = {
     tree: (
       <InnerContainer>
-        <TreeContainer nodes={treeNodes} treeLoading={isLoading} />
+        <TreeContainer />
       </InnerContainer>
     ),
     daten: (
