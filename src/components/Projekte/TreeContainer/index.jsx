@@ -293,14 +293,13 @@ const TreeContainer = ({ nodes, treeLoading, treeError }) => {
     urlQuery,
     setUrlQuery,
   } = store
-  const tree = store.tree
   const {
     setActiveNodeArray,
     openNodes,
     setOpenNodes,
     projIdInActiveNodeArray,
     activeNodeArray,
-  } = tree
+  } = store.tree
 
   useEffect(() => {
     // if activeNodeArray.length === 1
