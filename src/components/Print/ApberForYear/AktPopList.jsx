@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import sumBy from 'lodash/sumBy'
 import { useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import storeContext from '../../../storeContext'
 import ErrorBoundary from '../../shared/ErrorBoundary'
@@ -131,10 +132,8 @@ const TotalDiffColumn = styled.div`
 `
 
 const AktPopList = ({ year }) => {
-  const store = useContext(storeContext)
-  const { projIdInActiveNodeArray } = store.tree
-  const projektId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { projId = '99999999-9999-9999-9999-999999999999' } = useParams()
+
   const previousYear = year - 1
   const { data, loading, error } = useQuery(
     gql`
@@ -155,7 +154,7 @@ const AktPopList = ({ year }) => {
     `,
     {
       variables: {
-        projektId,
+        projektId: projId,
         previousYear,
         jahr: year,
       },

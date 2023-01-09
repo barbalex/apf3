@@ -4,7 +4,7 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
 import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
@@ -60,9 +60,11 @@ const DokuButton = styled(Button)`
 `
 
 const ProjekteAppBar = () => {
+  const { projId } = useParams()
+
   const store = useContext(storeContext)
   const { user, urlQuery, setUrlQuery, tree } = store
-  const { projIdInActiveNodeArray, resetTree2Src } = store.tree
+  const { resetTree2Src } = store.tree
 
   const navigate = useNavigate()
 
@@ -71,7 +73,7 @@ const ProjekteAppBar = () => {
    * because otherwise removing elements errors out (because elements are sealed)
    */
   const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
-  const exporteIsActive = !!projIdInActiveNodeArray
+  const exporteIsActive = !!projId
   const isMobile = isMobilePhone()
 
   const token = user?.token

@@ -302,13 +302,8 @@ const TreeContainer = () => {
     setUrlQuery,
     user,
   } = store
-  const {
-    setActiveNodeArray,
-    openNodes,
-    setOpenNodes,
-    projIdInActiveNodeArray,
-    activeNodeArray,
-  } = store.tree
+  const { setActiveNodeArray, openNodes, setOpenNodes, activeNodeArray } =
+    store.tree
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
@@ -398,7 +393,7 @@ const TreeContainer = () => {
     const projektNode = projekteNodes[0]
     if (
       activeNodeArray.includes('Projekte') &&
-      !projIdInActiveNodeArray &&
+      !projId &&
       existsOnlyOneProjekt &&
       projektNode
     ) {
@@ -411,7 +406,7 @@ const TreeContainer = () => {
     activeNodeArray,
     treeNodes,
     openNodes,
-    projIdInActiveNodeArray,
+    projId,
     setActiveNodeArray,
     setOpenNodes,
   ])
@@ -727,7 +722,7 @@ const TreeContainer = () => {
         {!!toDeleteId && <DeleteDatasetModal />}
         <LabelFilterContainer>
           <LabelFilter nodes={treeNodes} />
-          {!!projIdInActiveNodeArray && <ApFilter />}
+          {!!projId && <ApFilter />}
         </LabelFilterContainer>
         <Tree nodes={treeNodes} />
         <CmApFolder onClick={handleClick} />

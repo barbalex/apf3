@@ -10,6 +10,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import intersection from 'lodash/intersection'
 import { Outlet } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
@@ -35,9 +36,11 @@ const InnerContainer = styled.div`
 `
 
 const ProjektContainer = () => {
+  const { projId } = useParams()
+
   const store = useContext(storeContext)
   const { isPrint, urlQuery } = store
-  const { activeNodeArray, projIdInActiveNodeArray: projId } = store.tree
+  const { activeNodeArray } = store.tree
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!

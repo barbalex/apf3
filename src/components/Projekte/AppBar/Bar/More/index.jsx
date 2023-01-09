@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 import isMobilePhone from '../../../../../modules/isMobilePhone'
 import logout from '../../../../../modules/logout'
@@ -26,10 +27,11 @@ const Version = styled.div`
 `
 
 const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
+  const { projId } = useParams()
+
   const store = useContext(storeContext)
   const { deletedDatasets, user, urlQuery, setShowDeletions } = store
   const { idb } = useContext(idbContext)
-  const { projIdInActiveNodeArray } = store.tree
 
   const [anchorEl, setAnchorEl] = useState(null)
   const closeMenu = useCallback(() => setAnchorEl(null), [])
@@ -38,7 +40,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
    * because otherwise removing elements errors out (because elements are sealed)
    */
   const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
-  const exporteIsActive = !!projIdInActiveNodeArray
+  const exporteIsActive = !!projId
   const isMobile = isMobilePhone()
 
   const showDeletedDatasets = useCallback(() => {
