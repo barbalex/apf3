@@ -54,7 +54,7 @@ const openLowerNodesPop = async ({
       id,
       'Massnahmen-Berichte',
     ],
-    popbers.map((o) => [
+    ...popbers.map((o) => [
       'Projekte',
       projId,
       'Arten',
@@ -64,7 +64,7 @@ const openLowerNodesPop = async ({
       'Kontroll-Berichte',
       o.id,
     ]),
-    popmassnbers.map((o) => [
+    ...popmassnbers.map((o) => [
       'Projekte',
       projId,
       'Arten',
@@ -74,7 +74,7 @@ const openLowerNodesPop = async ({
       'Massnahmen-Berichte',
       o.id,
     ]),
-    tpops.map((o) => [
+    ...tpops.map((o) => [
       'Projekte',
       projId,
       'Arten',
