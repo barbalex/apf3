@@ -43,23 +43,17 @@ const StyledButton = styled(Button)`
 `
 
 const TpopMarker = ({ tpop }) => {
+  const { apId, projId, tpopId } = useParams()
+
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
-  const {
-    map,
-    projIdInActiveNodeArray,
-    apIdInActiveNodeArray,
-    activeNodeArray,
-  } = store.tree
-  const projId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { map } = store.tree
   const { tpopIcon: tpopIconName, tpopLabel: tpopLabelName } = map
 
   const popNr = tpop?.popByPopId?.nr ?? '(keine Nr)'
   const tpopNr = tpop?.nr ?? '(keine Nr)'
   const nrLabel = `${popNr}.${tpopNr}`.toString()
-  const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === tpop.id
+  const isHighlighted = tpopId === tpop.id
 
   const iconUrl = useMemo(() => {
     let iconUrl = isHighlighted ? tpopIconHighlighted : tpopIcon

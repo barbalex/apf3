@@ -280,7 +280,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 }
 
 const TreeContainer = () => {
-  const { apId } = useParams()
+  const { apId, projId } = useParams()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -440,6 +440,7 @@ const TreeContainer = () => {
   )
   const handleClick = useCallback(
     (e, data, element) => {
+      console.log('TreeContainer handleClick rendering')
       if (!data) {
         return enqueNotification({
           message: 'no data passed with click',
@@ -497,6 +498,8 @@ const TreeContainer = () => {
           openLowerNodes({
             id,
             parentId,
+            apId,
+            projId,
             menuType,
             client,
             store,
@@ -677,10 +680,13 @@ const TreeContainer = () => {
       setCopying,
       setCopyingBiotop,
       copyingBiotop,
+      apId,
+      projId,
     ],
   )
 
   //console.log('TreeContainer',{data})
+  console.log('TreeContainer rendering')
 
   const existsPermissionError =
     !!error &&

@@ -17,6 +17,7 @@ import { getSnapshot } from 'mobx-state-tree'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import { useMap } from 'react-leaflet'
+import { useParams } from 'react-router-dom'
 
 import Checkbox from '../../shared/Checkbox'
 import Error from '../../../../../shared/Error'
@@ -112,6 +113,8 @@ const BeobZugeordnetAssignPolylinesIcon = styled(RemoveIcon)`
 const MapIconDiv = styled.div``
 
 const LayerComponent = ({ apfloraLayer }) => {
+  const { apId } = useParams()
+
   const map = useMap()
   const store = useContext(storeContext)
   const {
@@ -122,7 +125,7 @@ const LayerComponent = ({ apfloraLayer }) => {
     setBounds,
   } = store
   const tree = store.tree
-  const { apIdInActiveNodeArray, activeNodeArray, beobGqlFilter } = tree
+  const { activeNodeArray, beobGqlFilter } = tree
   const activeApfloraLayers = getSnapshot(activeApfloraLayersRaw)
   const layer = apfloraLayer.value
   const pop = layer === 'pop' && activeApfloraLayers.includes('pop')
@@ -140,7 +143,7 @@ const LayerComponent = ({ apfloraLayer }) => {
     activeApfloraLayers.includes('beobZugeordnetAssignPolylines')
 
   const variables = {
-    ap: apIdInActiveNodeArray ? [apIdInActiveNodeArray] : [],
+    ap: apId ? [apId] : [],
     pop,
     tpop,
     showBeobNichtBeurteilt,
