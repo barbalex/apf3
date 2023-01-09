@@ -75,7 +75,7 @@ const PopSeit = styled(Number)`
 `
 const TpopSeit = styled(Number)``
 
-const CMengen = ({ apId, jahr, loading, node }) => {
+const CMengen = ({ jahr, loading, node }) => {
   const c1LPop = loading ? '...' : node?.c1LPop
   const c1LTpop = loading ? '...' : node?.c1LTpop
   const c1RPop = loading ? '...' : node?.c1RPop
