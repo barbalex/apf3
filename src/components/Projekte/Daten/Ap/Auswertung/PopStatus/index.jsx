@@ -10,7 +10,7 @@ import {
   Legend,
   CartesianGrid,
 } from 'recharts'
-import CircularProgress from '@mui/material/CircularProgress' 
+import CircularProgress from '@mui/material/CircularProgress'
 import styled from '@emotion/styled'
 import { useParams } from 'react-router-dom'
 
@@ -187,7 +187,7 @@ const ApAuswertungPopStatus = ({
                 legendType="square"
                 isAnimationActive={!print}
               />
-              <Tooltip content={<CustomTooltip color={color} />} />
+              {!print && <Tooltip content={<CustomTooltip color={color} />} />}
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <Legend
                 layout="horizontal"

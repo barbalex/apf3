@@ -260,7 +260,9 @@ const ApAuswertungPopMenge = ({
                   />
                 )
               })}
-              <Tooltip content={<CustomTooltip popsData={popsData} />} />
+              {!print && (
+                <Tooltip content={<CustomTooltip popsData={popsData} />} />
+              )}
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
             </AreaChart>
           </ResponsiveContainer>
@@ -307,7 +309,7 @@ const ApAuswertungPopMenge = ({
         </>
       )}
     </>
-  ) 
+  )
 }
 
 export default ApAuswertungPopMenge

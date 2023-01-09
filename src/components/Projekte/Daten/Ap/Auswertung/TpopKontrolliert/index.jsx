@@ -10,7 +10,7 @@ import {
   Legend,
   Tooltip,
 } from 'recharts'
-import CircularProgress from '@mui/material/CircularProgress' 
+import CircularProgress from '@mui/material/CircularProgress'
 import styled from '@emotion/styled'
 import { useParams } from 'react-router-dom'
 
@@ -126,9 +126,11 @@ const ApAuswertungTpopKontrolliert = ({
                 fill="rgba(255,253,231,0)"
               />
               <Legend layout="horizontal" align="center" iconSize={22} />
-              <Tooltip
-                content={<CustomTooltip color={color} reverse={true} />}
-              />
+              {!print && (
+                <Tooltip
+                  content={<CustomTooltip color={color} reverse={true} />}
+                />
+              )}
             </LineChart>
           </ResponsiveContainer>
         </>
