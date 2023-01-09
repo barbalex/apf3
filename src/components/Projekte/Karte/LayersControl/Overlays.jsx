@@ -287,9 +287,10 @@ const SortableList = SortableContainer(
 )
 
 const Overlays = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const { overlays, setOverlays, activeOverlays, setActiveOverlays } = store
-  const apId = store.tree.apIdInActiveNodeArray
 
   const onSortEnd = useCallback(
     ({ oldIndex, newIndex }) =>

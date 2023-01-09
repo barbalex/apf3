@@ -23,20 +23,14 @@ const StyledButton = styled(Button)`
 `
 
 const BeobZugeordnetMarker = ({ beob }) => {
+  const { apId, projId, beobId } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { assigningBeob, openTree2WithActiveNodeArray } = store
-  const {
-    setActiveNodeArray,
-    apIdInActiveNodeArray,
-    projIdInActiveNodeArray,
-    activeNodeArray,
-  } = store.tree
-  const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
-  const projId =
-    projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
+  const { setActiveNodeArray } = store.tree
 
-  const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === beob.id
+  const isHighlighted = beobId === beob.id
   const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
   const icon = window.L.icon({
     iconUrl: isHighlighted ? beobIconHighlighted : beobIcon,

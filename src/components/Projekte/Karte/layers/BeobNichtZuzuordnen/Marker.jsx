@@ -20,15 +20,12 @@ const StyledButton = styled(Button)`
 `
 
 const BeobNichtZuzuordnenMarker = ({ beob }) => {
+  const { apId, projId, beobId } = useParams()
+
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
-  const { projIdInActiveNodeArray, apIdInActiveNodeArray, activeNodeArray } =
-    store.tree
-  const projId =
-    projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
-  const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
-  const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === beob.id
+  const isHighlighted = beobId === beob.id
   const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
   const icon = window.L.icon({
     iconUrl: isHighlighted ? beobIconHighlighted : beobIcon,

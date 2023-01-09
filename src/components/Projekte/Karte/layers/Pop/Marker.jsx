@@ -31,18 +31,12 @@ const StyledButton = styled(Button)`
 `
 
 const PopMarker = ({ pop }) => {
+  const { apId, projId, popId } = useParams()
+
   const store = useContext(storeContext)
   const { apfloraLayers, openTree2WithActiveNodeArray } = store
-  const {
-    projIdInActiveNodeArray,
-    apIdInActiveNodeArray,
-    map,
-    activeNodeArray,
-  } = store.tree
+  const { map } = store.tree
   const { popIcon: popIconName, popLabel: popLabelName } = map
-  const projId =
-    projIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
-  const apId = apIdInActiveNodeArray ?? '99999999-9999-9999-9999-999999999999'
 
   const nrLabel = pop.nr ? pop.nr.toString() : '(keine Nr)'
   let title = nrLabel
@@ -51,7 +45,7 @@ const PopMarker = ({ pop }) => {
   if (title && title.toString) {
     title = title.toString()
   }
-  const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === pop.id
+  const isHighlighted = popId === pop.id
 
   let iconUrl = popIcon
   if (isHighlighted) iconUrl = popIconHighlighted
