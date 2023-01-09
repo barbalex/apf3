@@ -14,7 +14,7 @@ import BMengen from './BMengen'
 import CMengen from './CMengen'
 import storeContext from '../../../storeContext'
 import ErrorBoundary from '../../shared/ErrorBoundary'
-import PopMenge from '../../Projekte/Daten/Ap/Auswertung/PopMenge' 
+import PopMenge from '../../Projekte/Daten/Ap/Auswertung/PopMenge'
 import PopStatus from '../../Projekte/Daten/Ap/Auswertung/PopStatus'
 import TpopKontrolliert from '../../Projekte/Daten/Ap/Auswertung/TpopKontrolliert'
 
@@ -190,10 +190,11 @@ const ApberForAp = ({
     setIsPrint(true)
     // need a long enough timeout
     // because the component is loaded anew
+    // otherwise the graphics are not shown
     setTimeout(() => {
       window.print()
       setIsPrint(false)
-    })
+    }, 15000)
   }, [setIsPrint])
 
   if (!node) {
