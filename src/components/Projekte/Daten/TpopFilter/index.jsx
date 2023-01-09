@@ -91,11 +91,6 @@ const TpopFilter = () => {
 
   const row = dataFilter.tpop[activeTab]
 
-  // console.log('TpopFilter', {
-  //   popGqlFilter,
-  //   popIsFiltered,
-  // })
-
   const [fieldErrors, setFieldErrors] = useState({})
   const saveToDb = useCallback(
     async (event) =>
@@ -136,8 +131,6 @@ const TpopFilter = () => {
     !!artHierarchyComment ||
     !!popHierarchyComment ||
     !!mapFilter
-
-  // console.log('TPopFilter', { popGqlFilter })
 
   if (error) return <Error error={error} />
 
