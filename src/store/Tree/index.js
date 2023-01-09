@@ -119,16 +119,6 @@ export default types
     },
   }))
   .views((self) => ({
-    get apIdInActiveNodeArray() {
-      if (
-        self.activeNodeArray.length > 3 &&
-        self.activeNodeArray[2] === 'Arten'
-      ) {
-        const id = self.activeNodeArray[3]
-        if (isUuid.anyNonNil(id)) return id
-      }
-      return undefined
-    },
     get projIdInActiveNodeArray() {
       if (self.activeNodeArray.includes('Projekte')) {
         const indexOfId = self.activeNodeArray.indexOf('Projekte') + 1

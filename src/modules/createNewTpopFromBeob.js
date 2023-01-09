@@ -81,21 +81,15 @@ const updateBeobById = gql`
 const createNewTpopFromBeob = async ({
   pop,
   beobId,
+  projId = '99999999-9999-9999-9999-999999999999',
+  apId = '99999999-9999-9999-9999-999999999999',
   client,
   store,
   queryClient,
 }) => {
   const { enqueNotification } = store
   const tree = store.tree
-  const {
-    setActiveNodeArray,
-    addOpenNodes,
-    projIdInActiveNodeArray,
-    apIdInActiveNodeArray,
-  } = tree
-  const projId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { setActiveNodeArray, addOpenNodes } = tree
   let beobResult
   try {
     beobResult = await client.query({
