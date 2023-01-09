@@ -119,16 +119,6 @@ export default types
     },
   }))
   .views((self) => ({
-    get projIdInActiveNodeArray() {
-      if (self.activeNodeArray.includes('Projekte')) {
-        const indexOfId = self.activeNodeArray.indexOf('Projekte') + 1
-        if (self.activeNodeArray.length > indexOfId) {
-          const id = self.activeNodeArray?.[indexOfId]
-          if (isUuid.anyNonNil(id)) return id
-        }
-      }
-      return undefined
-    },
     get ekfIdInActiveNodeArray() {
       if (self.activeNodeArray.includes('Freiwilligen-Kontrollen')) {
         const indexOfId =

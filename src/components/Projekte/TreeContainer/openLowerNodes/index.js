@@ -28,7 +28,7 @@ const openLowerNodes = ({
    */
   switch (menuType) {
     case 'popFolder':
-      popFolder({ id, client, store, queryClient })
+      popFolder({ id, projId, client, store, queryClient })
       break
     case 'pop':
       pop({ id, apId, projId, client, store, queryClient })
@@ -62,11 +62,12 @@ const openLowerNodes = ({
       })
       break
     case 'zielFolder':
-      zielFolder({ id, client, store, queryClient })
+      zielFolder({ id, projId, client, store, queryClient })
       break
     case 'zieljahrFolder':
       zieljahrFolder({
         id,
+        projId,
         parentId,
         store,
         client,

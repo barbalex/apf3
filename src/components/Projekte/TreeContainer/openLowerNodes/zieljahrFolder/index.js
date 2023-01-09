@@ -9,15 +9,15 @@ import dataGql from './data'
 const openLowerNodesZieljahrFolder = async ({
   id: jahrString,
   parentId: apId,
+  projId = '99999999-9999-9999-9999-999999999999',
   client,
   store,
   queryClient,
 }) => {
   const tree = store.tree
   const jahr = +jahrString
-  const { addOpenNodes, projIdInActiveNodeArray } = tree
-  const projId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { addOpenNodes } = tree
+
   // 1. load all data
   const { data } = await client.query({
     query: dataGql,
