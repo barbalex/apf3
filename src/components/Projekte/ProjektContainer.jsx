@@ -99,6 +99,7 @@ const ProjektContainer = () => {
   const paneSize = treeTabs[0] === 'tree' ? '33%' : '50%'
 
   // console.log('ProjektContainer', {
+  //   isPrint,
   //   treeTabs,
   // })
 
