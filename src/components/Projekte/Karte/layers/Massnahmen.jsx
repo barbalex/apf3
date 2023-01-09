@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
 import { WMSTileLayer, useMapEvent, useMap } from 'react-leaflet'
 import axios from 'redaxios'
 import * as ReactDOMServer from 'react-dom/server'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 import xmlToLayersData from '../../../../modules/xmlToLayersData'
 import Popup from './Popup'
-import storeContext from '../../../../storeContext'
 
 const StyledPopupContent = styled.div`
   white-space: pre;
@@ -24,9 +22,9 @@ const version = '1.3.0'
 const format = 'image/png'
 
 const MassnahmenLayer = ({ layer }) => {
+  const { apId } = useParams()
+
   const map = useMap()
-  const store = useContext(storeContext)
-  const apId = store.tree.apIdInActiveNodeArray
 
   useMapEvent('click', async (e) => {
     if (!apId) return
@@ -129,4 +127,4 @@ const MassnahmenLayer = ({ layer }) => {
   )
 }
 
-export default observer(MassnahmenLayer)
+export default MassnahmenLayer

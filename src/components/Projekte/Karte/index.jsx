@@ -14,6 +14,7 @@ import 'proj4leaflet'
 import sortBy from 'lodash/sortBy'
 import { observer } from 'mobx-react-lite'
 import { getSnapshot } from 'mobx-state-tree'
+import { useParams } from 'react-router-dom'
 
 import Control from './Control'
 import OsmColor from './layers/OsmColor'
@@ -442,6 +443,8 @@ const fullscreenOptions = {
  */
 
 const Karte = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const {
     activeApfloraLayers: activeApfloraLayersRaw,
@@ -454,14 +457,12 @@ const Karte = () => {
     idOfTpopBeingLocalized,
   } = store
   const tree = store.tree
-  const { apIdInActiveNodeArray, mapFilter } = tree
+  const { mapFilter } = tree
   const bounds = getSnapshot(boundsRaw)
   const activeApfloraLayers = getSnapshot(activeApfloraLayersRaw)
   const activeOverlays = getSnapshot(activeOverlaysRaw)
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
 
   const localizing = !!idOfTpopBeingLocalized
-  // console.log('Karte', { apIdInActiveNodeArray })
 
   /**
    * need to pass the height of the self built controls
