@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import Button from '@mui/material/Button'
+import { useParams } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import beobIcon from './beob.svg'

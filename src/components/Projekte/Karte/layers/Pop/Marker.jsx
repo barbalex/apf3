@@ -3,6 +3,7 @@ import { Marker, Tooltip, Popup } from 'react-leaflet'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import Button from '@mui/material/Button'
+import { useParams } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
