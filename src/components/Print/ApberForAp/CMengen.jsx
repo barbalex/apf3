@@ -39,28 +39,25 @@ const Label1 = styled.div`
   max-width: 10cm;
 `
 const Label2 = styled.div`
-  min-width: 10cm;
-  max-width: 10cm;
+  min-width: 8.8cm;
+  max-width: 8.8cm;
   padding-left: 1.2cm;
 `
-const Label2Davon = styled.div`
+const Label2Davon = styled(Label2)`
   font-size: 10px;
-  text-align: right;
-  padding-left: 1.2cm;
-  min-width: 2cm;
-  max-width: 2cm;
+  min-width: 1.8cm;
+  max-width: 1.8cm;
   top: 3px;
   position: relative;
   color: grey;
 `
 const Label2AfterDavon = styled.div`
-  padding-left: 1cm;
-  min-width: 8cm;
-  max-width: 8cm;
+  min-width: 7cm;
+  max-width: 7cm;
 `
 const Label3 = styled.div`
-  min-width: 10cm;
-  max-width: 10cm;
+  min-width: 7cm;
+  max-width: 7cm;
   padding-left: 3cm;
 `
 const Number = styled.div`
