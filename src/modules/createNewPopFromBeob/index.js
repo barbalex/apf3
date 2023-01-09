@@ -7,19 +7,17 @@ import createPop from './createPop'
 import createTpop from './createTpop'
 import updateBeobById from './updateBeobById'
 
-const createNewPopFromBeob = async ({ id, client, store, queryClient }) => {
+const createNewPopFromBeob = async ({
+  id,
+  apId = '99999999-9999-9999-9999-999999999999',
+  projId = '99999999-9999-9999-9999-999999999999',
+  client,
+  store,
+  queryClient,
+}) => {
   const { enqueNotification } = store
   const tree = store.tree
-  const {
-    setActiveNodeArray,
-    addOpenNodes,
-    apIdInActiveNodeArray,
-    projIdInActiveNodeArray,
-  } = tree
-
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const projId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { setActiveNodeArray, addOpenNodes } = tree
 
   let beobResult
   try {

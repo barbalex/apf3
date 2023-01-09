@@ -8,6 +8,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 import storeContext from '../../../storeContext'
 import createNewTpopFromBeob from '../../../modules/createNewTpopFromBeob'
@@ -22,12 +23,10 @@ const StyledListItem = styled(ListItem)`
 `
 
 const TpopFromBeobPopList = ({ closeNewTpopFromBeobDialog, beobId }) => {
+  const { projId, apId } = useParams()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const tree = store.tree
-  const { activeNodeArray } = tree
-  const apId = activeNodeArray[3]
-
   const queryClient = useQueryClient()
 
   const query = gql`
@@ -64,6 +63,8 @@ const TpopFromBeobPopList = ({ closeNewTpopFromBeobDialog, beobId }) => {
               createNewTpopFromBeob({
                 pop,
                 beobId,
+                projId,
+                apId,
                 client,
                 store,
                 queryClient,

@@ -10,6 +10,7 @@ import zieljahrFolder from './zieljahrFolder'
 const openLowerNodes = ({
   id,
   parentId,
+  popId,
   apId,
   projId,
   menuType,
@@ -33,14 +34,17 @@ const openLowerNodes = ({
       pop({ id, apId, projId, client, store, queryClient })
       break
     case 'tpopFolder':
-      tpopFolder({ id, client, store, queryClient })
+      tpopFolder({ id, apId, projId, client, store, queryClient })
       break
     case 'tpop':
-      tpop({ id, client, store, queryClient })
+      tpop({ id, popId, apId, projId, client, store, queryClient })
       break
     case 'tpopfeldkontrFolder':
       tpopfeldkontrFolder({
         id,
+        apId,
+        projId,
+        popId,
         client,
         store,
         queryClient,
@@ -49,6 +53,9 @@ const openLowerNodes = ({
     case 'tpopfreiwkontrFolder':
       tpopfreiwkontrFolder({
         id,
+        apId,
+        projId,
+        popId,
         client,
         store,
         queryClient,

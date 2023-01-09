@@ -6,18 +6,17 @@
  */
 import dataGql from './data'
 
-const openLowerNodesTpop = async ({ id, client, store, queryClient }) => {
+const openLowerNodesTpop = async ({
+  id,
+  popId = '99999999-9999-9999-9999-999999999999',
+  apId = '99999999-9999-9999-9999-999999999999',
+  projId = '99999999-9999-9999-9999-999999999999',
+  client,
+  store,
+  queryClient,
+}) => {
   const tree = store.tree
-  const {
-    addOpenNodes,
-    popIdInActiveNodeArray,
-    projIdInActiveNodeArray,
-    apIdInActiveNodeArray,
-  } = tree
-  const projId =
-    projIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const apId = apIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
-  const popId = popIdInActiveNodeArray || '99999999-9999-9999-9999-999999999999'
+  const { addOpenNodes } = tree
   // 1. load all data
   const { data } = await client.query({
     query: dataGql,

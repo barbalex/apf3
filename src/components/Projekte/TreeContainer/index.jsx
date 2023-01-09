@@ -280,7 +280,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 }
 
 const TreeContainer = () => {
-  const { apId, projId } = useParams()
+  const { apId, projId, popId } = useParams()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -500,6 +500,7 @@ const TreeContainer = () => {
             parentId,
             apId,
             projId,
+            popId,
             menuType,
             client,
             store,
@@ -587,6 +588,8 @@ const TreeContainer = () => {
         createNewPopFromBeob() {
           createNewPopFromBeob({
             id,
+            apId,
+            projId,
             client,
             store,
             queryClient,
@@ -682,11 +685,12 @@ const TreeContainer = () => {
       copyingBiotop,
       apId,
       projId,
+      popId,
     ],
   )
 
   //console.log('TreeContainer',{data})
-  console.log('TreeContainer rendering')
+  // console.log('TreeContainer rendering')
 
   const existsPermissionError =
     !!error &&
