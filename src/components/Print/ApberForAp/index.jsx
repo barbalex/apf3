@@ -14,7 +14,7 @@ import BMengen from './BMengen'
 import CMengen from './CMengen'
 import storeContext from '../../../storeContext'
 import ErrorBoundary from '../../shared/ErrorBoundary'
-import PopMenge from '../../Projekte/Daten/Ap/Auswertung/PopMenge'
+import PopMenge from '../../Projekte/Daten/Ap/Auswertung/PopMenge' 
 import PopStatus from '../../Projekte/Daten/Ap/Auswertung/PopStatus'
 import TpopKontrolliert from '../../Projekte/Daten/Ap/Auswertung/TpopKontrolliert'
 

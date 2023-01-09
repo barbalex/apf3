@@ -307,7 +307,7 @@ const ApAuswertungPopMenge = ({
         </>
       )}
     </>
-  )
+  ) 
 }
 
 export default ApAuswertungPopMenge
