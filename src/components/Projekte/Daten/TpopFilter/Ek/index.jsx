@@ -1,16 +1,14 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import max from 'lodash/max'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
+import { useParams } from 'react-router-dom'
 
 import Checkbox2States from '../../../../shared/Checkbox2States'
 import RadioButtonGroup from '../../../../shared/RadioButtonGroup'
 import Select from '../../../../shared/Select'
 import TextField from '../../../../shared/TextField'
 import queryEk from './queryEk'
-import storeContext from '../../../../../storeContext'
 import ErrorBoundary from '../../../../shared/ErrorBoundary'
 import Spinner from '../../../../shared/Spinner'
 
@@ -32,11 +30,7 @@ const EkfrequenzOptionsContainer = styled.div`
 `
 
 const Ek = ({ saveToDb, row, fieldErrors }) => {
-  const store = useContext(storeContext)
-
-  const { activeNodeArray } = store.tree
-
-  const apId = activeNodeArray[3]
+  const { apId } = useParams()
 
   const { data: dataEk, loading: loadingEk } = useQuery(queryEk, {
     variables: {
@@ -116,4 +110,4 @@ const Ek = ({ saveToDb, row, fieldErrors }) => {
   )
 }
 
-export default observer(Ek)
+export default Ek
