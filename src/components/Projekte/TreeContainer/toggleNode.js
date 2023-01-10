@@ -4,7 +4,6 @@ import openNode from './openNode'
 const toggleNode = ({ node, store, navigate }) => {
   if (!node.url) throw new Error('passed node has no url')
   const { openNodes, activeNodeArray, setLastTouchedNode } = store.tree
-  console.log('toggleNode', node)
 
   let newActiveNodeArray = []
   if (!isNodeOpen({ openNodes, url: node.url })) {

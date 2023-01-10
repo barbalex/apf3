@@ -359,11 +359,13 @@ const TreeContainer = () => {
 
   const treeData = data?.data
 
+  console.log('TreeContainer: ', { treeData, error, isLoading })
+
   const [treeNodes, setTreeNodes] = useState([])
 
   useEffect(() => {
-    //console.log('Projekte, building treeNodes')
     if (!isLoading) {
+      console.log('Projekte, building treeNodes')
       setTreeNodes(
         buildNodes({
           role,
@@ -375,7 +377,7 @@ const TreeContainer = () => {
     }
   }, [
     isLoading,
-    store.tree.openNodes,
+    treeOpenNodes,
     store.tree.openNodes.length,
     treeData,
     treeDataFilter,

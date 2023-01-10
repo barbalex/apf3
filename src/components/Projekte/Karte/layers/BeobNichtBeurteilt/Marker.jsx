@@ -6,7 +6,8 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import Button from '@mui/material/Button'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import storeContext from '../../../../../storeContext'
 import beobIcon from './beob.svg'
@@ -24,11 +25,14 @@ const StyledButton = styled(Button)`
 
 const BeobNichtBeurteiltMarker = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
+  const navigate = useNavigate()
+
+  const queryClient = useQueryClient()
 
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { assigningBeob, openTree2WithActiveNodeArray } = store
-  const { setActiveNodeArray } = store.tree
+  const { addOpenNodesForNodeArray } = store.tree
 
   const isHighlighted = beobId === beob.id
   const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
@@ -60,7 +64,15 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         latLng: event.target._latlng,
         client,
       })
-      const newActiveNodeArray = [
+      await client.mutate({
+        mutation: updateBeobByIdGql,
+        variables: {
+          id: beob.id,
+          tpopId: nearestTpop.id,
+        },
+      })
+      // TODO: needed? But does not work after first...
+      addOpenNodesForNodeArray([
         'Projekte',
         projId,
         'Arten',
@@ -71,15 +83,10 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         nearestTpop.id,
         'Beobachtungen',
         beob.id,
-      ]
-      setActiveNodeArray(newActiveNodeArray)
-      await client.mutate({
-        mutation: updateBeobByIdGql,
-        variables: {
-          id: beob.id,
-          tpopId: nearestTpop.id,
-        },
-      })
+      ])
+      navigate(
+        `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}`,
+      )
       client.refetchQueries({
         include: [
           'BeobZugeordnetForMapQuery',
@@ -87,8 +94,19 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
           'BeobAssignLinesQuery',
         ],
       })
+      queryClient.invalidateQueries({
+        queryKey: [`treeQuery`],
+      })
     },
-    [apId, beob.id, client, projId, setActiveNodeArray],
+    [
+      addOpenNodesForNodeArray,
+      apId,
+      beob.id,
+      client,
+      navigate,
+      projId,
+      queryClient,
+    ],
   )
   const openBeobInTree2 = useCallback(() => {
     openTree2WithActiveNodeArray([

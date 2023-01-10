@@ -1,15 +1,16 @@
 import isEqual from 'lodash/isEqual'
 import { gql } from '@apollo/client'
+import { getSnapshot } from 'mobx-state-tree'
 
 import updateBeobByIdGql from './updateBeobById'
 
 const saveArtIdToDb = async ({ value, row, client, queryClient, store }) => {
-  const {
-    activeNodeArray: aNA,
-    openNodes,
-    setActiveNodeArray,
-    setOpenNodes,
-  } = store.tree
+  const { activeNodeArray, openNodes: openNodesRaw, setOpenNodes } = store.tree
+  const aNA = getSnapshot(activeNodeArray)
+  const openNodes = getSnapshot(openNodesRaw)
+
+  if (!value) return
+
   const variables = {
     id: row.id,
     artId: value,
@@ -19,56 +20,65 @@ const saveArtIdToDb = async ({ value, row, client, queryClient, store }) => {
     variables,
   })
 
-  if (value) {
-    let result = {}
-    result = await client.query({
-      query: gql`
-        query saveArtIdToDbQuery($id: UUID!) {
-          aeTaxonomyById(id: $id) {
+  let result = {}
+  result = await client.query({
+    query: gql`
+      query saveArtIdToDbQuery($id: UUID!) {
+        aeTaxonomyById(id: $id) {
+          id
+          apByArtId {
             id
-            apByArtId {
-              id
-            }
           }
         }
-      `,
-      variables: { id: value },
-    })
-    // aNA = activeNodeArray
-    const newApId = result?.data?.aeTaxonomyById?.apByArtId?.id
-    const newANA = [aNA[0], aNA[1], aNA[2], newApId, aNA[4], aNA[5]]
-    const oldParentNodeUrl = [...aNA]
-    oldParentNodeUrl.pop()
-    const oldGParentNodeUrl = [...oldParentNodeUrl]
-    oldGParentNodeUrl.pop()
+      }
+    `,
+    variables: { id: value },
+  })
+  // aNA = activeNodeArray
+  const newApId = result?.data?.aeTaxonomyById?.apByArtId?.id
 
-    // need to close:
-    // - beobNode
-    // - beobNichtBeurteiltFolderNode
-    // - apNode
+  // do not navigate if newApId is not found
+  if (!newApId) return
 
-    // then need to open:
-    // - new apNode
-    // - new beobNichtBeurteiltFolderNode
-    // - new beobNode
-    const newOpenNodes = [
-      ...openNodes.filter(
-        (n) =>
-          !isEqual(n, aNA) &&
-          !isEqual(n, oldParentNodeUrl) &&
-          !isEqual(n, oldGParentNodeUrl),
-      ),
-      [aNA[0], aNA[1], aNA[2], newApId],
-      [aNA[0], aNA[1], aNA[2], newApId, aNA[4]],
-      [aNA[0], aNA[1], aNA[2], newApId, aNA[4], aNA[5]],
-    ]
-    setActiveNodeArray(newANA)
-    setOpenNodes(newOpenNodes)
-    client.refetchQueries({
-      include: ['KarteBeobNichtZuzuordnenQuery'],
-    })
-    queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
-  }
+  const newANA = [aNA[0], aNA[1], aNA[2], newApId, aNA[4], aNA[5]]
+  const oldParentNodeUrl = [...aNA]
+  oldParentNodeUrl.pop()
+  const oldGParentNodeUrl = [...oldParentNodeUrl]
+  oldGParentNodeUrl.pop()
+
+  // need to close:
+  // - beobNode
+  // - beobNichtBeurteiltFolderNode
+  // - apNode
+
+  // then need to open:
+  // - new apNode
+  // - new beobNichtBeurteiltFolderNode
+  // - new beobNode
+  const newOpenNodes = [
+    ...openNodes.filter(
+      (n) =>
+        !isEqual(n, aNA) &&
+        !isEqual(n, oldParentNodeUrl) &&
+        !isEqual(n, oldGParentNodeUrl),
+    ),
+    [aNA[0], aNA[1], aNA[2], newApId],
+    [aNA[0], aNA[1], aNA[2], newApId, aNA[4]],
+    [aNA[0], aNA[1], aNA[2], newApId, aNA[4], aNA[5]],
+  ]
+  store.navigate(`/Daten/${newANA.join('/')}`)
+  console.log('saveArtIdToDb: newOpenNodes', {
+    newOpenNodes,
+    newApId,
+    aNA,
+    newANA,
+    result,
+  })
+  setOpenNodes(newOpenNodes)
+  client.refetchQueries({
+    include: ['KarteBeobNichtZuzuordnenQuery'],
+  })
+  queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 
 export default saveArtIdToDb
