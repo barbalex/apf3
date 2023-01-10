@@ -66,15 +66,8 @@ const saveArtIdToDb = async ({ value, row, client, queryClient, store }) => {
     [aNA[0], aNA[1], aNA[2], newApId, aNA[4]],
     [aNA[0], aNA[1], aNA[2], newApId, aNA[4], aNA[5]],
   ]
-  store.navigate(`/Daten/${newANA.join('/')}`)
-  console.log('saveArtIdToDb: newOpenNodes', {
-    newOpenNodes,
-    newApId,
-    aNA,
-    newANA,
-    result,
-  })
   setOpenNodes(newOpenNodes)
+  store.navigate(`/Daten/${newANA.join('/')}`)
   client.refetchQueries({
     include: ['KarteBeobNichtZuzuordnenQuery'],
   })

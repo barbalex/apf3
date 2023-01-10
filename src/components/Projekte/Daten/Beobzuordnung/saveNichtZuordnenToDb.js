@@ -22,8 +22,8 @@ const saveNichtZuordnenToDb = async ({
   })
   queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
   // need to update activeNodeArray and openNodes
-  const { activeNodeArray, setActiveNodeArray, openNodes, addOpenNodes } =
-    store.tree
+  const { activeNodeArray, openNodes, addOpenNodes } = store.tree
+
   let newActiveNodeArray = [...activeNodeArray]
   newActiveNodeArray[4] = value
     ? 'nicht-zuzuordnende-Beobachtungen'
@@ -39,8 +39,8 @@ const saveNichtZuordnenToDb = async ({
     if (isEqual(n, oldParentNodeUrl)) return newParentNodeUrl
     return n
   })
-  setActiveNodeArray(newActiveNodeArray)
   addOpenNodes(newOpenNodes)
+  store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
   if (refetchPassed) refetchPassed()
 }
 

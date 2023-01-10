@@ -41,8 +41,7 @@ const Ziel = () => {
   const { zielId: id } = useParams()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray, setActiveNodeArray, openNodes, setOpenNodes } =
-    store.tree
+  const { activeNodeArray, openNodes, setOpenNodes } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -107,19 +106,11 @@ const Ziel = () => {
           if (isEqual(n, oldParentNodeUrl)) return newParentNodeUrl
           return n
         })
-        setActiveNodeArray(newActiveNodeArray)
+        store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
         setOpenNodes(newOpenNodes)
       }
     },
-    [
-      row,
-      client,
-      store.user.name,
-      activeNodeArray,
-      openNodes,
-      setActiveNodeArray,
-      setOpenNodes,
-    ],
+    [row.id, store, client, activeNodeArray, openNodes, setOpenNodes],
   )
 
   if (loading) return <Spinner />
