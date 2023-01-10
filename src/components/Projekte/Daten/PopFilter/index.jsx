@@ -30,17 +30,15 @@ const FormContainer = styled.div`
 `
 const FilterCommentTitle = styled.div`
   margin-top: -10px;
-  padding: 0 10px 16px 10px;
+  margin-bottom: -10px;
+  padding: 0 10px;
   font-size: 0.75em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
 `
-const FilterCommentList = styled.ul`
-  margin-bottom: 10px;
-`
+const FilterCommentList = styled.ul``
 const FilterComment = styled.li`
-  margin-top: -10px;
-  padding: 0 10px 0 10px;
+  padding: 0 10px;
   font-size: 0.75em;
 `
 
