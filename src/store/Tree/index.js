@@ -99,6 +99,18 @@ export default types
       const set = new Set([...self.openNodes, ...nodes].map(JSON.stringify))
       self.openNodes = Array.from(set).map(JSON.parse)
     },
+    addOpenNodesForNodeArray(nodeArray) {
+      const extraOpenNodes = []
+      nodeArray.forEach((v, i) => {
+        extraOpenNodes.push(nodeArray.slice(0, i + 1))
+      })
+      // console.log('tree addOpenNodesForNodeArray', {
+      //   extraOpenNodes,
+      //   nodeArray,
+      //   openNodes: getSnapshot(self.openNodes),
+      // })
+      this.addOpenNodes(extraOpenNodes)
+    },
     setApFilter(val) {
       self.apFilter = val
     },
@@ -108,6 +120,9 @@ export default types
         // trying to stop vicious cycle of reloading in first start after update
         return
       }
+      // always set missing open nodes?
+      // self.addOpenNodesForNodeArray(val)
+      self.activeNodeArray = val
       if (!nonavigate) {
         const store = getParent(self)
         const { urlQuery, navigate } = store
@@ -115,7 +130,6 @@ export default types
         const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
         navigate?.(`/Daten/${val.join('/')}${query}`)
       }
-      self.activeNodeArray = val
     },
   }))
   .views((self) => ({
