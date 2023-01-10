@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
+import { useParams } from 'react-router-dom'
 
 import FilterTitle from '../../../shared/FilterTitle'
 import queryTpops from './queryTpops'
@@ -53,11 +54,12 @@ const FilterComment = styled.li`
 `
 
 const TpopFilter = () => {
+  const { apId } = useParams()
+
   const store = useContext(storeContext)
   const { dataFilterSetValue, urlQuery } = store
 
   const {
-    activeNodeArray,
     dataFilter,
     tpopGqlFilter,
     nodeLabelFilter,
@@ -68,11 +70,6 @@ const TpopFilter = () => {
   } = store.tree
   const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
   const onChangeTab = useCallback((event, value) => setTab(value), [])
-
-  // need to slice to rerender on change
-  const aNA = activeNodeArray.slice()
-  const apId = aNA[3]
-  // const popId = aNA[5]
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {
