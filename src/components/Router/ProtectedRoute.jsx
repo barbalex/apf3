@@ -53,8 +53,7 @@ const ProtectedRoute = () => {
   }
 
   if (isInIframe) {
-    // inside iframe app bar should be hidden
-    // also: no messages
+    // inside iframe: no messages
     // also: freiwillige don't see the iFrame
     return (
       <Container>

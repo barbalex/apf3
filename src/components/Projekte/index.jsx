@@ -14,7 +14,10 @@ import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
+import inIframe from '../../modules/inIframe'
 import AppBar from './AppBar'
+
+const isInIframe = inIframe()
 
 const Container = styled.div`
   height: 100%;
@@ -54,6 +57,27 @@ const Projekte = () => {
     const search = queryString.stringify(iFrameUrlQuery)
     // pass this via src to iframe
     iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
+  }
+
+  if (isInIframe) {
+    // inside iframe app bar should be hidden
+    return (
+      <Container>
+        {tree2Tabs.length === 0 || isPrint ? (
+          <ProjektContainer />
+        ) : (
+          <StyledSplitPane split="vertical" defaultSize="50%">
+            <ProjektContainer />
+            <StyledIframe
+              src={iFrameSrc}
+              title="tree2"
+              width="100%"
+              height="100%"
+            />
+          </StyledSplitPane>
+        )}
+      </Container>
+    )
   }
 
   return (

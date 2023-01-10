@@ -33,16 +33,11 @@ const StyledButton = styled(Button)`
 `
 
 const MyAppBarDaten = ({ treeNr = '' }) => {
-  const { urlQuery, setUrlQuery, tree } = useContext(storeContext)
-  const { activeNodeArray } = tree
+  const { urlQuery, setUrlQuery } = useContext(storeContext)
 
   const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
   const isDaten = projekteTabs.includes(`daten${treeNr}`)
   const isTree = projekteTabs.includes(`tree${treeNr}`)
-  const isEkPlan =
-    activeNodeArray.length === 3 &&
-    activeNodeArray[0] === 'Projekte' &&
-    activeNodeArray[2] === 'EK-Planung'
 
   const onClickButton = useCallback(() => {
     const copyOfProjekteTabs = [...projekteTabs]
@@ -76,7 +71,7 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
 
   return (
     <StyledButton
-      variant={!isEkPlan && isDaten ? 'outlined' : 'text'}
+      variant={isDaten ? 'outlined' : 'text'}
       preceded={isTree.toString()}
       followed={followed.toString()}
       onClick={onClickButton}
