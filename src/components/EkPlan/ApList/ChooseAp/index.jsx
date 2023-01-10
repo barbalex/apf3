@@ -3,6 +3,7 @@ import AsyncSelect from 'react-select/async'
 import styled from '@emotion/styled'
 import { useApolloClient } from '@apollo/client'
 import { observer } from 'mobx-react-lite'
+import { useParams } from 'react-router-dom'
 
 import queryApsToChoose from './queryApsToChoose'
 import storeContext from '../../../../storeContext'
@@ -72,12 +73,11 @@ const Error = styled.div`
 `
 
 const EkPlan = ({ setShowChoose }) => {
+  const { projId } = useParams()
+  
   const store = useContext(storeContext)
   const { aps, addAp } = store.ekPlan
   const client = useApolloClient()
-
-  const { activeNodeArray } = store.tree
-  const projId = activeNodeArray[1] || '99999999-9999-9999-9999-999999999999'
 
   const apValues = aps.map((a) => a.value)
 
