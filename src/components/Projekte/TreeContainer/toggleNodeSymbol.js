@@ -5,13 +5,8 @@ import isNodeInActiveNodePath from './isNodeInActiveNodePath'
 
 const toggleNodeSymbol = ({ node, store }) => {
   if (!node.url) throw new Error('passed node has no url')
-  const {
-    openNodes,
-    setOpenNodes,
-    activeNodeArray,
-    setActiveNodeArray,
-    setLastTouchedNode,
-  } = store.tree
+  const { openNodes, setOpenNodes, activeNodeArray, setLastTouchedNode } =
+    store.tree
 
   let newOpenNodes = [...openNodes]
   if (isNodeOpen({ openNodes, url: node.url })) {
@@ -21,7 +16,7 @@ const toggleNodeSymbol = ({ node, store }) => {
       // the active node should swith to the node's parent
       const newActiveNodeArray = [...node.url]
       newActiveNodeArray.pop()
-      setActiveNodeArray(newActiveNodeArray)
+      store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
     }
   } else {
     newOpenNodes.push(node.url)

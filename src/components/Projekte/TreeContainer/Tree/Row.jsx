@@ -203,8 +203,7 @@ const Row = ({ node }) => {
     setPrintingJberYear,
   } = store
   const tree = store.tree
-  const { openNodes, setActiveNodeArray, nodeLabelFilter, activeNodeArray } =
-    tree
+  const { openNodes, nodeLabelFilter, activeNodeArray } = tree
   const activeId = activeNodeArray[activeNodeArray.length - 1]
   const nodeIsActive = node.id === activeId
 
@@ -253,7 +252,7 @@ const Row = ({ node }) => {
     toggleNode({
       node,
       store,
-      navigate
+      navigate,
     })
   }, [navigate, node, store])
   const onClickNodeSymbol = useCallback(() => {
@@ -261,8 +260,8 @@ const Row = ({ node }) => {
   }, [node, store])
   const onClickPrint = useCallback(() => {
     setPrintingJberYear(+node.label)
-    setActiveNodeArray([...node.url, 'print'])
-  }, [node.label, node.url, setActiveNodeArray, setPrintingJberYear])
+    navigate(`/Daten/${[...node.url, 'print'].join('/')}`)
+  }, [navigate, node.label, node.url, setPrintingJberYear])
 
   const karteIsVisible = store.urlQuery.projekteTabs.includes('karte')
 
