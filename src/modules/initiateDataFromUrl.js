@@ -5,16 +5,18 @@ import setUrlQueryValue from '../modules/setUrlQueryValue'
 import setOpenNodesFromActiveNodeArray from '../modules/setOpenNodesFromActiveNodeArray'
 
 const initiateDataFromUrl = ({
-  activeNodeArray: activeNodeArrayPassed,  
+  activeNodeArray: activeNodeArrayPassed,
   store,
 }) => {
-  const { setUrlQuery,  } = store
+  const { setUrlQuery } = store
   const activeNodeArrayFromPathname =
     activeNodeArrayPassed || getActiveNodeArrayFromPathname()
   const initialActiveNodeArray = [...activeNodeArrayFromPathname]
   // fetch query here, BEFORE mutating active node array
   const urlQuery = getUrlQuery()
   const { projekteTabs } = urlQuery
+  // Nope: navigate is not a function yet...
+  // store.navigate(`/Daten/${initialActiveNodeArray.join('/')}`)
   store.tree.setActiveNodeArray(initialActiveNodeArray)
   // need to set openNodes
   setOpenNodesFromActiveNodeArray({

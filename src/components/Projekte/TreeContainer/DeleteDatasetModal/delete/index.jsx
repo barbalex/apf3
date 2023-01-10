@@ -130,7 +130,7 @@ const deleteModule = async ({ client, store }) => {
     if (table === 'ziel') {
       newActiveNodeArray1.pop()
     }
-    store.tree.setActiveNodeArray(newActiveNodeArray1)
+    store.navigate(`/Daten/${newActiveNodeArray1.join('/')}`)
   }
 
   // remove from openNodes
