@@ -13,7 +13,7 @@ import {
 } from 'react-icons/md'
 import { observer } from 'mobx-react-lite'
 import Highlighter from 'react-highlight-words'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import upperFirst from 'lodash/upperFirst'
 
 import isNodeInActiveNodePath from '../isNodeInActiveNodePath'
@@ -192,6 +192,7 @@ const PrintIconContainer = styled.div`
 
 const Row = ({ node }) => {
   const { apId, tpopId } = useParams()
+  const navigate = useNavigate()
 
   const store = useContext(storeContext)
   const {
@@ -252,8 +253,9 @@ const Row = ({ node }) => {
     toggleNode({
       node,
       store,
+      navigate
     })
-  }, [node, store])
+  }, [navigate, node, store])
   const onClickNodeSymbol = useCallback(() => {
     toggleNodeSymbol({ node, store })
   }, [node, store])
