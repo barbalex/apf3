@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import { useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import apById from './apById'
 import Label from '../../../shared/Label'
@@ -25,18 +25,13 @@ const StyledSwitch = styled(Switch)`
 
 const ApFilter = () => {
   const { apId } = useParams()
+  const navigate = useNavigate()
 
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const {
-    apFilter,
-    setApFilter,
-    activeNodeArray,
-    setActiveNodeArray,
-    openNodes,
-    setOpenNodes,
-  } = store.tree
+  const { apFilter, setApFilter, activeNodeArray, openNodes, setOpenNodes } =
+    store.tree
 
   // console.log('ApFilter, render', { apFilter, apId })
 
@@ -65,7 +60,7 @@ const ApFilter = () => {
           activeNodeArray[1],
           activeNodeArray[2],
         ]
-        setActiveNodeArray(newActiveNodeArray)
+        navigate(`/Daten/${newActiveNodeArray.join('/')}`)
         // remove from openNodes
         const newOpenNodes = openNodes.filter((n) => {
           if (
@@ -85,9 +80,9 @@ const ApFilter = () => {
     apFilter,
     apId,
     client,
+    navigate,
     openNodes,
     queryClient,
-    setActiveNodeArray,
     setApFilter,
     setOpenNodes,
   ])
