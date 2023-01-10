@@ -14,7 +14,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import LabelFilter from './LabelFilter'
@@ -281,6 +281,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 
 const TreeContainer = () => {
   const { apId, projId, popId } = useParams()
+  const navigate = useNavigate()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -302,8 +303,7 @@ const TreeContainer = () => {
     setUrlQuery,
     user,
   } = store
-  const { setActiveNodeArray, openNodes, setOpenNodes, activeNodeArray } =
-    store.tree
+  const { openNodes, setOpenNodes, activeNodeArray } = store.tree
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
@@ -400,18 +400,11 @@ const TreeContainer = () => {
       projektNode
     ) {
       const projektUrl = [...projektNode.url]
-      setActiveNodeArray(projektUrl)
+      navigate(`/Daten/${projektUrl.join('/')}`)
       // add projekt to open nodes
       setOpenNodes([...openNodes, projektUrl])
     }
-  }, [
-    activeNodeArray,
-    treeNodes,
-    openNodes,
-    projId,
-    setActiveNodeArray,
-    setOpenNodes,
-  ])
+  }, [activeNodeArray, treeNodes, openNodes, projId, setOpenNodes, navigate])
 
   const [newTpopFromBeobDialogOpen, setNewTpopFromBeobDialogOpen] =
     useState(false)
