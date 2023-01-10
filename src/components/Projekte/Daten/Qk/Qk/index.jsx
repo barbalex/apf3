@@ -10,6 +10,7 @@ import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useParams } from 'react-router-dom'
 
 import appBaseUrl from '../../../../../modules/appBaseUrl'
 import standardQkYear from '../../../../../modules/standardQkYear'
@@ -72,11 +73,10 @@ const AnalyzingSpan = styled.span`
 `
 
 const Qk = ({ qkNameQueries, qks }) => {
+  const {apId, projId}=useParams()
+
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
-  const { activeNodeArray } = store.tree
-  const apId = activeNodeArray[3]
-  const projId = activeNodeArray[1]
 
   const [berichtjahr, setBerichtjahr] = useState(standardQkYear())
   const [filter, setFilter] = useState('')

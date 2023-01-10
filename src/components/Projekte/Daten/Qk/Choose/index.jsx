@@ -1,15 +1,14 @@
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from '@emotion/styled'
 import Input from '@mui/material/Input'
 import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useParams } from 'react-router-dom'
 
 import query from './query'
 import RowComponent from './Row'
-import storeContext from '../../../../../storeContext'
 import ErrorBoundary from '../../../../shared/ErrorBoundary'
 import Error from '../../../../shared/Error'
 
@@ -40,9 +39,7 @@ const StyledFormControl = styled(FormControl)`
 `
 
 const ChooseQk = ({ refetchTab }) => {
-  const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
-  const apId = activeNodeArray[3]
+  const { apId } = useParams()
 
   const { data, error, loading } = useQuery(query)
   const rows = data?.allQks?.nodes
@@ -95,4 +92,4 @@ const ChooseQk = ({ refetchTab }) => {
   )
 }
 
-export default observer(ChooseQk)
+export default ChooseQk

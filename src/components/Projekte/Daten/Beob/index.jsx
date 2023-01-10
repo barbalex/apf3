@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import { useResizeDetector } from 'react-resize-detector'
+import { useParams } from 'react-router-dom'
 
 import TextFieldNonUpdatable from '../../../shared/TextFieldNonUpdatable'
 import constants from '../../../../modules/constants'
 import exists from '../../../../modules/exists'
 import query from './query'
-import storeContext from '../../../../storeContext'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import Spinner from '../../../shared/Spinner'
@@ -21,12 +20,11 @@ const Container = styled.div`
 `
 
 const Beob = () => {
-  const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
+  const { beobId: id } = useParams()
 
   const { data, loading, error } = useQuery(query, {
     variables: {
-      id: activeNodeArray[activeNodeArray.length - 1],
+      id,
     },
   })
   const row = data?.beobById ?? {}
