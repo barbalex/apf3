@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual'
 import { getSnapshot } from 'mobx-state-tree'
 
 const closeLowerNodes = async ({ url, store }) => {
-  const { setOpenNodes, setActiveNodeArray } = store.tree
+  const { setOpenNodes } = store.tree
   const openNodes = getSnapshot(store.tree.openNodes)
   const activeNodeArray = getSnapshot(store.tree.activeNodeArray)
   const newOpenNodes = openNodes.filter((n) => {
@@ -12,8 +12,8 @@ const closeLowerNodes = async ({ url, store }) => {
   setOpenNodes(newOpenNodes)
   if (isEqual(activeNodeArray.slice(0, url.length), url)) {
     // active node will be closed
-    // set activeNodeArray to url
-    setActiveNodeArray(url)
+    // navigate to url
+    store.navigate(`/Daten/${url.join('/')}`)
   }
 }
 

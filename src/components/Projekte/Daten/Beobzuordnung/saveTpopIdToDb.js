@@ -24,12 +24,7 @@ const saveTpopIdToDb = async ({
   })
 
   // need to update activeNodeArray and openNodes
-  const {
-    activeNodeArray: aNA,
-    setActiveNodeArray,
-    openNodes,
-    setOpenNodes,
-  } = store.tree
+  const { activeNodeArray: aNA, openNodes, setOpenNodes } = store.tree
   let newANA
   let newOpenNodes
 
@@ -221,7 +216,7 @@ const saveTpopIdToDb = async ({
       ]
     }
   }
-  setActiveNodeArray(newANA)
+  store.navigate(`/Daten/${newANA.join('/')}`)
   setOpenNodes(newOpenNodes)
   client.refetchQueries({
     include: [
