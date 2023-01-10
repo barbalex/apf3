@@ -77,13 +77,11 @@ const fieldTypes = {
 }
 
 const Tpopmassn = ({ showFilter = false }) => {
-  const { tpopmassnId } = useParams()
+  const { tpopmassnId, apId } = useParams()
 
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { urlQuery, setUrlQuery } = store
-  const { activeNodeArray } = store.tree
-  const apId = activeNodeArray[3]
 
   const [fieldErrors, setFieldErrors] = useState({})
 

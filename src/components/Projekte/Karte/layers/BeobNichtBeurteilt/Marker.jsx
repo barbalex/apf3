@@ -23,14 +23,14 @@ const StyledButton = styled(Button)`
 `
 
 const BeobNichtBeurteiltMarker = ({ beob }) => {
-  const { apId, projId } = useParams()
+  const { apId, projId, beobId } = useParams()
 
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { assigningBeob, openTree2WithActiveNodeArray } = store
-  const { setActiveNodeArray, activeNodeArray } = store.tree
+  const { setActiveNodeArray } = store.tree
 
-  const isHighlighted = activeNodeArray[activeNodeArray.length - 1] === beob.id
+  const isHighlighted = beobId === beob.id
   const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
   const icon = window.L.icon({
     iconUrl: isHighlighted ? beobIconHighlighted : beobIcon,
