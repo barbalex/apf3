@@ -63,7 +63,7 @@ const ProjekteAppBar = () => {
   const { projId } = useParams()
 
   const store = useContext(storeContext)
-  const { user, urlQuery, setUrlQuery, tree } = store
+  const { user, urlQuery, setUrlQuery } = store
   const { resetTree2Src } = store.tree
 
   const navigate = useNavigate()
@@ -80,7 +80,7 @@ const ProjekteAppBar = () => {
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
 
-  const isProjekt = tree.activeNodeArray[0] === 'Projekte'
+  const isProjekt = !!projId
 
   const onClickButton = useCallback(
     (name) => {
@@ -133,12 +133,10 @@ const ProjekteAppBar = () => {
     resetTree2Src()
     onClickButton('tree2')
   }, [onClickButton, resetTree2Src])
-  const onClickEkPlanung = useCallback(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [projectTitle, projectId, ...rest] = tree.activeNodeArray
-    tree.setActiveNodeArray([projectTitle, projectId, 'EK-Planung'])
-    navigate(`/Daten/Projekte/${projectId}/EK-Planung`)
-  }, [navigate, tree])
+  const onClickEkPlanung = useCallback(
+    () => navigate(`/Daten/Projekte/${projId}/EK-Planung`),
+    [navigate, projId],
+  )
 
   return (
     <>
