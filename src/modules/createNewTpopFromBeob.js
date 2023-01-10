@@ -89,7 +89,7 @@ const createNewTpopFromBeob = async ({
 }) => {
   const { enqueNotification } = store
   const tree = store.tree
-  const { setActiveNodeArray, addOpenNodes } = tree
+  const { addOpenNodes } = tree
   let beobResult
   try {
     beobResult = await client.query({
@@ -234,7 +234,7 @@ const createNewTpopFromBeob = async ({
     .filter((n) => !isEqual(n, tree.activeNodeArray))
 
   addOpenNodes(newOpenNodes)
-  setActiveNodeArray(newActiveNodeArray)
+  store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
 
   client.refetchQueries({
     include: [
