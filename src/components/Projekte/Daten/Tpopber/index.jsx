@@ -40,7 +40,6 @@ const Tpopber = () => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { activeNodeArray } = store.tree
 
   const [fieldErrors, setFieldErrors] = useState({})
 
