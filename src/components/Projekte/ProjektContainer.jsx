@@ -1,16 +1,9 @@
-/**
- * 2020.03.16:
- * used to build nodes in TreeContainer
- * but need to pass them to Daten
- * and react would not like this to happen from below
- * so needed to move building nodes up to here
- */
 import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import intersection from 'lodash/intersection'
 import { Outlet } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import Karte from './Karte'
 import TreeContainer from './TreeContainer'
@@ -36,11 +29,11 @@ const InnerContainer = styled.div`
 `
 
 const ProjektContainer = () => {
-  const { projId } = useParams()
+  const { projId, apberUebersichtId, apberId } = useParams()
+  const { pathname } = useLocation()
 
   const store = useContext(storeContext)
   const { isPrint, urlQuery } = store
-  const { activeNodeArray } = store.tree
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -59,14 +52,8 @@ const ProjektContainer = () => {
     [projekteTabs, treeTabValues],
   )
 
-  const showApberForArt =
-    activeNodeArray.length === 7 &&
-    activeNodeArray[4] === 'AP-Berichte' &&
-    activeNodeArray[6] === 'print'
-  const showApberForAll =
-    activeNodeArray.length === 5 &&
-    activeNodeArray[2] === 'AP-Berichte' &&
-    activeNodeArray[4] === 'print'
+  const showApberForArt = apberId && pathname.endsWith('print')
+  const showApberForAll = apberUebersichtId && pathname.endsWith('print')
 
   const elObj = {
     tree: (
