@@ -29,9 +29,6 @@ import { Provider as IdbProvider } from './idbContext'
 import Notifier from './components/shared/Notifier'
 import NotificationDismisser from './components/shared/NotificationDismisser'
 
-import initiateDataFromUrl from './modules/initiateDataFromUrl'
-import getActiveNodeArrayFromPathname from './modules/getActiveNodeArrayFromPathname'
-
 import 'simplebar/dist/simplebar.min.css'
 
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
@@ -56,17 +53,6 @@ const App = () => {
   const store = MobxStore.create()
   const client = buildClient({ store })
   const idbContext = { idb }
-
-  // initiate now even if StorePersister is not finished
-  // this prevents ui-flickering
-  const activeNodeArray = getActiveNodeArrayFromPathname()
-  if (activeNodeArray[0] === 'Projekte') {
-    initiateDataFromUrl({
-      store,
-    })
-  }
-
-  console.log('App rendering')
 
   return (
     <IdbProvider value={idbContext}>
