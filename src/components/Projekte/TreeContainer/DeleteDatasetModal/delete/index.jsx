@@ -59,7 +59,7 @@ const deleteModule = async ({ client, store }) => {
       }
     `
   } else {
-    const qrObject = await import(`./queries/${queryName}.ts`)
+    const qrObject = await import(`./queries/${queryName}.js`)
     query = qrObject.default
   }
   let result
