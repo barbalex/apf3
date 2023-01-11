@@ -61,10 +61,6 @@ const DokuButton = styled(Button)`
 
 const ProjekteAppBar = () => {
   const { projId } = useParams()
-  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
-    'projekteTabs',
-    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
-  )
 
   const store = useContext(storeContext)
   const { user } = store
@@ -79,24 +75,28 @@ const ProjekteAppBar = () => {
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
 
-  const isProjekt = !!projId
-
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
+  // console.log('ProjekteAppBar: projekteTabs:', projekteTabs)
   const onClickButton = useCallback(
     (name) => {
       if (isMobile) {
         // show one tab only
         setProjekteTabs([name])
       } else {
-        if (projekteTabs.includes(name)) {
-          remove(projekteTabs, (el) => el === name)
+        const newProjekteTabs = [...projekteTabs]
+        if (newProjekteTabs.includes(name)) {
+          remove(newProjekteTabs, (el) => el === name)
           if (name === 'tree2') {
             // close all tree2-tabs
-            remove(projekteTabs, (el) => el.includes('2'))
+            remove(newProjekteTabs, (el) => el.includes('2'))
           }
         } else {
-          projekteTabs.push(name)
+          newProjekteTabs.push(name)
         }
-        setProjekteTabs(projekteTabs)
+        setProjekteTabs(newProjekteTabs)
       }
     },
     [isMobile, setProjekteTabs, projekteTabs],
@@ -211,7 +211,7 @@ const ProjekteAppBar = () => {
               Filter 2
             </StyledButton>
           )}
-          {!isMobile && isProjekt && (
+          {!isMobile && (
             <StyledButton
               variant="text"
               preceded={false?.toString()}
