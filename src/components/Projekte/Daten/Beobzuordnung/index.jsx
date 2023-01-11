@@ -160,7 +160,7 @@ const Beobzuordnung = ({ type }) => {
       const { value } = event.target
       saveArtIdToDb({ value, row, client, store, queryClient, search })
     },
-    [client, queryClient, row, store],
+    [client, queryClient, row, search, store],
   )
   const onSaveNichtZuordnenToDb = useCallback(
     (value) => {
@@ -171,16 +171,17 @@ const Beobzuordnung = ({ type }) => {
         client,
         store,
         queryClient,
+        search,
       })
     },
-    [client, id, queryClient, refetch, store],
+    [client, id, queryClient, refetch, search, store],
   )
   const onSaveTpopIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveTpopIdToDb({ value, id, type, client, store })
+      saveTpopIdToDb({ value, id, type, client, store, search })
     },
-    [client, id, store, type],
+    [client, id, search, store, type],
   )
   const onUpdateField = useCallback(
     (event) => {

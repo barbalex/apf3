@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { MdPrint, MdHourglassEmpty } from 'react-icons/md'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
 import EkfYear from './EkfYear'
@@ -66,6 +66,7 @@ const StyledMdHourglassEmpty = styled(MdHourglassEmpty)`
 
 const ProjekteAppBar = ({ ekf }) => {
   const { userId, ekfId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { user, setIsPrint } = store
@@ -117,7 +118,12 @@ const ProjekteAppBar = ({ ekf }) => {
   return (
     <>
       {!isMobile && (
-        <SiteTitle variant="outlined" component={Link} to="/" title="Home">
+        <SiteTitle
+          variant="outlined"
+          component={Link}
+          to={`/${search}`}
+          title="Home"
+        >
           {userName
             ? `AP Flora: EKF von ${userName}`
             : 'AP Flora: Erfolgs-Kontrolle Freiwillige'}
@@ -151,7 +157,7 @@ const ProjekteAppBar = ({ ekf }) => {
             <StyledButton
               variant="text"
               component={Link}
-              to="/Daten/Projekte/e57f56f4-4376-11e8-ab21-4314b6749d13"
+              to={`/Daten/Projekte/e57f56f4-4376-11e8-ab21-4314b6749d13${search}`}
             >
               Normal-Ansicht
             </StyledButton>
@@ -168,7 +174,11 @@ const ProjekteAppBar = ({ ekf }) => {
               />
             </>
           )}
-          <StyledButton variant="text" component={Link} to="/Dokumentation/">
+          <StyledButton
+            variant="text"
+            component={Link}
+            to={`/Dokumentation/${search}`}
+          >
             Dokumentation
           </StyledButton>
         </>

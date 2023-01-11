@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
 import storeContext from '../../../storeContext'
@@ -30,6 +30,8 @@ const MenuTitleLink = styled(Link)`
 `
 
 const Sidebar = ({ nodes = [] }) => {
+  const { search } = useLocation()
+
   const store = useContext(storeContext)
   const { dokuFilter, setDokuFilter } = store
 
@@ -44,7 +46,9 @@ const Sidebar = ({ nodes = [] }) => {
   return (
     <Menu>
       <MenuTitle>
-        <MenuTitleLink to="/Dokumentation/">Dokumentation</MenuTitleLink>
+        <MenuTitleLink to={`/Dokumentation/${search}`}>
+          Dokumentation
+        </MenuTitleLink>
         <Filter filter={dokuFilter} setFilter={setDokuFilter} />
       </MenuTitle>
       <MenuItems items={items} />
