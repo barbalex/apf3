@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import { useQueryClient } from '@tanstack/react-query'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 import apById from './apById'
 import Label from '../../../shared/Label'
@@ -26,6 +26,7 @@ const StyledSwitch = styled(Switch)`
 const ApFilter = () => {
   const { apId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const queryClient = useQueryClient()
   const client = useApolloClient()
@@ -60,7 +61,7 @@ const ApFilter = () => {
           activeNodeArray[1],
           activeNodeArray[2],
         ]
-        navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+        navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
         // remove from openNodes
         const newOpenNodes = openNodes.filter((n) => {
           if (
@@ -83,6 +84,7 @@ const ApFilter = () => {
     navigate,
     openNodes,
     queryClient,
+    search,
     setApFilter,
     setOpenNodes,
   ])

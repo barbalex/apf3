@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import Button from '@mui/material/Button'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import beobIcon from './beob.svg'
@@ -25,6 +25,7 @@ const StyledButton = styled(Button)`
 const BeobZugeordnetMarker = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -72,7 +73,7 @@ const BeobZugeordnetMarker = ({ beob }) => {
         'Beobachtungen',
         beob.id,
       ]
-      navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+      navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
       await client.mutate({
         mutation: updateBeobByIdGql,
         variables: {
@@ -90,7 +91,7 @@ const BeobZugeordnetMarker = ({ beob }) => {
       })
       //map.redraw()
     },
-    [apId, beob.id, client, projId, navigate],
+    [apId, client, projId, beob.id, navigate, search],
   )
   const popId = beob?.tpopByTpopId?.popId ?? ''
   const tpopId = beob?.tpopByTpopId?.id ?? ''

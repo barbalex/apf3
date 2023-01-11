@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import Button from '@mui/material/Button'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 
 import storeContext from '../../../../../storeContext'
@@ -26,6 +26,7 @@ const StyledButton = styled(Button)`
 const BeobNichtBeurteiltMarker = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const queryClient = useQueryClient()
 
@@ -71,7 +72,7 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         },
       })
       navigate(
-        `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}`,
+        `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}${search}`,
       )
       client.refetchQueries({
         include: [
@@ -84,7 +85,7 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         queryKey: [`treeQuery`],
       })
     },
-    [apId, beob.id, client, navigate, projId, queryClient],
+    [apId, beob.id, client, navigate, projId, queryClient, search],
   )
   const openBeobInTree2 = useCallback(() => {
     openTree2WithActiveNodeArray([
