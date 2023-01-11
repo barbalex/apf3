@@ -18,7 +18,7 @@ const undelete = async ({
     : `create${upperFirst(camelCase(table))}`
   let mutation
   try {
-    mutation = await import(`./queries/${queryName}.ts`).then((m) => m.default)
+    mutation = await import(`./queries/${queryName}.js`).then((m) => m.default)
   } catch (error) {
     return store.enqueNotification({
       message: `Die Abfrage, um einen Datensatz für die Tabelle ${table} zu erstellen, scheint zu fehlen. Sorry!`,
