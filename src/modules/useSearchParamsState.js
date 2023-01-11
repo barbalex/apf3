@@ -1,16 +1,20 @@
 // see: https://blog.logrocket.com/use-state-url-persist-state-usesearchparams/
 import { useSearchParams } from 'react-router-dom'
 
-export default function useSearchParamsState(
-  searchParamName: string,
-  defaultValue: string,
-): readonly [searchParamsState: string, setSearchParamsState: () => void] {
+export default function useSearchParamsState(searchParamName, defaultValue) {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const acquiredSearchParam = searchParams.get(searchParamName)
+  const acquiredSearchParam = searchParams.getAll(searchParamName)
   const searchParamsState = acquiredSearchParam ?? defaultValue
 
-  const setSearchParamsState = (newState: string) => {
+  // console.log('useSearchParamsState', {
+  //   acquiredSearchParam,
+  //   searchParamsState,
+  //   searchParamName,
+  //   defaultValue,
+  // })
+
+  const setSearchParamsState = (newState) => {
     const next = Object.assign(
       {},
       [...searchParams.entries()].reduce(
