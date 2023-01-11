@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import { useQuery } from '@apollo/client'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import Select from '../../../../../shared/Select'
 import Error from '../../../../../shared/Error'
@@ -16,6 +16,7 @@ const ekfRefYear = new Date(ekfRefDate).getFullYear()
 
 const EkfUser = ({ closeMenu }) => {
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const { data, error, loading } = useQuery(queryAdresses)
 
@@ -24,9 +25,11 @@ const EkfUser = ({ closeMenu }) => {
       const value = event.target.value
       closeMenu()
       // prevent this happening before seAnchor happened
-      setTimeout(() => navigate(`/Daten/Benutzer/${value}/EKF/${ekfRefYear}`))
+      setTimeout(() =>
+        navigate(`/Daten/Benutzer/${value}/EKF/${ekfRefYear}${search}`),
+      )
     },
-    [closeMenu, navigate],
+    [closeMenu, navigate, search],
   )
 
   if (loading) return <Container>{'lade...'}</Container>
