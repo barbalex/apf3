@@ -7,7 +7,6 @@ import isUuid from 'is-uuid'
 import NodeLabelFilter, {
   defaultValue as defaultNodeLabelFilter,
 } from './NodeLabelFilter'
-import Map, { defaultValue as defaultMap } from './Map'
 import Geojson from './Geojson'
 import initialDataFilterValues from './DataFilter/initialValues'
 import DataFilter from './DataFilter/types'
@@ -51,12 +50,7 @@ export default types
     apFilter: types.optional(types.boolean, true),
     nodeLabelFilter: types.optional(NodeLabelFilter, defaultNodeLabelFilter),
     dataFilter: types.optional(DataFilter, initialDataFilterValues),
-    map: types.optional(Map, defaultMap),
     mapFilter: types.maybe(Geojson),
-    // mapFilter: types.optional(
-    //   types.union(Geojson, types.literal(undefined)),
-    //   undefined,
-    // ),
   })
   .actions((self) => ({
     resetTree2Src() {
@@ -973,5 +967,4 @@ export const defaultValue = {
   openNodes: [],
   apFilter: true,
   nodeLabelFilter: defaultNodeLabelFilter,
-  map: defaultMap,
 }

@@ -49,8 +49,7 @@ const TpopMarker = ({ tpop }) => {
   const { search } = useLocation()
 
   const store = useContext(storeContext)
-  const { openTree2WithActiveNodeArray } = store
-  const { map } = store.tree
+  const { openTree2WithActiveNodeArray, map } = store
   const { tpopIcon: tpopIconName, tpopLabel: tpopLabelName } = map
 
   const popNr = tpop?.popByPopId?.nr ?? '(keine Nr)'

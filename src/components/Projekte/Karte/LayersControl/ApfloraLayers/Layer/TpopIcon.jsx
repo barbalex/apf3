@@ -38,7 +38,7 @@ const CheckIcon = styled(FaCheck)`
 
 const TpopIcon = () => {
   const store = useContext(storeContext)
-  const { map } = store.tree
+  const { map } = store
   const { tpopIcon, setTpopIcon, tpopLabel, setTpopLabel } = map
   const [anchorEl, setAnchorEl] = useState(null)
   const onClickIconContainer = useCallback(

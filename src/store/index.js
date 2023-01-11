@@ -1,14 +1,11 @@
 import { types } from 'mobx-state-tree'
-import cloneDeep from 'lodash/cloneDeep'
-import isEqual from 'lodash/isEqual'
-import queryString from 'query-string'
 
 import ApfloraLayer from './ApfloraLayer'
 import Copying, { defaultValue as defaultCopying } from './Copying'
 import CopyingBiotop, {
   defaultValue as defaultCopyingBiotop,
 } from './CopyingBiotop'
-import UrlQuery, { defaultValue as defaultUrlQuery } from './UrlQuery'
+import Map, { defaultValue as defaultMap } from './Map'
 import Moving, { defaultValue as defaultMoving } from './Moving'
 import MapMouseCoordinates, {
   defaultValue as defaultMapMouseCoordinates,
@@ -19,7 +16,6 @@ import initialDataFilterTreeValues from './Tree/DataFilter/initialValues'
 import User, { defaultValue as defaultUser } from './User'
 import Tree, { defaultValue as defaultTree } from './Tree'
 import EkPlan, { defaultValue as defaultEkPlan } from './EkPlan'
-import getOpenNodesFromActiveNodeArray from '../modules/getOpenNodesFromActiveNodeArray'
 
 import { initial as apInitial } from './Tree/DataFilter/ap'
 import { initial as popInitial } from './Tree/DataFilter/pop'
@@ -77,6 +73,7 @@ const myTypes = types
     ekPlan: types.optional(EkPlan, defaultEkPlan),
     showDeletions: types.optional(types.boolean, false),
     dokuFilter: types.optional(types.union(types.string, types.number), ''),
+    map: types.optional(Map, defaultMap),
   })
   // structure of these variables is not controlled
   // so need to define this as volatile

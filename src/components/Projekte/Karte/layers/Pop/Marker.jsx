@@ -37,8 +37,7 @@ const PopMarker = ({ pop }) => {
   const { search } = useLocation()
 
   const store = useContext(storeContext)
-  const { apfloraLayers, openTree2WithActiveNodeArray } = store
-  const { map } = store.tree
+  const { apfloraLayers, openTree2WithActiveNodeArray, map } = store
   const { popIcon: popIconName, popLabel: popLabelName } = map
 
   const nrLabel = pop.nr ? pop.nr.toString() : '(keine Nr)'
