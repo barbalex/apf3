@@ -232,37 +232,6 @@ const myTypes = types
     setCopyingBiotop({ id, label }) {
       self.copyingBiotop = { id, label }
     },
-    setUrlQuery({
-      projekteTabs,
-      popTab,
-      tpopTab,
-      tpopmassnTab,
-      apTab,
-      feldkontrTab,
-      idealbiotopTab,
-      qkTab,
-    }) {
-      const newUrlQuery = {
-        projekteTabs,
-        popTab,
-        tpopTab,
-        tpopmassnTab,
-        apTab,
-        feldkontrTab,
-        idealbiotopTab,
-        qkTab,
-      }
-      // only write if changed
-      if (!isEqual(self.urlQuery, newUrlQuery)) {
-        self.urlQuery = newUrlQuery
-        const search = queryString.stringify(newUrlQuery)
-        const query = `${
-          Object.keys(newUrlQuery).length > 0 ? `?${search}` : ''
-        }`
-        const { activeNodeArray } = self.tree
-        self.navigate?.(`/Daten/${activeNodeArray.join('/')}${query}`)
-      }
-    },
     setMoving({ table, id, label }) {
       self.moving = { table, id, label }
     },
@@ -276,7 +245,9 @@ const myTypes = types
       self.assigningBeob = val
     },
     openTree2WithActiveNodeArray(activeNodeArray) {
+      // TODO: need to pass search
       self.tree.setTree2SrcByActiveNodeArray(activeNodeArray)
+      // TODO: need to receive setSearch
       self.urlQuery.addProjekteTabs(['tree2', 'daten2'])
     },
     treeNodeLabelFilterResetExceptAp() {
