@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Input from '@mui/material/Input'
 import styled from '@emotion/styled'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 const StyledInput = styled(Input)`
   width: 60px;
@@ -24,6 +24,7 @@ const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
 const ekfRefYear = new Date(ekfRefDate).getFullYear()
 
 const EkfYear = () => {
+  const { search } = useLocation()
   const { ekfYear, userId } = useParams()
   const navigate = useNavigate()
 
@@ -38,9 +39,9 @@ const EkfYear = () => {
   const onBlur = useCallback(
     (event) => {
       const newValue = event.target.value ? +event.target.value : ekfRefYear
-      navigate(`/Daten/Benutzer/${userId}/EKF/${newValue}`)
+      navigate(`/Daten/Benutzer/${userId}/EKF/${newValue}${search}`)
     },
-    [navigate, userId],
+    [navigate, search, userId],
   )
 
   return (
