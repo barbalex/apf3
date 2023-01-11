@@ -7,10 +7,10 @@ import { observer } from 'mobx-react-lite'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import More from './More'
 import Daten from './Daten'
 import storeContext from '../../../../storeContext'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -61,18 +61,17 @@ const DokuButton = styled(Button)`
 
 const ProjekteAppBar = () => {
   const { projId } = useParams()
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
 
   const store = useContext(storeContext)
-  const { user, urlQuery, setUrlQuery } = store
+  const { user } = store
   const { resetTree2Src } = store.tree
 
   const navigate = useNavigate()
 
-  /**
-   * need to clone projekteTabs
-   * because otherwise removing elements errors out (because elements are sealed)
-   */
-  const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
   const exporteIsActive = !!projId
   const isMobile = isMobilePhone()
 
@@ -86,12 +85,7 @@ const ProjekteAppBar = () => {
     (name) => {
       if (isMobile) {
         // show one tab only
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: [name],
-          urlQuery,
-          setUrlQuery,
-        })
+        setProjekteTabs([name])
       } else {
         if (projekteTabs.includes(name)) {
           remove(projekteTabs, (el) => el === name)
@@ -102,15 +96,10 @@ const ProjekteAppBar = () => {
         } else {
           projekteTabs.push(name)
         }
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: projekteTabs,
-          urlQuery,
-          setUrlQuery,
-        })
+        setProjekteTabs(projekteTabs)
       }
     },
-    [isMobile, urlQuery, setUrlQuery, projekteTabs],
+    [isMobile, setProjekteTabs, projekteTabs],
   )
   const onClickTree = useCallback(() => onClickButton('tree'), [onClickButton])
   const onClickKarte = useCallback(
@@ -156,7 +145,10 @@ const ProjekteAppBar = () => {
           >
             Strukturbaum
           </StyledButton>
-          <Daten />
+          <Daten
+            projekteTabs={projekteTabs}
+            setProjekteTabs={setProjekteTabs}
+          />
           <StyledButton
             variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
             preceded={projekteTabs.includes('daten')?.toString()}
