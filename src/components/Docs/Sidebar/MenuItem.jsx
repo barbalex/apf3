@@ -4,17 +4,16 @@ import ListItemText from '@mui/material/ListItemText'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const MenuItem = ({ node }) => {
-  const location = useLocation()
+  const { pathname, search } = useLocation()
   const navigate = useNavigate()
 
   const { slug, title } = node
   const activeUrl = `/Dokumentation/${slug}`
-  const active =
-    activeUrl === location.pathname || `${activeUrl}/` === location.pathname
+  const active = activeUrl === pathname || `${activeUrl}/` === pathname
 
   const onClickMenuItem = useCallback(() => {
-    navigate(`${activeUrl}/`)
-  }, [activeUrl, navigate])
+    navigate(`${activeUrl}/${search}`)
+  }, [activeUrl, navigate, search])
 
   return (
     <>

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import Typography from '@mui/material/Typography'
 import styled from '@emotion/styled'
 import Button from '@mui/material/Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import ProgressiveImg from './shared/ProgressiveImg'
 import image from '../images/ophr-ara.jpg'
@@ -87,8 +87,12 @@ const StyledButton = styled(Button)`
 `
 
 const FourOhFour = () => {
+  const { search } = useLocation()
   const navigate = useNavigate()
-  const onClickBack = useCallback(() => navigate('/'), [navigate])
+  const onClickBack = useCallback(
+    () => navigate(`/${search}`),
+    [navigate, search],
+  )
 
   return (
     <OuterContainer>

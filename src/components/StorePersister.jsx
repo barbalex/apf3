@@ -1,6 +1,3 @@
-// This is the entry file for the application
-import queryString from 'query-string'
-
 import localForage from 'localforage'
 import MobxStore from '../store'
 //import { onPatch } from 'mobx-state-tree'
@@ -78,15 +75,9 @@ const StorePersister = () => {
         // set last activeNodeArray
         // only if top domain was visited
         if (isUser && visitedTopDomain) {
-          const { urlQuery } = store
-          const search = queryString.stringify(urlQuery)
-          const query = `${
-            Object.keys(urlQuery).length > 0 ? `?${search}` : ''
-          }`
-          const url = `/Daten/${store.tree.activeNodeArray.join('/')}${query}`
-          console.log('App, mst-persist: will navigate to url:', url)
-
-          return store.navigate?.(url)
+          return store.navigate?.(
+            `/Daten/${store.tree.activeNodeArray.join('/')}`,
+          )
         }
       }),
   )
