@@ -5,7 +5,9 @@ export default function useSearchParamsState(searchParamName, defaultValue) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const acquiredSearchParam = searchParams.getAll(searchParamName)
-  const searchParamsState = acquiredSearchParam ?? defaultValue
+  // getAll always returns an array, even if there is no value
+  const searchParamsState =
+    acquiredSearchParam.length > 0 ? acquiredSearchParam : defaultValue
 
   // console.log('useSearchParamsState', {
   //   acquiredSearchParam,
