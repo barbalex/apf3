@@ -349,8 +349,6 @@ const Tpopmassn = ({ showFilter = false }) => {
   const [tab, setTab] = useSearchParamsState('tpopmassnTab', 'tpopmassn')
   const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
-  console.log('TpopmassnForm', { tab })
-
   const { width = 500, ref: resizeRef } = useResizeDetector({
     refreshMode: 'debounce',
     refreshRate: 100,

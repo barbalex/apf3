@@ -13,7 +13,7 @@ import {
 } from 'react-icons/md'
 import { observer } from 'mobx-react-lite'
 import Highlighter from 'react-highlight-words'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import upperFirst from 'lodash/upperFirst'
 
 import isNodeInActiveNodePath from '../isNodeInActiveNodePath'
@@ -193,6 +193,7 @@ const PrintIconContainer = styled.div`
 const Row = ({ node }) => {
   const { apId, tpopId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const {
@@ -253,15 +254,18 @@ const Row = ({ node }) => {
       node,
       store,
       navigate,
+      search,
     })
-  }, [navigate, node, store])
+  }, [navigate, node, search, store])
+
   const onClickNodeSymbol = useCallback(() => {
-    toggleNodeSymbol({ node, store })
-  }, [node, store])
+    toggleNodeSymbol({ node, store, search })
+  }, [node, search, store])
+
   const onClickPrint = useCallback(() => {
     setPrintingJberYear(+node.label)
-    navigate(`/Daten/${[...node.url, 'print'].join('/')}`)
-  }, [navigate, node.label, node.url, setPrintingJberYear])
+    navigate(`/Daten/${[...node.url, 'print'].join('/')}${search}`)
+  }, [navigate, node.label, node.url, search, setPrintingJberYear])
 
   const karteIsVisible = store.urlQuery.projekteTabs.includes('karte')
 
