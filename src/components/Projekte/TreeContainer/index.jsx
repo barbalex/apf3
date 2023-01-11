@@ -589,6 +589,7 @@ const TreeContainer = () => {
             client,
             store,
             queryClient,
+            search,
           })
         },
         createNewTpopFromBeob() {
