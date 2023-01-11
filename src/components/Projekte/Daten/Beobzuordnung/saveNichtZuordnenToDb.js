@@ -9,6 +9,7 @@ const saveNichtZuordnenToDb = async ({
   client,
   store,
   queryClient,
+  search,
 }) => {
   const variables = {
     id,
@@ -40,7 +41,7 @@ const saveNichtZuordnenToDb = async ({
     return n
   })
   addOpenNodes(newOpenNodes)
-  store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+  store.navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
   if (refetchPassed) refetchPassed()
 }
 

@@ -14,7 +14,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import LabelFilter from './LabelFilter'
@@ -283,6 +283,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 const TreeContainer = () => {
   const { apId, projId, popId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -398,11 +399,19 @@ const TreeContainer = () => {
       projektNode
     ) {
       const projektUrl = [...projektNode.url]
-      navigate(`/Daten/${projektUrl.join('/')}`)
+      navigate(`/Daten/${projektUrl.join('/')}${search}`)
       // add projekt to open nodes
       setOpenNodes([...openNodes, projektUrl])
     }
-  }, [activeNodeArray, treeNodes, openNodes, projId, setOpenNodes, navigate])
+  }, [
+    activeNodeArray,
+    treeNodes,
+    openNodes,
+    projId,
+    setOpenNodes,
+    navigate,
+    search,
+  ])
 
   const [newTpopFromBeobDialogOpen, setNewTpopFromBeobDialogOpen] =
     useState(false)
@@ -479,6 +488,7 @@ const TreeContainer = () => {
             client,
             store,
             queryClient,
+            search,
           })
         },
         openLowerNodes() {
@@ -498,6 +508,7 @@ const TreeContainer = () => {
           closeLowerNodes({
             url,
             store,
+            search,
           })
         },
         delete() {
@@ -659,6 +670,7 @@ const TreeContainer = () => {
       apId,
       projId,
       popId,
+      search,
       setToDelete,
       openNodes,
       setOpenNodes,

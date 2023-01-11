@@ -10,6 +10,7 @@ const saveTpopIdToDb = async ({
   client,
   store,
   queryClient,
+  search,
 }) => {
   const variables = {
     id,
@@ -216,7 +217,7 @@ const saveTpopIdToDb = async ({
       ]
     }
   }
-  store.navigate(`/Daten/${newANA.join('/')}`)
+  store.navigate(`/Daten/${newANA.join('/')}${search}`)
   setOpenNodes(newOpenNodes)
   client.refetchQueries({
     include: [
