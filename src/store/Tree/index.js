@@ -125,10 +125,7 @@ export default types
       self.activeNodeArray = val
       if (!nonavigate) {
         const store = getParent(self)
-        const { urlQuery, navigate } = store
-        const search = queryString.stringify(urlQuery)
-        const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
-        navigate?.(`/Daten/${val.join('/')}${query}`)
+        store.navigate?.(`/Daten/${val.join('/')}`)
       }
     },
   }))
