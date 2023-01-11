@@ -18,11 +18,11 @@ import storeContext from '../../../../storeContext'
 import Coordinates from '../../../shared/Coordinates'
 import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
 import Files from '../../../shared/Files'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import { pop } from '../../../shared/fragments'
 import Spinner from '../../../shared/Spinner'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 import PopHistory from './History'
 
@@ -59,7 +59,6 @@ const Pop = () => {
 
   const store = useContext(storeContext)
   const client = useApolloClient()
-  const { urlQuery, setUrlQuery } = store
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -74,19 +73,8 @@ const Pop = () => {
     },
   })
 
-  const [tab, setTab] = useState(urlQuery?.popTab ?? 'pop')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'popTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('popTab', 'pop')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const row = useMemo(() => data?.popById ?? {}, [data?.popById])
 
