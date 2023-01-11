@@ -11,8 +11,6 @@ import buildClient from '../client'
 import isObject from '../modules/isObject'
 
 import setUserFromIdb from '../modules/setUserFromIdb'
-import initiateDataFromUrl from '../modules/initiateDataFromUrl'
-import getActiveNodeArrayFromPathname from '../modules/getActiveNodeArrayFromPathname'
 
 const StorePersister = () => {
   const idb = initializeIdb()
@@ -89,13 +87,6 @@ const StorePersister = () => {
           console.log('App, mst-persist: will navigate to url:', url)
 
           return store.navigate?.(url)
-        }
-        const activeNodeArray = getActiveNodeArrayFromPathname()
-        if (activeNodeArray[0] === 'Projekte') {
-          console.log('App, mst-persist: will initiate data from url')
-          initiateDataFromUrl({
-            store,
-          })
         }
       }),
   )
