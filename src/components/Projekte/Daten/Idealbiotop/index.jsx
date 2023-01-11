@@ -15,12 +15,12 @@ import constants from '../../../../modules/constants'
 import query from './query'
 import storeContext from '../../../../storeContext'
 import Files from '../../../shared/Files'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import { idealbiotop } from '../../../shared/fragments'
 import Spinner from '../../../shared/Spinner'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -88,12 +88,12 @@ const Idealbiotop = () => {
   const { apId: id } = useParams()
 
   const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
   const client = useApolloClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 
-  const [tab, setTab] = useState(urlQuery?.idealbiotopTab ?? 'idealbiotop')
+  const [tab, setTab] = useSearchParamsState('idealbiotopTab', 'idealbiotop')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const { data, loading, error } = useQuery(query, {
     variables: {
@@ -148,19 +148,6 @@ const Idealbiotop = () => {
       setFieldErrors({})
     },
     [client, row, store.user.name],
-  )
-
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'idealbiotopTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
   )
 
   const { width = 500, ref: resizeRef } = useResizeDetector({
