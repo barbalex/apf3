@@ -20,17 +20,21 @@ export default function useSearchParamsState(searchParamName, defaultValue) {
   //   searchParamsState,
   //   searchParamName,
   //   defaultValue,
+  //   searchParamsEntries: [...searchParams.entries()],
   // })
 
   const setSearchParamsState = (newState) => {
-    const next = Object.assign(
-      {},
-      [...searchParams.entries()].reduce(
-        (o, [key, value]) => ({ ...o, [key]: value }),
-        {},
-      ),
-      { [searchParamName]: newState },
-    )
+    const previous = [...searchParams.entries()].reduce((o, [key, value]) => {
+      if (key in o) {
+        if (o[key] instanceof Array) {
+          return { ...o, [key]: [...o[key], value] }
+        }
+        return { ...o, [key]: [o[key], value] }
+      } else {
+        return { ...o, [key]: value }
+      }
+    }, {})
+    const next = Object.assign({}, previous, { [searchParamName]: newState })
     setSearchParams(next)
   }
   return [searchParamsState, setSearchParamsState]
