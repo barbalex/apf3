@@ -303,7 +303,8 @@ const TreeContainer = () => {
     setUrlQuery,
     user,
   } = store
-  const { openNodes, setOpenNodes, activeNodeArray } = store.tree
+  const { openNodes, setOpenNodes, activeNodeArray } =
+    store.tree
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
@@ -319,6 +320,7 @@ const TreeContainer = () => {
   const ekGqlFilterTree = store.tree.ekGqlFilter
   const ekfGqlFilterTree = store.tree.ekfGqlFilter
   const beobGqlFilterTree = store.tree.beobGqlFilter
+
 
   const { data, error, isLoading } = useQuery({
     queryKey: [
@@ -354,6 +356,8 @@ const TreeContainer = () => {
           apGqlFilter: apGqlFilterTree,
           beobGqlFilter: beobGqlFilterTree,
         }),
+        // DANGER: without, refetches by react-query do not work!
+        fetchPolicy: 'no-cache',
       }),
   })
 
