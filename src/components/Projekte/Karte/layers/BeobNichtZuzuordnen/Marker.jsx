@@ -5,12 +5,14 @@ import isValid from 'date-fns/isValid'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import Button from '@mui/material/Button'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import beobIcon from './beob.svg'
 import beobIconHighlighted from './beobHighlighted.svg'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -21,6 +23,7 @@ const StyledButton = styled(Button)`
 
 const BeobNichtZuzuordnenMarker = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
@@ -43,16 +46,34 @@ const BeobNichtZuzuordnenMarker = ({ beob }) => {
   const autor = beob.autor ?? '(kein Autor)'
   const quelle = beob?.quelle ?? ''
   const label = `${datum}: ${autor} (${quelle})`
+
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const openBeobInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'nicht-zuzuordnende-Beobachtungen',
-      beob.id,
-    ])
-  }, [apId, beob.id, openTree2WithActiveNodeArray, projId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'nicht-zuzuordnende-Beobachtungen',
+        beob.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    beob.id,
+    openTree2WithActiveNodeArray,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+  ])
   const openBeobInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/nicht-zuzuordnende-Beobachtungen/${
       beob.id

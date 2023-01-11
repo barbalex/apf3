@@ -14,6 +14,8 @@ import beobIconHighlighted from './beobHighlighted.svg'
 import getNearestTpop from '../../../../../modules/getNearestTpop'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
 import updateBeobByIdGql from './updateBeobById'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -95,20 +97,40 @@ const BeobZugeordnetMarker = ({ beob }) => {
   )
   const popId = beob?.tpopByTpopId?.popId ?? ''
   const tpopId = beob?.tpopByTpopId?.id ?? ''
+
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const openBeobInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'Populationen',
-      popId,
-      'Teil-Populationen',
-      tpopId,
-      'Beobachtungen',
-      beob.id,
-    ])
-  }, [apId, beob.id, openTree2WithActiveNodeArray, popId, projId, tpopId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'Populationen',
+        popId,
+        'Teil-Populationen',
+        tpopId,
+        'Beobachtungen',
+        beob.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    beob.id,
+    openTree2WithActiveNodeArray,
+    popId,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+    tpopId,
+  ])
   const openBeobInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}/Beobachtungen/${
       beob.id
