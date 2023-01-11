@@ -10,7 +10,7 @@ import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import CircularProgress from '@mui/material/CircularProgress'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import appBaseUrl from '../../../../../modules/appBaseUrl'
 import standardQkYear from '../../../../../modules/standardQkYear'
@@ -19,6 +19,8 @@ import createMessageFunctions from './createMessageFunctions'
 import storeContext from '../../../../../storeContext'
 import ErrorBoundary from '../../../../shared/ErrorBoundary'
 import Error from '../../../../shared/Error'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const Container = styled.div`
   height: 100%;
@@ -73,7 +75,13 @@ const AnalyzingSpan = styled.span`
 `
 
 const Qk = ({ qkNameQueries, qks }) => {
-  const {apId, projId}=useParams()
+  const { apId, projId } = useParams()
+  const { search } = useLocation()
+
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
 
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
@@ -162,7 +170,14 @@ const Qk = ({ qkNameQueries, qks }) => {
             {messageGroup.messages.map((m, i) => (
               <Row key={`${m.text}Index${i}`}>
                 <StyledA
-                  onClick={() => openTree2WithActiveNodeArray(m.url)}
+                  onClick={() =>
+                    openTree2WithActiveNodeArray({
+                      activeNodeArray: m.url,
+                      search,
+                      projekteTabs,
+                      setProjekteTabs,
+                    })
+                  }
                   title="in Strukturbaum 2 öffnen"
                 >
                   {m.text}

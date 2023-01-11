@@ -66,7 +66,6 @@ const Projekte = () => {
         // - rewrite tree2 values to tree values
         .map((t) => t.replace('2', ''))
     }
-
     const newSearch = queryString.stringify(iFrameSearch)
     // pass this via src to iframe
     iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${newSearch}`
