@@ -62,22 +62,28 @@ export default types
     resetTree2Src() {
       self.tree2Src = ''
     },
-    setTree2SrcByActiveNodeArray(activeNodeArray) {
-      const store = getParent(self)
-      // build search string for iframe
-      const iFrameUrlQuery = { ...getSnapshot(store.urlQuery) }
+    setTree2SrcByActiveNodeArray({ activeNodeArray, search }) {
+      const iFrameSearch = queryString.parse(search)
       // need to alter projekteTabs:
-      iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
-        // - remove non-tree2 values
-        .filter((t) => t.includes('2'))
-        // - rewrite tree2 values to tree values
-        .map((t) => t.replace('2', ''))
-      const search = queryString.stringify(iFrameUrlQuery)
+      if (Array.isArray(iFrameSearch.projekteTabs)) {
+        iFrameSearch.projekteTabs = iFrameSearch.projekteTabs
+          // - remove non-tree2 values
+          .filter((t) => t.includes('2'))
+          // - rewrite tree2 values to tree values
+          .map((t) => t.replace('2', ''))
+      } else if (iFrameSearch.projekteTabs) {
+        iFrameSearch.projekteTabs = [iFrameSearch.projekteTabs]
+          // - remove non-tree2 values
+          .filter((t) => t.includes('2'))
+          // - rewrite tree2 values to tree values
+          .map((t) => t.replace('2', ''))
+      }
+      const newSearch = queryString.stringify(iFrameSearch)
       // pass this via src to iframe
       const iFrameSrc = `${appBaseUrl().slice(
         0,
         -1,
-      )}${`/Daten/${activeNodeArray.join('/')}`}?${search}`
+      )}${`/Daten/${activeNodeArray.join('/')}`}?${newSearch}`
       self.tree2Src = iFrameSrc
     },
     setMapFilter(val) {

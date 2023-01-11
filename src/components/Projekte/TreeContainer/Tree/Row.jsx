@@ -22,6 +22,8 @@ import toggleNode from '../toggleNode'
 import toggleNodeSymbol from '../toggleNodeSymbol'
 import storeContext from '../../../../storeContext'
 import { ContextMenuTrigger } from 'react-contextmenu/dist/react-contextmenu'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../modules/isMobilePhone'
 
 const PrintIcon = styled(MdPictureAsPdf)`
   font-size: 1.5rem;
@@ -267,7 +269,11 @@ const Row = ({ node }) => {
     navigate(`/Daten/${[...node.url, 'print'].join('/')}${search}`)
   }, [navigate, node.label, node.url, search, setPrintingJberYear])
 
-  const karteIsVisible = store.urlQuery.projekteTabs.includes('karte')
+  const [projekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
+  const karteIsVisible = projekteTabs.includes('karte')
 
   return (
     <ContextMenuTrigger

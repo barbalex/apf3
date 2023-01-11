@@ -3,7 +3,7 @@ import { Marker, Tooltip, Popup } from 'react-leaflet'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import Button from '@mui/material/Button'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import tpopIcon from './tpop.svg'
@@ -29,6 +29,8 @@ import svg202 from './statusGroupSymbols/202.svg'
 import svg202Highlighted from './statusGroupSymbols/202_highlighted.svg'
 import svg300 from './statusGroupSymbols/300.svg'
 import svg300Highlighted from './statusGroupSymbols/300_highlighted.svg'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -44,6 +46,7 @@ const StyledButton = styled(Button)`
 
 const TpopMarker = ({ tpop }) => {
   const { apId, projId, tpopId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
@@ -86,18 +89,38 @@ const TpopMarker = ({ tpop }) => {
   }, [isHighlighted, tpop.status, tpopIconName])
 
   const popId = tpop?.popByPopId?.id ?? ''
+
+  // eslint-disable-next-line
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const openTpopInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'Populationen',
-      popId,
-      'Teil-Populationen',
-      tpop.id,
-    ])
-  }, [apId, openTree2WithActiveNodeArray, popId, projId, tpop.id])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'Populationen',
+        popId,
+        'Teil-Populationen',
+        tpop.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    openTree2WithActiveNodeArray,
+    popId,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+    tpop.id,
+  ])
 
   const openTpopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${

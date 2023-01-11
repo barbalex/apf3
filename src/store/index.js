@@ -65,7 +65,6 @@ const myTypes = types
     printingJberYear: types.optional(types.number, 0),
     copying: types.optional(Copying, defaultCopying),
     copyingBiotop: types.optional(CopyingBiotop, defaultCopyingBiotop),
-    urlQuery: types.optional(UrlQuery, defaultUrlQuery),
     moving: types.optional(Moving, defaultMoving),
     mapMouseCoordinates: types.optional(
       MapMouseCoordinates,
@@ -244,11 +243,14 @@ const myTypes = types
     setAssigningBeob(val) {
       self.assigningBeob = val
     },
-    openTree2WithActiveNodeArray(activeNodeArray) {
-      // TODO: need to pass search
-      self.tree.setTree2SrcByActiveNodeArray(activeNodeArray)
-      // TODO: need to receive setSearch
-      self.urlQuery.addProjekteTabs(['tree2', 'daten2'])
+    openTree2WithActiveNodeArray({
+      activeNodeArray,
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    }) {
+      self.tree.setTree2SrcByActiveNodeArray({ activeNodeArray, search })
+      setProjekteTabs([...projekteTabs, 'tree2', 'daten2'])
     },
     treeNodeLabelFilterResetExceptAp() {
       self.tree.nodeLabelFilter = {
