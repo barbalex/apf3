@@ -115,6 +115,8 @@ const ApberForYear = () => {
         variables: {
           id: apberUebersichtId,
         },
+        // DANGER: without, refetches by react-query do not work!
+        fetchPolicy: 'no-cache',
       })
       const jahr = data1?.apberuebersichtById?.jahr
       const { data } = await client.query({
@@ -124,6 +126,8 @@ const ApberForYear = () => {
           jahr,
           apberuebersichtId: apberUebersichtId,
         },
+        // DANGER: without, refetches by react-query do not work!
+        fetchPolicy: 'no-cache',
       })
 
       return { data, jahr }
