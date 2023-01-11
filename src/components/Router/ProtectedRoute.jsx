@@ -27,8 +27,7 @@ const Container = styled.div`
 `
 
 const ProtectedRoute = () => {
-  const location = useLocation()
-  const pathname = location.pathname
+  const { pathname, search } = useLocation()
   const { userId } = useParams()
 
   const store = useContext(storeContext)
@@ -47,7 +46,7 @@ const ProtectedRoute = () => {
   if (shouldNavigate) {
     return (
       <Navigate
-        to={`/Daten/Benutzer/${userId}/EKF/${new Date().getFullYear()}`}
+        to={`/Daten/Benutzer/${userId}/EKF/${new Date().getFullYear()}${search}`}
       />
     )
   }

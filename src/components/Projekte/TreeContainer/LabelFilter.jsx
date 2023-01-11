@@ -14,7 +14,7 @@ import styled from '@emotion/styled'
 import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useDebouncedCallback } from 'use-debounce'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import tables from '../../../modules/tables'
 import storeContext from '../../../storeContext'
@@ -40,6 +40,7 @@ const StyledDeleteFilterIcon = styled(MdDeleteSweep)`
 
 const LabelFilter = ({ nodes }) => {
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { nodeLabelFilter, activeNodeArray, setOpenNodes } = store.tree
@@ -88,7 +89,7 @@ const LabelFilter = ({ nodes }) => {
         const newActiveUrl = [...url]
         newActiveNodeArray.pop()
         const newOpenNodes = openNodes.filter((n) => n !== newActiveUrl)
-        navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+        navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
         setOpenNodes(newOpenNodes)
       }
       setNodeLabelFilterKey({
@@ -96,7 +97,14 @@ const LabelFilter = ({ nodes }) => {
         key: filterTable,
       })
     },
-    [activeNode, navigate, openNodes, setNodeLabelFilterKey, setOpenNodes],
+    [
+      activeNode,
+      navigate,
+      openNodes,
+      search,
+      setNodeLabelFilterKey,
+      setOpenNodes,
+    ],
   )
   const changeDebounced = useDebouncedCallback(setValuesAfterChange, 600)
 
