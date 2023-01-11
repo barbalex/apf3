@@ -1,12 +1,10 @@
-import React, { useContext, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import Button from '@mui/material/Button'
 import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
-import storeContext from '../../../../storeContext'
 
 const StyledButton = styled(Button)`
   color: white !important;
@@ -32,10 +30,7 @@ const StyledButton = styled(Button)`
   text-transform: none !important;
 `
 
-const MyAppBarDaten = ({ treeNr = '' }) => {
-  const { urlQuery, setUrlQuery } = useContext(storeContext)
-
-  const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
+const MyAppBarDaten = ({ treeNr = '', projekteTabs, setProjekteTabs }) => {
   const isDaten = projekteTabs.includes(`daten${treeNr}`)
   const isTree = projekteTabs.includes(`tree${treeNr}`)
 
@@ -43,26 +38,16 @@ const MyAppBarDaten = ({ treeNr = '' }) => {
     const copyOfProjekteTabs = [...projekteTabs]
     if (isMobilePhone()) {
       // show one tab only
-      setUrlQueryValue({
-        key: 'projekteTabs',
-        value: [`daten${treeNr}`],
-        urlQuery,
-        setUrlQuery,
-      })
+      setProjekteTabs([`daten${treeNr}`])
     } else {
       if (copyOfProjekteTabs.includes(`daten${treeNr}`)) {
         remove(copyOfProjekteTabs, (el) => el === `daten${treeNr}`)
       } else {
         copyOfProjekteTabs.push(`daten${treeNr}`)
       }
-      setUrlQueryValue({
-        key: 'projekteTabs',
-        value: copyOfProjekteTabs,
-        urlQuery,
-        setUrlQuery,
-      })
+      setProjekteTabs(copyOfProjekteTabs)
     }
-  }, [projekteTabs, setUrlQuery, treeNr, urlQuery])
+  }, [projekteTabs, setProjekteTabs, treeNr])
 
   let followed = projekteTabs.includes('filter')
   if (treeNr === '2') {
