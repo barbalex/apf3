@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 
 import Home from '../Home'
 import EkPlan from '../EkPlan'
@@ -43,148 +43,156 @@ import Tpopkontrzaehl from '../Projekte/Daten/Tpopkontrzaehl'
 const ekfRefYear = new Date().getFullYear()
 
 // uncomment unterhalt route for Unterhalt
-const RouterComponent = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/Daten/*" element={<ProtectedRoute />}>
-      {/* <Route path="*" element={<Unterhalt />}></Route> */}
-      <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
-      <Route path="*" element={<Projekte />}>
-        <Route path="Werte-Listen/Adressen/:adrId" element={<Adresse />} />
-        <Route
-          path="Werte-Listen/ApberrelevantGrundWerte/:wertId"
-          element={<Werte table="tpopApberrelevantGrundWerte" />}
-        />
-        <Route
-          path="Werte-Listen/EkAbrechnungstypWerte/:wertId"
-          element={<Werte table="ekAbrechnungstypWerte" />}
-        />
-        <Route
-          path="Werte-Listen/TpopkontrzaehlEinheitWerte/:wertId"
-          element={<Werte table="tpopkontrzaehlEinheitWerte" />}
-        />
-        <Route path="Mitteilungen" element={<Messages />} />
-        <Route path="Aktuelle-Fehler/:issueId" element={<CurrentIssue />} />
-        <Route path="Projekte/:projId/*" element={<Projekt />} />
-        <Route
-          path="Projekte/:projId/AP-Berichte/:apberUebersichtId"
-          element={<Apberuebersicht />}
-        />
-        <Route
-          path="Projekte/:projId/AP-Berichte/:apberUebersichtId/print"
-          element={<ApberForYear />}
-        />
-        <Route path="Projekte/:projId/Arten/:apId/*" element={<Ap />} />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Qualitaetskontrollen"
-          element={<Qk />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/nicht-zuzuordnende-Beobachtungen/:beobId"
-          element={<Beobzuordnung type="nichtZuzuordnen" />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/nicht-beurteilte-Beobachtungen/:beobId"
-          element={<Beobzuordnung type="nichtBeurteilt" />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/EK-Zähleinheiten/:zaehleinheitId"
-          element={<Ekzaehleinheit />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/EK-Frequenzen/:ekfrequenzId"
-          element={<Ekfrequenz />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/assoziierte-Arten/:assozartId"
-          element={<Assozart />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Taxa/:taxonId"
-          element={<Apart />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Idealbiotop"
-          element={<Idealbiotop />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId"
-          element={<Apber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId/print"
-          element={<ApberForApFromAp />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/AP-Erfolgskriterien/:erfkritId"
-          element={<Erfkrit />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/AP-Ziele/:jahr/:zielId/*"
-          element={<Ziel />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/AP-Ziele/:jahr/:zielId/Berichte/:zielberId"
-          element={<Zielber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/*"
-          element={<Pop />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Massnahmen-Berichte/:popmassnberId/*"
-          element={<Popmassnber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Kontroll-Berichte/:popberId/*"
-          element={<Popber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/*"
-          element={<Tpop />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Beobachtungen/:beobId/*"
-          element={<Beobzuordnung type="zugeordnet" />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Kontroll-Berichte/:tpopberId/*"
-          element={<Tpopber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Freiwilligen-Kontrollen/:tpopkontrId/*"
-          element={<Tpopfreiwkontr />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Feld-Kontrollen/:tpopkontrId/*"
-          element={<Tpopfeldkontr />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Feld-Kontrollen/:tpopkontrId/Zaehlungen/:tpopkontrzaehlId/*"
-          element={<Tpopkontrzaehl />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Massnahmen-Berichte/:tpopmassnberId/*"
-          element={<Tpopmassnber />}
-        />
-        <Route
-          path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Massnahmen/:tpopmassnId/*"
-          element={<Tpopmassn />}
-        />
-        <Route path="Benutzer/:userId/*" element={<User />} />
-        <Route
-          path="Benutzer/:userId/EKF/*"
-          element={<Navigate to={ekfRefYear.toString()} />}
-        />
-        <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
-        <Route path="Benutzer/:userId/EKF/:ekfYear/:ekfId" element={<Ekf />} />
+const RouterComponent = () => {
+  const { search } = useLocation()
+  console.log('Router, search:', search)
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/Daten/*" element={<ProtectedRoute />}>
+        {/* <Route path="*" element={<Unterhalt />}></Route> */}
+        <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
+        <Route path="*" element={<Projekte />}>
+          <Route path="Werte-Listen/Adressen/:adrId" element={<Adresse />} />
+          <Route
+            path="Werte-Listen/ApberrelevantGrundWerte/:wertId"
+            element={<Werte table="tpopApberrelevantGrundWerte" />}
+          />
+          <Route
+            path="Werte-Listen/EkAbrechnungstypWerte/:wertId"
+            element={<Werte table="ekAbrechnungstypWerte" />}
+          />
+          <Route
+            path="Werte-Listen/TpopkontrzaehlEinheitWerte/:wertId"
+            element={<Werte table="tpopkontrzaehlEinheitWerte" />}
+          />
+          <Route path="Mitteilungen" element={<Messages />} />
+          <Route path="Aktuelle-Fehler/:issueId" element={<CurrentIssue />} />
+          <Route path="Projekte/:projId/*" element={<Projekt />} />
+          <Route
+            path="Projekte/:projId/AP-Berichte/:apberUebersichtId"
+            element={<Apberuebersicht />}
+          />
+          <Route
+            path="Projekte/:projId/AP-Berichte/:apberUebersichtId/print"
+            element={<ApberForYear />}
+          />
+          <Route path="Projekte/:projId/Arten/:apId/*" element={<Ap />} />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Qualitaetskontrollen"
+            element={<Qk />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/nicht-zuzuordnende-Beobachtungen/:beobId"
+            element={<Beobzuordnung type="nichtZuzuordnen" />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/nicht-beurteilte-Beobachtungen/:beobId"
+            element={<Beobzuordnung type="nichtBeurteilt" />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/EK-Zähleinheiten/:zaehleinheitId"
+            element={<Ekzaehleinheit />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/EK-Frequenzen/:ekfrequenzId"
+            element={<Ekfrequenz />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/assoziierte-Arten/:assozartId"
+            element={<Assozart />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Taxa/:taxonId"
+            element={<Apart />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Idealbiotop"
+            element={<Idealbiotop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId"
+            element={<Apber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Berichte/:apberId/print"
+            element={<ApberForApFromAp />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Erfolgskriterien/:erfkritId"
+            element={<Erfkrit />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Ziele/:jahr/:zielId/*"
+            element={<Ziel />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/AP-Ziele/:jahr/:zielId/Berichte/:zielberId"
+            element={<Zielber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/*"
+            element={<Pop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Massnahmen-Berichte/:popmassnberId/*"
+            element={<Popmassnber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Kontroll-Berichte/:popberId/*"
+            element={<Popber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/*"
+            element={<Tpop />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Beobachtungen/:beobId/*"
+            element={<Beobzuordnung type="zugeordnet" />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Kontroll-Berichte/:tpopberId/*"
+            element={<Tpopber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Freiwilligen-Kontrollen/:tpopkontrId/*"
+            element={<Tpopfreiwkontr />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Feld-Kontrollen/:tpopkontrId/*"
+            element={<Tpopfeldkontr />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Feld-Kontrollen/:tpopkontrId/Zaehlungen/:tpopkontrzaehlId/*"
+            element={<Tpopkontrzaehl />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Massnahmen-Berichte/:tpopmassnberId/*"
+            element={<Tpopmassnber />}
+          />
+          <Route
+            path="Projekte/:projId/Arten/:apId/Populationen/:popId/Teil-Populationen/:tpopId/Massnahmen/:tpopmassnId/*"
+            element={<Tpopmassn />}
+          />
+          <Route path="Benutzer/:userId/*" element={<User />} />
+          <Route
+            path="Benutzer/:userId/EKF/*"
+            element={<Navigate to={`${ekfRefYear.toString()}${search}`} />}
+          />
+          <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
+          <Route
+            path="Benutzer/:userId/EKF/:ekfYear/:ekfId"
+            element={<Ekf />}
+          />
+        </Route>
       </Route>
-    </Route>
-    <Route path="/Dokumentation/*" element={<Docs />}>
-      {DocRoutes()}
-    </Route>
-    <Route path="*" element={<FourOhFour />} />
-  </Routes>
-)
+      <Route path="/Dokumentation/*" element={<Docs />}>
+        {DocRoutes()}
+      </Route>
+      <Route path="*" element={<FourOhFour />} />
+    </Routes>
+  )
+}
 
 export default RouterComponent

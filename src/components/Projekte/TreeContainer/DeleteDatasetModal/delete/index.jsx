@@ -9,7 +9,7 @@ import tables from '../../../../../modules/tables'
 const isFreiwilligenKontrolle = (activeNodeArray) =>
   activeNodeArray[activeNodeArray.length - 2] === 'Freiwilligen-Kontrollen'
 
-const deleteModule = async ({ client, store }) => {
+const deleteModule = async ({ client, store, search }) => {
   const {
     emptyToDelete,
     addDeletedDataset,
@@ -130,7 +130,7 @@ const deleteModule = async ({ client, store }) => {
     if (table === 'ziel') {
       newActiveNodeArray1.pop()
     }
-    store.navigate(`/Daten/${newActiveNodeArray1.join('/')}`)
+    store.navigate(`/Daten/${newActiveNodeArray1.join('/')}${search}`)
   }
 
   // remove from openNodes

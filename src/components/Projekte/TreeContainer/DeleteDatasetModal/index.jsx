@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
+import { useLocation } from 'react-router-dom'
 
 import tables from '../../../../modules/tables'
 import deleteDataset from './delete'
@@ -18,6 +19,8 @@ const StyledDialog = styled(Dialog)`
 `
 
 const DatasetDeleteModal = () => {
+  const { search } = useLocation()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { toDeleteTable, toDeleteLabel, emptyToDelete, toDeleteId } = store
@@ -39,8 +42,9 @@ const DatasetDeleteModal = () => {
       deleteDataset({
         client,
         store,
+        search,
       }),
-    [client, store],
+    [client, search, store],
   )
 
   return (
