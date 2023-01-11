@@ -1,8 +1,7 @@
-import React, { useContext, useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import { observer } from 'mobx-react-lite'
 import { useParams } from 'react-router-dom'
 
 import Ap from './Ap'
@@ -10,9 +9,8 @@ import Auswertung from './Auswertung'
 import FormTitle from '../../../shared/FormTitle'
 import Files from '../../../shared/Files'
 import ApHistory from './History'
-import storeContext from '../../../../storeContext'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -29,22 +27,9 @@ const TabContent = styled.div`
 
 const ApTabs = () => {
   const { apId } = useParams()
-  const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
 
-  const [tab, setTab] = useState(urlQuery?.apTab ?? 'ap')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'apTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('apTab', 'ap')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   return (
     <ErrorBoundary>
@@ -77,4 +62,4 @@ const ApTabs = () => {
   )
 }
 
-export default observer(ApTabs)
+export default ApTabs
