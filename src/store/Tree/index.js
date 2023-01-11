@@ -121,7 +121,7 @@ export default types
         return
       }
       // always set missing open nodes?
-      // self.addOpenNodesForNodeArray(val)
+      self.addOpenNodesForNodeArray(val)
       self.activeNodeArray = val
       if (!nonavigate) {
         const store = getParent(self)

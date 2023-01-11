@@ -32,7 +32,6 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { assigningBeob, openTree2WithActiveNodeArray } = store
-  const { addOpenNodesForNodeArray } = store.tree
 
   const isHighlighted = beobId === beob.id
   const latLng = new window.L.LatLng(beob.wgs84Lat, beob.wgs84Long)
@@ -71,19 +70,6 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
           tpopId: nearestTpop.id,
         },
       })
-      // TODO: needed? But does not work after first...
-      addOpenNodesForNodeArray([
-        'Projekte',
-        projId,
-        'Arten',
-        apId,
-        'Populationen',
-        nearestTpop.popId,
-        'Teil-Populationen',
-        nearestTpop.id,
-        'Beobachtungen',
-        beob.id,
-      ])
       navigate(
         `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}`,
       )
@@ -98,15 +84,7 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         queryKey: [`treeQuery`],
       })
     },
-    [
-      addOpenNodesForNodeArray,
-      apId,
-      beob.id,
-      client,
-      navigate,
-      projId,
-      queryClient,
-    ],
+    [apId, beob.id, client, navigate, projId, queryClient],
   )
   const openBeobInTree2 = useCallback(() => {
     openTree2WithActiveNodeArray([
