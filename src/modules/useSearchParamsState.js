@@ -4,10 +4,16 @@ import { useSearchParams } from 'react-router-dom'
 export default function useSearchParamsState(searchParamName, defaultValue) {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const acquiredSearchParam = searchParams.getAll(searchParamName)
-  // getAll always returns an array, even if there is no value
-  const searchParamsState =
-    acquiredSearchParam.length > 0 ? acquiredSearchParam : defaultValue
+  let acquiredSearchParam
+  let searchParamsState
+  if (defaultValue instanceof Array) {
+    acquiredSearchParam = searchParams.getAll(searchParamName)
+    searchParamsState =
+      acquiredSearchParam.length > 0 ? acquiredSearchParam : defaultValue
+  } else {
+    acquiredSearchParam = searchParams.get(searchParamName)
+    searchParamsState = acquiredSearchParam ? acquiredSearchParam : defaultValue
+  }
 
   // console.log('useSearchParamsState', {
   //   acquiredSearchParam,
