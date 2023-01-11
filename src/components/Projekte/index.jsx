@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import intersection from 'lodash/intersection'
 import { observer } from 'mobx-react-lite'
 import { useLocation } from 'react-router-dom'
-import { getSnapshot } from 'mobx-state-tree'
 
 import queryString from 'query-string'
 
@@ -16,6 +15,8 @@ import StyledSplitPane from '../shared/StyledSplitPane'
 import appBaseUrl from '../../modules/appBaseUrl'
 import inIframe from '../../modules/inIframe'
 import AppBar from './AppBar'
+import useSearchParamsState from '../../modules/useSearchParamsState'
+import isMobilePhone from '../../modules/isMobilePhone'
 
 const isInIframe = inIframe()
 
@@ -36,27 +37,39 @@ const StyledIframe = styled.iframe`
 const tree2TabValues = ['tree2', 'daten2', 'filter2', 'karte2']
 
 const Projekte = () => {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const store = useContext(storeContext)
-  const { isPrint, urlQuery } = store
+  const { isPrint } = store
   const { tree2Src } = store.tree
 
-  const { projekteTabs } = urlQuery
+  const [projekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const tree2Tabs = intersection(tree2TabValues, projekteTabs)
 
   let iFrameSrc = tree2Src
   if (!tree2Src) {
     // build search string for iframe
-    const iFrameUrlQuery = { ...getSnapshot(urlQuery) }
+    const iFrameSearch = queryString.parse(search)
     // need to alter projekteTabs:
-    iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
-      // - remove non-tree2 values
-      .filter((t) => t.includes('2'))
-      // - rewrite tree2 values to tree values
-      .map((t) => t.replace('2', ''))
-    const search = queryString.stringify(iFrameUrlQuery)
+    if (Array.isArray(iFrameSearch.projekteTabs)) {
+      iFrameSearch.projekteTabs = iFrameSearch.projekteTabs
+        // - remove non-tree2 values
+        .filter((t) => t.includes('2'))
+        // - rewrite tree2 values to tree values
+        .map((t) => t.replace('2', ''))
+    } else if (iFrameSearch.projekteTabs) {
+      iFrameSearch.projekteTabs = [iFrameSearch.projekteTabs]
+        // - remove non-tree2 values
+        .filter((t) => t.includes('2'))
+        // - rewrite tree2 values to tree values
+        .map((t) => t.replace('2', ''))
+    }
+
+    const newSearch = queryString.stringify(iFrameSearch)
     // pass this via src to iframe
-    iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${search}`
+    iFrameSrc = `${appBaseUrl().slice(0, -1)}${pathname}?${newSearch}`
   }
 
   if (isInIframe) {

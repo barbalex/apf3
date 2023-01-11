@@ -4,7 +4,7 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams, useLocation } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
 import More from './More'
@@ -61,12 +61,11 @@ const DokuButton = styled(Button)`
 
 const ProjekteAppBar = () => {
   const { projId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { user } = store
   const { resetTree2Src } = store.tree
-
-  const navigate = useNavigate()
 
   const exporteIsActive = !!projId
   const isMobile = isMobilePhone()
@@ -79,7 +78,7 @@ const ProjekteAppBar = () => {
     'projekteTabs',
     isMobilePhone() ? ['tree'] : ['tree', 'daten'],
   )
-  // console.log('ProjekteAppBar: projekteTabs:', projekteTabs)
+
   const onClickButton = useCallback(
     (name) => {
       if (isMobile) {
@@ -122,15 +121,16 @@ const ProjekteAppBar = () => {
     resetTree2Src()
     onClickButton('tree2')
   }, [onClickButton, resetTree2Src])
-  const onClickEkPlanung = useCallback(
-    () => navigate(`/Daten/Projekte/${projId}/EK-Planung`),
-    [navigate, projId],
-  )
 
   return (
     <>
       {!isMobile && (
-        <SiteTitle variant="outlined" component={Link} to="/" title="Home">
+        <SiteTitle
+          variant="outlined"
+          component={Link}
+          to={`/${search}`}
+          title="Home"
+        >
           AP Flora
         </SiteTitle>
       )}
@@ -145,10 +145,7 @@ const ProjekteAppBar = () => {
           >
             Strukturbaum
           </StyledButton>
-          <Daten
-            projekteTabs={projekteTabs}
-            setProjekteTabs={setProjekteTabs}
-          />
+          <Daten />
           <StyledButton
             variant={projekteTabs.includes('filter') ? 'outlined' : 'text'}
             preceded={projekteTabs.includes('daten')?.toString()}
@@ -216,14 +213,19 @@ const ProjekteAppBar = () => {
               variant="text"
               preceded={false?.toString()}
               followed={false.toString()}
-              onClick={onClickEkPlanung}
+              component={Link}
+              to={`/Daten/Projekte/${projId}/EK-Planung${search}`}
               data-id="ek-planung"
               title="EK und EKF planen"
             >
               EK-Planung
             </StyledButton>
           )}
-          <DokuButton variant="text" component={Link} to="/Dokumentation/">
+          <DokuButton
+            variant="text"
+            component={Link}
+            to={`/Dokumentation/${search}`}
+          >
             Dokumentation
           </DokuButton>
           <More onClickExporte={onClickExporte} role={role} />

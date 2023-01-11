@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const StyledButton = styled(Button)`
   color: white !important;
@@ -30,7 +31,11 @@ const StyledButton = styled(Button)`
   text-transform: none !important;
 `
 
-const MyAppBarDaten = ({ treeNr = '', projekteTabs, setProjekteTabs }) => {
+const MyAppBarDaten = ({ treeNr = '' }) => {
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const isDaten = projekteTabs.includes(`daten${treeNr}`)
   const isTree = projekteTabs.includes(`tree${treeNr}`)
 
