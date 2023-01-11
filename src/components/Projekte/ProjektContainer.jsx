@@ -11,6 +11,8 @@ import Exporte from './Exporte'
 import Filter from './Filter'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
+import useSearchParamsState from '../../modules/useSearchParamsState'
+import isMobilePhone from '../../modules/isMobilePhone'
 
 const Container = styled.div`
   height: 100%;
@@ -33,7 +35,7 @@ const ProjektContainer = () => {
   const { pathname } = useLocation()
 
   const store = useContext(storeContext)
-  const { isPrint, urlQuery } = store
+  const { isPrint } = store
   // react hooks 'exhaustive-deps' rule wants to move treeTabValues into own useMemo
   // to prevent it from causing unnessecary renders
   // BUT: this prevents necessary renders: clicking tabs does not cause re-render!
@@ -46,7 +48,11 @@ const ProjektContainer = () => {
     ...(projId ? ['exporte'] : []),
   ]
 
-  const { projekteTabs } = urlQuery
+  const [projekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
+
   const treeTabs = useMemo(
     () => intersection(treeTabValues, projekteTabs),
     [projekteTabs, treeTabValues],
