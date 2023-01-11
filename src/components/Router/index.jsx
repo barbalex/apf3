@@ -45,7 +45,6 @@ const ekfRefYear = new Date().getFullYear()
 // uncomment unterhalt route for Unterhalt
 const RouterComponent = () => {
   const { search } = useLocation()
-  console.log('Router, search:', search)
 
   return (
     <Routes>
