@@ -34,11 +34,8 @@ const ApFilter = () => {
   const { apFilter, setApFilter, activeNodeArray, openNodes, setOpenNodes } =
     store.tree
 
-  // console.log('ApFilter, render', { apFilter, apId })
-
   const onChange = useCallback(async () => {
     const previousApFilter = apFilter
-    setApFilter(!apFilter)
     // console.log('ApFilter, onChange', { apFilter, previousApFilter })
     if (!previousApFilter) {
       // need to fetch previously not had aps
@@ -76,6 +73,7 @@ const ApFilter = () => {
         setOpenNodes(newOpenNodes)
       }
     }
+    setApFilter(!apFilter)
   }, [
     activeNodeArray,
     apFilter,

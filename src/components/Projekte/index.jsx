@@ -17,6 +17,7 @@ import inIframe from '../../modules/inIframe'
 import AppBar from './AppBar'
 import useSearchParamsState from '../../modules/useSearchParamsState'
 import isMobilePhone from '../../modules/isMobilePhone'
+import ApFilterController from './ApFilterController'
 
 const isInIframe = inIframe()
 
@@ -93,23 +94,26 @@ const Projekte = () => {
   }
 
   return (
-    <AppBar>
-      <Container>
-        {tree2Tabs.length === 0 || isPrint ? (
-          <ProjektContainer />
-        ) : (
-          <StyledSplitPane split="vertical" defaultSize="50%">
+    <>
+      <ApFilterController />
+      <AppBar>
+        <Container>
+          {tree2Tabs.length === 0 || isPrint ? (
             <ProjektContainer />
-            <StyledIframe
-              src={iFrameSrc}
-              title="tree2"
-              width="100%"
-              height="100%"
-            />
-          </StyledSplitPane>
-        )}
-      </Container>
-    </AppBar>
+          ) : (
+            <StyledSplitPane split="vertical" defaultSize="50%">
+              <ProjektContainer />
+              <StyledIframe
+                src={iFrameSrc}
+                title="tree2"
+                width="100%"
+                height="100%"
+              />
+            </StyledSplitPane>
+          )}
+        </Container>
+      </AppBar>
+    </>
   )
 }
 
