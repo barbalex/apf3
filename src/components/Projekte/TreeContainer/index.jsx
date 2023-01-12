@@ -14,7 +14,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import LabelFilter from './LabelFilter'
@@ -282,8 +282,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 
 const TreeContainer = () => {
   const { apId, projId, popId } = useParams()
-  const navigate = useNavigate()
-  const { search, pathname } = useLocation()
+  const { search } = useLocation()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -384,24 +383,25 @@ const TreeContainer = () => {
     store,
   ])
 
-  useEffect(() => {
-    // open single projects
-    // dont do this in render!
-    const projekteNodes = treeNodes.filter((n) => n.menuType === 'projekt')
-    const existsOnlyOneProjekt = projekteNodes.length === 1
-    const projektNode = projekteNodes[0]
-    if (
-      pathname.startsWith('/Daten/Projekte') &&
-      !projId &&
-      existsOnlyOneProjekt &&
-      projektNode
-    ) {
-      const projektUrl = [...projektNode.url]
-      navigate(`/Daten/${projektUrl.join('/')}${search}`)
-      // add projekt to open nodes
-      setOpenNodes([...openNodes, projektUrl])
-    }
-  }, [treeNodes, openNodes, projId, setOpenNodes, navigate, search, pathname])
+  // deactivated because toggling the project node would not close the project
+  // useEffect(() => {
+  //   // open single projects
+  //   // dont do this in render!
+  //   const projekteNodes = treeNodes.filter((n) => n.menuType === 'projekt')
+  //   const existsOnlyOneProjekt = projekteNodes.length === 1
+  //   const projektNode = projekteNodes[0]
+  //   if (
+  //     pathname.startsWith('/Daten/Projekte') &&
+  //     !projId &&
+  //     existsOnlyOneProjekt &&
+  //     projektNode
+  //   ) {
+  //     const projektUrl = [...projektNode.url]
+  //     navigate(`/Daten/${projektUrl.join('/')}${search}`)
+  //     // add projekt to open nodes
+  //     setOpenNodes([...openNodes, projektUrl])
+  //   }
+  // }, [treeNodes, openNodes, projId, setOpenNodes, navigate, search, pathname])
 
   const [newTpopFromBeobDialogOpen, setNewTpopFromBeobDialogOpen] =
     useState(false)
