@@ -113,7 +113,7 @@ const BeobZugeordnetAssignPolylinesIcon = styled(RemoveIcon)`
 const MapIconDiv = styled.div``
 
 const LayerComponent = ({ apfloraLayer }) => {
-  const { apId } = useParams()
+  const { apId, popId, tpopId, beobId } = useParams()
 
   const map = useMap()
   const store = useContext(storeContext)
@@ -125,7 +125,7 @@ const LayerComponent = ({ apfloraLayer }) => {
     setBounds,
   } = store
   const tree = store.tree
-  const { activeNodeArray, beobGqlFilter } = tree
+  const { beobGqlFilter } = tree
   const activeApfloraLayers = getSnapshot(activeApfloraLayersRaw)
   const layer = apfloraLayer.value
   const pop = layer === 'pop' && activeApfloraLayers.includes('pop')
@@ -141,6 +141,8 @@ const LayerComponent = ({ apfloraLayer }) => {
   const showBeobZugeordnetAssignPolylines =
     layer === 'beobZugeordnetAssignPolylines' &&
     activeApfloraLayers.includes('beobZugeordnetAssignPolylines')
+  const highlightedId =
+    layer === 'pop' ? popId : layer === 'tpop' ? tpopId : beobId
 
   const variables = {
     ap: apId ? [apId] : [],
@@ -180,9 +182,7 @@ const LayerComponent = ({ apfloraLayer }) => {
     const tpops = data?.tpopByPop?.nodes ?? []
     layerData = flatten(tpops.map((n) => n?.tpopsByPopId?.nodes ?? []))
   }
-  const layerDataHighlighted = layerData.filter(
-    (o) => o.id === activeNodeArray[activeNodeArray.length - 1],
-  )
+  const layerDataHighlighted = layerData.filter((o) => o.id === highlightedId)
   const onChangeCheckbox = useCallback(() => {
     if (activeApfloraLayers.includes(apfloraLayer.value)) {
       return setActiveApfloraLayers(
@@ -209,9 +209,7 @@ const LayerComponent = ({ apfloraLayer }) => {
   const onClickZoomToActive = useCallback(() => {
     // console.log('zoomToActive')
     if (activeApfloraLayers.includes(apfloraLayer.value)) {
-      const highlightedObjects = layerData.filter(
-        (o) => o.id === activeNodeArray[activeNodeArray.length - 1],
-      )
+      const highlightedObjects = layerData.filter((o) => o.id === highlightedId)
       const newBounds = getBounds(highlightedObjects)
       if (newBounds) {
         map.fitBounds(newBounds)
@@ -219,12 +217,12 @@ const LayerComponent = ({ apfloraLayer }) => {
       }
     }
   }, [
-    layerData,
     activeApfloraLayers,
     apfloraLayer.value,
+    layerData,
+    highlightedId,
     map,
     setBounds,
-    activeNodeArray,
   ])
   const zoomToAllIconStyle = useMemo(
     () => ({
