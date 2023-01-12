@@ -14,7 +14,7 @@ import styled from '@emotion/styled'
 import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useDebouncedCallback } from 'use-debounce'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import tables from '../../../modules/tables'
 import storeContext from '../../../storeContext'
@@ -41,7 +41,6 @@ const StyledDeleteFilterIcon = styled(MdDeleteSweep)`
 const LabelFilter = ({ nodes }) => {
   const navigate = useNavigate()
   const { search } = useLocation()
-  const { projId } = useParams()
 
   const store = useContext(storeContext)
   const { nodeLabelFilter, activeNodeArray, setOpenNodes } = store.tree
@@ -62,11 +61,9 @@ const LabelFilter = ({ nodes }) => {
     if (!filterValue && filterValue !== 0) filterValue = ''
     const table = tables.find((t) => t.table === tableName)
     const tableLabel = table ? table.label : null
+    console.log('tableLabel:', tableLabel)
     // danger: Projekte can not be filtered because no parent folder
-    if (
-      tableLabel &&
-      !(activeNodeArray.length <= 2 && activeNodeArray[0] === 'Projekte')
-    ) {
+    if (tableLabel !== 'Projekte') {
       labelText = `${tableLabel} filtern`
     }
   }
