@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient } from '@apollo/client'
 import Button from '@mui/material/Button'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 
 import storeContext from '../../../../../storeContext'
@@ -15,6 +15,8 @@ import beobIconHighlighted from './beobHighlighted.svg'
 import getNearestTpop from '../../../../../modules/getNearestTpop'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
 import updateBeobByIdGql from './updateBeobById'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -26,6 +28,7 @@ const StyledButton = styled(Button)`
 const BeobNichtBeurteiltMarker = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const queryClient = useQueryClient()
 
@@ -71,7 +74,7 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         },
       })
       navigate(
-        `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}`,
+        `/Daten/Projekte/${projId}/Arten/${apId}/Populationen/${nearestTpop.popId}/Teil-Populationen/${nearestTpop.id}/Beobachtungen/${beob.id}${search}`,
       )
       client.refetchQueries({
         include: [
@@ -84,18 +87,37 @@ const BeobNichtBeurteiltMarker = ({ beob }) => {
         queryKey: [`treeQuery`],
       })
     },
-    [apId, beob.id, client, navigate, projId, queryClient],
+    [apId, beob.id, client, navigate, projId, queryClient, search],
+  )
+
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
   )
   const openBeobInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'nicht-beurteilte-Beobachtungen',
-      beob.id,
-    ])
-  }, [apId, beob.id, openTree2WithActiveNodeArray, projId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'nicht-beurteilte-Beobachtungen',
+        beob.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    beob.id,
+    openTree2WithActiveNodeArray,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+  ])
+
   const openBeobInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/nicht-beurteilte-Beobachtungen/${
       beob.id

@@ -15,6 +15,7 @@ import Tpop from './Tpop'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import OrTabs from './Tabs'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -55,7 +56,7 @@ const TpopFilter = () => {
   const { apId } = useParams()
 
   const store = useContext(storeContext)
-  const { dataFilterSetValue, urlQuery } = store
+  const { dataFilterSetValue } = store
 
   const {
     dataFilter,
@@ -66,8 +67,9 @@ const TpopFilter = () => {
     artIsFiltered,
     popIsFiltered,
   } = store.tree
-  const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
-  const onChangeTab = useCallback((event, value) => setTab(value), [])
+
+  const [tab, setTab] = useSearchParamsState('tpopTab', 'tpop')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const [activeTab, setActiveTab] = useState(0)
   useEffect(() => {

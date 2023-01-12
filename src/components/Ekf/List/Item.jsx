@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 
 const OuterContainer = styled.div`
   box-sizing: border-box;
@@ -32,13 +32,15 @@ const InnerContainer = styled.div`
 `
 
 const EkfList = ({ projektCount, style, row }) => {
+  const { search } = useLocation()
   const { ekfId, userId, ekfYear } = useParams()
   const navigate = useNavigate()
   const innerContainerHeight = projektCount > 1 ? 110 : 91
 
   const onClick = useCallback(
-    () => navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${row.id}`),
-    [ekfYear, navigate, row.id, userId],
+    () =>
+      navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${row.id}${search}`),
+    [ekfYear, navigate, row.id, search, userId],
   )
 
   return (

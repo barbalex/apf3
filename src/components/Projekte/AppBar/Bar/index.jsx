@@ -4,13 +4,13 @@ import remove from 'lodash/remove'
 import styled from '@emotion/styled'
 import jwtDecode from 'jwt-decode'
 import { observer } from 'mobx-react-lite'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams, useLocation } from 'react-router-dom'
 
 import isMobilePhone from '../../../../modules/isMobilePhone'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import More from './More'
 import Daten from './Daten'
 import storeContext from '../../../../storeContext'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -61,18 +61,12 @@ const DokuButton = styled(Button)`
 
 const ProjekteAppBar = () => {
   const { projId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
-  const { user, urlQuery, setUrlQuery } = store
+  const { user } = store
   const { resetTree2Src } = store.tree
 
-  const navigate = useNavigate()
-
-  /**
-   * need to clone projekteTabs
-   * because otherwise removing elements errors out (because elements are sealed)
-   */
-  const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
   const exporteIsActive = !!projId
   const isMobile = isMobilePhone()
 
@@ -80,37 +74,31 @@ const ProjekteAppBar = () => {
   const tokenDecoded = token ? jwtDecode(token) : null
   const role = tokenDecoded ? tokenDecoded.role : null
 
-  const isProjekt = !!projId
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
 
   const onClickButton = useCallback(
     (name) => {
       if (isMobile) {
         // show one tab only
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: [name],
-          urlQuery,
-          setUrlQuery,
-        })
+        setProjekteTabs([name])
       } else {
-        if (projekteTabs.includes(name)) {
-          remove(projekteTabs, (el) => el === name)
+        const newProjekteTabs = [...projekteTabs]
+        if (newProjekteTabs.includes(name)) {
+          remove(newProjekteTabs, (el) => el === name)
           if (name === 'tree2') {
             // close all tree2-tabs
-            remove(projekteTabs, (el) => el.includes('2'))
+            remove(newProjekteTabs, (el) => el.includes('2'))
           }
         } else {
-          projekteTabs.push(name)
+          newProjekteTabs.push(name)
         }
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: projekteTabs,
-          urlQuery,
-          setUrlQuery,
-        })
+        setProjekteTabs(newProjekteTabs)
       }
     },
-    [isMobile, urlQuery, setUrlQuery, projekteTabs],
+    [isMobile, setProjekteTabs, projekteTabs],
   )
   const onClickTree = useCallback(() => onClickButton('tree'), [onClickButton])
   const onClickKarte = useCallback(
@@ -133,15 +121,16 @@ const ProjekteAppBar = () => {
     resetTree2Src()
     onClickButton('tree2')
   }, [onClickButton, resetTree2Src])
-  const onClickEkPlanung = useCallback(
-    () => navigate(`/Daten/Projekte/${projId}/EK-Planung`),
-    [navigate, projId],
-  )
 
   return (
     <>
       {!isMobile && (
-        <SiteTitle variant="outlined" component={Link} to="/" title="Home">
+        <SiteTitle
+          variant="outlined"
+          component={Link}
+          to={`/${search}`}
+          title="Home"
+        >
           AP Flora
         </SiteTitle>
       )}
@@ -219,19 +208,24 @@ const ProjekteAppBar = () => {
               Filter 2
             </StyledButton>
           )}
-          {!isMobile && isProjekt && (
+          {!isMobile && (
             <StyledButton
               variant="text"
               preceded={false?.toString()}
               followed={false.toString()}
-              onClick={onClickEkPlanung}
+              component={Link}
+              to={`/Daten/Projekte/${projId}/EK-Planung${search}`}
               data-id="ek-planung"
               title="EK und EKF planen"
             >
               EK-Planung
             </StyledButton>
           )}
-          <DokuButton variant="text" component={Link} to="/Dokumentation/">
+          <DokuButton
+            variant="text"
+            component={Link}
+            to={`/Dokumentation/${search}`}
+          >
             Dokumentation
           </DokuButton>
           <More onClickExporte={onClickExporte} role={role} />

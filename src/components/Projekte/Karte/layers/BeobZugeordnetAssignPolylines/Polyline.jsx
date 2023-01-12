@@ -5,10 +5,12 @@ import format from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { observer } from 'mobx-react-lite'
 import Button from '@mui/material/Button'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -19,6 +21,7 @@ const StyledButton = styled(Button)`
 
 const PolylineComponent = ({ beob }) => {
   const { apId, projId, beobId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
   const { openTree2WithActiveNodeArray } = store
@@ -42,20 +45,40 @@ const PolylineComponent = ({ beob }) => {
 
   const popId = beob?.tpopByTpopId?.popId ?? ''
   const tpopId = beob?.tpopByTpopId?.id ?? ''
+
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const openBeobInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'Populationen',
-      popId,
-      'Teil-Populationen',
-      tpopId,
-      'Beobachtungen',
-      beob.id,
-    ])
-  }, [apId, beob.id, openTree2WithActiveNodeArray, popId, projId, tpopId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'Populationen',
+        popId,
+        'Teil-Populationen',
+        tpopId,
+        'Beobachtungen',
+        beob.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    beob.id,
+    openTree2WithActiveNodeArray,
+    popId,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+    tpopId,
+  ])
   const openBeobInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}/Beobachtungen/${
       beob.id
@@ -67,17 +90,31 @@ const PolylineComponent = ({ beob }) => {
   }, [apId, beob.id, popId, projId, tpopId])
 
   const openTpopInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'Populationen',
-      popId,
-      'Teil-Populationen',
-      tpopId,
-    ])
-  }, [apId, openTree2WithActiveNodeArray, popId, projId, tpopId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'Populationen',
+        popId,
+        'Teil-Populationen',
+        tpopId,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    openTree2WithActiveNodeArray,
+    popId,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+    tpopId,
+  ])
 
   const openTpopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${popId}/Teil-Populationen/${tpopId}`

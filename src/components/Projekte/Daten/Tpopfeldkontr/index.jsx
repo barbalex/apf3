@@ -21,7 +21,6 @@ import FormTitle from '../../../shared/FormTitle'
 import TpopfeldkontrentwicklungPopover from '../TpopfeldkontrentwicklungPopover'
 import constants from '../../../../modules/constants'
 import query from './query'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import storeContext from '../../../../storeContext'
 import Files from '../../../shared/Files'
 import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
@@ -29,6 +28,7 @@ import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import { tpopfeldkontr } from '../../../shared/fragments'
 import Spinner from '../../../shared/Spinner'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -129,7 +129,6 @@ const Tpopfeldkontr = () => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -139,19 +138,8 @@ const Tpopfeldkontr = () => {
     },
   })
 
-  const [tab, setTab] = useState(urlQuery?.feldkontrTab ?? 'entwicklung')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'feldkontrTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('feldkontrTab', 'entwicklung')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const row = data?.tpopkontrById ?? {}
 

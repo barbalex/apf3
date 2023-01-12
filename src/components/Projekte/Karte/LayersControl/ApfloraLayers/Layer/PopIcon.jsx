@@ -34,7 +34,7 @@ const StyledMenuItem = styled(MenuItem)`
 
 const PopIcon = () => {
   const store = useContext(storeContext)
-  const { map } = store.tree
+  const { map } = store
   const { setPopIcon, setPopLabel } = map
   const [anchorEl, setAnchorEl] = useState(null)
   const onClickIconContainer = useCallback(

@@ -1,6 +1,3 @@
-// This is the entry file for the application
-import queryString from 'query-string'
-
 import localForage from 'localforage'
 import MobxStore from '../store'
 //import { onPatch } from 'mobx-state-tree'
@@ -11,8 +8,6 @@ import buildClient from '../client'
 import isObject from '../modules/isObject'
 
 import setUserFromIdb from '../modules/setUserFromIdb'
-import initiateDataFromUrl from '../modules/initiateDataFromUrl'
-import getActiveNodeArrayFromPathname from '../modules/getActiveNodeArrayFromPathname'
 
 const StorePersister = () => {
   const idb = initializeIdb()
@@ -80,22 +75,9 @@ const StorePersister = () => {
         // set last activeNodeArray
         // only if top domain was visited
         if (isUser && visitedTopDomain) {
-          const { urlQuery } = store
-          const search = queryString.stringify(urlQuery)
-          const query = `${
-            Object.keys(urlQuery).length > 0 ? `?${search}` : ''
-          }`
-          const url = `/Daten/${store.tree.activeNodeArray.join('/')}${query}`
-          console.log('App, mst-persist: will navigate to url:', url)
-
-          return store.navigate?.(url)
-        }
-        const activeNodeArray = getActiveNodeArrayFromPathname()
-        if (activeNodeArray[0] === 'Projekte') {
-          console.log('App, mst-persist: will initiate data from url')
-          initiateDataFromUrl({
-            store,
-          })
+          return store.navigate?.(
+            `/Daten/${store.tree.activeNodeArray.join('/')}`,
+          )
         }
       }),
   )

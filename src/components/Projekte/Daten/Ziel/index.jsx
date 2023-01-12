@@ -4,7 +4,7 @@ import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -39,6 +39,9 @@ const fieldTypes = {
 
 const Ziel = () => {
   const { zielId: id } = useParams()
+  const { search } = useLocation()
+  const navigate = useNavigate()
+
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { activeNodeArray, openNodes, setOpenNodes } = store.tree
@@ -106,11 +109,20 @@ const Ziel = () => {
           if (isEqual(n, oldParentNodeUrl)) return newParentNodeUrl
           return n
         })
-        store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+        navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
         setOpenNodes(newOpenNodes)
       }
     },
-    [row.id, store, client, activeNodeArray, openNodes, setOpenNodes],
+    [
+      row.id,
+      store.user.name,
+      client,
+      activeNodeArray,
+      openNodes,
+      navigate,
+      search,
+      setOpenNodes,
+    ],
   )
 
   if (loading) return <Spinner />

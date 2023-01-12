@@ -8,6 +8,7 @@ import nurLabelFilter1 from './nav_label_filter_1.png'
 import nurApFilter1 from './nur_ap_filter_1.png'
 import uebersicht1 from './uebersicht_1.png'
 import zusammenspiel from './zusammenspiel.png'
+import kartenFilterEntfernen from './karten-filter-entfernen.gif'
 
 const Filter = () => (
   <>
@@ -237,6 +238,12 @@ const Filter = () => (
         bzw. ungewollt sein
       </li>
     </ul>
+    <p>Den Karten-Filter kann man einzeln auf der Karte entfernen:</p>
+    <img
+      src={kartenFilterEntfernen}
+      referrerPolicy="no-referrer"
+      alt="Karten-Filter entfernen"
+    />
     <h2>Es gibt so viele Filter. Wie weiss ich, welche aktiv sind?</h2>
     <p>
       Sie können natürlich im Navigationsbaum, in der Karte und im

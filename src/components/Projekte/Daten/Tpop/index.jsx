@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import query from './query'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import storeContext from '../../../../storeContext'
 import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
 import Ek from './Ek'
@@ -23,6 +22,7 @@ import {
   tpop,
   tpopApberrelevantGrundWerte,
 } from '../../../shared/fragments'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -87,21 +87,9 @@ const TpopForm = () => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
 
-  const [tab, setTab] = useState(urlQuery?.tpopTab ?? 'tpop')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'tpopTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('tpopTab', 'tpop')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const {
     data,

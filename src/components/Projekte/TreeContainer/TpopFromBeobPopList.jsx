@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import { observer } from 'mobx-react-lite'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../storeContext'
 import createNewTpopFromBeob from '../../../modules/createNewTpopFromBeob'
@@ -24,6 +24,7 @@ const StyledListItem = styled(ListItem)`
 
 const TpopFromBeobPopList = ({ closeNewTpopFromBeobDialog, beobId }) => {
   const { projId, apId } = useParams()
+  const { search } = useLocation()
 
   const client = useApolloClient()
   const store = useContext(storeContext)
@@ -68,6 +69,7 @@ const TpopFromBeobPopList = ({ closeNewTpopFromBeobDialog, beobId }) => {
                 client,
                 store,
                 queryClient,
+                search,
               })
               closeNewTpopFromBeobDialog()
             }}

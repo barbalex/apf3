@@ -3,7 +3,7 @@ import { Marker, Tooltip, Popup } from 'react-leaflet'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
 import Button from '@mui/material/Button'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import storeContext from '../../../../../storeContext'
 import appBaseUrl from '../../../../../modules/appBaseUrl'
@@ -17,6 +17,8 @@ import pIcon from './p.svg'
 import pIconHighlighted from './pHighlighted.svg'
 import qIcon from './q.svg'
 import qIconHighlighted from './qHighlighted.svg'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../../../modules/isMobilePhone'
 
 const StyledH3 = styled.h3`
   margin: 7px 0;
@@ -32,10 +34,10 @@ const StyledButton = styled(Button)`
 
 const PopMarker = ({ pop }) => {
   const { apId, projId, popId } = useParams()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
-  const { apfloraLayers, openTree2WithActiveNodeArray } = store
-  const { map } = store.tree
+  const { apfloraLayers, openTree2WithActiveNodeArray, map } = store
   const { popIcon: popIconName, popLabel: popLabelName } = map
 
   const nrLabel = pop.nr ? pop.nr.toString() : '(keine Nr)'
@@ -64,16 +66,33 @@ const PopMarker = ({ pop }) => {
     }
   }
 
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const openPopInTree2 = useCallback(() => {
-    openTree2WithActiveNodeArray([
-      'Projekte',
-      projId,
-      'Arten',
-      apId,
-      'Populationen',
-      pop.id,
-    ])
-  }, [apId, openTree2WithActiveNodeArray, pop.id, projId])
+    openTree2WithActiveNodeArray({
+      activeNodeArray: [
+        'Projekte',
+        projId,
+        'Arten',
+        apId,
+        'Populationen',
+        pop.id,
+      ],
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    })
+  }, [
+    apId,
+    openTree2WithActiveNodeArray,
+    pop.id,
+    projId,
+    projekteTabs,
+    search,
+    setProjekteTabs,
+  ])
 
   const openPopInTab = useCallback(() => {
     const url = `${appBaseUrl()}Daten/Projekte/${projId}/Arten/${apId}/Populationen/${

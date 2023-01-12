@@ -8,7 +8,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import { useQueryClient } from '@tanstack/react-query'
 import SimpleBar from 'simplebar-react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
 import TextField from '../../../shared/TextField2'
@@ -127,6 +127,7 @@ const nichtZuordnenPopover = (
 
 const Beobzuordnung = ({ type }) => {
   const { beobId: id, apId } = useParams()
+  const { search } = useLocation()
 
   const queryClient = useQueryClient()
   const client = useApolloClient()
@@ -157,9 +158,9 @@ const Beobzuordnung = ({ type }) => {
   const onSaveArtIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveArtIdToDb({ value, row, client, store, queryClient })
+      saveArtIdToDb({ value, row, client, store, queryClient, search })
     },
-    [client, queryClient, row, store],
+    [client, queryClient, row, search, store],
   )
   const onSaveNichtZuordnenToDb = useCallback(
     (value) => {
@@ -170,16 +171,17 @@ const Beobzuordnung = ({ type }) => {
         client,
         store,
         queryClient,
+        search,
       })
     },
-    [client, id, queryClient, refetch, store],
+    [client, id, queryClient, refetch, search, store],
   )
   const onSaveTpopIdToDb = useCallback(
     (event) => {
       const { value } = event.target
-      saveTpopIdToDb({ value, id, type, client, store })
+      saveTpopIdToDb({ value, id, type, client, store, search })
     },
-    [client, id, store, type],
+    [client, id, search, store, type],
   )
   const onUpdateField = useCallback(
     (event) => {

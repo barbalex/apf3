@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { observer } from 'mobx-react-lite'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import sortBy from 'lodash/sortBy'
 
@@ -63,6 +63,7 @@ const getEkfFromData = ({ data }) => {
 }
 
 const Ekf = () => {
+  const { search } = useLocation()
   const navigate = useNavigate()
   const { userId, ekfId, ekfYear } = useParams()
   const { isPrint } = useContext(storeContext)
@@ -84,9 +85,9 @@ const Ekf = () => {
     // navigate to first kontrId so form is shown for first ekf
     // IF none is choosen yet
     if (ekf.length > 0 && !ekfId) {
-      navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${ekf[0].id}`)
+      navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${ekf[0].id}${search}`)
     }
-  }, [ekfYear, ekf.length, ekfId, ekf, navigate, userId])
+  }, [ekfYear, ekf.length, ekfId, ekf, navigate, userId, search])
 
   if (error) {
     return <Error error={error} />

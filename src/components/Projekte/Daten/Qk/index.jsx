@@ -1,21 +1,19 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback } from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import styled from '@emotion/styled'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
 
 import FormTitle from '../../../shared/FormTitle'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
-import storeContext from '../../../../storeContext'
 import Qk from './Qk'
 import Choose from './Choose'
 import queryQk from './queryQk'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import Spinner from '../../../shared/Spinner'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -36,9 +34,6 @@ const TabContent = styled.div`
 
 const QkForm = () => {
   const { apId } = useParams()
-
-  const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
 
   const { data, loading, error, refetch } = useQuery(queryQk, {
     variables: { apId },
@@ -62,19 +57,8 @@ const QkForm = () => {
   const qkCount = loading ? '...' : data?.allQks?.totalCount
   const apqkCount = loading ? '...' : data?.allApqks?.totalCount
 
-  const [tab, setTab] = useState(urlQuery?.qkTab ?? 'qk')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'qkTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('qkTab', 'qk')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   if (error) return <Error error={error} />
 
@@ -123,4 +107,4 @@ const QkForm = () => {
   )
 }
 
-export default observer(QkForm)
+export default QkForm

@@ -11,6 +11,7 @@ import logout from '../../../../../modules/logout'
 import EkfUser from './EkfUser'
 import storeContext from '../../../../../storeContext'
 import idbContext from '../../../../../idbContext'
+import useSearchParamsState from '../../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   margin-top: auto;
@@ -30,7 +31,7 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
   const { projId } = useParams()
 
   const store = useContext(storeContext)
-  const { deletedDatasets, user, urlQuery, setShowDeletions } = store
+  const { deletedDatasets, user, setShowDeletions } = store
   const { idb } = useContext(idbContext)
 
   const [anchorEl, setAnchorEl] = useState(null)
@@ -39,9 +40,13 @@ const AppbarMore = ({ onClickExporte: passedOnClickExporte, role }) => {
    * need to clone projekteTabs
    * because otherwise removing elements errors out (because elements are sealed)
    */
-  const projekteTabs = urlQuery.projekteTabs.slice().filter((el) => !!el)
-  const exporteIsActive = !!projId
+
   const isMobile = isMobilePhone()
+  const [projekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobile ? ['tree'] : ['tree', 'daten'],
+  )
+  const exporteIsActive = !!projId
 
   const showDeletedDatasets = useCallback(() => {
     closeMenu()

@@ -29,6 +29,7 @@ const insertDataset = async ({
   client,
   store,
   queryClient,
+  search,
 }) => {
   const { enqueNotification } = store
   const { openNodes, setOpenNodes } = store.tree
@@ -187,7 +188,7 @@ const insertDataset = async ({
     result?.data[`create${upperFirst(camelCase(table))}`][`${camelCase(table)}`]
   // set new url
   const newActiveNodeArray = [...url, row[idField]]
-  store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+  store.navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
   // set open nodes
   let newOpenNodes = [...openNodes, newActiveNodeArray]
   if (['zielFolder', 'zieljahrFolder'].includes(menuType)) {
@@ -218,7 +219,6 @@ const insertDataset = async ({
     newOpenNodes = [...newOpenNodes, newOpenFolder, newOpenNode]
   }
   setOpenNodes(newOpenNodes)
-  // TODO: does not work
   queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
 }
 

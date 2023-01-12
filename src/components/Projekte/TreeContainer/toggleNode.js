@@ -1,7 +1,7 @@
 import isNodeOpen from './isNodeOpen'
 import openNode from './openNode'
 
-const toggleNode = ({ node, store, navigate }) => {
+const toggleNode = ({ node, store, navigate, search }) => {
   if (!node.url) throw new Error('passed node has no url')
   const { openNodes, activeNodeArray, setLastTouchedNode } = store.tree
 
@@ -25,7 +25,7 @@ const toggleNode = ({ node, store, navigate }) => {
     // make it the new active node
     newActiveNodeArray = [...node.url]
   }
-  navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+  navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
   setLastTouchedNode(node.url)
 }
 

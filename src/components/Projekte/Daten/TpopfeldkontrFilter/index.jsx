@@ -20,13 +20,13 @@ import TpopfeldkontrentwicklungPopover from '../TpopfeldkontrentwicklungPopover'
 import constants from '../../../../modules/constants'
 import query from './query'
 import queryTpopkontrs from './queryTpopkontrs'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import storeContext from '../../../../storeContext'
 import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Error from '../../../shared/Error'
 import Spinner from '../../../shared/Spinner'
 import OrTabs from './Tabs'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -96,7 +96,7 @@ const TpopfeldkontrFilter = () => {
   const { apId } = useParams()
 
   const store = useContext(storeContext)
-  const { dataFilterSetValue, urlQuery, setUrlQuery } = store
+  const { dataFilterSetValue } = store
   const {
     dataFilter,
     ekGqlFilter,
@@ -126,19 +126,8 @@ const TpopfeldkontrFilter = () => {
     },
   })
 
-  const [tab, setTab] = useState(urlQuery?.feldkontrTab ?? 'entwicklung')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'feldkontrTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('feldkontrTab', 'entwicklung')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const saveToDb = useCallback(
     async (event) =>

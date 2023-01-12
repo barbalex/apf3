@@ -24,10 +24,10 @@ import queryAeTaxonomies from './queryAeTaxonomies'
 import storeContext from '../../../../storeContext'
 import exists from '../../../../modules/exists'
 import Files from '../../../shared/Files'
-import setUrlQueryValue from '../../../../modules/setUrlQueryValue'
 import ErrorBoundary from '../../../shared/ErrorBoundary'
 import Spinner from '../../../shared/Spinner'
 import Error from '../../../shared/Error'
+import useSearchParamsState from '../../../../modules/useSearchParamsState'
 
 const Container = styled.div`
   height: 100%;
@@ -81,7 +81,6 @@ const Tpopmassn = ({ showFilter = false }) => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
-  const { urlQuery, setUrlQuery } = store
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -347,19 +346,8 @@ const Tpopmassn = ({ showFilter = false }) => {
     [apId, client, notMassnCountUnit, row, store.user.name],
   )
 
-  const [tab, setTab] = useState(urlQuery?.tpopmassnTab ?? 'tpopmassn')
-  const onChangeTab = useCallback(
-    (event, value) => {
-      setUrlQueryValue({
-        key: 'tpopmassnTab',
-        value,
-        urlQuery,
-        setUrlQuery,
-      })
-      setTab(value)
-    },
-    [setUrlQuery, urlQuery],
-  )
+  const [tab, setTab] = useSearchParamsState('tpopmassnTab', 'tpopmassn')
+  const onChangeTab = useCallback((event, value) => setTab(value), [setTab])
 
   const { width = 500, ref: resizeRef } = useResizeDetector({
     refreshMode: 'debounce',

@@ -14,7 +14,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import LabelFilter from './LabelFilter'
@@ -81,7 +81,6 @@ import CmTpopmassnFolder from './contextmenu/TpopmassnFolder'
 import CmTpopmassn from './contextmenu/Tpopmassn'
 import DeleteDatasetModal from './DeleteDatasetModal'
 import copyBiotopTo from '../../../modules/copyBiotopTo'
-import setUrlQueryValue from '../../../modules/setUrlQueryValue'
 import moveTo from '../../../modules/moveTo'
 import copyTo from '../../../modules/copyTo'
 import createNewPopFromBeob from '../../../modules/createNewPopFromBeob'
@@ -100,6 +99,8 @@ import Spinner from '../../shared/Spinner'
 import query from './query'
 import buildTreeQueryVariables from './buildTreeQueryVariables'
 import buildNodes from './nodes'
+import useSearchParamsState from '../../../modules/useSearchParamsState'
+import isMobilePhone from '../../../modules/isMobilePhone'
 
 const Container = styled.div`
   height: 100%;
@@ -282,6 +283,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 const TreeContainer = () => {
   const { apId, projId, popId } = useParams()
   const navigate = useNavigate()
+  const { search } = useLocation()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -299,8 +301,6 @@ const TreeContainer = () => {
     setMoving,
     copyingBiotop,
     setCopyingBiotop,
-    urlQuery,
-    setUrlQuery,
     user,
   } = store
   const { openNodes, setOpenNodes, activeNodeArray } = store.tree
@@ -399,11 +399,19 @@ const TreeContainer = () => {
       projektNode
     ) {
       const projektUrl = [...projektNode.url]
-      navigate(`/Daten/${projektUrl.join('/')}`)
+      navigate(`/Daten/${projektUrl.join('/')}${search}`)
       // add projekt to open nodes
       setOpenNodes([...openNodes, projektUrl])
     }
-  }, [activeNodeArray, treeNodes, openNodes, projId, setOpenNodes, navigate])
+  }, [
+    activeNodeArray,
+    treeNodes,
+    openNodes,
+    projId,
+    setOpenNodes,
+    navigate,
+    search,
+  ])
 
   const [newTpopFromBeobDialogOpen, setNewTpopFromBeobDialogOpen] =
     useState(false)
@@ -413,19 +421,18 @@ const TreeContainer = () => {
     [],
   )
 
+  const [projekteTabs, setProjekteTabs] = useSearchParamsState(
+    'projekteTabs',
+    isMobilePhone() ? ['tree'] : ['tree', 'daten'],
+  )
   const showMapIfNotYetVisible = useCallback(
     (projekteTabs) => {
       const isVisible = projekteTabs.includes('karte')
       if (!isVisible) {
-        setUrlQueryValue({
-          key: 'projekteTabs',
-          value: [...projekteTabs, 'karte'],
-          urlQuery,
-          setUrlQuery,
-        })
+        setProjekteTabs([...projekteTabs, 'karte'])
       }
     },
-    [setUrlQuery, urlQuery],
+    [setProjekteTabs],
   )
   const handleClick = useCallback(
     (e, data, element) => {
@@ -481,6 +488,7 @@ const TreeContainer = () => {
             client,
             store,
             queryClient,
+            search,
           })
         },
         openLowerNodes() {
@@ -500,6 +508,7 @@ const TreeContainer = () => {
           closeLowerNodes({
             url,
             store,
+            search,
           })
         },
         delete() {
@@ -516,7 +525,6 @@ const TreeContainer = () => {
           })
         },
         showBeobOnMap() {
-          const { projekteTabs } = urlQuery
           // 1. open map if not yet open
           showMapIfNotYetVisible(projekteTabs)
           // 2 add layer for actionTable
@@ -529,7 +537,6 @@ const TreeContainer = () => {
           }
         },
         localizeOnMap() {
-          const { projekteTabs } = urlQuery
           setIdOfTpopBeingLocalized(id)
           showMapIfNotYetVisible(projekteTabs)
           setActiveApfloraLayers(uniq([...activeApfloraLayers, 'tpop']))
@@ -582,6 +589,7 @@ const TreeContainer = () => {
             client,
             store,
             queryClient,
+            search,
           })
         },
         createNewTpopFromBeob() {
@@ -659,12 +667,16 @@ const TreeContainer = () => {
       enqueNotification,
       client,
       store,
+      queryClient,
+      apId,
+      projId,
+      popId,
+      search,
       setToDelete,
       openNodes,
       setOpenNodes,
-      queryClient,
-      urlQuery,
       showMapIfNotYetVisible,
+      projekteTabs,
       activeApfloraLayers,
       setActiveApfloraLayers,
       setIdOfTpopBeingLocalized,
@@ -672,9 +684,6 @@ const TreeContainer = () => {
       setCopying,
       setCopyingBiotop,
       copyingBiotop,
-      apId,
-      projId,
-      popId,
     ],
   )
 

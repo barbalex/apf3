@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual'
 import isNodeOpen from './isNodeOpen'
 import isNodeInActiveNodePath from './isNodeInActiveNodePath'
 
-const toggleNodeSymbol = ({ node, store }) => {
+const toggleNodeSymbol = ({ node, store, search }) => {
   if (!node.url) throw new Error('passed node has no url')
   const { openNodes, setOpenNodes, activeNodeArray, setLastTouchedNode } =
     store.tree
@@ -16,7 +16,7 @@ const toggleNodeSymbol = ({ node, store }) => {
       // the active node should swith to the node's parent
       const newActiveNodeArray = [...node.url]
       newActiveNodeArray.pop()
-      store.navigate(`/Daten/${newActiveNodeArray.join('/')}`)
+      store.navigate(`/Daten/${newActiveNodeArray.join('/')}${search}`)
     }
   } else {
     newOpenNodes.push(node.url)

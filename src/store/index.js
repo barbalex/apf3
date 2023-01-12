@@ -1,14 +1,11 @@
 import { types } from 'mobx-state-tree'
-import cloneDeep from 'lodash/cloneDeep'
-import isEqual from 'lodash/isEqual'
-import queryString from 'query-string'
 
 import ApfloraLayer from './ApfloraLayer'
 import Copying, { defaultValue as defaultCopying } from './Copying'
 import CopyingBiotop, {
   defaultValue as defaultCopyingBiotop,
 } from './CopyingBiotop'
-import UrlQuery, { defaultValue as defaultUrlQuery } from './UrlQuery'
+import Map, { defaultValue as defaultMap } from './Map'
 import Moving, { defaultValue as defaultMoving } from './Moving'
 import MapMouseCoordinates, {
   defaultValue as defaultMapMouseCoordinates,
@@ -19,7 +16,6 @@ import initialDataFilterTreeValues from './Tree/DataFilter/initialValues'
 import User, { defaultValue as defaultUser } from './User'
 import Tree, { defaultValue as defaultTree } from './Tree'
 import EkPlan, { defaultValue as defaultEkPlan } from './EkPlan'
-import getOpenNodesFromActiveNodeArray from '../modules/getOpenNodesFromActiveNodeArray'
 
 import { initial as apInitial } from './Tree/DataFilter/ap'
 import { initial as popInitial } from './Tree/DataFilter/pop'
@@ -65,7 +61,6 @@ const myTypes = types
     printingJberYear: types.optional(types.number, 0),
     copying: types.optional(Copying, defaultCopying),
     copyingBiotop: types.optional(CopyingBiotop, defaultCopyingBiotop),
-    urlQuery: types.optional(UrlQuery, defaultUrlQuery),
     moving: types.optional(Moving, defaultMoving),
     mapMouseCoordinates: types.optional(
       MapMouseCoordinates,
@@ -78,6 +73,7 @@ const myTypes = types
     ekPlan: types.optional(EkPlan, defaultEkPlan),
     showDeletions: types.optional(types.boolean, false),
     dokuFilter: types.optional(types.union(types.string, types.number), ''),
+    map: types.optional(Map, defaultMap),
   })
   // structure of these variables is not controlled
   // so need to define this as volatile
@@ -232,37 +228,6 @@ const myTypes = types
     setCopyingBiotop({ id, label }) {
       self.copyingBiotop = { id, label }
     },
-    setUrlQuery({
-      projekteTabs,
-      popTab,
-      tpopTab,
-      tpopmassnTab,
-      apTab,
-      feldkontrTab,
-      idealbiotopTab,
-      qkTab,
-    }) {
-      const newUrlQuery = {
-        projekteTabs,
-        popTab,
-        tpopTab,
-        tpopmassnTab,
-        apTab,
-        feldkontrTab,
-        idealbiotopTab,
-        qkTab,
-      }
-      // only write if changed
-      if (!isEqual(self.urlQuery, newUrlQuery)) {
-        self.urlQuery = newUrlQuery
-        const search = queryString.stringify(newUrlQuery)
-        const query = `${
-          Object.keys(newUrlQuery).length > 0 ? `?${search}` : ''
-        }`
-        const { activeNodeArray } = self.tree
-        self.navigate?.(`/Daten/${activeNodeArray.join('/')}${query}`)
-      }
-    },
     setMoving({ table, id, label }) {
       self.moving = { table, id, label }
     },
@@ -275,9 +240,14 @@ const myTypes = types
     setAssigningBeob(val) {
       self.assigningBeob = val
     },
-    openTree2WithActiveNodeArray(activeNodeArray) {
-      self.tree.setTree2SrcByActiveNodeArray(activeNodeArray)
-      self.urlQuery.addProjekteTabs(['tree2', 'daten2'])
+    openTree2WithActiveNodeArray({
+      activeNodeArray,
+      search,
+      projekteTabs,
+      setProjekteTabs,
+    }) {
+      self.tree.setTree2SrcByActiveNodeArray({ activeNodeArray, search })
+      setProjekteTabs([...projekteTabs, 'tree2', 'daten2'])
     },
     treeNodeLabelFilterResetExceptAp() {
       self.tree.nodeLabelFilter = {

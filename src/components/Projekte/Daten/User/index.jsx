@@ -11,7 +11,7 @@ import Button from '@mui/material/Button'
 import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField2'
@@ -93,7 +93,7 @@ const fieldTypes = {
 
 const User = () => {
   const { userId } = useParams()
-  const navigate = useNavigate()
+  const { search } = useLocation()
 
   const store = useContext(storeContext)
 
@@ -344,9 +344,8 @@ const User = () => {
               {hasEkfTpops && (
                 <StyledButton
                   variant="outlined"
-                  onClick={() =>
-                    navigate(`/Daten/Benutzer/${row.id}/EKF/${thisYear}`)
-                  }
+                  component={Link}
+                  to={`/Daten/Benutzer/${row.id}/EKF/${thisYear}${search}`}
                 >
                   {`EKF-Formulare für ${thisYear} öffnen`}
                 </StyledButton>

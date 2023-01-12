@@ -7,7 +7,6 @@ import isUuid from 'is-uuid'
 import NodeLabelFilter, {
   defaultValue as defaultNodeLabelFilter,
 } from './NodeLabelFilter'
-import Map, { defaultValue as defaultMap } from './Map'
 import Geojson from './Geojson'
 import initialDataFilterValues from './DataFilter/initialValues'
 import DataFilter from './DataFilter/types'
@@ -51,33 +50,34 @@ export default types
     apFilter: types.optional(types.boolean, true),
     nodeLabelFilter: types.optional(NodeLabelFilter, defaultNodeLabelFilter),
     dataFilter: types.optional(DataFilter, initialDataFilterValues),
-    map: types.optional(Map, defaultMap),
     mapFilter: types.maybe(Geojson),
-    // mapFilter: types.optional(
-    //   types.union(Geojson, types.literal(undefined)),
-    //   undefined,
-    // ),
   })
   .actions((self) => ({
     resetTree2Src() {
       self.tree2Src = ''
     },
-    setTree2SrcByActiveNodeArray(activeNodeArray) {
-      const store = getParent(self)
-      // build search string for iframe
-      const iFrameUrlQuery = { ...getSnapshot(store.urlQuery) }
+    setTree2SrcByActiveNodeArray({ activeNodeArray, search }) {
+      const iFrameSearch = queryString.parse(search)
       // need to alter projekteTabs:
-      iFrameUrlQuery.projekteTabs = iFrameUrlQuery.projekteTabs
-        // - remove non-tree2 values
-        .filter((t) => t.includes('2'))
-        // - rewrite tree2 values to tree values
-        .map((t) => t.replace('2', ''))
-      const search = queryString.stringify(iFrameUrlQuery)
+      if (Array.isArray(iFrameSearch.projekteTabs)) {
+        iFrameSearch.projekteTabs = iFrameSearch.projekteTabs
+          // - remove non-tree2 values
+          .filter((t) => t.includes('2'))
+          // - rewrite tree2 values to tree values
+          .map((t) => t.replace('2', ''))
+      } else if (iFrameSearch.projekteTabs) {
+        iFrameSearch.projekteTabs = [iFrameSearch.projekteTabs]
+          // - remove non-tree2 values
+          .filter((t) => t.includes('2'))
+          // - rewrite tree2 values to tree values
+          .map((t) => t.replace('2', ''))
+      }
+      const newSearch = queryString.stringify(iFrameSearch)
       // pass this via src to iframe
       const iFrameSrc = `${appBaseUrl().slice(
         0,
         -1,
-      )}${`/Daten/${activeNodeArray.join('/')}`}?${search}`
+      )}${`/Daten/${activeNodeArray.join('/')}`}?${newSearch}`
       self.tree2Src = iFrameSrc
     },
     setMapFilter(val) {
@@ -125,10 +125,7 @@ export default types
       self.activeNodeArray = val
       if (!nonavigate) {
         const store = getParent(self)
-        const { urlQuery, navigate } = store
-        const search = queryString.stringify(urlQuery)
-        const query = `${Object.keys(urlQuery).length > 0 ? `?${search}` : ''}`
-        navigate?.(`/Daten/${val.join('/')}${query}`)
+        store.navigate?.(`/Daten/${val.join('/')}`)
       }
     },
   }))
@@ -970,5 +967,4 @@ export const defaultValue = {
   openNodes: [],
   apFilter: true,
   nodeLabelFilter: defaultNodeLabelFilter,
-  map: defaultMap,
 }
