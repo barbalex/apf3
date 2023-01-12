@@ -385,9 +385,7 @@ const TreeContainer = () => {
   ])
 
   useEffect(() => {
-    // if activeNodeArray.length === 1
-    // and there is only one projekt
-    // open it
+    // open single projects
     // dont do this in render!
     const projekteNodes = treeNodes.filter((n) => n.menuType === 'projekt')
     const existsOnlyOneProjekt = projekteNodes.length === 1
