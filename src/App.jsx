@@ -54,6 +54,8 @@ const App = () => {
   const client = buildClient({ store })
   const idbContext = { idb }
 
+  // console.log('App rendering')
+
   return (
     <IdbProvider value={idbContext}>
       <MobxProvider value={store}>

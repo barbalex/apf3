@@ -261,8 +261,8 @@ const Row = ({ node }) => {
   }, [navigate, node, search, store])
 
   const onClickNodeSymbol = useCallback(() => {
-    toggleNodeSymbol({ node, store, search })
-  }, [node, search, store])
+    toggleNodeSymbol({ node, store, search, navigate })
+  }, [navigate, node, search, store])
 
   const onClickPrint = useCallback(() => {
     setPrintingJberYear(+node.label)

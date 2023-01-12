@@ -14,7 +14,7 @@ import styled from '@emotion/styled'
 import isEqual from 'lodash/isEqual'
 import { observer } from 'mobx-react-lite'
 import { useDebouncedCallback } from 'use-debounce'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 import tables from '../../../modules/tables'
 import storeContext from '../../../storeContext'
@@ -41,6 +41,7 @@ const StyledDeleteFilterIcon = styled(MdDeleteSweep)`
 const LabelFilter = ({ nodes }) => {
   const navigate = useNavigate()
   const { search } = useLocation()
+  const { projId } = useParams()
 
   const store = useContext(storeContext)
   const { nodeLabelFilter, activeNodeArray, setOpenNodes } = store.tree

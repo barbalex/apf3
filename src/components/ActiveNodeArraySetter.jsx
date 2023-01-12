@@ -17,7 +17,6 @@ const ActiveNodeArraySetter = () => {
     const newAna = getActiveNodeArrayFromPathname(pathname)
     if (!isEqual(newAna, activeNodeArray.slice())) {
       // user pushed back button > update activeNodeArray
-      console.log('ActiveNodeArraySetter: setting activeNodeArray', newAna)
       setActiveNodeArray(newAna)
     }
   }, [activeNodeArray, pathname, setActiveNodeArray])

@@ -75,6 +75,10 @@ const StorePersister = () => {
         // set last activeNodeArray
         // only if top domain was visited
         if (isUser && visitedTopDomain) {
+          // console.log(
+          //   'StorePersister navigating to',
+          //   `/Daten/${store.tree.activeNodeArray.join('/')}`,
+          // )
           return store.navigate?.(
             `/Daten/${store.tree.activeNodeArray.join('/')}`,
           )

@@ -283,7 +283,7 @@ const getAndValidateCoordinatesOfBeob = async ({
 const TreeContainer = () => {
   const { apId, projId, popId } = useParams()
   const navigate = useNavigate()
-  const { search } = useLocation()
+  const { search, pathname } = useLocation()
 
   const client = useApolloClient()
   const { idb } = useContext(idbContext)
@@ -303,7 +303,7 @@ const TreeContainer = () => {
     setCopyingBiotop,
     user,
   } = store
-  const { openNodes, setOpenNodes, activeNodeArray } = store.tree
+  const { openNodes, setOpenNodes } = store.tree
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
@@ -393,7 +393,7 @@ const TreeContainer = () => {
     const existsOnlyOneProjekt = projekteNodes.length === 1
     const projektNode = projekteNodes[0]
     if (
-      activeNodeArray.includes('Projekte') &&
+      pathname.startsWith('/Daten/Projekte') &&
       !projId &&
       existsOnlyOneProjekt &&
       projektNode
@@ -403,15 +403,7 @@ const TreeContainer = () => {
       // add projekt to open nodes
       setOpenNodes([...openNodes, projektUrl])
     }
-  }, [
-    activeNodeArray,
-    treeNodes,
-    openNodes,
-    projId,
-    setOpenNodes,
-    navigate,
-    search,
-  ])
+  }, [treeNodes, openNodes, projId, setOpenNodes, navigate, search, pathname])
 
   const [newTpopFromBeobDialogOpen, setNewTpopFromBeobDialogOpen] =
     useState(false)
@@ -436,7 +428,6 @@ const TreeContainer = () => {
   )
   const handleClick = useCallback(
     (e, data, element) => {
-      console.log('TreeContainer handleClick rendering')
       if (!data) {
         return enqueNotification({
           message: 'no data passed with click',
