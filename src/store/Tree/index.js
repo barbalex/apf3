@@ -104,11 +104,6 @@ export default types
       nodeArray.forEach((v, i) => {
         extraOpenNodes.push(nodeArray.slice(0, i + 1))
       })
-      // console.log('tree addOpenNodesForNodeArray', {
-      //   extraOpenNodes,
-      //   nodeArray,
-      //   openNodes: getSnapshot(self.openNodes),
-      // })
       this.addOpenNodes(extraOpenNodes)
     },
     setApFilter(val) {
