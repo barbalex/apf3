@@ -61,7 +61,6 @@ const LabelFilter = ({ nodes }) => {
     if (!filterValue && filterValue !== 0) filterValue = ''
     const table = tables.find((t) => t.table === tableName)
     const tableLabel = table ? table.label : null
-    console.log('tableLabel:', tableLabel)
     // danger: Projekte can not be filtered because no parent folder
     if (tableLabel !== 'Projekte') {
       labelText = `${tableLabel} filtern`
