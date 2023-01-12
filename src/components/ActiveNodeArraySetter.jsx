@@ -13,13 +13,12 @@ const ActiveNodeArraySetter = () => {
   const { pathname } = useLocation()
 
   // when pathname changes, update activeNodeArray
-  // seems no more needed?
   useEffect(() => {
     const newAna = getActiveNodeArrayFromPathname(pathname)
     if (!isEqual(newAna, activeNodeArray.slice())) {
       // user pushed back button > update activeNodeArray
-      // console.log('ActiveNodeArraySetter: setting activeNodeArray', newAna)
-      setActiveNodeArray(newAna, 'nonavigate')
+      console.log('ActiveNodeArraySetter: setting activeNodeArray', newAna)
+      setActiveNodeArray(newAna)
     }
   }, [activeNodeArray, pathname, setActiveNodeArray])
 

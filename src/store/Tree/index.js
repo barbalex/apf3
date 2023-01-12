@@ -114,7 +114,7 @@ export default types
     setApFilter(val) {
       self.apFilter = val
     },
-    setActiveNodeArray(val, nonavigate) {
+    setActiveNodeArray(val) {
       if (isEqual(val, self.activeNodeArray)) {
         // do not do this if already set
         // trying to stop vicious cycle of reloading in first start after update
@@ -123,10 +123,6 @@ export default types
       // always set missing open nodes?
       self.addOpenNodesForNodeArray(val)
       self.activeNodeArray = val
-      if (!nonavigate) {
-        const store = getParent(self)
-        store.navigate?.(`/Daten/${val.join('/')}`)
-      }
     },
   }))
   .views((self) => ({
