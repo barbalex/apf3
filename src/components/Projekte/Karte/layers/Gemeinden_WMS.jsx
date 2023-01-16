@@ -1,3 +1,6 @@
+// Tried to integrate gemeinden WMS
+// but: querying did not work
+// and covers background
 import React, { useContext } from 'react'
 import { useMap, WMSTileLayer } from 'react-leaflet'
 import styled from '@emotion/styled'
