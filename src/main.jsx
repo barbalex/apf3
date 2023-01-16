@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { registerSW } from 'virtual:pwa-register'
 
-import AppRenderer from './AppRenderer'
+import App from './App'
 
 // https://vite-plugin-pwa.netlify.app/guide/prompt-for-update.html#runtime
 registerSW({
@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root'))
   // todo: causes mstPersist to run twice
   // .render(
   //   <React.StrictMode>
-  //     <AppRenderer />
+  //     <App />
   //   </React.StrictMode>,
   // )
-  .render(<AppRenderer />)
+  .render(<App />)

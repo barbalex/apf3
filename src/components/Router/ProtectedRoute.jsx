@@ -11,6 +11,8 @@ import User from '../User'
 import Messages from '../Messages'
 import Deletions from '../Deletions'
 import inIframe from '../../modules/inIframe'
+import ActiveNodeArraySetter from '../ActiveNodeArraySetter'
+import NavigateSetter from '../NavigateSetter'
 
 const isInIframe = inIframe()
 
@@ -51,29 +53,15 @@ const ProtectedRoute = () => {
     )
   }
 
-  if (isInIframe) {
-    // inside iframe: no messages
-    // also: freiwillige don't see the iFrame
-    return (
-      <Container>
-        {!!user.token && (
-          <>
-            <Outlet />
-            {showDeletions && <Deletions />}
-          </>
-        )}
-        <User />
-      </Container>
-    )
-  }
-
   return (
     <Container>
       {!!user.token && (
         <>
           <Outlet />
-          {!isFreiwillig && <Messages />}
+          {!isFreiwillig && !isInIframe && <Messages />}
           {!isFreiwillig && showDeletions && <Deletions />}
+          <ActiveNodeArraySetter />
+          <NavigateSetter />
         </>
       )}
       <User />

@@ -16,6 +16,7 @@ const ActiveNodeArraySetter = () => {
   useEffect(() => {
     const newAna = getActiveNodeArrayFromPathname(pathname)
     if (!isEqual(newAna, activeNodeArray.slice())) {
+      // console.log('ActiveNodeArraySetter setting activeNodeArray')
       // user pushed back button > update activeNodeArray
       setActiveNodeArray(newAna)
     }

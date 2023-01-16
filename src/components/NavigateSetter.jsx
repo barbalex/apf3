@@ -16,6 +16,7 @@ const NavigateSetter = () => {
     // only because of strict mode?
     if (navigateSet.current) return
 
+    // console.log('NavigateSetter setting navigate')
     setNavigate(navigate)
     navigateSet.current = true
   }, [navigate, navigateInStore, setNavigate])

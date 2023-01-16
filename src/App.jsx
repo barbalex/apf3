@@ -37,8 +37,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Router from './components/Router'
 import IsPrintSetter from './components/IsPrintSetter'
 import LastTouchedNodeSetter from './components/LastTouchedNodeSetter'
-import ActiveNodeArraySetter from './components/ActiveNodeArraySetter'
-import NavigateSetter from './components/NavigateSetter'
 import MouseWheelHandler from './components/MouseWheelHandler'
 import LegacyBrowserInformer from './components/LegacyBrowserInformer'
 import StorePersister from './components/StorePersister'
@@ -75,8 +73,6 @@ const App = () => {
                     <Notifier />
                     <IsPrintSetter />
                     <LastTouchedNodeSetter />
-                    <ActiveNodeArraySetter />
-                    <NavigateSetter />
                     <MouseWheelHandler />
                     <LegacyBrowserInformer />
                     <StorePersister />
