@@ -5,7 +5,6 @@ import SimpleBar from 'simplebar-react'
 
 import Sidebar from './Sidebar'
 import ErrorBoundary from '../shared/ErrorBoundary'
-import AppBar from './AppBar'
 
 const Container = styled.div`
   height: 100%;
@@ -70,16 +69,14 @@ export const DokuDate = styled.p`
 
 const Docs = () => (
   <ErrorBoundary>
-    <AppBar>
-      <Container>
-        <Sidebar />
-        <SimpleBar style={{ height: '100%', width: '100%' }}>
-          <Doku>
-            <Outlet />
-          </Doku>
-        </SimpleBar>
-      </Container>
-    </AppBar>
+    <Container>
+      <Sidebar />
+      <SimpleBar style={{ height: '100%', width: '100%' }}>
+        <Doku>
+          <Outlet />
+        </Doku>
+      </SimpleBar>
+    </Container>
   </ErrorBoundary>
 )
 

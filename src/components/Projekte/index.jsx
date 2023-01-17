@@ -14,7 +14,6 @@ import StyledSplitPane from '../shared/StyledSplitPane'
 // import AppRenderer from '../../AppRenderer'
 import appBaseUrl from '../../modules/appBaseUrl'
 import inIframe from '../../modules/inIframe'
-import AppBar from './AppBar'
 import useSearchParamsState from '../../modules/useSearchParamsState'
 import isMobilePhone from '../../modules/isMobilePhone'
 import ApFilterController from './ApFilterController'
@@ -96,23 +95,21 @@ const Projekte = () => {
   return (
     <>
       <ApFilterController />
-      <AppBar>
-        <Container>
-          {tree2Tabs.length === 0 || isPrint ? (
+      <Container>
+        {tree2Tabs.length === 0 || isPrint ? (
+          <ProjektContainer />
+        ) : (
+          <StyledSplitPane split="vertical" defaultSize="50%">
             <ProjektContainer />
-          ) : (
-            <StyledSplitPane split="vertical" defaultSize="50%">
-              <ProjektContainer />
-              <StyledIframe
-                src={iFrameSrc}
-                title="tree2"
-                width="100%"
-                height="100%"
-              />
-            </StyledSplitPane>
-          )}
-        </Container>
-      </AppBar>
+            <StyledIframe
+              src={iFrameSrc}
+              title="tree2"
+              width="100%"
+              height="100%"
+            />
+          </StyledSplitPane>
+        )}
+      </Container>
     </>
   )
 }

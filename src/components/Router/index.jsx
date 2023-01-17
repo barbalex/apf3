@@ -45,13 +45,14 @@ import Tpopmassnber from '../Projekte/Daten/Tpopmassnber'
 import Tpopmassn from '../Projekte/Daten/Tpopmassn'
 import Tpopkontrzaehl from '../Projekte/Daten/Tpopkontrzaehl'
 import EkfYearNavigator from './EkfYearNavigator'
+import AppBar from '../AppBar'
 // import Unterhalt from './components/Unterhalt'
 
 // uncomment unterhalt route for Unterhalt
 const RouterComponent = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
+      <Route element={<AppBar />}>
         <Route path="/" element={<Home />} />
         <Route path="/Daten/*" element={<ProtectedRoute />}>
           {/* <Route path="*" element={<Unterhalt />}></Route> */}
@@ -194,10 +195,10 @@ const RouterComponent = () => {
           {DocRoutes()}
         </Route>
         <Route path="*" element={<FourOhFour />} />
-      </>,
+      </Route>,
     ),
   )
-  
+
   return <RouterProvider router={router} />
 }
 

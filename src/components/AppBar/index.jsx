@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
+import { Outlet } from 'react-router-dom'
 
 import Bar from './Bar'
 
@@ -28,15 +29,15 @@ const StyledToolbar = styled(Toolbar)`
   padding-right: 4px !important;
 `
 
-const EkPlanAppbar = ({ children }) => (
+const AppBarComponent = () => (
   <Container>
     <StyledAppBar position="static">
       <StyledToolbar>
         <Bar />
       </StyledToolbar>
     </StyledAppBar>
-    {children}
+    <Outlet />
   </Container>
 )
 
-export default EkPlanAppbar
+export default AppBarComponent

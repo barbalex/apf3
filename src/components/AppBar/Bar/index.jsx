@@ -5,6 +5,10 @@ import { observer } from 'mobx-react-lite'
 import { useLocation, Link } from 'react-router-dom'
 
 import isMobilePhone from '../../../modules/isMobilePhone'
+import Home from './Home'
+import EkPlan from './EkPlan'
+import Projekte from './Projekte'
+import Docs from './Docs'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -25,14 +29,14 @@ const MenuDiv = styled.div`
   flex-wrap: wrap;
 `
 
-const StyledButton = styled(Button)`
-  color: white !important;
-  text-transform: none !important;
-`
-const HomeAppBar = () => {
+const AbbBarComponentBar = () => {
   const isMobile = isMobilePhone()
 
-  const { pathname, search } = useLocation()
+  const { search, pathname } = useLocation()
+  const showHome = pathname === '/'
+  const showEkPlan = pathname.includes('/EK-Planung')
+  const showProjekte = pathname.startsWith('/Daten') && !showEkPlan
+  const showDocs = pathname.startsWith('/Dokumentation')
 
   return (
     <>
@@ -47,23 +51,15 @@ const HomeAppBar = () => {
         </SiteTitle>
       )}
       <MenuDiv>
-        <StyledButton
-          variant={pathname.startsWith('/Dokumentation') ? 'outlined' : 'text'}
-          component={Link}
-          to={`/Dokumentation/${search}`}
-        >
-          Dokumentation
-        </StyledButton>
-        <StyledButton
-          variant="text"
-          component={Link}
-          to={`/Daten/Projekte/e57f56f4-4376-11e8-ab21-4314b6749d13${search}`}
-        >
-          Arten bearbeiten
-        </StyledButton>
+        <>
+          {showHome && <Home />}
+          {showEkPlan && <EkPlan />}
+          {showProjekte && <Projekte />}
+          {showDocs && <Docs />}
+        </>
       </MenuDiv>
     </>
   )
 }
 
-export default observer(HomeAppBar)
+export default AbbBarComponentBar

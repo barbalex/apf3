@@ -13,7 +13,6 @@ import appBaseUrl from '../../modules/appBaseUrl'
 import Error from '../shared/Error'
 import ErrorBoundary from '../shared/ErrorBoundary'
 import User from '../User'
-import AppBar from './AppBar'
 
 const Container = styled.div`
   height: 100%;
@@ -61,27 +60,25 @@ const EkPlan = () => {
 
   return (
     <ErrorBoundary>
-      <AppBar>
-        <Container>
-          {!!user.token && (
-            <>
-              <Header>
-                <ApList />
-                <AnleitungButton
-                  variant="outlined"
-                  onClick={onClickAnleitung}
-                  color="inherit"
-                >
-                  Anleitung
-                </AnleitungButton>
-                <Choose />
-              </Header>
-              <Table />
-            </>
-          )}
-          <User />
-        </Container>
-      </AppBar>
+      <Container>
+        {!!user.token && (
+          <>
+            <Header>
+              <ApList />
+              <AnleitungButton
+                variant="outlined"
+                onClick={onClickAnleitung}
+                color="inherit"
+              >
+                Anleitung
+              </AnleitungButton>
+              <Choose />
+            </Header>
+            <Table />
+          </>
+        )}
+        <User />
+      </Container>
     </ErrorBoundary>
   )
 }
