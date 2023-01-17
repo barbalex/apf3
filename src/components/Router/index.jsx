@@ -53,7 +53,7 @@ const RouterComponent = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<AppBar />}>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/Daten/*" element={<ProtectedRoute />}>
           {/* <Route path="*" element={<Unterhalt />}></Route> */}
           <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
