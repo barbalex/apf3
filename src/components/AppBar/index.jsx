@@ -5,6 +5,9 @@ import Toolbar from '@mui/material/Toolbar'
 import { Outlet } from 'react-router-dom'
 
 import Bar from './Bar'
+import inIframe from '../../modules/inIframe'
+
+const isInIframe = inIframe()
 
 const Container = styled.div`
   height: 100vh;
@@ -29,15 +32,18 @@ const StyledToolbar = styled(Toolbar)`
   padding-right: 4px !important;
 `
 
-const AppBarComponent = () => (
-  <Container>
-    <StyledAppBar position="static">
-      <StyledToolbar>
-        <Bar />
-      </StyledToolbar>
-    </StyledAppBar>
+const AppBarComponent = () =>
+  isInIframe ? (
     <Outlet />
-  </Container>
-)
+  ) : (
+    <Container>
+      <StyledAppBar position="static">
+        <StyledToolbar>
+          <Bar />
+        </StyledToolbar>
+      </StyledAppBar>
+      <Outlet />
+    </Container>
+  )
 
 export default AppBarComponent
