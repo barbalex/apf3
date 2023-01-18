@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -41,6 +42,7 @@ const Popber = () => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

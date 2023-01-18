@@ -7,6 +7,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import TextField from '../../../shared/TextField'
 import TextFieldWithInfo from '../../../shared/TextFieldWithInfo'
@@ -59,6 +60,7 @@ const Pop = () => {
 
   const store = useContext(storeContext)
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 
