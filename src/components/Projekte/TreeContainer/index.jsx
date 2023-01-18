@@ -426,6 +426,7 @@ const TreeContainer = () => {
   )
   const handleClick = useCallback(
     (e, data, element) => {
+      console.log('TreeContainer, handleClick', { e, data, element })
       if (!data) {
         return enqueNotification({
           message: 'no data passed with click',

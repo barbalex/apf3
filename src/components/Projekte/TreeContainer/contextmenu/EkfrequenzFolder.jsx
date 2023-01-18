@@ -328,7 +328,7 @@ const EkfrequenzFolder = ({ onClick }) => {
   return (
     <ErrorBoundary>
       <ContextMenu
-        id="treeekfrequenzFolder"
+        id="treeEkfrequenzFolder"
         collect={(props) => props}
         onShow={onShow}
         hideOnLeave={true}

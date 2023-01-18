@@ -17,7 +17,7 @@ const ApartFolder = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treeapartFolder" hideOnLeave={true}>
+      <ContextMenu id="treeApartFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Taxa</div>
         {!userIsReadOnly(user.token) && (
           <>

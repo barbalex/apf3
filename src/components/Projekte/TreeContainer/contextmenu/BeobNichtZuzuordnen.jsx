@@ -30,7 +30,7 @@ const BeobNichtZuzuordnen = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treebeobNichtZuzuordnen" hideOnLeave={true}>
+      <ContextMenu id="treeBeobNichtZuzuordnen" hideOnLeave={true}>
         <div className="react-contextmenu-title">Beobachtung</div>
         {!userIsReadOnly(user.token) && (
           <>

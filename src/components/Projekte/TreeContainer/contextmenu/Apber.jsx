@@ -17,12 +17,14 @@ const deleteData = {
 
 const Apber = ({ onClick }) => {
   const { user } = useContext(storeContext)
+  const isReadOnly = userIsReadOnly(user.token)
+  console.log('contextmenu Apber render, isReadOnly:', isReadOnly)
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treeapber" hideOnLeave={true}>
+      <ContextMenu id="treeApber" hideOnLeave={true}>
         <div className="react-contextmenu-title">AP-Bericht</div>
-        {!userIsReadOnly(user.token) && (
+        {!isReadOnly && (
           <>
             <MenuItem onClick={onClick} data={insertData}>
               erstelle neuen

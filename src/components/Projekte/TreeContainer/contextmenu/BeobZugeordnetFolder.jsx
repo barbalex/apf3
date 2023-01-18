@@ -17,7 +17,7 @@ const BeobZugeordnetFolder = ({ onClick }) => {
 
   return (
     <ErrorBoundary>
-      <ContextMenu id="treebeobZugeordnetFolder" hideOnLeave={true}>
+      <ContextMenu id="treeBeobZugeordnetFolder" hideOnLeave={true}>
         <div className="react-contextmenu-title">Beobachtungen</div>
         <MenuItem onClick={onClick} data={showBeobOnMapData}>
           {`blende auf Karte ${
