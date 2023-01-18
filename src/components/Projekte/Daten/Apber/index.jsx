@@ -6,6 +6,7 @@ import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -67,6 +68,7 @@ const Apber = () => {
 
   const store = useContext(storeContext)
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

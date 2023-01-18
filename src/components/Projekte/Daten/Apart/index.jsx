@@ -5,6 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import SelectLoadingOptions from '../../../shared/SelectLoadingOptions'
 import FormTitle from '../../../shared/FormTitle'
@@ -42,6 +43,7 @@ const ApArt = () => {
 
   const store = useContext(storeContext)
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

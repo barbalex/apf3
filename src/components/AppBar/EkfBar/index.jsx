@@ -11,11 +11,13 @@ import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 import { useParams, useLocation } from 'react-router-dom'
 
-import isMobilePhone from '../../../../modules/isMobilePhone'
+import isMobilePhone from '../../../modules/isMobilePhone'
 import EkfYear from './EkfYear'
 import User from './User'
-import storeContext from '../../../../storeContext'
-import query from './query'
+import storeContext from '../../../storeContext'
+import userQuery from './query'
+import dataByUserIdQuery from '../../Ekf/dataByUserId'
+import dataWithDateByUserIdQuery from '../../Ekf/dataWithDateByUserId'
 
 const SiteTitle = styled(Button)`
   display: none !important;
@@ -64,12 +66,12 @@ const StyledMdHourglassEmpty = styled(MdHourglassEmpty)`
   animation: ${spinning} 3s linear infinite;
 `
 
-const ProjekteAppBar = ({ ekf }) => {
-  const { userId, ekfId } = useParams()
+const ProjekteAppBar = () => {
+  const { userId, ekfId, ekfYear } = useParams()
   const { search } = useLocation()
 
   const store = useContext(storeContext)
-  const { user, setIsPrint } = store
+  const { user, setIsPrint, setIsEkfSinglePrint } = store
   const ekfIsActive = !!ekfId
 
   const isMobile = isMobilePhone()
@@ -79,15 +81,28 @@ const ProjekteAppBar = ({ ekf }) => {
   const role = tokenDecoded ? tokenDecoded.role : null
   const isFreiwillig = role === 'apflora_freiwillig'
 
+  const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
+  const ekfRefYear = new Date(ekfRefDate).getFullYear()
+
+  const query =
+    ekfRefYear === ekfYear ? dataByUserIdQuery : dataWithDateByUserIdQuery
+
+  const { data } = useQuery(query, {
+    variables: { id: userId, jahr: +ekfYear },
+    fetchPolicy: 'network-only',
+  })
+
   // if no ekfAdresseId
   // need to fetch adresse.id for this user
   // and use that instead
-  const { data } = useQuery(query, {
+  const { data: userData } = useQuery(userQuery, {
     variables: { userId: userId ?? '99999999-9999-9999-9999-999999999999' },
   })
 
-  const userName = data?.userById?.name ?? null
-  const ekfCount = ekf.length
+  const userName = userData?.userById?.name ?? null
+  const ekfCount = (
+    data?.userById?.adresseByAdresseId?.tpopkontrsByBearbeiter?.nodes ?? []
+  ).length
 
   const [userOpen, setUserOpen] = useState(false)
   const [preparingEkfMultiprint, setPreparingEkfMultiprint] = useState(false)
@@ -96,11 +111,13 @@ const ProjekteAppBar = ({ ekf }) => {
 
   const onClickPrintSingle = useCallback(() => {
     setIsPrint(true)
+    setIsEkfSinglePrint(true)
     setTimeout(() => {
       window.print()
       setIsPrint(false)
+      setIsEkfSinglePrint(false)
     })
-  }, [setIsPrint])
+  }, [setIsEkfSinglePrint, setIsPrint])
 
   const onClickPrintAll = useCallback(() => {
     setPreparingEkfMultiprint(true)

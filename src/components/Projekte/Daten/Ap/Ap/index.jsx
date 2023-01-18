@@ -5,6 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroupWithInfo from '../../../../shared/RadioButtonGroupWithInfo'
 import TextField from '../../../../shared/TextField'
@@ -71,6 +72,7 @@ const ApAp = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { user } = store
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

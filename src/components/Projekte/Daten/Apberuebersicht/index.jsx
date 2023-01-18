@@ -8,6 +8,7 @@ import format from 'date-fns/format'
 import { DateTime } from 'luxon'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import TextField from '../../../shared/TextField'
 import MdField from '../../../shared/MarkdownField'
@@ -58,6 +59,8 @@ const Apberuebersicht = () => {
   const { token } = user
   const role = token ? jwtDecode(token).role : null
   const userIsManager = role === 'apflora_manager'
+  
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Checkbox2States from '../../../shared/Checkbox2States'
 import TextField from '../../../shared/TextField'
@@ -40,6 +41,7 @@ const fieldTypes = {
 const Adresse = () => {
   const { adrId } = useParams()
   const store = useContext(storeContext)
+  const queryClient = useQueryClient()
 
   const { data, error, loading } = useQuery(query, {
     variables: { id: adrId },

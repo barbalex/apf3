@@ -58,6 +58,7 @@ const myTypes = types
     ),
     user: types.optional(User, defaultUser),
     isPrint: types.optional(types.boolean, false),
+    isEkfSinglePrint: types.optional(types.boolean, false),
     printingJberYear: types.optional(types.number, 0),
     copying: types.optional(Copying, defaultCopying),
     copyingBiotop: types.optional(CopyingBiotop, defaultCopyingBiotop),
@@ -221,6 +222,9 @@ const myTypes = types
     },
     setIsPrint(val) {
       self.isPrint = val
+    },
+    setIsEkfSinglePrint(val) {
+      self.isEkfSinglePrint = val
     },
     setCopying({ table, id, label, withNextLevel }) {
       self.copying = { table, id, label, withNextLevel }

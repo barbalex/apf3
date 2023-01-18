@@ -2,9 +2,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useParams } from 'react-router-dom'
 
 import Bar from './Bar'
+import EkfBar from './EkfBar'
 import inIframe from '../../modules/inIframe'
 
 const isInIframe = inIframe()
@@ -32,18 +33,23 @@ const StyledToolbar = styled(Toolbar)`
   padding-right: 4px !important;
 `
 
-const AppBarComponent = () =>
-  isInIframe ? (
-    <Outlet />
-  ) : (
+const AppBarComponent = () => {
+  const { userId } = useParams()
+  const { pathname } = useLocation()
+
+  if (isInIframe) return <Outlet />
+
+  const showEkf =
+    !!userId && pathname.startsWith(`/Daten/Benutzer/${userId}/EKF`)
+
+  return (
     <Container>
       <StyledAppBar position="static">
-        <StyledToolbar>
-          <Bar />
-        </StyledToolbar>
+        <StyledToolbar>{showEkf ? <EkfBar /> : <Bar />}</StyledToolbar>
       </StyledAppBar>
       <Outlet />
     </Container>
   )
+}
 
 export default AppBarComponent

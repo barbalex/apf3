@@ -12,14 +12,15 @@ import IconButton from '@mui/material/IconButton'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import Button from '@mui/material/Button'
 import { useApolloClient, useQuery } from '@apollo/client'
+import { useQueryClient } from '@tanstack/react-query'
 
 import query from './data'
-import TextField from '../../../../shared/TextField'
-import Error from '../../../../shared/Error'
+import TextField from '../../../shared/TextField'
+import Error from '../../../shared/Error'
 import updateUserByIdGql from './updateUserById'
-import ifIsNumericAsNumber from '../../../../../modules/ifIsNumericAsNumber'
-import ErrorBoundary from '../../../../shared/ErrorBoundary'
-import storeContext from '../../../../../storeContext'
+import ifIsNumericAsNumber from '../../../../modules/ifIsNumericAsNumber'
+import ErrorBoundary from '../../../shared/ErrorBoundary'
+import storeContext from '../../../../storeContext'
 
 const Container = styled.div`
   height: 100%;
@@ -46,6 +47,7 @@ const FormContainer = styled.div`
 
 const User = ({ username, userOpen, toggleUserOpen }) => {
   const store = useContext(storeContext)
+  const queryClient = useQueryClient()
 
   const { data, error, loading } = useQuery(query, {
     variables: { name: username },

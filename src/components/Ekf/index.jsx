@@ -11,7 +11,6 @@ import EkfList from './List'
 import Tpopfreiwkontr from '../Projekte/Daten/Tpopfreiwkontr'
 import storeContext from '../../storeContext'
 import StyledSplitPane from '../shared/StyledSplitPane'
-import AppBar from './AppBar'
 import dataByUserIdGql from './dataByUserId'
 import dataWithDateByUserIdGql from './dataWithDateByUserId'
 import Error from '../shared/Error'
@@ -66,7 +65,7 @@ const Ekf = () => {
   const { search } = useLocation()
   const navigate = useNavigate()
   const { userId, ekfId, ekfYear } = useParams()
-  const { isPrint } = useContext(storeContext)
+  const { isPrint, isEkfSinglePrint } = useContext(storeContext)
 
   const ekfRefDate = new Date() //.setMonth(new Date().getMonth() - 2)
   const ekfRefYear = new Date(ekfRefDate).getFullYear()
@@ -85,6 +84,7 @@ const Ekf = () => {
     // navigate to first kontrId so form is shown for first ekf
     // IF none is choosen yet
     if (ekf.length > 0 && !ekfId) {
+      // console.log('Ekf, useEffect, navigating to first ekf')
       navigate(`/Daten/Benutzer/${userId}/EKF/${ekfYear}/${ekf[0].id}${search}`)
     }
   }, [ekfYear, ekf.length, ekfId, ekf, navigate, userId, search])
@@ -95,35 +95,33 @@ const Ekf = () => {
 
   if (!loading && ekf.length === 0) {
     return (
-      <AppBar ekf={[]}>
-        <NoDataContainer>
-          {`Für das Jahr ${ekfYear} existieren offenbar keine Erfolgskontrollen mit Ihnen als BearbeiterIn`}
-        </NoDataContainer>
-      </AppBar>
+      <NoDataContainer>
+        {`Für das Jahr ${ekfYear} existieren offenbar keine Erfolgskontrollen mit Ihnen als BearbeiterIn`}
+      </NoDataContainer>
     )
+  }
+
+  if (isPrint && isEkfSinglePrint) {
+    return <Tpopfreiwkontr id={ekfId} />
   }
 
   if (isPrint && ekf.length > 0) {
     return (
-      <AppBar ekf={ekf}>
-        <>
-          {ekf.map((e) => (
-            <Tpopfreiwkontr id={e.id} key={e.id} />
-          ))}
-        </>
-      </AppBar>
+      <>
+        {ekf.map((e) => (
+          <Tpopfreiwkontr id={e.id} key={e.id} />
+        ))}
+      </>
     )
   }
 
   return (
-    <AppBar ekf={ekf}>
-      <Container>
-        <StyledSplitPane split="vertical" size="350px" minSize={100}>
-          <EkfList ekf={ekf} />
-          {ekfId ? <Tpopfreiwkontr id={ekfId} /> : <InnerContainer />}
-        </StyledSplitPane>
-      </Container>
-    </AppBar>
+    <Container>
+      <StyledSplitPane split="vertical" size="350px" minSize={100}>
+        <EkfList ekf={ekf} />
+        {ekfId ? <Tpopfreiwkontr id={ekfId} /> : <InnerContainer />}
+      </StyledSplitPane>
+    </Container>
   )
 }
 

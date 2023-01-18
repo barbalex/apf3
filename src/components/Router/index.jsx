@@ -57,6 +57,11 @@ const RouterComponent = () => {
         <Route path="/Daten/*" element={<ProtectedRoute />}>
           {/* <Route path="*" element={<Unterhalt />}></Route> */}
           <Route path="Projekte/:projId/EK-Planung" element={<EkPlan />} />
+          <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
+          <Route
+            path="Benutzer/:userId/EKF/:ekfYear/:ekfId"
+            element={<Ekf />}
+          />
           <Route path="*" element={<Projekte />}>
             <Route path="Werte-Listen/Adressen/:adrId" element={<Adresse />} />
             <Route
@@ -183,11 +188,6 @@ const RouterComponent = () => {
             <Route
               path="Benutzer/:userId/EKF/*"
               element={<EkfYearNavigator />}
-            />
-            <Route path="Benutzer/:userId/EKF/:ekfYear/*" element={<Ekf />} />
-            <Route
-              path="Benutzer/:userId/EKF/:ekfYear/:ekfId"
-              element={<Ekf />}
             />
           </Route>
         </Route>
