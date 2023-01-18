@@ -153,7 +153,7 @@ const fieldTypes = {
 const TpopfreiwkontrForm = ({ data, refetch, row, apId }) => {
   const client = useApolloClient()
   const queryClient = useQueryClient()
-  
+
   const store = useContext(storeContext)
   const { dataFilterSetValue, isPrint, user } = store
   const { token } = user
@@ -297,6 +297,7 @@ const TpopfreiwkontrForm = ({ data, refetch, row, apId }) => {
         return setErrors({ [field]: error.message })
       }
       setErrors({})
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
@@ -324,6 +325,7 @@ const TpopfreiwkontrForm = ({ data, refetch, row, apId }) => {
       user.name,
       dataFilterSetValue,
       client,
+      queryClient,
     ],
   )
 

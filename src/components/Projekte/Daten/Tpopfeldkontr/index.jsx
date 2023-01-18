@@ -198,8 +198,11 @@ const Tpopfeldkontr = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (['jahr', 'datum', 'typ'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row.id, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   const aeLrWerte = (data?.allAeLrDelarzes?.nodes ?? [])

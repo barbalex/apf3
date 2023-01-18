@@ -122,8 +122,11 @@ const Tpopber = () => {
       if (Object.keys(fieldErrors).length) {
         setFieldErrors({})
       }
+      if (['jahr', 'entwicklung'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, fieldErrors, row, store.user.name],
+    [client, fieldErrors, queryClient, row, store.user.name],
   )
 
   if (loading) return <Spinner />

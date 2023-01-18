@@ -174,8 +174,19 @@ const TpopForm = () => {
       if (Object.keys(fieldErrors).length) {
         setFieldErrors({})
       }
+      if (['nr', 'flurname'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, fieldErrors, row.id, row?.lv95X, row?.y, store.user.name],
+    [
+      client,
+      fieldErrors,
+      queryClient,
+      row.id,
+      row?.lv95X,
+      row?.y,
+      store.user.name,
+    ],
   )
 
   if (error) return <Error error={error} />
