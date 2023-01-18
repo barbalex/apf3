@@ -30,7 +30,8 @@ const ApFilterController = () => {
         variables: { id: apId },
       })
       .then(({ data }) => {
-        const isAp = data.apById.bearbeitung < 4
+        const bearbeitung = data.apById.bearbeitung
+        const isAp = bearbeitung > 0 && bearbeitung < 4
         if (!isAp) setApFilter(false)
       })
   }, [apFilter, apId, client, setApFilter])
