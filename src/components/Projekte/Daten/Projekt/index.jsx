@@ -90,8 +90,9 @@ const Projekt = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

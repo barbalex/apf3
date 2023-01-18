@@ -132,8 +132,11 @@ const Pop = () => {
         })
       }
       setFieldErrors({})
+      if (field === 'name') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row, store.user.name],
   )
 
   if (loading) return <Spinner />
