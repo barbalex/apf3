@@ -248,7 +248,7 @@ export default gql`
         ...TpopmassnberFields
       }
     }
-    allTpopmassns(filter: $tpopmassnsFilter, orderBy: DATUM_ASC)
+    allTpopmassns(filter: $tpopmassnsFilter, orderBy: [JAHR_ASC, DATUM_ASC])
       @include(if: $isTpop) {
       nodes {
         ...TpopmassnFields
