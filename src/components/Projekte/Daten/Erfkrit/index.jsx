@@ -39,7 +39,7 @@ const fieldTypes = {
 
 const Erfkrit = () => {
   const { erfkritId: id } = useParams()
-  
+
   const client = useApolloClient()
   const queryClient = useQueryClient()
   const store = useContext(storeContext)
@@ -100,8 +100,9 @@ const Erfkrit = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

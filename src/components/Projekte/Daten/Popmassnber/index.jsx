@@ -109,8 +109,11 @@ const Popmassnber = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (['jahr', 'entwicklung'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

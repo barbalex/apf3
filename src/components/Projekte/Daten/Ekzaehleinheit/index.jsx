@@ -135,8 +135,11 @@ const Ekzaehleinheit = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (field === 'zaehleinheitId') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   // console.log('Ekzaehleinheit rendering, loading:', loading)
