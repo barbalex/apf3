@@ -122,8 +122,9 @@ const ApArt = () => {
       // without refetch artname is not renewed
       refetch()
       setFieldErrors({})
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
-    [client, refetch, row.id, store.user.name],
+    [client, queryClient, refetch, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

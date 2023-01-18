@@ -92,8 +92,11 @@ const Adresse = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (field === 'name') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

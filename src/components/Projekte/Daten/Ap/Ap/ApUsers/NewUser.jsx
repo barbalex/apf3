@@ -1,13 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useQuery, useApolloClient, gql } from '@apollo/client'
-import { useQueryClient } from '@tanstack/react-query'
 
 import Select from '../../../../../shared/Select'
 
 const NewUser = ({ apId, apUsers, refetch }) => {
   const client = useApolloClient()
-  const queryClient = useQueryClient()
 
   const [error, setError] = useState(null)
 
