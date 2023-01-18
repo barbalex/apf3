@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import TextField from '../../../shared/TextField'
 import Select from '../../../shared/Select'
@@ -47,6 +48,7 @@ const Ekzaehleinheit = () => {
   const { zaehleinheitId: id } = useParams()
 
   const client = useApolloClient()
+  const queryClient = useQueryClient()
   const store = useContext(storeContext)
 
   const [fieldErrors, setFieldErrors] = useState({})
