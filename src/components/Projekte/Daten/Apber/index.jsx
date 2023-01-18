@@ -126,8 +126,12 @@ const Apber = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (field === 'jahr') {
+        queryClient.invalidateQueries({ queryKey: [`apberQuery`] })
+      }
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   const columnWidth =

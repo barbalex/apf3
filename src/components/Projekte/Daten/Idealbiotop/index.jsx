@@ -7,6 +7,7 @@ import Tab from '@mui/material/Tab'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import TextField from '../../../shared/TextField'
 import DateField from '../../../shared/Date'
@@ -89,6 +90,7 @@ const Idealbiotop = () => {
 
   const store = useContext(storeContext)
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -59,7 +59,7 @@ const Apberuebersicht = () => {
   const { token } = user
   const role = token ? jwtDecode(token).role : null
   const userIsManager = role === 'apflora_manager'
-  
+
   const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
@@ -115,8 +115,11 @@ const Apberuebersicht = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (field === 'jahr') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   const isBeforeMarchOfFollowingYear = useMemo(() => {
