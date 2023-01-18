@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import TextField from '../../../shared/TextField'
 import FormTitle from '../../../shared/FormTitle'
@@ -37,7 +38,9 @@ const fieldTypes = {
 
 const Zielber = () => {
   const { zielberId: id } = useParams()
+  
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const store = useContext(storeContext)
 

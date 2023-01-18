@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -45,6 +46,7 @@ const Ziel = () => {
   const client = useApolloClient()
   const store = useContext(storeContext)
   const { activeNodeArray, openNodes, setOpenNodes } = store.tree
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 

@@ -12,6 +12,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useParams, useLocation, Link } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField2'
@@ -98,6 +99,7 @@ const User = () => {
   const store = useContext(storeContext)
 
   const client = useApolloClient()
+  const queryClient = useQueryClient()
 
   const [errors, setErrors] = useState({})
   const [editPassword, setEditPassword] = useState(false)
@@ -169,28 +171,16 @@ const User = () => {
             id: row.id,
             [field]: value,
           },
-          optimisticResponse: {
-            __typename: 'Mutation',
-            updateUserById: {
-              user: {
-                id: row.id,
-                name: field === 'name' ? value : row.name,
-                email: field === 'email' ? value : row.email,
-                role: field === 'role' ? value : row.role,
-                pass: field === 'pass' ? value : row.pass,
-                adresseId: field === 'adresseId' ? value : row.adresseId,
-                __typename: 'User',
-              },
-              __typename: 'User',
-            },
-          },
         })
       } catch (error) {
         return setErrors({ [field]: error.message })
       }
       setErrors({})
+      if (field === 'name') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row.adresseId, row.email, row.id, row.name, row.pass, row.role],
+    [client, queryClient, row.id],
   )
   const onBlurPassword = useCallback((event) => {
     setPasswordErrorText('')
