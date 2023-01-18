@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { useApolloClient, gql } from '@apollo/client'
 import jwtDecode from 'jwt-decode'
 import { useResizeDetector } from 'react-resize-detector'
+import { useQueryClient } from '@tanstack/react-query'
 
 import StringToCopy from '../../../shared/StringToCopyOnlyButton'
 import Title from './Title'
@@ -151,6 +152,8 @@ const fieldTypes = {
 
 const TpopfreiwkontrForm = ({ data, refetch, row, apId }) => {
   const client = useApolloClient()
+  const queryClient = useQueryClient()
+  
   const store = useContext(storeContext)
   const { dataFilterSetValue, isPrint, user } = store
   const { token } = user

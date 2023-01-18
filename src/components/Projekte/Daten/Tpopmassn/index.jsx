@@ -7,6 +7,7 @@ import { useApolloClient, useQuery, gql } from '@apollo/client'
 import SimpleBar from 'simplebar-react'
 import { useResizeDetector } from 'react-resize-detector'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 import RadioButtonGroup from '../../../shared/RadioButtonGroup'
 import TextField from '../../../shared/TextField'
@@ -81,6 +82,7 @@ const Tpopmassn = ({ showFilter = false }) => {
 
   const client = useApolloClient()
   const store = useContext(storeContext)
+  const queryClient = useQueryClient()
 
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -342,8 +344,21 @@ const Tpopmassn = ({ showFilter = false }) => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (['jahr', 'datum', 'typ'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [apId, client, notMassnCountUnit, row, store.user.name],
+    [
+      apId,
+      client,
+      notMassnCountUnit,
+      queryClient,
+      row.anzPflanzen,
+      row.anzTriebe,
+      row.id,
+      row.typ,
+      store.user.name,
+    ],
   )
 
   const [tab, setTab] = useSearchParamsState('tpopmassnTab', 'tpopmassn')
