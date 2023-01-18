@@ -63,7 +63,7 @@ const MarkdownField = ({
         value,
       },
     }
-    console.log('MarkdownField saving fakeEvent:', { fakeEvent })
+    // console.log('MarkdownField saving fakeEvent:', { fakeEvent })
     saveToDb(fakeEvent)
   }, [name, saveToDb, value])
 

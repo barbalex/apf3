@@ -18,7 +18,6 @@ const deleteData = {
 const Apber = ({ onClick }) => {
   const { user } = useContext(storeContext)
   const isReadOnly = userIsReadOnly(user.token)
-  console.log('contextmenu Apber render, isReadOnly:', isReadOnly)
 
   return (
     <ErrorBoundary>
