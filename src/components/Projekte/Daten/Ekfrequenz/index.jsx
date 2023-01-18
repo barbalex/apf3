@@ -135,9 +135,12 @@ const Ekfrequenz = () => {
         return
       }
       setFieldErrors({})
+      if (field === 'code') {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
       return
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

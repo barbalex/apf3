@@ -38,7 +38,7 @@ const fieldTypes = {
 
 const Zielber = () => {
   const { zielberId: id } = useParams()
-  
+
   const client = useApolloClient()
   const queryClient = useQueryClient()
 
@@ -94,8 +94,11 @@ const Zielber = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      if (['jahr', 'erreichung'].includes(field)) {
+        queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
+      }
     },
-    [client, row, store.user.name],
+    [client, queryClient, row.id, store.user.name],
   )
 
   if (loading) return <Spinner />

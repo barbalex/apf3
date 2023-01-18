@@ -98,6 +98,7 @@ const Ziel = () => {
         return setFieldErrors({ [field]: error.message })
       }
       setFieldErrors({})
+      queryClient.invalidateQueries({ queryKey: [`treeQuery`] })
       // if jahr of ziel is updated, activeNodeArray und openNodes need to change
       if (field === 'jahr') {
         const newActiveNodeArray = [...activeNodeArray]
@@ -118,6 +119,7 @@ const Ziel = () => {
     [
       row.id,
       store.user.name,
+      queryClient,
       client,
       activeNodeArray,
       openNodes,
