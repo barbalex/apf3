@@ -217,7 +217,7 @@ const nodes = ({ data, loading, store, role }) => {
           }),
           ...buildApberFolderNodes({
             nodes,
-            data: data?.allApbers?.nodes ?? [],
+            data,
             loading,
             apNodes,
             projektNodes,

@@ -65,6 +65,7 @@ export default gql`
     $isWerteListen: Boolean!
     $isZiel: Boolean!
     $isApArt: Boolean!
+    $isApBer: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -79,7 +80,8 @@ export default gql`
       }
     }
     allApbers(filter: $apbersFilter, orderBy: LABEL_ASC) @include(if: $isAp) {
-      nodes {
+      totalCount
+      nodes @include(if: $isApBer) {
         id
         apId
         jahr
