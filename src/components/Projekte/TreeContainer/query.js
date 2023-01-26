@@ -276,7 +276,10 @@ export default gql`
     allTpops(filter: $tpopsFilter, orderBy: [NR_ASC, FLURNAME_ASC])
       @include(if: $isPop) {
       nodes {
-        ...TpopFields
+        id
+        popId
+        label
+        nr
       }
     }
     allUsers(filter: $usersFilter, orderBy: LABEL_ASC) {
@@ -352,7 +355,6 @@ export default gql`
   ${tpopkontrzaehl}
   ${tpopmassnber}
   ${tpopmassn}
-  ${tpop}
   ${ekAbrechnungstypWerte}
   ${tpopApberrelevantGrundWerte}
   ${tpopkontrzaehlEinheitWerte}
