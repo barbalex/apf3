@@ -205,24 +205,32 @@ export default gql`
     allPopbers(filter: $popbersFilter, orderBy: LABEL_ASC)
       @include(if: $isPop) {
       nodes {
-        ...PopberFields
+        id
+        popId
+        label
       }
     }
     allPopmassnbers(filter: $popmassnbersFilter, orderBy: LABEL_ASC)
       @include(if: $isPop) {
       nodes {
-        ...PopmassnberFields
+        id
+        popId
+        label
       }
     }
     allPops(filter: $popsFilter, orderBy: [NR_ASC, NAME_ASC])
       @include(if: $isAp) {
       nodes {
-        ...PopFields
+        id
+        apId
+        nr
+        label
       }
     }
     allProjekts(orderBy: NAME_ASC) {
       nodes {
-        ...ProjektFields
+        id
+        label
       }
     }
     allTpopbers(filter: $tpopbersFilter, orderBy: LABEL_ASC)
@@ -338,10 +346,6 @@ export default gql`
       }
     }
   }
-  ${popber}
-  ${popmassnber}
-  ${pop}
-  ${projekt}
   ${tpopber}
   ${tpopfeldkontr}
   ${tpopfreiwkontr}
