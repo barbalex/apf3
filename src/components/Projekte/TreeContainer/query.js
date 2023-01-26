@@ -68,6 +68,7 @@ export default gql`
     $isApBer: Boolean!
     $isApBerUebersicht: Boolean!
     $isCurrentIssues: Boolean!
+    $isEkFrequenz: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -171,7 +172,8 @@ export default gql`
     }
     allEkfrequenzs(filter: $ekfrequenzsFilter, orderBy: SORT_ASC)
       @include(if: $isAp) {
-      nodes {
+      totalCount
+      nodes @include(if: $isEkFrequenz) {
         ...EkfrequenzFields
       }
     }
