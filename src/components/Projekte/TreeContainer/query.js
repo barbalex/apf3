@@ -64,20 +64,17 @@ export default gql`
     $isTpopkontr: Boolean!
     $isWerteListen: Boolean!
     $isZiel: Boolean!
+    $isApArt: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
       nodes {
         ...ApFields
-        apartsByApId {
-          nodes {
-            ...ApartFields
-          }
-        }
       }
     }
     allAparts(filter: $apartsFilter, orderBy: LABEL_ASC) @include(if: $isAp) {
-      nodes {
+      totalCount
+      nodes @include(if: $isApArt) {
         ...ApartFields
       }
     }

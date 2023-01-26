@@ -74,6 +74,7 @@ const buildTreeQueryVariables = ({
       .filter((v) => v !== null)
       .filter((v) => isUuid.anyNonNil(v)),
   )
+  const isApArt = isAp && openNodes.some((nArray) => nArray[4] === 'Taxa')
   const isZiel =
     isAp &&
     openNodes.some(
@@ -267,9 +268,11 @@ const buildTreeQueryVariables = ({
       includesInsensitive: nodeLabelFilter.ziel,
     }
   }
+
   return {
     isProjekt,
     isAp,
+    isApArt,
     isPop,
     isTpop,
     isTpopkontr,

@@ -16,7 +16,7 @@ const apartFolderNode = ({
   const apFilter = store.tree?.apFilter
   if (!!apFilter && !isAp) return []
 
-  const aparts = data?.allAparts?.nodes ?? []
+  const count = data?.allAparts?.totalCount ?? 0
 
   // fetch sorting indexes of parents
   const projIndex = findIndex(projektNodes, {
@@ -27,16 +27,11 @@ const apartFolderNode = ({
   })
   const nodeLabelFilterString = store.tree?.nodeLabelFilter?.apart ?? ''
 
-  const apartNodesLength = aparts.filter((el) => el.apId === apId).length
-  /*let message = loading && !apartNodesLength ? '...' : apartNodesLength
-  if (nodeLabelFilterString) {
-    message = `${apartNodesLength} gefiltert`
-  }*/
   const message = loading
     ? '...'
     : nodeLabelFilterString
-    ? `${apartNodesLength} gefiltert`
-    : apartNodesLength
+    ? `${count} gefiltert`
+    : count
 
   // only show if parent node exists
   const apNodesIds = nodesPassed.map((n) => n.id)
@@ -53,7 +48,7 @@ const apartFolderNode = ({
       label: `Taxa (${message})`,
       url: ['Projekte', projId, 'Arten', apId, 'Taxa'],
       sort: [projIndex, 1, apIndex, 7],
-      hasChildren: apartNodesLength > 0,
+      hasChildren: count > 0,
     },
   ]
 }
