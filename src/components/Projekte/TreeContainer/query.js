@@ -184,7 +184,9 @@ export default gql`
       orderBy: [SORT_ASC, LABEL_ASC]
     ) @include(if: $isAp) {
       nodes {
-        ...EkzaehleinheitFields
+        id
+        apId
+        label
       }
     }
     allErfkrits(
@@ -192,7 +194,9 @@ export default gql`
       orderBy: AP_ERFKRIT_WERTE_BY_ERFOLG__SORT_ASC
     ) @include(if: $isAp) {
       nodes {
-        ...ErfkritFields
+        id
+        apId
+        label
       }
     }
     allMessages {
@@ -334,8 +338,6 @@ export default gql`
       }
     }
   }
-  ${ekzaehleinheit}
-  ${erfkrit}
   ${popber}
   ${popmassnber}
   ${pop}
