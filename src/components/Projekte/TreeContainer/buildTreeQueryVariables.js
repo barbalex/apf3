@@ -46,6 +46,7 @@ const buildTreeQueryVariables = ({
   const isProjekt = openNodes.some(
     (nArray) => nArray[0] === 'Projekte' && nArray[1],
   )
+  const isAps = isProjekt && openNodes.some((nArray) => nArray[2] === 'Arten')
 
   const ap = uniq(
     openNodes
@@ -280,7 +281,7 @@ const buildTreeQueryVariables = ({
 
   return {
     isProjekt,
-    isAp,
+    isAp,isAps,
     isApArt,
     isApBer,
     isApBerUebersicht,

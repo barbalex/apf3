@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client'
 
 import {
-  currentIssue,
   ekfrequenz,
   ekzaehleinheit,
   erfkrit,
@@ -54,6 +53,7 @@ export default gql`
     $zielbersFilter: ZielberFilter!
     $zielsFilter: ZielFilter!
     $isProjekt: Boolean!
+    $isAps: Boolean!
     $isAp: Boolean!
     $isPop: Boolean!
     $isTpop: Boolean!
@@ -66,7 +66,7 @@ export default gql`
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
-      nodes {
+      nodes @include(if: $isAps) {
         id
         projId
         label
