@@ -852,6 +852,10 @@ export default types
       // type can be: nichtBeurteilt, nichtZuzuordnen, zugeordnet
       // 1. prepare hiearchy filter
       const projId = self.projIdInActiveNodeArray
+      // need list of all open apIds
+      const openApIds = [
+        ...new Set(self.openNodes.filter((n) => n[3]).map((n) => n[3])),
+      ]
       const apId = self.apIdInActiveNodeArray
 
       const apFilter = {
@@ -859,17 +863,12 @@ export default types
           apartsByArtId: {
             // important: NEVER load from all species!
             some: {
-              apId: { equalTo: apId ?? '99999999-9999-9999-9999-999999999999' },
+              apId: { in: openApIds },
             },
           },
         },
       }
 
-      // Der Hierarchie-Filter auf Ebene Population und Teil-Population hat sich nicht bewährt und wurde nach kurzer Zeit wieder entfernt
-      // const tpopHierarchyFilter = tpopId ? { tpopId: { equalTo: tpopId } } : {}
-      // const popHierarchyFilter = popId
-      //   ? { tpopByTpopId: { popId: { equalTo: popId } } }
-      //   : {}
       const apHiearchyFilter = apId
         ? { tpopByTpopId: { popByPopId: { apId: { equalTo: apId } } } }
         : {}
