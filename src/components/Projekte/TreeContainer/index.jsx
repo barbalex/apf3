@@ -327,6 +327,8 @@ const TreeContainer = () => {
       apFilter,
       nodeLabelFilter,
       apId,
+      // TODO: these filters react late
+      // eliminate them?
       // popGqlFilter,
       // tpopGqlFilter,
       // tpopmassnGqlFilter,
@@ -334,6 +336,9 @@ const TreeContainer = () => {
       // ekfGqlFilter,
       // apGqlFilter,
       // beobGqlFilter,
+      beobGqlFilter('nichtBeurteilt'),
+      beobGqlFilter('nichtZuzuordnen'),
+      beobGqlFilter('zugeordnet'),
       role,
     ],
     queryFn: () =>
