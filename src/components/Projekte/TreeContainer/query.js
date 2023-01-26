@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client'
 
 import {
-  ap,
   apart,
   apberuebersicht,
   currentIssue,
@@ -64,26 +63,27 @@ export default gql`
     $isTpopkontr: Boolean!
     $isWerteListen: Boolean!
     $isZiel: Boolean!
-    $isApArt: Boolean!
-    $isApBer: Boolean!
     $isApBerUebersicht: Boolean!
     $isCurrentIssues: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
       nodes {
-        ...ApFields
+        id
+        projId
+        label
+        bearbeitung
       }
     }
     allAparts(filter: $apartsFilter, orderBy: LABEL_ASC) @include(if: $isAp) {
-      totalCount
-      nodes @include(if: $isApArt) {
-        ...ApartFields
+      nodes {
+        id
+        apId
+        label
       }
     }
     allApbers(filter: $apbersFilter, orderBy: LABEL_ASC) @include(if: $isAp) {
-      totalCount
-      nodes @include(if: $isApBer) {
+      nodes {
         id
         apId
         jahr
@@ -328,8 +328,6 @@ export default gql`
       }
     }
   }
-  ${ap}
-  ${apart}
   ${apberuebersicht}
   ${currentIssue}
   ${ekfrequenz}

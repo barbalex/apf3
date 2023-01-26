@@ -19,7 +19,8 @@ const apberFolderNode = ({
     id: apId,
   })
   const nodeLabelFilterString = store.tree?.nodeLabelFilter?.apber ?? ''
-  const count = data?.allApbers?.totalCount ?? 0
+  const apbers = (data?.allApbers?.nodes ?? []).filter((n) => n.apId === apId)
+  const count = apbers.length
 
   const message = loading
     ? '...'

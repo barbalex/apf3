@@ -16,7 +16,9 @@ const apartFolderNode = ({
   const apFilter = store.tree?.apFilter
   if (!!apFilter && !isAp) return []
 
-  const count = data?.allAparts?.totalCount ?? 0
+  const count = (data?.allAparts?.nodes ?? []).filter(
+    (n) => n.apId === apId,
+  ).length
 
   // fetch sorting indexes of parents
   const projIndex = findIndex(projektNodes, {
