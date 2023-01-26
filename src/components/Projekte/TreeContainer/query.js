@@ -236,7 +236,9 @@ export default gql`
     allTpopbers(filter: $tpopbersFilter, orderBy: LABEL_ASC)
       @include(if: $isTpop) {
       nodes {
-        ...TpopberFields
+        id
+        tpopId
+        label
       }
     }
     allTpopfeldkontrs: allTpopkontrs(
@@ -244,7 +246,9 @@ export default gql`
       orderBy: [JAHR_ASC, DATUM_ASC]
     ) @include(if: $isTpop) {
       nodes {
-        ...TpopfeldkontrFields
+        id
+        tpopId
+        labelEk
       }
     }
     allTpopfreiwkontrs: allTpopkontrs(
@@ -252,25 +256,33 @@ export default gql`
       orderBy: [JAHR_ASC, DATUM_ASC]
     ) @include(if: $isTpop) {
       nodes {
-        ...TpopfreiwkontrFields
+        id
+        tpopId
+        labelEkf
       }
     }
     allTpopkontrzaehls(filter: $tpopkontrzaehlsFilter, orderBy: LABEL_ASC)
       @include(if: $isTpopkontr) {
       nodes {
-        ...TpopkontrzaehlFields
+        id
+        tpopkontrId
+        label
       }
     }
     allTpopmassnbers(filter: $tpopmassnbersFilter, orderBy: LABEL_ASC)
       @include(if: $isTpop) {
       nodes {
-        ...TpopmassnberFields
+        id
+        tpopId
+        label
       }
     }
     allTpopmassns(filter: $tpopmassnsFilter, orderBy: [JAHR_ASC, DATUM_ASC])
       @include(if: $isTpop) {
       nodes {
-        ...TpopmassnFields
+        id
+        tpopId
+        label
       }
     }
     allTpops(filter: $tpopsFilter, orderBy: [NR_ASC, FLURNAME_ASC])
@@ -310,7 +322,8 @@ export default gql`
     ) @include(if: $isWerteListen) {
       totalCount
       nodes {
-        ...TpopApberrelevantGrundWerteFields
+        id
+        label
       }
     }
     ekAbrechnungstypWertesUnfiltered: allEkAbrechnungstypWertes {
@@ -349,14 +362,7 @@ export default gql`
       }
     }
   }
-  ${tpopber}
-  ${tpopfeldkontr}
-  ${tpopfreiwkontr}
-  ${tpopkontrzaehl}
-  ${tpopmassnber}
-  ${tpopmassn}
   ${ekAbrechnungstypWerte}
-  ${tpopApberrelevantGrundWerte}
   ${tpopkontrzaehlEinheitWerte}
   ${zielber}
   ${ziel}
