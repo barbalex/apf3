@@ -1,27 +1,5 @@
 import { gql } from '@apollo/client'
 
-import {
-  ekfrequenz,
-  ekzaehleinheit,
-  erfkrit,
-  popber,
-  popmassnber,
-  pop,
-  projekt,
-  tpopber,
-  tpopfeldkontr,
-  tpopfreiwkontr,
-  tpopkontrzaehl,
-  tpopmassnber,
-  tpopmassn,
-  tpop,
-  ekAbrechnungstypWerte,
-  tpopApberrelevantGrundWerte,
-  tpopkontrzaehlEinheitWerte,
-  zielber,
-  ziel,
-} from '../../shared/fragments'
-
 export default gql`
   query TreeAllQuery(
     $apsFilter: ApFilter!
@@ -55,6 +33,7 @@ export default gql`
     $isProjekt: Boolean!
     $isAps: Boolean!
     $isAp: Boolean!
+    $isBeobNichtBeurteilt: Boolean!
     $isPop: Boolean!
     $isTpop: Boolean!
     $isTpopkontr: Boolean!
@@ -82,7 +61,6 @@ export default gql`
       nodes {
         id
         apId
-        jahr
         label
       }
     }
@@ -92,7 +70,6 @@ export default gql`
       nodes @include(if: $isApBerUebersicht) {
         id
         projId
-        jahr
         label
       }
     }
@@ -111,10 +88,10 @@ export default gql`
     ) @include(if: $isAp) {
       nodes {
         id
-        label
-        datum
-        autor
-        quelle
+        label @include(if: $isBeobNichtBeurteilt)
+        datum @include(if: $isBeobNichtBeurteilt)
+        autor @include(if: $isBeobNichtBeurteilt)
+        quelle @include(if: $isBeobNichtBeurteilt)
         aeTaxonomyByArtId {
           id
           apartsByArtId {

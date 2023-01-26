@@ -62,6 +62,10 @@ const buildTreeQueryVariables = ({
   )
   const isAp =
     isProjekt && openNodes.some((nArray) => nArray[2] === 'Arten' && nArray[3])
+  const isBeobNichtBeurteilt =
+    isAp &&
+    openNodes.some((nArray) => nArray[4] === 'nicht-beurteilte-Beobachtungen')
+
   const ziel = uniq(
     openNodes
       .map((a) =>
@@ -281,6 +285,7 @@ const buildTreeQueryVariables = ({
     isProjekt,
     isAp,
     isAps,
+    isBeobNichtBeurteilt,
     isApArt,
     isApBer,
     isApBerUebersicht,
