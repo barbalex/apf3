@@ -67,6 +67,7 @@ export default gql`
     $isApArt: Boolean!
     $isApBer: Boolean!
     $isApBerUebersicht: Boolean!
+    $isCurrentIssues: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -163,7 +164,8 @@ export default gql`
       }
     }
     allCurrentissues(orderBy: SORT_ASC) {
-      nodes {
+      totalCount
+      nodes @include(if: $isCurrentIssues) {
         ...CurrentIssueFields
       }
     }
