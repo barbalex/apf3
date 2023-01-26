@@ -1,8 +1,6 @@
 import { gql } from '@apollo/client'
 
 import {
-  apart,
-  apberuebersicht,
   currentIssue,
   ekfrequenz,
   ekzaehleinheit,
@@ -18,7 +16,6 @@ import {
   tpopmassnber,
   tpopmassn,
   tpop,
-  user,
   ekAbrechnungstypWerte,
   tpopApberrelevantGrundWerte,
   tpopkontrzaehlEinheitWerte,
@@ -65,6 +62,7 @@ export default gql`
     $isZiel: Boolean!
     $isApBerUebersicht: Boolean!
     $isCurrentIssues: Boolean!
+    $isUsers: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -94,7 +92,10 @@ export default gql`
       @include(if: $isProjekt) {
       totalCount
       nodes @include(if: $isApBerUebersicht) {
-        ...ApberuebersichtFields
+        id
+        projId
+        jahr
+        label
       }
     }
     allAssozarts(filter: $assozartFilter, orderBy: LABEL_ASC)
@@ -166,7 +167,8 @@ export default gql`
     allCurrentissues(orderBy: SORT_ASC) {
       totalCount
       nodes @include(if: $isCurrentIssues) {
-        ...CurrentIssueFields
+        id
+        label
       }
     }
     allEkfrequenzs(filter: $ekfrequenzsFilter, orderBy: SORT_ASC)
@@ -264,8 +266,10 @@ export default gql`
       }
     }
     allUsers(filter: $usersFilter, orderBy: LABEL_ASC) {
-      nodes {
-        ...UserFields
+      totalCount
+      nodes @include(if: $isUsers) {
+        id
+        label
       }
     }
     adressesUnfiltered: allAdresses {
@@ -328,8 +332,6 @@ export default gql`
       }
     }
   }
-  ${apberuebersicht}
-  ${currentIssue}
   ${ekfrequenz}
   ${ekzaehleinheit}
   ${erfkrit}
@@ -344,7 +346,6 @@ export default gql`
   ${tpopmassnber}
   ${tpopmassn}
   ${tpop}
-  ${user}
   ${ekAbrechnungstypWerte}
   ${tpopApberrelevantGrundWerte}
   ${tpopkontrzaehlEinheitWerte}

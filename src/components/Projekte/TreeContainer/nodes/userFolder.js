@@ -3,12 +3,12 @@ const userFolderNode = ({ data, loading, projektNodes, store }) => {
   const userIndex = projektNodes.length + 1
   const nodeLabelFilterString = store.tree?.nodeLabelFilter?.user ?? ''
 
-  const userNodesLength = (data?.allUsers?.nodes ?? []).length
+  const count = data?.allUsers?.totalCount ?? 0
   const message = loading
     ? '...'
     : nodeLabelFilterString
-    ? `${userNodesLength} gefiltert`
-    : userNodesLength
+    ? `${count} gefiltert`
+    : count
 
   return [
     {
@@ -20,7 +20,7 @@ const userFolderNode = ({ data, loading, projektNodes, store }) => {
       label: `Benutzer (${message})`,
       url: ['Benutzer'],
       sort: [userIndex],
-      hasChildren: userNodesLength > 0,
+      hasChildren: count > 0,
     },
   ]
 }
