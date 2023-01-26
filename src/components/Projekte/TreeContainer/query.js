@@ -174,7 +174,9 @@ export default gql`
     allEkfrequenzs(filter: $ekfrequenzsFilter, orderBy: SORT_ASC)
       @include(if: $isAp) {
       nodes {
-        ...EkfrequenzFields
+        id
+        apId
+        code
       }
     }
     allEkzaehleinheits(
@@ -332,7 +334,6 @@ export default gql`
       }
     }
   }
-  ${ekfrequenz}
   ${ekzaehleinheit}
   ${erfkrit}
   ${popber}
