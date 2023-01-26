@@ -77,6 +77,9 @@ const buildTreeQueryVariables = ({
   const isApArt = isAp && openNodes.some((nArray) => nArray[4] === 'Taxa')
   const isApBer =
     isAp && openNodes.some((nArray) => nArray[4] === 'AP-Berichte')
+  const isApBerUebersicht =
+    !isAp && openNodes.some((nArray) => nArray[2] === 'AP-Berichte')
+  // console.log('buildTreeQueryVariables', { isApBerUebersicht, openNodes })
   const isZiel =
     isAp &&
     openNodes.some(
@@ -276,6 +279,7 @@ const buildTreeQueryVariables = ({
     isAp,
     isApArt,
     isApBer,
+    isApBerUebersicht,
     isPop,
     isTpop,
     isTpopkontr,

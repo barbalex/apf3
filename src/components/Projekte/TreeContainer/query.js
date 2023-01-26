@@ -66,6 +66,7 @@ export default gql`
     $isZiel: Boolean!
     $isApArt: Boolean!
     $isApBer: Boolean!
+    $isApBerUebersicht: Boolean!
   ) {
     allAps(filter: $apsFilter, orderBy: LABEL_ASC) @include(if: $isProjekt) {
       totalCount
@@ -90,7 +91,8 @@ export default gql`
     }
     allApberuebersichts(filter: $apberuebersichtsFilter, orderBy: LABEL_ASC)
       @include(if: $isProjekt) {
-      nodes {
+      totalCount
+      nodes @include(if: $isApBerUebersicht) {
         ...ApberuebersichtFields
       }
     }

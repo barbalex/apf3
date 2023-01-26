@@ -14,21 +14,13 @@ const apberuebersichtFolderNode = ({
   })
   const nodeLabelFilterString =
     store.tree?.nodeLabelFilter?.apberuebersicht ?? ''
+  const count = data?.allApberuebersichts?.totalCount ?? 0
 
-  const apberuebersichtNodesLength = (
-    data?.allApberuebersichts?.nodes ?? []
-  ).filter((el) => projNodeIds.includes(el.projId)).length
-  /*
-  let message =
-    loading && !apberuebersichtNodesLength ? '...' : apberuebersichtNodesLength
-  if (nodeLabelFilterString) {
-    message = `${apberuebersichtNodesLength} gefiltert`
-  }*/
   const message = loading
     ? '...'
     : nodeLabelFilterString
-    ? `${apberuebersichtNodesLength} gefiltert`
-    : apberuebersichtNodesLength
+    ? `${count} gefiltert`
+    : count
 
   // only show if parent node exists
   if (!projNodeIds.includes(projId)) return []
@@ -43,7 +35,7 @@ const apberuebersichtFolderNode = ({
       label: `AP-Berichte (${message})`,
       url: ['Projekte', projId, 'AP-Berichte'],
       sort: [projIndex, 2],
-      hasChildren: apberuebersichtNodesLength > 0,
+      hasChildren: count > 0,
     },
   ]
 }
