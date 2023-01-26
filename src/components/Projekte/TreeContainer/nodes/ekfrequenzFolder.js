@@ -10,7 +10,7 @@ const ekfrequenzFolderNode = ({
   apId,
   store,
 }) => {
-  const count = data?.allEkfrequenzs?.totalCount ?? 0
+  const ekfrequenzs = data?.allEkfrequenzs?.nodes ?? []
 
   // fetch sorting indexes of parents
   const projIndex = findIndex(projektNodes, {
@@ -21,11 +21,14 @@ const ekfrequenzFolderNode = ({
   })
   const nodeLabelFilterString = store.tree?.nodeLabelFilter?.ekfrequenz ?? ''
 
+  const ekfrequenzNodesLength = ekfrequenzs.filter(
+    (el) => el.apId === apId,
+  ).length
   const message = loading
     ? '...'
     : nodeLabelFilterString
-    ? `${count} gefiltert`
-    : count
+    ? `${ekfrequenzNodesLength} gefiltert`
+    : ekfrequenzNodesLength
 
   const url = ['Projekte', projId, 'Arten', apId, 'EK-Frequenzen']
 
@@ -44,7 +47,7 @@ const ekfrequenzFolderNode = ({
       label: `EK-Frequenzen (${message})`,
       url,
       sort: [projIndex, 1, apIndex, 9],
-      hasChildren: count > 0,
+      hasChildren: ekfrequenzNodesLength > 0,
     },
   ]
 }
