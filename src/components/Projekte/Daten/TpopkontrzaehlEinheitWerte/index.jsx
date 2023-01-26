@@ -111,7 +111,7 @@ const TpopkontrzaehlEinheitWerte = ({ table }) => {
             }
           }
         `
-        //console.log('TpopkontrzaehlEinheitWerte:', { variables, __typename, updateName })
+        //console.log('TpopkontrzaehlEinheitWerte:', { variables, updateName })
         await client.mutate({
           mutation,
           variables,

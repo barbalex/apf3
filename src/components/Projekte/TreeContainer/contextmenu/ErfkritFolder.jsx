@@ -203,7 +203,6 @@ const ErfkritFolder = ({ onClick }) => {
                     }
                   ) {
                     erfkrit {
-                      __typename
                       id
                       apId
                       erfolg

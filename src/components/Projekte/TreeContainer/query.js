@@ -68,9 +68,7 @@ export default gql`
       totalCount
       nodes @include(if: $isAps) {
         id
-        projId
         label
-        bearbeitung
       }
     }
     allAparts(filter: $apartsFilter, orderBy: LABEL_ASC) @include(if: $isAp) {

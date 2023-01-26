@@ -73,7 +73,7 @@ const Werte = ({ table }) => {
         changedBy: store.user.name,
       }
 
-      const __typename = upperFirst(table)
+      const typename = upperFirst(table)
       try {
         const mutation = gql`
           mutation updateWert(
@@ -83,7 +83,7 @@ const Werte = ({ table }) => {
             $sort: Int
             $changedBy: String
           ) {
-            update${__typename}ById(
+            update${typename}ById(
               input: {
                 id: $id
                 ${table}Patch: {

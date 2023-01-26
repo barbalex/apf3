@@ -11,19 +11,17 @@ const ap = ({ nodes: nodesPassed, data, projektNodes, projId, store }) => {
   // map through all elements and create array of nodes
   const nodes = (data?.allAps?.nodes ?? [])
     // only show if parent node exists
-    .filter((el) => nodesPassed.map((n) => n.id).includes(el.projId))
-    // only show nodes of this parent
-    .filter((el) => el.projId === projId)
+    .filter(() => nodesPassed.map((n) => n.id).includes(projId))
     .map((el) => ({
       nodeType: 'table',
       menuType: 'ap',
       filterTable: 'ap',
       id: el.id,
-      parentId: el.projId,
-      parentTableId: el.projId,
+      parentId: projId,
+      parentTableId: projId,
       urlLabel: el.id,
       label: el.label,
-      url: ['Projekte', el.projId, 'Arten', el.id],
+      url: ['Projekte', projId, 'Arten', el.id],
       hasChildren: true,
     }))
     .filter((el) => allParentNodesAreOpen(store.tree.openNodes, el.url))

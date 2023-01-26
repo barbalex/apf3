@@ -228,7 +228,6 @@ const EkfrequenzFolder = ({ onClick }) => {
                     }
                   ) {
                     ekfrequenz {
-                      __typename
                       id
                       anwendungsfall
                       apId
