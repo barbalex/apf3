@@ -29,7 +29,7 @@ import { Provider as IdbProvider } from './idbContext'
 import Notifier from './components/shared/Notifier'
 import NotificationDismisser from './components/shared/NotificationDismisser'
 
-import 'simplebar/dist/simplebar.min.css'
+import 'simplebar-react/dist/simplebar.min.css'
 
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
