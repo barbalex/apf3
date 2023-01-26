@@ -47,7 +47,6 @@ const buildTreeQueryVariables = ({
     (nArray) => nArray[0] === 'Projekte' && nArray[1],
   )
   const isAps = isProjekt && openNodes.some((nArray) => nArray[2] === 'Arten')
-  console.log('buildTreeQueryVariables', { isAps, openNodes, isProjekt })
 
   const ap = uniq(
     openNodes
@@ -84,7 +83,6 @@ const buildTreeQueryVariables = ({
   const isCurrentIssues =
     !isAp && openNodes.some((nArray) => nArray[0] === 'Aktuelle-Fehler')
   const isUsers = !isAp && openNodes.some((nArray) => nArray[0] === 'Benutzer')
-  // console.log('buildTreeQueryVariables', { isCurrentIssues, openNodes })
   const isZiel =
     isAp &&
     openNodes.some(
