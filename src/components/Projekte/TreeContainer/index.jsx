@@ -302,56 +302,56 @@ const TreeContainer = () => {
     setCopyingBiotop,
     user,
   } = store
-  const { openNodes, setOpenNodes } = store.tree
+  const { setOpenNodes } = store.tree
 
   const { token } = user
   const role = token ? jwtDecode(token).role : null
 
-  const treeDataFilter = getSnapshot(store.tree.dataFilter)
-  const treeNodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
-  const treeOpenNodes = getSnapshot(store.tree.openNodes)
-  const treeApFilter = store.tree.apFilter
-  const popGqlFilterTree = store.tree.popGqlFilter
-  const apGqlFilterTree = store.tree.apGqlFilter
-  const tpopGqlFilterTree = store.tree.tpopGqlFilter
-  const tpopmassnGqlFilterTree = store.tree.tpopmassnGqlFilter
-  const ekGqlFilterTree = store.tree.ekGqlFilter
-  const ekfGqlFilterTree = store.tree.ekfGqlFilter
-  const beobGqlFilterTree = store.tree.beobGqlFilter
+  const dataFilter = getSnapshot(store.tree.dataFilter)
+  const nodeLabelFilter = getSnapshot(store.tree.nodeLabelFilter)
+  const openNodes = getSnapshot(store.tree.openNodes)
+  const apFilter = store.tree.apFilter
+  const popGqlFilter = store.tree.popGqlFilter
+  const apGqlFilter = store.tree.apGqlFilter
+  const tpopGqlFilter = store.tree.tpopGqlFilter
+  const tpopmassnGqlFilter = store.tree.tpopmassnGqlFilter
+  const ekGqlFilter = store.tree.ekGqlFilter
+  const ekfGqlFilter = store.tree.ekfGqlFilter
+  const beobGqlFilter = store.tree.beobGqlFilter
 
   const { data, error, isLoading } = useQuery({
     queryKey: [
       'treeQuery',
-      treeDataFilter,
-      treeOpenNodes,
-      treeApFilter,
-      treeNodeLabelFilter,
+      dataFilter,
+      openNodes,
+      apFilter,
+      nodeLabelFilter,
       apId,
-      popGqlFilterTree,
-      tpopGqlFilterTree,
-      tpopmassnGqlFilterTree,
-      ekGqlFilterTree,
-      ekfGqlFilterTree,
-      apGqlFilterTree,
-      beobGqlFilterTree,
+      popGqlFilter,
+      tpopGqlFilter,
+      tpopmassnGqlFilter,
+      ekGqlFilter,
+      ekfGqlFilter,
+      apGqlFilter,
+      beobGqlFilter,
       role,
     ],
     queryFn: () =>
       client.query({
         query,
         variables: buildTreeQueryVariables({
-          dataFilter: treeDataFilter,
-          openNodes: treeOpenNodes,
-          apFilter: treeApFilter,
-          nodeLabelFilter: treeNodeLabelFilter,
+          dataFilter,
+          openNodes,
+          apFilter,
+          nodeLabelFilter,
           artId: apId,
-          popGqlFilter: popGqlFilterTree,
-          tpopGqlFilter: tpopGqlFilterTree,
-          tpopmassnGqlFilter: tpopmassnGqlFilterTree,
-          ekGqlFilter: ekGqlFilterTree,
-          ekfGqlFilter: ekfGqlFilterTree,
-          apGqlFilter: apGqlFilterTree,
-          beobGqlFilter: beobGqlFilterTree,
+          popGqlFilter,
+          tpopGqlFilter,
+          tpopmassnGqlFilter,
+          ekGqlFilter,
+          ekfGqlFilter,
+          apGqlFilter,
+          beobGqlFilter,
         }),
         // DANGER: without, refetches by react-query do not work!
         fetchPolicy: 'no-cache',
@@ -375,10 +375,10 @@ const TreeContainer = () => {
     }
   }, [
     isLoading,
-    treeOpenNodes,
-    store.tree.openNodes.length,
+    openNodes,
+    openNodes.length,
     treeData,
-    treeDataFilter,
+    dataFilter,
     role,
     store,
   ])

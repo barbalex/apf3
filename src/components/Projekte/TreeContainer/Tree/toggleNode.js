@@ -1,5 +1,5 @@
-import isNodeOpen from './isNodeOpen'
-import openNode from './openNode'
+import isNodeOpen from '../isNodeOpen'
+import openNode from '../openNode'
 
 const toggleNode = ({ node, store, navigate, search }) => {
   if (!node.url) throw new Error('passed node has no url')

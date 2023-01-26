@@ -335,7 +335,8 @@ export default gql`
     ) @include(if: $isWerteListen) {
       totalCount
       nodes {
-        ...EkAbrechnungstypWerteFields
+        id
+        label
       }
     }
     tpopkontrzaehlEinheitWertesUnfiltered: allTpopkontrzaehlEinheitWertes {
@@ -347,23 +348,25 @@ export default gql`
     ) @include(if: $isWerteListen) {
       totalCount
       nodes {
-        ...TpopkontrzaehlEinheitWerteFields
+        id
+        label
       }
     }
     allZielbers(filter: $zielbersFilter, orderBy: LABEL_ASC)
       @include(if: $isZiel) {
       nodes {
-        ...ZielberFields
+        id
+        zielId
+        label
       }
     }
     allZiels(filter: $zielsFilter, orderBy: LABEL_ASC) @include(if: $isAp) {
       nodes {
-        ...ZielFields
+        id
+        apId
+        label
+        jahr
       }
     }
   }
-  ${ekAbrechnungstypWerte}
-  ${tpopkontrzaehlEinheitWerte}
-  ${zielber}
-  ${ziel}
 `
